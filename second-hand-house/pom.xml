@@ -81,11 +81,6 @@
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.wintop</groupId>
-            <artifactId>wintop-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <!-- 注册中心 zookeeper -->
         <dependency>
             <groupId>org.apache.zookeeper</groupId>

@@ -1,5 +1,5 @@
 package com.wintop.ms.house.service;
-import com.wintop.core.bean.ServiceResult;
+import com.wintop.ms.house.entity.ServiceResult;
 import com.wintop.ms.house.entity.Test;
 
 import java.util.List;

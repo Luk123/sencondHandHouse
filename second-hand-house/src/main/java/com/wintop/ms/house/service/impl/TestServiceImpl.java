@@ -1,6 +1,6 @@
 package com.wintop.ms.house.service.impl;
 
-import com.wintop.core.bean.ServiceResult;
+import com.wintop.ms.house.entity.ServiceResult;
 import com.wintop.ms.house.entity.Test;
 import com.wintop.ms.house.mapper.ITestDao;
 import com.wintop.ms.house.service.ITestService;
