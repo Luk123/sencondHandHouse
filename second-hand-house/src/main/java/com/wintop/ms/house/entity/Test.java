@@ -1,9 +1,13 @@
 package com.wintop.ms.house.entity;
 
+import com.wintop.ms.common.base.BsData;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Test implements Serializable {
+@Data
+public class Test extends BsData {
     private static final long serialVersionUID = -2925788042202341921L;
     /**
      * 用户注册ID
@@ -15,19 +19,4 @@ public class Test implements Serializable {
      */
     private String name;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

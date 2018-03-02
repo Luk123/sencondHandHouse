@@ -3,7 +3,9 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.wintop.ms.house.entity;
+package com.wintop.ms.common.base;
+import com.wintop.ms.common.base.Pager;
+
 import java.io.Serializable;
 
 public class ServiceResult<T> implements Serializable {

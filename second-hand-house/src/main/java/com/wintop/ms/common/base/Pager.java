@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.wintop.ms.house.entity;
+package com.wintop.ms.common.base;
 
 import java.io.Serializable;
 import java.util.Arrays;

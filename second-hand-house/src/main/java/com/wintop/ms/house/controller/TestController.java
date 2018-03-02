@@ -1,5 +1,5 @@
 package com.wintop.ms.house.controller;
-import com.wintop.ms.house.entity.ServiceResult;
+import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.house.entity.Test;
 import com.wintop.ms.house.service.ITestService;
 import org.slf4j.LoggerFactory;
