@@ -9,4 +9,7 @@
     select * from test
   </select>
 
+  <select id="listByQuery" resultMap="BaseResultMap" >
+    select * from test
+  </select>
 </mapper>

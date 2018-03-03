@@ -1,8 +1,8 @@
 package com.wintop.ms.house.controller;
 
+import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.house.entity.Test;
-import com.wintop.ms.house.service.ItestManager;
 import com.wintop.ms.house.service.TestManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,10 @@ public class TestControllerMa {
         return testManager.selectAll();
     }
 
-
+    @RequestMapping(value = "/house/list/test", method = RequestMethod.GET)
+    public ServiceResult<List<Test>> list(BsQO qo) throws Exception{
+        return new ServiceResult<>(true,testManager.listByQuery(qo));
+    }
 }
 
 

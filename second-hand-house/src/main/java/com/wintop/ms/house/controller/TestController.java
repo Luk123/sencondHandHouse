@@ -12,11 +12,11 @@ import java.util.List;
  * 用户微服务Controller。
 
  */
-@RestController
+//@RestController
 public class TestController {
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(TestController.class);
 
-    @Resource
+    //@Resource
     private ITestService testService;
 
     @RequestMapping(value = "/house/list",/*指定请求的实际地址，；*/

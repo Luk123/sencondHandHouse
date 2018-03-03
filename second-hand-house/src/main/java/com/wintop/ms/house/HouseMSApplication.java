@@ -10,6 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HouseMSApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HouseMSApplication.class, args);
+        SpringApplication.run(HouseMSApplication.class, args);
 	}
 }

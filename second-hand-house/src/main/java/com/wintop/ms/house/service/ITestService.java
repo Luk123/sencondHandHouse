@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 业务层
- * @author zhangzijuan
+ * author zhangzijuan
  * @date 2018-03-02
  */
 public interface ITestService {

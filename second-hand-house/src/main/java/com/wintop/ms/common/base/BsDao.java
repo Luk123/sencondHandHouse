@@ -7,7 +7,7 @@ import java.util.List;
  *
  * @param <T> BsData泛型
  * author mark
- * @since 2018/3/2
+ * Date 2018/3/2
  */
 public interface BsDao<T> {
 
@@ -60,7 +60,7 @@ public interface BsDao<T> {
      * @param qo 查询参数
      * @return list集合
      * author mark
-     * @since 2017年8月18日
+     * Date 2017年8月18日
      */
     List<T> pageByQuery(BsQO qo);
 
@@ -70,7 +70,7 @@ public interface BsDao<T> {
      * @param qo 查询参数
      * @return list集合
      * author mark
-     * @since 2017年8月18日
+     * Date 2017年8月18日
      */
     List<T> listNameByQuery(BsQO qo);
 
@@ -80,7 +80,7 @@ public interface BsDao<T> {
      * @param qo 查询参数
      * @return list集合
      * author mark
-     * @since 2017年8月18日
+     * Date 2017年8月18日
      */
     List<T> listByQuery(BsQO qo);
 
@@ -90,7 +90,7 @@ public interface BsDao<T> {
      * @param qo 查询参数
      * @return list集合
      * author mark
-     * @since 2017年8月18日
+     * Date 2017年8月18日
      */
     List<Integer> listIdByQuery(BsQO qo);
 
@@ -100,7 +100,7 @@ public interface BsDao<T> {
      * @param id 主键
      * @return String类型name
      * author mark
-     * @since 2017年8月18日
+     * Date 2017年8月18日
      */
     <K> String selectNameById(K id);
 }

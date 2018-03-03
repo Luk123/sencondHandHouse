@@ -1,6 +1,7 @@
 package com.wintop.ms.house.service;
 
 import com.wintop.ms.common.base.BsManager;
+import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.house.entity.Test;
 import com.wintop.ms.house.mapper.ITestDao;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("testService")
+@Service("testManager")
 public class TestManager extends BsManager<ITestDao, Test> {
 
 

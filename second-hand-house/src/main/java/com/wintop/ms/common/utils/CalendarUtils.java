@@ -12,8 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author mark
- * @since 2018/3/3
+ * author mark
+ * Date 2018/3/3
  */
 public class CalendarUtils extends DateUtils {
     private static final Logger logger = LoggerFactory.getLogger(CalendarUtils.class);
@@ -82,9 +82,7 @@ public class CalendarUtils extends DateUtils {
         if (StringUtils.isBlank(str)) {
             return null;
         }
-
         String[] formats = {"yyyy-MM-dd'T'HH:mm:ss.SSSZZ", "yyyy-MM-dd'T'HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ssZZ", "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-ddZZ", "yyyy-MM-dd"};
-
         Date date = null;
         try {
             date = DateUtils.parseDate(str, formats);

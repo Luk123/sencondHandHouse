@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("testService")
+//@Service("testService")
 public class TestServiceImpl implements ITestService {
-    @Resource
+    //@Resource
     private ITestDao testDao;
     private static final Logger logger = LoggerFactory.getLogger(TestServiceImpl.class);
 

@@ -3,8 +3,8 @@ import lombok.Data;
 
 /**
  * 实体DO基类
- * @author mark
- * @since 2018/3/2
+ * author mark
+ * Date 2018/3/2
  */
 @Data
 public class BsData {

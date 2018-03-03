@@ -1,11 +1,10 @@
 package com.wintop.ms.common.utils;
 
+import org.springframework.beans.BeanUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
-
-import com.wintop.ms.common.utils.IObjectCallBack;
 
 /**
  * author mark
