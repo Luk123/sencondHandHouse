@@ -1,15 +1,11 @@
-package com.wintop.ms.house.service;
+package com.wintop.ms.fs.test.service;
 
 import com.wintop.ms.common.base.BsManager;
-import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.house.entity.Test;
-import com.wintop.ms.house.mapper.ITestDao;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.wintop.ms.fs.test.entity.Test;
+import com.wintop.ms.fs.test.mapper.ITestDao;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service("testManager")

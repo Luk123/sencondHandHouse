@@ -1,7 +1,7 @@
-package com.wintop.ms.house.mapper;
+package com.wintop.ms.fs.test.mapper;
 
 import com.wintop.ms.common.base.BsDao;
-import com.wintop.ms.house.entity.Test;
+import com.wintop.ms.fs.test.entity.Test;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

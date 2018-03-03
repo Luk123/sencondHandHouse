@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs..dao.DicDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs..entity.Dic">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    <id column="dic_id" jdbcType="INTEGER" property="dicId" />
+    <result column="dic_cls_name" jdbcType="VARCHAR" property="dicClsName" />
+    <result column="dic_name" jdbcType="VARCHAR" property="dicName" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    dic_id, dic_cls_name, dic_name, state, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    select 
+    <include refid="Base_Column_List" />
+    from dic
+    where dic_id = #{dicId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    delete from dic
+    where dic_id = #{dicId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs..entity.Dic">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    insert into dic (dic_id, dic_cls_name, dic_name, 
+      state, remark, create_time
+      )
+    values (#{dicId,jdbcType=INTEGER}, #{dicClsName,jdbcType=VARCHAR}, #{dicName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs..entity.Dic">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    insert into dic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dicId != null">
+        dic_id,
+      </if>
+      <if test="dicClsName != null">
+        dic_cls_name,
+      </if>
+      <if test="dicName != null">
+        dic_name,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dicId != null">
+        #{dicId,jdbcType=INTEGER},
+      </if>
+      <if test="dicClsName != null">
+        #{dicClsName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicName != null">
+        #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs..entity.Dic">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    update dic
+    <set>
+      <if test="dicClsName != null">
+        dic_cls_name = #{dicClsName,jdbcType=VARCHAR},
+      </if>
+      <if test="dicName != null">
+        dic_name = #{dicName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where dic_id = #{dicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs..entity.Dic">
+    <!-- @mbg.generated 2018-03-03 23:12:50 -->
+    update dic
+    set dic_cls_name = #{dicClsName,jdbcType=VARCHAR},
+      dic_name = #{dicName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE}
+    where dic_id = #{dicId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,9 +1,9 @@
-package com.wintop.ms.house.controller;
+package com.wintop.ms.fs.test.controller;
 
 import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.house.entity.Test;
-import com.wintop.ms.house.service.TestManager;
+import com.wintop.ms.fs.test.entity.Test;
+import com.wintop.ms.fs.test.service.TestManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,15 +21,16 @@ public class TestControllerMa {
     @Resource
     private TestManager testManager;
 
-    @RequestMapping(value = "/house/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/test/list", method = RequestMethod.GET)
     public ServiceResult<List<Test>> findUserList() {
         return testManager.selectAll();
     }
 
-    @RequestMapping(value = "/house/list/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/test/list/test", method = RequestMethod.GET)
     public ServiceResult<List<Test>> list(BsQO qo) throws Exception{
         return new ServiceResult<>(true,testManager.listByQuery(qo));
     }
+
 }
 
 

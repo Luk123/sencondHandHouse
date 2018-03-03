@@ -1,8 +1,10 @@
 server:
   port: 8080
 spring:
+  thymeleaf:
+    cache: false
   application:
-    name: second-house-house  #全部小写
+    name: second-hand-house  #全部小写
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false
@@ -29,7 +31,7 @@ spring:
 # mybatis mapper xml 配置
 mybatis:
   # mybatis.type-aliases-package：指定domain类的基包，即指定其在*Mapper.xml文件中可以使用简名来代替全类名（看后边的UserMapper.xml介绍）
-  type-aliases-package: com.wintop.ms.house.mapper,com.wintop.ms.house.entity
+  type-aliases-package: com.wintop.ms.fs.*.mapper,com.wintop.ms.fs.*.entity
   mapper-locations: classpath:mybatis/mapper/*.xml,classpath:mybatis/mapper/*/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
 #####################################################################################################

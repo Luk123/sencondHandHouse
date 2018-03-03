@@ -1,4 +1,4 @@
-package com.wintop.ms.house.entity;
+package com.wintop.ms.fs.test.entity;
 
 import com.wintop.ms.common.base.BsData;
 import lombok.Data;
