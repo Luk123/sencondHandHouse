@@ -1,5 +1,7 @@
 package com.wintop.ms.common.base;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  */
 public class BsManager<M extends BsDao<T>, T extends BsData> {
 
-    @Resource
+    @Autowired
     protected M mapper;
 
     /**

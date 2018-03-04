@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import javax.servlet.MultipartConfigElement;
 
 @SpringBootApplication
-@MapperScan("com.wintop.ms.fs.test.mapper.**")
+@MapperScan("com.wintop.ms.fs.*.mapper.**")
 //@EnableCaching
 public class SHHMSApplication {
 

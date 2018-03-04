@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository("testDao")
 public interface ITestDao extends BsDao<Test> {
 
     List<Test> selectAll();
