@@ -51,7 +51,7 @@ public class FileUploadController {
     public @ResponseBody ServiceResult<String> multifileUpload(HttpServletRequest request){
         ServiceResult<String> result=new ServiceResult<>();
         List<MultipartFile> files = ((MultipartHttpServletRequest)request).getFiles("fileName");
-        if(files.isEmpty()){
+        if(files.isEmpty() || files.size()==0){
             result.setSuccess(false);
             result.setMessage("文件不能为空");
             return result;
@@ -65,10 +65,7 @@ public class FileUploadController {
             int size = (int) file.getSize();
             System.out.println(fileName + "-->" + size);
 
-            if(file.isEmpty()){
-                result.setSuccess(false);
-                result.setMessage("文件不能为空");
-            }else{
+            if(!file.isEmpty()&&file.getSize()!=0){
                 // 检查上传的图片的大小和扩展名
                 if (!checkFileForSpringUpload(file)) {
                     result.setSuccess(false);
@@ -155,7 +152,7 @@ public class FileUploadController {
 
     // 初始化
     static {
-        extMap.put(IMAGE, "gif,jpeg,png,bmp,ico");
+        extMap.put(IMAGE, "gif,jpg,jpeg,png,bmp,ico");
     }
 
 }
