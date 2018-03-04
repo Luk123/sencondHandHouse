@@ -21,8 +21,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      *
      * author mark
      */
-    public int insert(T t) throws Exception {
-        return mapper.insert(t);
+    public ServiceResult<Integer> insert(T t) {
+        ServiceResult<Integer> result=new ServiceResult<>();
+        try {
+            result.setMessage("插入数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.insert(t));
+        } catch (Exception e) {
+            result.setMessage("插入数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -30,8 +40,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      *
      * author mark
      */
-    public int insertSelective(T t) throws Exception {
-        return mapper.insertSelective(t);
+    public ServiceResult<Integer> insertSelective(T t)  {
+        ServiceResult<Integer> result=new ServiceResult<>();
+        try {
+            result.setMessage("插入数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.insertSelective(t));
+        } catch (Exception e) {
+            result.setMessage("插入数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -39,8 +59,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      *
      * author mark
      */
-    protected <K> int deleteByPrimaryKey(K id) throws Exception {
-        return mapper.deleteByPrimaryKey(id);
+    protected <K> ServiceResult<Integer> deleteByPrimaryKey(K id) {
+        ServiceResult<Integer> result=new ServiceResult<>();
+        try {
+            result.setMessage("删除数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.deleteByPrimaryKey(id));
+        } catch (Exception e) {
+            result.setMessage("删除数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -48,8 +78,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      *
      * author mark
      */
-    public int updateSelective(T t) throws Exception {
-        return mapper.updateByPrimaryKeySelective(t);
+    public ServiceResult<Integer> updateSelective(T t) {
+        ServiceResult<Integer> result=new ServiceResult<>();
+        try {
+            result.setMessage("更新数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.updateByPrimaryKeySelective(t));
+        } catch (Exception e) {
+            result.setMessage("更新数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -57,8 +97,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * <p>
      * author mark
      */
-    public int updateByPrimaryKey(T t) throws Exception {
-        return mapper.updateByPrimaryKey(t);
+    public ServiceResult<Integer> updateByPrimaryKey(T t)  {
+        ServiceResult<Integer> result=new ServiceResult<>();
+        try {
+            result.setMessage("更新数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.updateByPrimaryKey(t));
+        } catch (Exception e) {
+            result.setMessage("更新数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -67,8 +117,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * @param <K>
      * author mark
      */
-    protected <K> T selectByPrimaryKey(K id) throws Exception {
-        return mapper.selectByPrimaryKey(id);
+    protected <K> ServiceResult<T> selectByPrimaryKey(K id){
+        ServiceResult<T> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.selectByPrimaryKey(id));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -79,8 +139,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public <K> String selectNameById(K id) throws Exception {
-        return mapper.selectNameById(id);
+    public <K> ServiceResult<String> selectNameById(K id)  {
+        ServiceResult<String> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.selectNameById(id));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -91,8 +161,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public List<T> pageByQuery(BsQO qo) throws Exception {
-        return mapper.pageByQuery(qo);
+    public ServiceResult<List<T>>  pageByQuery(BsQO qo) {
+        ServiceResult<List<T>> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.pageByQuery(qo));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -103,8 +183,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public List<T> listNameByQuery(BsQO qo) throws Exception {
-        return mapper.listNameByQuery(qo);
+    public ServiceResult<List<T>> listNameByQuery(BsQO qo) {
+        ServiceResult<List<T>> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.listNameByQuery(qo));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -115,8 +205,18 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public List<T> listByQuery(BsQO qo) throws Exception {
-        return mapper.listByQuery(qo);
+    public ServiceResult<List<T>> listByQuery(BsQO qo){
+        ServiceResult<List<T>> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.listByQuery(qo));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -127,7 +227,17 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public List<Integer> listIdByQuery(BsQO qo) throws Exception {
-        return mapper.listIdByQuery(qo);
+    public  ServiceResult<List<Integer>> listIdByQuery(BsQO qo) throws Exception {
+        ServiceResult<List<Integer>> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            result.setResult(mapper.listIdByQuery(qo));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
     }
 }
