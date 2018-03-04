@@ -26,7 +26,7 @@ public class DicController {
 
     @RequestMapping(value = "/dic/list", method = RequestMethod.GET)
     public ServiceResult<List<Dic>> list(BsQO qo) throws Exception{
-        return new ServiceResult<>(true,dicManager.listByQuery(qo));
+        return dicManager.listByQuery(qo);
     }
 
 }
