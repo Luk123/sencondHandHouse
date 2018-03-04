@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.housephoto.mapper.HousePhotoDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.housephoto.entity.HousePhoto">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    <id column="house_photo_id" jdbcType="INTEGER" property="housePhotoId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="photo_addr" jdbcType="VARCHAR" property="photoAddr" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    house_photo_id, house_id, house_name, type, photo_addr, create_time, create_id, create_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    select 
+    <include refid="Base_Column_List" />
+    from house_photo
+    where house_photo_id = #{housePhotoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    delete from house_photo
+    where house_photo_id = #{housePhotoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.housephoto.entity.HousePhoto">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    insert into house_photo (house_photo_id, house_id, house_name, 
+      type, photo_addr, create_time, 
+      create_id, create_name)
+    values (#{housePhotoId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{photoAddr,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{createId,jdbcType=INTEGER}, #{createName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.housephoto.entity.HousePhoto">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    insert into house_photo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="housePhotoId != null">
+        house_photo_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="photoAddr != null">
+        photo_addr,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="housePhotoId != null">
+        #{housePhotoId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="photoAddr != null">
+        #{photoAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.housephoto.entity.HousePhoto">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    update house_photo
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="photoAddr != null">
+        photo_addr = #{photoAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_photo_id = #{housePhotoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.housephoto.entity.HousePhoto">
+    <!-- @mbg.generated 2018-03-04 14:29:54 -->
+    update house_photo
+    set house_id = #{houseId,jdbcType=INTEGER},
+      house_name = #{houseName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      photo_addr = #{photoAddr,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_name = #{createName,jdbcType=VARCHAR}
+    where house_photo_id = #{housePhotoId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.userfavorite.mapper.UserFavoriteDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.userfavorite.entity.UserFavorite">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    <id column="favorite_id" jdbcType="INTEGER" property="favoriteId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    favorite_id, house_id, house_name, user_id, user_name, state, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    select 
+    <include refid="Base_Column_List" />
+    from user_favorite
+    where favorite_id = #{favoriteId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    delete from user_favorite
+    where favorite_id = #{favoriteId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.userfavorite.entity.UserFavorite">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    insert into user_favorite (favorite_id, house_id, house_name, 
+      user_id, user_name, state, 
+      create_time)
+    values (#{favoriteId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.userfavorite.entity.UserFavorite">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    insert into user_favorite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="favoriteId != null">
+        favorite_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="favoriteId != null">
+        #{favoriteId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.userfavorite.entity.UserFavorite">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    update user_favorite
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where favorite_id = #{favoriteId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.userfavorite.entity.UserFavorite">
+    <!-- @mbg.generated 2018-03-04 15:07:04 -->
+    update user_favorite
+    set house_id = #{houseId,jdbcType=INTEGER},
+      house_name = #{houseName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE}
+    where favorite_id = #{favoriteId,jdbcType=INTEGER}
+  </update>
+</mapper>

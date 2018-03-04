@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.housestar.mapper.HouseStarDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.housestar.entity.HouseStar">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    <id column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="abs" jdbcType="VARCHAR" property="abs" />
+    <result column="type_desc" jdbcType="VARCHAR" property="typeDesc" />
+    <result column="build_desc" jdbcType="VARCHAR" property="buildDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    house_id, house_name, abs, type_desc, build_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    select 
+    <include refid="Base_Column_List" />
+    from house_star
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    delete from house_star
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.housestar.entity.HouseStar">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    insert into house_star (house_id, house_name, abs, 
+      type_desc, build_desc)
+    values (#{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, #{abs,jdbcType=VARCHAR}, 
+      #{typeDesc,jdbcType=VARCHAR}, #{buildDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.housestar.entity.HouseStar">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    insert into house_star
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="abs != null">
+        abs,
+      </if>
+      <if test="typeDesc != null">
+        type_desc,
+      </if>
+      <if test="buildDesc != null">
+        build_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="abs != null">
+        #{abs,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDesc != null">
+        #{typeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="buildDesc != null">
+        #{buildDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.housestar.entity.HouseStar">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    update house_star
+    <set>
+      <if test="houseName != null">
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="abs != null">
+        abs = #{abs,jdbcType=VARCHAR},
+      </if>
+      <if test="typeDesc != null">
+        type_desc = #{typeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="buildDesc != null">
+        build_desc = #{buildDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.housestar.entity.HouseStar">
+    <!-- @mbg.generated 2018-03-04 14:49:43 -->
+    update house_star
+    set house_name = #{houseName,jdbcType=VARCHAR},
+      abs = #{abs,jdbcType=VARCHAR},
+      type_desc = #{typeDesc,jdbcType=VARCHAR},
+      build_desc = #{buildDesc,jdbcType=VARCHAR}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+</mapper>

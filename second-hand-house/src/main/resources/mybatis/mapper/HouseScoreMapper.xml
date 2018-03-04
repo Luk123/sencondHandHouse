@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.housescore.mapper.HouseScoreDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.housescore.entity.HouseScore">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    <id column="house_score_id" jdbcType="INTEGER" property="houseScoreId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="cust_id" jdbcType="INTEGER" property="custId" />
+    <result column="cust_name" jdbcType="VARCHAR" property="custName" />
+    <result column="count_score" jdbcType="TINYINT" property="countScore" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    house_score_id, house_id, house_name, cust_id, cust_name, count_score, comment
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    select 
+    <include refid="Base_Column_List" />
+    from house_score
+    where house_score_id = #{houseScoreId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    delete from house_score
+    where house_score_id = #{houseScoreId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.housescore.entity.HouseScore">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    insert into house_score (house_score_id, house_id, house_name, 
+      cust_id, cust_name, count_score, 
+      comment)
+    values (#{houseScoreId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, 
+      #{custId,jdbcType=INTEGER}, #{custName,jdbcType=VARCHAR}, #{countScore,jdbcType=TINYINT}, 
+      #{comment,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.housescore.entity.HouseScore">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    insert into house_score
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseScoreId != null">
+        house_score_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="custName != null">
+        cust_name,
+      </if>
+      <if test="countScore != null">
+        count_score,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseScoreId != null">
+        #{houseScoreId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=INTEGER},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore != null">
+        #{countScore,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.housescore.entity.HouseScore">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    update house_score
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        cust_id = #{custId,jdbcType=INTEGER},
+      </if>
+      <if test="custName != null">
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="countScore != null">
+        count_score = #{countScore,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_score_id = #{houseScoreId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.housescore.entity.HouseScore">
+    <!-- @mbg.generated 2018-03-04 14:39:32 -->
+    update house_score
+    set house_id = #{houseId,jdbcType=INTEGER},
+      house_name = #{houseName,jdbcType=VARCHAR},
+      cust_id = #{custId,jdbcType=INTEGER},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      count_score = #{countScore,jdbcType=TINYINT},
+      comment = #{comment,jdbcType=VARCHAR}
+    where house_score_id = #{houseScoreId,jdbcType=INTEGER}
+  </update>
+</mapper>

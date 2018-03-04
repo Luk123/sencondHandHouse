@@ -2,12 +2,12 @@
  * $Id:$
  * Copyright 2017 ecarpo.com All rights reserved.
  */
-package com.wintop.ms.fs.dic.mapper;
+package com.wintop.ms.fs.housetag.mapper;
 
 import com.wintop.ms.common.base.BsDao;
-import com.wintop.ms.fs.dic.entity.Dic;
+import com.wintop.ms.fs.housetag.entity.HouseTag;
 import org.springframework.stereotype.Repository;
 @Repository
-public interface DicDAO extends BsDao<Dic> {
+public interface HouseTagDAO extends BsDao<HouseTag> {
 
 }

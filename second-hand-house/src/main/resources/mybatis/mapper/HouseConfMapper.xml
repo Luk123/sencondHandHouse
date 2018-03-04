@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.houseconf.mapper.HouseConfDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.houseconf.entity.HouseConf">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    <id column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="facility" jdbcType="VARCHAR" property="facility" />
+    <result column="life_conf" jdbcType="VARCHAR" property="lifeConf" />
+    <result column="traffic" jdbcType="VARCHAR" property="traffic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    house_id, house_name, facility, life_conf, traffic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    select 
+    <include refid="Base_Column_List" />
+    from house_conf
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    delete from house_conf
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.houseconf.entity.HouseConf">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    insert into house_conf (house_id, house_name, facility, 
+      life_conf, traffic)
+    values (#{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, #{facility,jdbcType=VARCHAR}, 
+      #{lifeConf,jdbcType=VARCHAR}, #{traffic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.houseconf.entity.HouseConf">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    insert into house_conf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="facility != null">
+        facility,
+      </if>
+      <if test="lifeConf != null">
+        life_conf,
+      </if>
+      <if test="traffic != null">
+        traffic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="facility != null">
+        #{facility,jdbcType=VARCHAR},
+      </if>
+      <if test="lifeConf != null">
+        #{lifeConf,jdbcType=VARCHAR},
+      </if>
+      <if test="traffic != null">
+        #{traffic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.houseconf.entity.HouseConf">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    update house_conf
+    <set>
+      <if test="houseName != null">
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="facility != null">
+        facility = #{facility,jdbcType=VARCHAR},
+      </if>
+      <if test="lifeConf != null">
+        life_conf = #{lifeConf,jdbcType=VARCHAR},
+      </if>
+      <if test="traffic != null">
+        traffic = #{traffic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.houseconf.entity.HouseConf">
+    <!-- @mbg.generated 2018-03-04 14:24:42 -->
+    update house_conf
+    set house_name = #{houseName,jdbcType=VARCHAR},
+      facility = #{facility,jdbcType=VARCHAR},
+      life_conf = #{lifeConf,jdbcType=VARCHAR},
+      traffic = #{traffic,jdbcType=VARCHAR}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+</mapper>

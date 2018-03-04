@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.userbuy.mapper.UserBuyDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.userbuy.entity.UserBuy">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    <id column="user_buy_id" jdbcType="INTEGER" property="userBuyId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="buy_price" jdbcType="DECIMAL" property="buyPrice" />
+    <result column="buy_date" jdbcType="DATE" property="buyDate" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    user_buy_id, house_id, house_name, buy_price, buy_date, owner_id, owner_name, user_id, 
+    user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    select 
+    <include refid="Base_Column_List" />
+    from user_buy
+    where user_buy_id = #{userBuyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    delete from user_buy
+    where user_buy_id = #{userBuyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.userbuy.entity.UserBuy">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    insert into user_buy (user_buy_id, house_id, house_name, 
+      buy_price, buy_date, owner_id, 
+      owner_name, user_id, user_name
+      )
+    values (#{userBuyId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, 
+      #{buyPrice,jdbcType=DECIMAL}, #{buyDate,jdbcType=DATE}, #{ownerId,jdbcType=INTEGER}, 
+      #{ownerName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.userbuy.entity.UserBuy">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    insert into user_buy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userBuyId != null">
+        user_buy_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="buyPrice != null">
+        buy_price,
+      </if>
+      <if test="buyDate != null">
+        buy_date,
+      </if>
+      <if test="ownerId != null">
+        owner_id,
+      </if>
+      <if test="ownerName != null">
+        owner_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userBuyId != null">
+        #{userBuyId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null">
+        #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDate != null">
+        #{buyDate,jdbcType=DATE},
+      </if>
+      <if test="ownerId != null">
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerName != null">
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.userbuy.entity.UserBuy">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    update user_buy
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null">
+        buy_price = #{buyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="buyDate != null">
+        buy_date = #{buyDate,jdbcType=DATE},
+      </if>
+      <if test="ownerId != null">
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerName != null">
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_buy_id = #{userBuyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.userbuy.entity.UserBuy">
+    <!-- @mbg.generated 2018-03-04 15:03:43 -->
+    update user_buy
+    set house_id = #{houseId,jdbcType=INTEGER},
+      house_name = #{houseName,jdbcType=VARCHAR},
+      buy_price = #{buyPrice,jdbcType=DECIMAL},
+      buy_date = #{buyDate,jdbcType=DATE},
+      owner_id = #{ownerId,jdbcType=INTEGER},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where user_buy_id = #{userBuyId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.district.mapper.DistrictDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.district.entity.District">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    <id column="district_id" jdbcType="BIGINT" property="districtId" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="district_code" jdbcType="VARCHAR" property="districtCode" />
+    <result column="district_name" jdbcType="VARCHAR" property="districtName" />
+    <result column="district_type" jdbcType="TINYINT" property="districtType" />
+    <result column="pinyin_code" jdbcType="VARCHAR" property="pinyinCode" />
+    <result column="short_code" jdbcType="VARCHAR" property="shortCode" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    district_id, parent_id, district_code, district_name, district_type, pinyin_code, 
+    short_code, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    select 
+    <include refid="Base_Column_List" />
+    from district
+    where district_id = #{districtId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    delete from district
+    where district_id = #{districtId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.district.entity.District">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    insert into district (district_id, parent_id, district_code, 
+      district_name, district_type, pinyin_code, 
+      short_code, state)
+    values (#{districtId,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{districtCode,jdbcType=VARCHAR}, 
+      #{districtName,jdbcType=VARCHAR}, #{districtType,jdbcType=TINYINT}, #{pinyinCode,jdbcType=VARCHAR}, 
+      #{shortCode,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.district.entity.District">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    insert into district
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="districtCode != null">
+        district_code,
+      </if>
+      <if test="districtName != null">
+        district_name,
+      </if>
+      <if test="districtType != null">
+        district_type,
+      </if>
+      <if test="pinyinCode != null">
+        pinyin_code,
+      </if>
+      <if test="shortCode != null">
+        short_code,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="districtId != null">
+        #{districtId,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="districtCode != null">
+        #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null">
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtType != null">
+        #{districtType,jdbcType=TINYINT},
+      </if>
+      <if test="pinyinCode != null">
+        #{pinyinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortCode != null">
+        #{shortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.district.entity.District">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    update district
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="districtCode != null">
+        district_code = #{districtCode,jdbcType=VARCHAR},
+      </if>
+      <if test="districtName != null">
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtType != null">
+        district_type = #{districtType,jdbcType=TINYINT},
+      </if>
+      <if test="pinyinCode != null">
+        pinyin_code = #{pinyinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shortCode != null">
+        short_code = #{shortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where district_id = #{districtId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.district.entity.District">
+    <!-- @mbg.generated 2018-03-04 14:05:21 -->
+    update district
+    set parent_id = #{parentId,jdbcType=BIGINT},
+      district_code = #{districtCode,jdbcType=VARCHAR},
+      district_name = #{districtName,jdbcType=VARCHAR},
+      district_type = #{districtType,jdbcType=TINYINT},
+      pinyin_code = #{pinyinCode,jdbcType=VARCHAR},
+      short_code = #{shortCode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT}
+    where district_id = #{districtId,jdbcType=BIGINT}
+  </update>
+</mapper>

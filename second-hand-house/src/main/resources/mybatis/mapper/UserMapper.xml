@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.user.mapper.UserDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.user.entity.User">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_photo_addr" jdbcType="VARCHAR" property="userPhotoAddr" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="contact_way" jdbcType="VARCHAR" property="contactWay" />
+    <result column="cert_no" jdbcType="VARCHAR" property="certNo" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="addr" jdbcType="VARCHAR" property="addr" />
+    <result column="integral_num" jdbcType="INTEGER" property="integralNum" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    user_id, user_name, user_photo_addr, pwd, contact_way, cert_no, sex, birth, addr, 
+    integral_num, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.user.entity.User">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    insert into user (user_id, user_name, user_photo_addr, 
+      pwd, contact_way, cert_no, 
+      sex, birth, addr, integral_num, 
+      create_time)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhotoAddr,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{contactWay,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{addr,jdbcType=VARCHAR}, #{integralNum,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.user.entity.User">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPhotoAddr != null">
+        user_photo_addr,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="contactWay != null">
+        contact_way,
+      </if>
+      <if test="certNo != null">
+        cert_no,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="addr != null">
+        addr,
+      </if>
+      <if test="integralNum != null">
+        integral_num,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhotoAddr != null">
+        #{userPhotoAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null">
+        #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="addr != null">
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="integralNum != null">
+        #{integralNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.user.entity.User">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    update user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhotoAddr != null">
+        user_photo_addr = #{userPhotoAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null">
+        contact_way = #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        cert_no = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="addr != null">
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="integralNum != null">
+        integral_num = #{integralNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.user.entity.User">
+    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_photo_addr = #{userPhotoAddr,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      contact_way = #{contactWay,jdbcType=VARCHAR},
+      cert_no = #{certNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE},
+      addr = #{addr,jdbcType=VARCHAR},
+      integral_num = #{integralNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

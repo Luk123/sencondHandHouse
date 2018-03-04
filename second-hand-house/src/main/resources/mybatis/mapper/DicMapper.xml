@@ -111,4 +111,10 @@
       create_time = #{createTime,jdbcType=DATE}
     where dic_id = #{dicId,jdbcType=INTEGER}
   </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dic
+  </select>
 </mapper>

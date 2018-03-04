@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.housesale.mapper.HouseSaleDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.housesale.entity.HouseSale">
+    <!-- @mbg.generated 2018-03-04 14:33:56 -->
+    <result column="house_sale_id" jdbcType="INTEGER" property="houseSaleId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_name" jdbcType="VARCHAR" property="houseName" />
+    <result column="cust_id" jdbcType="INTEGER" property="custId" />
+    <result column="cust_name" jdbcType="VARCHAR" property="custName" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="sale_price" jdbcType="DECIMAL" property="salePrice" />
+    <result column="sale_time" jdbcType="DATE" property="saleTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.wintop.ms.fs.housesale.entity.HouseSale">
+    <!-- @mbg.generated 2018-03-04 14:33:56 -->
+    insert into house_sale (house_sale_id, house_id, house_name, 
+      cust_id, cust_name, owner_id, 
+      owner_name, reason, sale_price, 
+      sale_time)
+    values (#{houseSaleId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, 
+      #{custId,jdbcType=INTEGER}, #{custName,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, 
+      #{ownerName,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{salePrice,jdbcType=DECIMAL}, 
+      #{saleTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.housesale.entity.HouseSale">
+    <!-- @mbg.generated 2018-03-04 14:33:56 -->
+    insert into house_sale
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseSaleId != null">
+        house_sale_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseName != null">
+        house_name,
+      </if>
+      <if test="custId != null">
+        cust_id,
+      </if>
+      <if test="custName != null">
+        cust_name,
+      </if>
+      <if test="ownerId != null">
+        owner_id,
+      </if>
+      <if test="ownerName != null">
+        owner_name,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="salePrice != null">
+        sale_price,
+      </if>
+      <if test="saleTime != null">
+        sale_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseSaleId != null">
+        #{houseSaleId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseName != null">
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=INTEGER},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null">
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerName != null">
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null">
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="saleTime != null">
+        #{saleTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+</mapper>
