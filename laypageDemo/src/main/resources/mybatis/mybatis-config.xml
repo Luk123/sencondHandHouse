@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 引入外部资源配置文件 -->
+	<properties resource="jdbc.properties" />
+
+	<plugins>
+		<!-- 分页助手 -->
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql" />
+			<!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+			<property name="rowBoundsWithCount" value="true" />
+		</plugin>
+
+		<!-- 通用mapper插件 -->
+		<plugin interceptor="com.github.abel533.mapperhelper.MapperInterceptor">
+			<!--主键自增回写方法,默认值MYSQL,详细说明请看文档 -->
+			<property name="IDENTITY" value="mysql" />
+			<!--通用Mapper接口，多个通用接口用逗号隔开 -->
+			<property name="mappers" value="com.github.abel533.mapper.Mapper" />
+		</plugin>
+	</plugins>
+
+	<!-- 配置环境，制定数据库连接信息 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+
+	</mappers>
+</configuration>

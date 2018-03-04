@@ -95,4 +95,11 @@ public class User extends BsData {
      */
     private Date createTime;
 
+    /**
+     * 账号
+     *
+     * @mbg.generated 2018-03-04 15:00:20
+     */
+    private String account;
+
 }

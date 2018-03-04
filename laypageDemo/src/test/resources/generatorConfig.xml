@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+	<classPathEntry location="D:\repository\mysql\mysql-connector-java\5.1.32\mysql-connector-java-5.1.32.jar" />
+	
+	<context id="context1">
+	
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8"/>
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+		<!-- 格式化XML代码-->
+		<property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+		
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+				 
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3308/test?characterEncoding=utf-8" userId="root"
+			password="root"/>
+
+		<javaModelGenerator targetPackage="com.maizhe.entity"
+			targetProject="src/main/java" />
+			
+		<!-- mapper.xml生成在resources下 -->	
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src/main/resources" />	
+			
+		<!--dao接口会生成在src/main/java下的com.maizhe.dao包之下-->
+		<javaClientGenerator targetPackage="com.maizhe.dao"
+			targetProject="src/main/java" type="XMLMAPPER" />
+
+		<!--对应数据库表名 domainObjectName为实体类名称-->
+		<table tableName="user" domainObjectName="User"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+		</table>
+
+	</context>
+</generatorConfiguration>
+		

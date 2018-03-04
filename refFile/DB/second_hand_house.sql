@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2018-03-03 23:43:00
+Date: 2018-03-04 15:24:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,6 +30,11 @@ CREATE TABLE `dic` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
+-- Records of dic
+-- ----------------------------
+INSERT INTO `dic` VALUES ('1', '性别', '男', '启用', null, '2018-03-04');
+
+-- ----------------------------
 -- Table structure for district
 -- ----------------------------
 DROP TABLE IF EXISTS `district`;
@@ -44,6 +49,10 @@ CREATE TABLE `district` (
   `state` tinyint(3) NOT NULL COMMENT '状态: 1:正常, 2:撤销',
   PRIMARY KEY (`district_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of district
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for house
@@ -87,6 +96,10 @@ CREATE TABLE `house` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房子基本信息表';
 
 -- ----------------------------
+-- Records of house
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for house_conf
 -- ----------------------------
 DROP TABLE IF EXISTS `house_conf`;
@@ -98,6 +111,10 @@ CREATE TABLE `house_conf` (
   `traffic` varchar(500) NOT NULL DEFAULT '' COMMENT '轨道交通',
   PRIMARY KEY (`house_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋周边配套表（与房屋表共用主键）';
+
+-- ----------------------------
+-- Records of house_conf
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for house_photo
@@ -114,6 +131,10 @@ CREATE TABLE `house_photo` (
   `create_name` varchar(50) NOT NULL COMMENT '创建人名字',
   PRIMARY KEY (`house_photo_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房子相关图片表';
+
+-- ----------------------------
+-- Records of house_photo
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for house_sale
@@ -133,6 +154,10 @@ CREATE TABLE `house_sale` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋售卖信息表';
 
 -- ----------------------------
+-- Records of house_sale
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for house_score
 -- ----------------------------
 DROP TABLE IF EXISTS `house_score`;
@@ -148,17 +173,25 @@ CREATE TABLE `house_score` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋评论表';
 
 -- ----------------------------
+-- Records of house_score
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for house_star
 -- ----------------------------
 DROP TABLE IF EXISTS `house_star`;
 CREATE TABLE `house_star` (
   `house_id` int(10) NOT NULL COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
-  `abstract` varchar(500) NOT NULL DEFAULT '' COMMENT '简介',
+  `abs` varchar(500) NOT NULL DEFAULT '' COMMENT '简介',
   `type_desc` varchar(500) NOT NULL DEFAULT '' COMMENT '户型介绍',
   `build_desc` varchar(500) NOT NULL DEFAULT '' COMMENT '装修描述',
   PRIMARY KEY (`house_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋核心卖点表（与房屋表共用主键）';
+
+-- ----------------------------
+-- Records of house_star
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for house_tag
@@ -177,6 +210,10 @@ CREATE TABLE `house_tag` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋标签表';
 
 -- ----------------------------
+-- Records of house_tag
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tag
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
@@ -188,6 +225,10 @@ CREATE TABLE `tag` (
   `state` varchar(10) NOT NULL DEFAULT '启用' COMMENT '状态：启用，停用',
   PRIMARY KEY (`tag_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签字典表';
+
+-- ----------------------------
+-- Records of tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -209,6 +250,10 @@ CREATE TABLE `user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
+-- Records of user
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user_buy
 -- ----------------------------
 DROP TABLE IF EXISTS `user_buy`;
@@ -226,6 +271,10 @@ CREATE TABLE `user_buy` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户购买记录表';
 
 -- ----------------------------
+-- Records of user_buy
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user_favorite
 -- ----------------------------
 DROP TABLE IF EXISTS `user_favorite`;
@@ -239,6 +288,10 @@ CREATE TABLE `user_favorite` (
   `create_time` date NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`favorite_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户关注房屋表(个人收藏夹)';
+
+-- ----------------------------
+-- Records of user_favorite
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user_sale
@@ -256,3 +309,7 @@ CREATE TABLE `user_sale` (
   `owner_name` varchar(50) NOT NULL COMMENT '房屋所有人名称',
   PRIMARY KEY (`user_sale_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户销售记录表';
+
+-- ----------------------------
+-- Records of user_sale
+-- ----------------------------

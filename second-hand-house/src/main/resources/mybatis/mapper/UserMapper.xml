@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wintop.ms.fs.user.mapper.UserDAO">
   <resultMap id="BaseResultMap" type="com.wintop.ms.fs.user.entity.User">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_photo_addr" jdbcType="VARCHAR" property="userPhotoAddr" />
@@ -14,37 +14,38 @@
     <result column="addr" jdbcType="VARCHAR" property="addr" />
     <result column="integral_num" jdbcType="INTEGER" property="integralNum" />
     <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
   </resultMap>
   <sql id="Base_Column_List">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     user_id, user_name, user_photo_addr, pwd, contact_way, cert_no, sex, birth, addr, 
-    integral_num, create_time
+    integral_num, create_time, account
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     select 
     <include refid="Base_Column_List" />
     from user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     delete from user
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wintop.ms.fs.user.entity.User">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     insert into user (user_id, user_name, user_photo_addr, 
       pwd, contact_way, cert_no, 
       sex, birth, addr, integral_num, 
-      create_time)
+      create_time, account)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhotoAddr,jdbcType=VARCHAR}, 
       #{pwd,jdbcType=VARCHAR}, #{contactWay,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, 
       #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{addr,jdbcType=VARCHAR}, #{integralNum,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=DATE})
+      #{createTime,jdbcType=DATE}, #{account,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wintop.ms.fs.user.entity.User">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -79,6 +80,9 @@
       </if>
       <if test="createTime != null">
         create_time,
+      </if>
+      <if test="account != null">
+        account,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -115,10 +119,13 @@
       <if test="createTime != null">
         #{createTime,jdbcType=DATE},
       </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.user.entity.User">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     update user
     <set>
       <if test="userName != null">
@@ -151,11 +158,14 @@
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=DATE},
       </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.user.entity.User">
-    <!-- @mbg.generated 2018-03-04 15:00:20 -->
+    <!-- @mbg.generated 2018-03-04 16:30:11 -->
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_photo_addr = #{userPhotoAddr,jdbcType=VARCHAR},
@@ -166,7 +176,8 @@
       birth = #{birth,jdbcType=DATE},
       addr = #{addr,jdbcType=VARCHAR},
       integral_num = #{integralNum,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=DATE}
+      create_time = #{createTime,jdbcType=DATE},
+      account = #{account,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
