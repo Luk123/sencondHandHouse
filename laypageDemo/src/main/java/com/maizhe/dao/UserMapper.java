@@ -2,8 +2,11 @@ package com.maizhe.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.maizhe.entity.User;
 
+@Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 

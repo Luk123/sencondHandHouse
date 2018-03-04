@@ -40,4 +40,8 @@
         <!--<typeAlias alias="User" type="com.springms.cloud.entity.User"/>-->
     </typeAliases>
 
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
 </configuration>

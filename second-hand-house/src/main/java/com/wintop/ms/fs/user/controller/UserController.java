@@ -2,6 +2,7 @@ package com.wintop.ms.fs.user.controller;
 
 import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
+import com.wintop.ms.fs.user.bo.UserLoginQO;
 import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.service.UserManager;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class UserController {
     private UserManager userManager;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ServiceResult<List<User>> login(BsQO qo) throws Exception{
+    public ServiceResult<List<User>> login(UserLoginQO qo) throws Exception{
         return userManager.listByQuery(qo);
     }
 
@@ -32,8 +33,6 @@ public class UserController {
     public ServiceResult<List<User>> list(BsQO qo) throws Exception{
         return userManager.listByQuery(qo);
     }
-
-
 
 }
 

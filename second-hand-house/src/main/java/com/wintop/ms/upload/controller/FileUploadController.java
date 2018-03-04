@@ -114,6 +114,7 @@ public class FileUploadController {
             }
             try {
                 file.transferTo(dest); //保存文件
+                result.setResult(path + "/" + fileName);
                 result.setSuccess(true);
                 result.setMessage("文件上传成功");
             } catch (Exception e) {

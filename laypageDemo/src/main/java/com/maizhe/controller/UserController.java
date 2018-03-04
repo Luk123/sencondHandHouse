@@ -29,7 +29,10 @@ public class UserController {
 		//获取每页数据
 		resultMap.put("rows", pager.getList());
 		return resultMap;
-		
 	}
 	
+	@RequestMapping(value="/index")
+  public String index(){
+	  return "/index";
+	}
 }
