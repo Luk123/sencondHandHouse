@@ -134,4 +134,14 @@
       state = #{state,jdbcType=TINYINT}
     where district_id = #{districtId,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+      district
+    where
+      parent_id = #{districtId,jdbcType=BIGINT}
+    order by district_code
+  </select>
 </mapper>

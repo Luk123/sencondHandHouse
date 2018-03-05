@@ -1,5 +1,7 @@
 package com.wintop.ms.common.base;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * author mark
  * Date 2018/3/3
  */
+@Data
 public class BsQO implements Serializable{
 
     private static final long serialVersionUID = 1L;

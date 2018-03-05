@@ -429,4 +429,75 @@
       create_name = #{createName,jdbcType=VARCHAR}
     where house_id = #{houseId,jdbcType=INTEGER}
   </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from house
+    <where>
+        state =  #{state,jdbcType=VARCHAR}
+      <if test="provice != null">
+        and provice = #{provice,jdbcType=VARCHAR}
+      </if>
+      <if test="city != null">
+        and city = #{city,jdbcType=VARCHAR}
+      </if>
+      <if test="district != null">
+        and district = #{district,jdbcType=VARCHAR}
+      </if>
+      <if test="salePriceBegin != null">
+        <![CDATA[  and sale_price >= #{salePriceBegin,jdbcType=DECIMAL} ]]>
+      </if>
+      <if test="salePriceEnd != null">
+        <![CDATA[  and sale_price <= #{salePriceEnd,jdbcType=DECIMAL} ]]>
+      </if>
+      <if test="areaBegin != null">
+        <![CDATA[ and area >= #{areaBegin,jdbcType=DOUBLE} ]]>
+      </if>
+      <if test="areaEnd != null">
+        <![CDATA[ and area <= #{areaEnd,jdbcType=DOUBLE} ]]>
+      </if>
+      <if test="houseHall != null">
+        and house_hall like #{houseHall,jdbcType=VARCHAR}
+      </if>
+      <if test="houseType != null">
+        and house_type = #{houseType,jdbcType=VARCHAR}
+      </if>
+      <if test="floorBegin != null">
+        <![CDATA[ and floor >= #{floorBegin,jdbcType=INTEGER} ]]>
+      </if>
+      <if test="floorEnd != null">
+        <![CDATA[ and floor <= #{floorEnd,jdbcType=INTEGER} ]]>
+      </if>
+      <if test="direction != null">
+        and direction = #{direction,jdbcType=VARCHAR}
+      </if>
+      <if test="houseAgeBegin != null">
+        <![CDATA[ create_time <= #{houseBeginTime,jdbcType=DATE} ]]>
+      </if>
+      <if test="houseAgeEnd != null">
+        <![CDATA[ create_time >= #{houseEndTime,jdbcType=DATE} ]]>
+      </if>
+      <if test="renovation != null">
+        and renovation = #{renovation,jdbcType=VARCHAR}
+      </if>
+      <if test="tagName != null">
+        and house_id in (
+          select house_id from house_tag where tag_name = #{tagName}
+        )
+      </if>
+      <if test="priceFlag != null">
+        order by sale_price
+      </if>
+      <if test="unitPriceFlag != null">
+        order by unit_price
+      </if>
+      <if test="areaFlag != null">
+        order by area
+      </if>
+      <if test="createFlag != null">
+        order by create_time
+      </if>
+    </where>
+  </select>
 </mapper>
