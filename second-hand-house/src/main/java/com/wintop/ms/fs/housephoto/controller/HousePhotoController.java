@@ -35,19 +35,21 @@ public class HousePhotoController {
      */
     @RequestMapping(value = "/housePhoto/page", method = RequestMethod.GET)
     public ServiceResult<PageInfo> list(HousePhotoQO qo) throws Exception{
-        //引入PageHelper分页插件
-        //在查询之前只需要调用。传入页码，以及每页大小
-        PageHelper.startPage(0,4,true);
-        //startPage后面紧跟的查询就是分页查询
-        List<HousePhoto> listAll = housePhotoManager.listByQuery(qo).getResult();
-        List<HousePhotoBO> list = DAOUtils.cloneList(HousePhotoBO.class,listAll);
-        //pageInfo包装查询后的结果，只需要将pageINfo交给页面
-        //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
-        PageInfo page = new PageInfo(list,4);
-        ServiceResult<PageInfo>  res = new ServiceResult<PageInfo>();
-        res.setResult(page);
-        res.setSuccess(true);
-        return res;
+        qo.setPageSize(4);
+        return housePhotoManager.pageByQuery(HousePhotoBO.class,qo,null);
+//        //引入PageHelper分页插件
+//        //在查询之前只需要调用。传入页码，以及每页大小
+//        PageHelper.startPage(0,4,true);
+//        //startPage后面紧跟的查询就是分页查询
+//        List<HousePhoto> listAll = housePhotoManager.listByQuery(qo).getResult();
+//        List<HousePhotoBO> list = DAOUtils.cloneList(HousePhotoBO.class,listAll);
+//        //pageInfo包装查询后的结果，只需要将pageINfo交给页面
+//        //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
+//        PageInfo page = new PageInfo(list,4);
+//        ServiceResult<PageInfo>  res = new ServiceResult<PageInfo>();
+//        res.setResult(page);
+//        res.setSuccess(true);
+//        return res;
     }
 
 }

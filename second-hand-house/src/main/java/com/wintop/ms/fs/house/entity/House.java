@@ -177,7 +177,7 @@ public class House extends BsData{
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
-    private String desc;
+    private String descb;
 
     /**
      * 房屋状态 1未发布  2售卖中 3已售

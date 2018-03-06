@@ -25,7 +25,7 @@
     <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
     <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
     <result column="contact_way" jdbcType="VARCHAR" property="contactWay" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="descb" jdbcType="VARCHAR" property="descb" />
     <result column="state" jdbcType="VARCHAR" property="state" />
     <result column="major_addr" jdbcType="VARCHAR" property="majorAddr" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
@@ -41,7 +41,7 @@
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
     house_id, house_name, house_hall, area, real_area, provice, city, district, addr, 
     build_type, build_year, house_type, floor, sale_price, direction, renovation, unit_price, 
-    frist_pay, month_pay, owner_id, owner_name, contact_way, desc, state, major_addr, 
+    frist_pay, month_pay, owner_id, owner_name, contact_way, descb, state, major_addr, 
     remark, lift_flag, heat, house_age, house_no, create_time, create_id, create_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -65,7 +65,7 @@
       floor, sale_price, direction, 
       renovation, unit_price, frist_pay, 
       month_pay, owner_id, owner_name, 
-      contact_way, desc, state, 
+      contact_way, descb, state, 
       major_addr, remark, lift_flag, 
       heat, house_age, house_no, 
       create_time, create_id, create_name
@@ -77,7 +77,7 @@
       #{floor,jdbcType=INTEGER}, #{salePrice,jdbcType=DECIMAL}, #{direction,jdbcType=VARCHAR}, 
       #{renovation,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DECIMAL}, #{fristPay,jdbcType=DECIMAL}, 
       #{monthPay,jdbcType=DECIMAL}, #{ownerId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR}, 
-      #{contactWay,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{contactWay,jdbcType=VARCHAR}, #{descb,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
       #{majorAddr,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{liftFlag,jdbcType=VARCHAR}, 
       #{heat,jdbcType=VARCHAR}, #{houseAge,jdbcType=INTEGER}, #{houseNo,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=DATE}, #{createId,jdbcType=INTEGER}, #{createName,jdbcType=VARCHAR}
@@ -153,8 +153,8 @@
       <if test="contactWay != null">
         contact_way,
       </if>
-      <if test="desc != null">
-        desc,
+      <if test="descb != null">
+        descb,
       </if>
       <if test="state != null">
         state,
@@ -254,8 +254,8 @@
       <if test="contactWay != null">
         #{contactWay,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="descb != null">
+        #{descb,jdbcType=VARCHAR},
       </if>
       <if test="state != null">
         #{state,jdbcType=VARCHAR},
@@ -356,8 +356,8 @@
       <if test="contactWay != null">
         contact_way = #{contactWay,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        desc = #{desc,jdbcType=VARCHAR},
+      <if test="descb != null">
+        descb = #{descb,jdbcType=VARCHAR},
       </if>
       <if test="state != null">
         state = #{state,jdbcType=VARCHAR},
@@ -416,7 +416,7 @@
       owner_id = #{ownerId,jdbcType=INTEGER},
       owner_name = #{ownerName,jdbcType=VARCHAR},
       contact_way = #{contactWay,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+      descb = #{descb,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
       major_addr = #{majorAddr,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
@@ -473,10 +473,10 @@
         and direction = #{direction,jdbcType=VARCHAR}
       </if>
       <if test="houseAgeBegin != null">
-        <![CDATA[ create_time <= #{houseBeginTime,jdbcType=DATE} ]]>
+        <![CDATA[ and create_time <= #{houseBeginTime,jdbcType=DATE} ]]>
       </if>
       <if test="houseAgeEnd != null">
-        <![CDATA[ create_time >= #{houseEndTime,jdbcType=DATE} ]]>
+        <![CDATA[ and create_time >= #{houseEndTime,jdbcType=DATE} ]]>
       </if>
       <if test="renovation != null">
         and renovation = #{renovation,jdbcType=VARCHAR}

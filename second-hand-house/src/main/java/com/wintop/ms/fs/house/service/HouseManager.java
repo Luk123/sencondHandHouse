@@ -11,15 +11,4 @@ import org.springframework.stereotype.Service;
 
 @Service("houseManager")
 public class HouseManager extends BsManager<HouseDAO, House> {
-    /**
-     * 获取房屋分页
-     *
-     * @param qo 查询参数
-     * @return list集合
-     * author mark
-     * Date 2017年8月18日
-     */
-    public ServiceResult<PageInfo> pageByQuery(HousePageQO qo){
-        return super.pageByQuery(HousePageBO.class, qo,null);
-    }
 }

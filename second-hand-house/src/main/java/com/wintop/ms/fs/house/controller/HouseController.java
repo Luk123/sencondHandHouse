@@ -5,6 +5,7 @@ import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.fs.dic.entity.Dic;
 import com.wintop.ms.fs.dic.service.DicManager;
+import com.wintop.ms.fs.house.bo.HousePageBO;
 import com.wintop.ms.fs.house.bo.HousePageQO;
 import com.wintop.ms.fs.house.entity.House;
 import com.wintop.ms.fs.house.service.HouseManager;
@@ -37,7 +38,7 @@ public class HouseController {
      */
     @RequestMapping(value = "/house/page", method = RequestMethod.GET)
     public ServiceResult<PageInfo> pageByQuery(HousePageQO qo) throws Exception{
-        return houseManager.pageByQuery(qo);
+        return houseManager.pageByQuery(HousePageBO.class, qo,null);
     }
 
 }

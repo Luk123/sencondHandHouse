@@ -4,7 +4,7 @@
  */
 package com.wintop.ms.fs.housephoto.bo;
 
-import com.wintop.ms.common.base.BsQO;
+import com.wintop.ms.common.base.PageQO;
 import lombok.Data;
 
 /**
@@ -13,7 +13,7 @@ import lombok.Data;
  * @mbg.generated 2018-03-04 14:29:54
  */
 @Data
-public class HousePhotoQO extends BsQO{
+public class HousePhotoQO extends PageQO{
 
     /**
      * 图片类型（室内图 户型图 环境图 周边地图）
