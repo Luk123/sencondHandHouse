@@ -17,7 +17,7 @@ import java.util.List;
 public class BsManager<M extends BsDao<T>, T extends BsData> {
 
     @Autowired
-    protected M mapper;
+    public M mapper;
 
     /**
      * 新增所有数据
@@ -62,7 +62,7 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      *
      * author mark
      */
-    protected <K> ServiceResult<Integer> deleteByPrimaryKey(K id) {
+    public <K> ServiceResult<Integer> deleteByPrimaryKey(K id) {
         ServiceResult<Integer> result=new ServiceResult<>();
         try {
             result.setMessage("删除数据成功");
@@ -120,7 +120,7 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * @param <K>
      * author mark
      */
-    protected <K> ServiceResult<T> selectByPrimaryKey(K id){
+    public <K> ServiceResult<T> selectByPrimaryKey(K id){
         ServiceResult<T> result=new ServiceResult<>();
         try {
             result.setMessage("查询数据成功");

@@ -3,7 +3,7 @@
 <mapper namespace="com.wintop.ms.fs.house.mapper.HouseDAO">
   <resultMap id="BaseResultMap" type="com.wintop.ms.fs.house.entity.House">
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
-    <id column="house_id" jdbcType="INTEGER" property="houseId" />
+    <id column="house_id" jdbcType="INTEGER" javaType="int" property="houseId" />
     <result column="house_name" jdbcType="VARCHAR" property="houseName" />
     <result column="house_hall" jdbcType="VARCHAR" property="houseHall" />
     <result column="area" jdbcType="DOUBLE" property="area" />

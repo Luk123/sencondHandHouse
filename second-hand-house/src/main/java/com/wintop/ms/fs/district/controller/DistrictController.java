@@ -33,6 +33,11 @@ public class DistrictController {
      */
     @RequestMapping(value = "/district/list", method = RequestMethod.GET)
     public ServiceResult<List<DistrictNameBO>> selectByParentId(Long districtId) throws Exception{
+        if(districtId == null){
+            ServiceResult<List<DistrictNameBO>> res = new  ServiceResult<List<DistrictNameBO>>();
+            res.setSuccess(false);
+            res.setMessage("id不能为空");
+        }
         return districtManager.selectByParentId(districtId);
     }
 
