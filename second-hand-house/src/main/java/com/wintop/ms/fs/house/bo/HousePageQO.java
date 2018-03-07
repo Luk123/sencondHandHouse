@@ -34,14 +34,14 @@ public class HousePageQO extends PageQO{
     private String city;
 
     /**
-     * 区/县
+     * district：区/县
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
     private String district;
 
     /**
-     * 房屋售价
+     * salePriceEnd：房屋售价
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -49,7 +49,7 @@ public class HousePageQO extends PageQO{
     private BigDecimal salePriceEnd;
 
     /**
-     * 建筑面积
+     * areaEnd：建筑面积
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -57,14 +57,14 @@ public class HousePageQO extends PageQO{
     private Double areaEnd;
 
     /**
-     * 房屋户型,例子：3室2厅1厨1卫
+     * houseHall：房屋户型,例子：3室2厅1厨1卫
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
     private String houseHall;
 
     /**
-     * 房屋类型（1普通住宅，2公寓、3别墅、5平房、5其他）
+     * houseType：房屋类型（1普通住宅，2公寓、3别墅、5平房、5其他）
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -72,7 +72,7 @@ public class HousePageQO extends PageQO{
 
 
     /**
-     * 楼层
+     * floor：楼层
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -96,14 +96,14 @@ public class HousePageQO extends PageQO{
     private Integer floorEnd;
 
     /**
-     * 房屋朝向
+     * direction：房屋朝向
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
     private String direction;
 
     /**
-     * 房龄，不存储，根据建造年份计算
+     * houseAgeEnd：房龄，不存储，根据建造年份计算
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -137,14 +137,14 @@ public class HousePageQO extends PageQO{
 
 
     /**
-     * 装修（精装修、豪华装修、普通装修、毛坯）
+     * renovation：装修（精装修、豪华装修、普通装修、毛坯）
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
     private String renovation;
 
     /**
-     * 标签
+     * tagName：标签
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -158,7 +158,7 @@ public class HousePageQO extends PageQO{
     private String state = "售卖中";
 
     /**
-     * 排序标识
+     * createFlag：排序标识
      */
     private Integer priceFlag;
     private Integer unitPriceFlag;
