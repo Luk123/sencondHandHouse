@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房屋详情</title>
+    <link href="sourse/basic.css" rel="stylesheet">
+    <style>
+        .warp{
+            width: 1180px;margin: 0 auto;
+        }
+        .img{
+            position: relative;
+        }
+        .m-slide{
+            width: 540px;
+            height: 450px;
+            padding: 0 50px;
+            position: relative;
+        }
+        .m-slide .img img{
+            width: 540px;
+            height: 450px;
+        }
+        .m-slide .btn{
+            font-size: 30px;line-height: 440px;
+            position: absolute;
+            text-align: center;
+            font-weight: 600;
+            color: #000;
+            display: block;
+            top:0;
+        }
+        .m-slide .prev{
+            left: 0;
+        }
+        .m-slide .next{
+            right:0;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航 start -->
+<div class="top-bar-box">
+    <div class="main top-bar">
+        <div class="top-logo">
+            <a href="index.html">
+                <img src="https://res.5i5j.com/pc/site/images/index-logo.png" height="30"/>
+            </a>
+        </div>
+        <div class="top-login" id="userlogin">
+            <a href="javascript:void(0)" target="" class="log" rel="nofollow">登录</a>
+            <a href="javascript:void(0)" target="_blank" rel="nofollow">注册</a>
+        </div>
+        <ul class="top-nav">
+            <li><a href="javascript:void(0)">二手房</a></li>
+            <li><a href="javascript:void(0)">租房</a></li>
+            <li><a href="javascript:void(0)">相寓</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 导航 end -->
+<div class="warp">
+    <div class="m-slide">
+        <ul class="img">
+            <li><img src="sourse/1519812441144282.jpg" alt=""></li>
+            <li><img src="sourse/1519807280379270.jpg" alt=""></li>
+            <li><img src="sourse/1519798494736425.jpg" alt=""></li>
+        </ul>
+        <ul class="tab">
+            <li>室内图</li>
+            <li>户型图</li>
+            <li>周边地图</li>
+        </ul>
+        <a href="javascript:void(0)" class="btn prev"> 《</a>
+        <a href="javascript:void(0)" class="btn next"> 》</a>
+    </div>
+</div>
+</body>
+<script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/SuperSlide.js"></script>
+<script>
+    jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
+</script>
+</html>
