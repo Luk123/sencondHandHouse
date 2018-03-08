@@ -31,6 +31,7 @@
             height: 320px;
             box-sizing: border-box;
             z-index: 10;
+            display: none;
         }
         .myclose{
             position: absolute;
@@ -114,15 +115,12 @@
 </head>
  <body>
      <div class="myhide">
-         <form action="">
-             <div class="loginDiv lg">
-
+             <div class="loginDiv lg" style="display:block;;">
                  <p class="login_p"><span class="left">用户登录</span><span class="right"><span>还没有账号？</span><span class="zc_link">马上注册</span></span></p>
                  <p><input type="text" name="uname" placeholder="用户名"></p>
                  <p><input type="text" name="upwd" placeholder="密码"></p>
                  <p><a href="javascript:void(0)" class="btn">登录</a></p>
              </div>
-         </form>
          <div class="loginDiv zc">
                  <div class="zhuce">
                      <!--<img src="http://static.yuntongauto.com/bx/images/logo.jpg" class="mylogo">-->
@@ -136,7 +134,7 @@
                      </p>
                      <p><a href="javascript:void(0)" class="btn">立即注册</a></p>
                      <p class="fuwu"> 我同意《服务条款》和《个人信息利用政策》</p>
-                     <a href="javascript:void(0)" class="login_link">去登录 	&gt;	&gt;</a>
+                     <a href="javascript:void(0)" class="login_link zc_link">去登录 	&gt;	&gt;</a>
                  </div>
          </div>
      </div>
@@ -145,6 +143,9 @@
 <script>
     $('.myclose').click(function(){
         $(this).parents('.myhide').hide()
+    })
+    $('.zc_link').click(function(){
+        $(this).parents('.loginDiv').hide().siblings().show()
     })
 </script>
 </html>
