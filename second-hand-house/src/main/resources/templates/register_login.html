@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <script type="text/javascript" src="js/BaseValues.js">
+    </script>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js">
+    </script>
+    <script type="text/javascript" src="js/login.js">
+    </script>
+    <script type="text/javascript" src="js/cookie_util.js">
+    </script>
+    <script type="text/javascript" src="js/IDValidator.js" charset="utf-8" ></script>
+    <script type="text/javascript" src="js/GB2260.js" charset="utf-8" ></script>
+    <link rel="stylesheet" href="css/login.css"/>
+</head>
+<body>
+<div class="global">
+    <div class="log log_in" tabindex='-1' id='dl'>
+        <dl>
+            <dt>
+                <div class='header'>
+                    <h3>登&nbsp;录</h3>
+                </div>
+            </dt>
+            <dt></dt>
+            <dt>
+                <div class='letter'>
+                    用户名:&nbsp;<input type="text" name="" id="count" tabindex='1'/>
+                </div>
+            </dt>
+            <dt>
+                <div class='letter'>
+                    密&nbsp;&nbsp;&nbsp;码:&nbsp;<input type="password" name="" id="password" tabindex='2'/>
+                </div>
+            </dt>
+            <dt>
+                <div>
+                    <input type="button" name="" id="login" value='&nbsp;登&nbsp;录&nbsp;' tabindex='3'/>
+                    <input type="button" name="" id="sig_in" value='&nbsp;注&nbsp;册&nbsp;' tabindex='4' />
+                </div>
+            </dt>
+        </dl>
+    </div>
+    <div class="sig sig_out" tabindex='-1' id='zc' style='display: none'>
+        <dl>
+            <dt>
+                <div class='header'>
+                    <h3>注&nbsp;册</h3>
+                </div>
+            </dt>
+            <dt></dt>
+            <dt>
+                <div class='letter'>
+                    姓&nbsp;&nbsp;&nbsp;名:&nbsp;<input type="text" name="userName" id="userName" tabindex='5'/>
+                    <div class='warning' id='warning_1'><span>姓名已经注册</span></div>
+                </div>
+            </dt>
+            <dt>
+                <div class='letter'>
+                    电&nbsp;&nbsp;&nbsp;话:&nbsp;<input type="text" name="contactWay" id="contactWay" tabindex='6'/>
+                </div>
+            </dt>
+            <dt>
+            <div class='password'>
+                &nbsp;&nbsp;&nbsp;身份证号:&nbsp;<input type="text" name="certNo" id="certNo" onblur="common()" tabindex='8'/>
+                <div class='warning' id='warning_4'><span>不合法</span></div>
+            </div>
+            </dt>
+            <div class='letter'>
+                性&nbsp;&nbsp;&nbsp;别:&nbsp;<input type="text" name="sex" id="sex" tabindex='8'/>
+            </div>
+            <div class='letter'>
+                生&nbsp;&nbsp;&nbsp;日:&nbsp;<input type="text" name="birth" id="birth" tabindex='9'/>
+            </div>
+            <div class='letter'>
+                地&nbsp;&nbsp;&nbsp;址:&nbsp;<input type="text" name="addr" id="addr" tabindex='10'/>
+            </div>
+            <dt>
+                <div class='letter'>
+                    密&nbsp;&nbsp;&nbsp;码:&nbsp;<input type="password" name="pwd" id="regist_password" tabindex='7'/>
+                    <div class='warning' id='warning_2'><span>密码长度过短</span></div>
+                </div>
+            </dt>
+            <dt>
+                <div class='password'>
+                    &nbsp;&nbsp;&nbsp;确认密码:&nbsp;<input type="password" name="" id="final_password" onblur="common()" tabindex='8'/>
+                    <div class='warning' id='warning_3'><span>密码输入不一致</span></div>
+                </div>
+            </dt>
+            <dt>
+                <div>
+                    <input type="button" name="" id="regist_button" value='&nbsp;注&nbsp;册&nbsp;' tabindex='9'/>
+                    <input type="button" name="" id="back" onclick="back()" value='&nbsp;返&nbsp;回&nbsp;' tabindex='10'/>
+                </div>
+            </dt>
+        </dl>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $("#sig_in").click(function () {
+        $('#dl').hide();
+        $('#zc').show();
+    });
+    $("#back").click(function () {
+        $('#dl').show();
+        $('#zc').hide();
+    });
+    function common() {
+        if($("#final_password").val()!=$("#regist_password").val()){
+            $("#warning_3").show();
+        }
+    }
+    $("#final_password").focus(function(){
+        $("#warning_3").hide();
+    });
+    $("#regist_password").focus(function(){
+        $("#warning_2").hide();
+    });
+    $("#certNo").blur(function () {
+        var Validator = new IDValidator();
+        //号码合法时返回分析信息（地区、出生日期、性别、校验位），不合法返回false
+        var code = $("#certNo").val();
+        var info = Validator.getInfo(code);
+        if(info){
+            alert(JSON.stringify(info));
+            $("#birth").val(info.birth);
+            $("#addr").val(info.addr)
+            if(info.sex=="0"){
+                $("#sex").val("女")
+            }else {
+                $("#sex").val("男")
+            }
+            $("#warning_4").hide();
+        }else {
+            $("#sex").val("");
+            $("#addr").val("");
+            $("#birth").val("");
+            $("#warning_4").show();
+        }
+    });
+</script>
+</html>

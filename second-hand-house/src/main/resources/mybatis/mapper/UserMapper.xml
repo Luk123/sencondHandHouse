@@ -180,4 +180,18 @@
       account = #{account,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+  <select id="checkRepeat" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <!-- @zhangzijuan 检查用户名是否重复-->
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName}
+  </select>
+  <select id="selectByUserNameAndPwd" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <!-- @zhangzijuan 登陆检查-->
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName} AND pwd = #{pwd}
+  </select>
 </mapper>
