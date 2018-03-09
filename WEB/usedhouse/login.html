@@ -149,7 +149,8 @@
 <script src="sourse/login.js"></script>
 <script>
         $('.myclose').click(function(){
-            $(this).parents('.myhide').hide()
+            $(this).parents('.myhide').hide();
+            window.history.go(-1);
         });
 
         $('.zc_link').click(function(){
