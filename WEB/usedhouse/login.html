@@ -111,28 +111,32 @@
             bottom: 15px;
             color: #999;
         }
+        #v_container canvas{
+            width: 197px;
+            height: 72px;
+        }
     </style>
 </head>
  <body>
      <div class="myhide">
-             <div class="loginDiv lg" style="display:block;;">
+             <div class="loginDiv lg">
+                 <span class="myclose ">&times;</span>
                  <p class="login_p"><span class="left">用户登录</span><span class="right"><span>还没有账号？</span><span class="zc_link">马上注册</span></span></p>
-                 <p><input type="text" name="uname" placeholder="用户名"></p>
-                 <p><input type="text" name="upwd" placeholder="密码"></p>
-                 <p><a href="javascript:void(0)" class="btn">登录</a></p>
+                 <p><input type="text" class="uname" placeholder="用户名"></p>
+                 <p><input type="text" class="upwd" placeholder="密码"></p>
+                 <p><a href="javascript:void(0)" class="btn" id="login_button">登录</a></p>
              </div>
          <div class="loginDiv zc">
                  <div class="zhuce">
-                     <!--<img src="http://static.yuntongauto.com/bx/images/logo.jpg" class="mylogo">-->
                      <img src="http://static.yuntongauto.com/bx/images/logo.jpg" class="mylogo">
                      <span class="myclose ">&times;</span>
-                     <p><input type="text" placeholder="手机号/身份证"></p>
-                     <p><input type="text" placeholder="6-16位密码，区分大小写"></p>
+                     <p><input type="text" placeholder="手机号/身份证" id="uname_r"></p>
+                     <p><input type="text" placeholder="6-16位密码，区分大小写" id="upwd_r"></p>
                      <p class="box_yzm">
                          <input type="text" id="code_input" value="" placeholder="请输入验证码">
-                         <!--<div id="v_container" style="width: 138px;height: 45px;float: left;overflow: hidden;margin-left: -1px;"><canvas id="verifyCanvas" width="100" height="30" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas></div>-->
+                         <span  id="v_container" style="width: 138px;height: 45px;float: left;overflow: hidden;margin-left: -1px;display: block"><canvas id="verifyCanvas" width="138" height="45" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas></span>
                      </p>
-                     <p><a href="javascript:void(0)" class="btn">立即注册</a></p>
+                     <p><a href="javascript:void(0)" class="btn" id="regist_button">立即注册</a></p>
                      <p class="fuwu"> 我同意《服务条款》和《个人信息利用政策》</p>
                      <a href="javascript:void(0)" class="login_link zc_link">去登录 	&gt;	&gt;</a>
                  </div>
@@ -140,12 +144,25 @@
      </div>
  </body>
 <script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/gVerify.js"></script>
+<script src="sourse/cookie_util.js"></script>
+<script src="sourse/login.js"></script>
 <script>
-    $('.myclose').click(function(){
-        $(this).parents('.myhide').hide()
-    })
-    $('.zc_link').click(function(){
-        $(this).parents('.loginDiv').hide().siblings().show()
-    })
+        $('.myclose').click(function(){
+            $(this).parents('.myhide').hide()
+        });
+
+        $('.zc_link').click(function(){
+            $(this).parents('.loginDiv').hide().siblings().show()
+        })
+       function  init() {
+           var code=window.location.search.slice(1).split('=')[1];
+           if(!Number(code)){
+               $('.lg').show()
+           }else{
+               $('.zc').show()
+           }
+       }
+init()
 </script>
 </html>

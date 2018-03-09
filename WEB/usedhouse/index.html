@@ -16,8 +16,8 @@
             </a>
         </div>
                 <div class="top-login" id="userlogin">
-                     <a href="javascript:void(0)" target="" class="log" rel="nofollow">登录</a>
-                     <a href="javascript:void(0)" target="_blank" rel="nofollow">注册</a>
+                     <a href="login.html?code=0" target="" class="log" rel="nofollow">登录</a>
+                     <a href="login.html?code=1" target="_blank" rel="nofollow">注册</a>
                 </div>
                 <ul class="top-nav">
                     <li><a href="javascript:void(0)">二手房</a></li>
@@ -208,11 +208,11 @@
 
 
 <!-- 新房频道 start-->
-           <!-- <div class="main ind-xinf">
+     <!--   <div class="main ind-xinf">
             <div class="ind-tit-box">
                 <div class="ind-tit">
                     <i></i>
-                    <h2>新房频道</h2>
+                    <h2>友情链接</h2>
                 </div>
                 <p>以我之爱，筑您之家</p>
                 <a href="https://fang.5i5j.com/bj/loupan/" class="tit-more" target="_blank">更多<span class="icon-arrow"></span></a>
@@ -264,46 +264,6 @@
         </div>-->
 <!-- 新房频道 end-->
 
-<!-- 在线客服 start -->
-<div class="mask-pop hide"></div>
-<div class="zxkf-pop hide">
-	<h2><i class="line"></i>联系客服</h2>
-		<div class="zxkf-con clear">
-		<div class="zxkf">
-			<i class="zxkf-icon"></i>
-			<p class="name">在线客服</p>
-			<p class="note">在线沟通，帮您解决所遇到的问题</p>
-			<p class="time work_time"></p>
-			<a href="javascript:void(0);"  class="zx-btn" >立即咨询</a>
-		</div>
-		<div class="rxdh">
-			<i class="rxdh-icon"></i>
-			<p class="name">4008-515-515</p>
-			<p class="note">拨打客服热线获得帮助</p>
-			<p class="time work_time"></p>
-		</div>
-		<a href="javascript:;" class="zxkf-close"></a>
-	</div>
-</div>
-<div class="fu-type hide">
-	<h2>服务类型<a href="javascript:;" class="type-close"></a></h2>
-	<p class="note">为了给您最优质的服务，请选择服务类型：</p>
-	<ul class="type-con clear">
-		<li class="cur">
-			<span class="kuang"></span>
-			<p>投诉建议</p>
-		</li>
-		<li>
-			<span class="kuang"></span>
-			<p>房屋租赁</p>
-		</li>
-		<li class="no-mar-r">
-			<span class="kuang"></span>
-			<p>房屋买卖</p>
-		</li>
-	</ul>
-	<a href="javascript:;" class="fwtj-btn" id="onlineService">提交</a>
-</div>
 
 <!-- 底部 start -->
 <div class="footer-box">
@@ -346,38 +306,8 @@
 <!-- 底部 end -->
 </body>
 <script>
-    /* /housePhoto/page */
-/*
-* {
- "result": {
- "pageNum": 1,
- "pageSize": 1,
- "size": 1,
- "startRow": 0,
- "endRow": 0,
- "total": 1,
- "pages": 1,
- "list": [{
- "houseName": "1",
- "photoAddr": "C:/picFile/1.jpg"
- }],
- "prePage": 0,
- "nextPage": 0,
- "isFirstPage": true,
- "isLastPage": true,
- "hasPreviousPage": false,
- "hasNextPage": false,
- "navigatePages": 4,
- "navigatepageNums": [1],
- "navigateFirstPage": 1,
- "navigateLastPage": 1,
- "firstPage": 1,
- "lastPage": 1
- },
- "pager": null,
- "success": true,
- "message": "",
- "code": ""
- }*/
+    function islogin(){
+        console.log('登录以后获取到token，在页面 进行token存在与否的判断 来判断是否登录成功')
+    }
 </script>
 </html>
