@@ -12,14 +12,22 @@ $(function(){
 		}else{
 			$('#code_input').val("验证码错误");
 		}
-	})
+	});
 /*注册*/
     $("#regist_button").click(function(){
-        var username=$("#uname_r").val();
-        var userpwd=$("#upwd_r").val();
+        var username=$("#uname").val();
+        var userpwd=$("#upwd").val();
+        var uid=$("#uid").val();
+        var ulastname=$("#ulastname").val();
+        var ucall=$("#ucall").val();
         var user = {
             "userName":username,
-            "pwd":userpwd
+            "pwd":userpwd,
+            "certNo":'这个是什么',
+            "contactWay":ucall,
+            "sex":'',
+            "birth":'',
+            "addr":''
         };
         $.ajax({
             type:"post",

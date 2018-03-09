@@ -93,7 +93,9 @@
             color: red;
         }
         .zc{
-            height: 426px;
+            top: 200px;
+            /*height: 426px;*/
+            height: 550px;
         }
         .zhuce .fuwu {
             color: #999;
@@ -112,8 +114,8 @@
             color: #999;
         }
         #v_container canvas{
-            width: 197px;
-            height: 72px;
+            width: 140px;
+            height: 45px;
         }
     </style>
 </head>
@@ -128,10 +130,13 @@
              </div>
          <div class="loginDiv zc">
                  <div class="zhuce">
-                     <img src="http://static.yuntongauto.com/bx/images/logo.jpg" class="mylogo">
+                    <!-- <img src="http://static.yuntongauto.com/bx/images/logo.jpg" class="mylogo">-->
                      <span class="myclose ">&times;</span>
-                     <p><input type="text" placeholder="手机号/身份证" id="uname_r"></p>
-                     <p><input type="text" placeholder="6-16位密码，区分大小写" id="upwd_r"></p>
+                     <p><input type="text" placeholder="请输入账号" id="uname"></p>
+                     <p><input type="text" placeholder="请输入身份证" id="uid"></p>
+                     <p><input type="text" placeholder="请输入真实姓名" id="ulastname"></p>
+                     <p><input type="text" placeholder="6-16位密码，区分大小写" id="upwd"></p>
+                     <p><input type="text" placeholder="手机号" id="ucall"></p>
                      <p class="box_yzm">
                          <input type="text" id="code_input" value="" placeholder="请输入验证码">
                          <span  id="v_container" style="width: 138px;height: 45px;float: left;overflow: hidden;margin-left: -1px;display: block"><canvas id="verifyCanvas" width="138" height="45" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas></span>
