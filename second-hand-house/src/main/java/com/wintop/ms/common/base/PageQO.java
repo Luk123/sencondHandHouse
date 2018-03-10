@@ -12,17 +12,17 @@ import java.io.Serializable;
 public class PageQO extends BsQO{
 
     // 页码
-    protected int pageNum = 0;
+    protected int pageIndex  = 0;
 
     // 每页显示数量
     protected int pageSize = 10;
 
-    public int getPageNum() {
-        return pageNum;
+    public int getPageIndex() {
+        return pageIndex;
     }
 
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
+    public void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
     public int getPageSize() {

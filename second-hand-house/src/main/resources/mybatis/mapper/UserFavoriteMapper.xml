@@ -122,4 +122,13 @@
       create_time = #{createTime,jdbcType=DATE}
     where favorite_id = #{favoriteId,jdbcType=INTEGER}
   </update>
+
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    <!-- @zhangzijuan 查询关注列表 -->
+    select
+    <include refid="Base_Column_List" />
+    from user_favorite
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>
