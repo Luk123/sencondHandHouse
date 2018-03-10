@@ -2,7 +2,8 @@ package com.wintop.ms.fs.user.controller;
 
 import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.fs.user.bo.UserLoginQO;
+import com.wintop.ms.common.utils.DAOUtils;
+import com.wintop.ms.fs.user.bo.UpdateUserScoreDTO;
 import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.service.UserManager;
 import org.apache.commons.lang3.StringUtils;
@@ -99,6 +100,15 @@ public class UserController {
     @PostMapping(value = "user/updateInfoById",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> updateInfoById(@RequestBody User user){
         return userManager.updateSelective(user);
+    }
+    /**
+     * 用户积分调整
+     * @param user
+     * @return
+     */
+    @PostMapping(value = "user/update/score",produces="application/json; charset=UTF-8")
+    public ServiceResult<Integer> updateUserScore(@RequestBody UpdateUserScoreDTO user) throws  Exception{
+        return userManager.updateSelective(DAOUtils.cloneBean(User.class,user));
     }
 }
 

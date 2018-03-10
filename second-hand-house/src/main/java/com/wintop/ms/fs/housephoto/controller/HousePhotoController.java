@@ -1,12 +1,9 @@
 package com.wintop.ms.fs.housephoto.controller;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.fs.housephoto.bo.HousePhotoBO;
 import com.wintop.ms.fs.housephoto.bo.HousePhotoQO;
-import com.wintop.ms.fs.housephoto.entity.HousePhoto;
 import com.wintop.ms.fs.housephoto.service.HousePhotoManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 房屋图片Controller。
@@ -34,7 +30,7 @@ public class HousePhotoController {
      * @throws Exception
      */
     @RequestMapping(value = "/housePhoto/page", method = RequestMethod.GET)
-    public ServiceResult<PageInfo> list(HousePhotoQO qo) throws Exception{
+    public ServiceResult<Pager> list(HousePhotoQO qo) throws Exception{
         qo.setPageSize(4);
         return housePhotoManager.pageByQuery(HousePhotoBO.class,qo,null);
 //        //引入PageHelper分页插件

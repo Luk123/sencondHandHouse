@@ -1,6 +1,6 @@
 package com.wintop.ms.fs.house.controller;
 
-import com.github.pagehelper.PageInfo;
+import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.fs.house.bo.HouseInfo;
@@ -45,7 +45,7 @@ public class HouseController {
      * Date 2017年8月18日
      */
     @RequestMapping(value = "/house/page", method = RequestMethod.GET)
-    public ServiceResult<PageInfo> pageByQuery(HousePageQO qo) throws Exception{
+    public ServiceResult<Pager> pageByQuery(HousePageQO qo) throws Exception{
         return houseManager.pageByQuery(HousePageBO.class, qo,null);
     }
 
