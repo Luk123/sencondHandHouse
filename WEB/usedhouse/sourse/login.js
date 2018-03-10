@@ -3,31 +3,51 @@ $(function(){
 	var verifyCode = new GVerify("v_container");
 	/*统一配置路径*/
 	var basePath='';
+    scrollRestoration
+        :
+        "auto"
 	$('#v_container').click(function(){
-		var res = verifyCode.validate(document.getElementById("code_input").value);
-
-		if(res){
-			//登录成功
-			$('.myhide').hide()
-		}else{
-			$('#code_input').val("验证码错误");
-		}
+        imgCode();
 	});
+	/*二维码*/
+	function imgCode(){
+        var res = verifyCode.validate(document.getElementById("code_input").value);
+        if(res){
+            return true
+        }else{
+            $('#code_input').val("验证码错误");
+            return false;
+        }
+    }
 /*注册*/
     $("#regist_button").click(function(){
+
+        var inputs=$('.zc').find('input');
+        var flag;
+        for(var i=0;i<=inputs.length-1;i++){
+            flag=isNull(inputs.eq(i).attr('id'));
+            if(!flag){
+                return null;
+            }
+        }
+        if(!imgCode()){
+            alert('验证码错误')
+            return null;
+        }
         var username=$("#uname").val();
         var userpwd=$("#upwd").val();
         var uid=$("#uid").val();
         var ulastname=$("#ulastname").val();
         var ucall=$("#ucall").val();
         var user = {
-            "userName":username,
+            "userName":ulastname,
             "pwd":userpwd,
-            "certNo":'这个是什么',
+            "certNo":uid,
             "contactWay":ucall,
             "sex":'',
             "birth":'',
-            "addr":''
+            "addr":'',
+            "account":username
         };
         $.ajax({
             type:"post",
@@ -68,13 +88,20 @@ $(function(){
     }
 
     /*登录*/
-
     //登录
     $("#login_button").click(function(){
         var loginUserName = $(".uname").val();
         var loginPassword = $(".upwd").val();
         var token = "";
         var userId="";
+        var inputs=$('.lg').find('input');
+        var flag;
+        for(var i=0;i<=inputs.length-1;i++){
+            flag=isNull(inputs.eq(i).attr('id'));
+            if(!flag){
+                return null;
+            }
+        }
         //请求
         jQuery.support.cors = true;
         $.ajax({
@@ -128,4 +155,36 @@ $(function(){
         alert("登录异常");
     }
 
+    function isNull(objName){
+        var key=$('#'+objName).val();
+        if(key=='' || !key || key==null){
+            switch (objName){
+                case  'uname_l':
+                    alert('账号名不能为空');
+                    break;
+                case  'uname' :
+                    alert('请输入账号名');
+                    break;
+                case  'upwd_l' || 'upwd':
+                    alert('密码不能为空');
+                    break;
+                case  'upwd':
+                    alert('请输入密码');
+                    break;
+                case  'uid' :
+                    alert('请输入密码身份证');
+                    break;
+                case 'ulastname':
+                    alert('请输入真实姓名');
+                    break;
+                case 'ucall':
+                    alert('手机号不能为空');
+                    break;
+            }
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 })

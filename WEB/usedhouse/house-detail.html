@@ -5,6 +5,12 @@
     <title>房屋详情</title>
     <link href="sourse/basic.css" rel="stylesheet">
     <style>
+        .l{
+            float: left;
+        }
+        .r{
+            float: right;
+        }
         .warp{
             width: 1180px;margin: 0 auto;
         }
@@ -14,8 +20,9 @@
         .m-slide{
             width: 540px;
             height: 450px;
-            padding: 0 50px;
+            padding: 0 90px;
             position: relative;
+            border: 1px solid #ddd;
         }
         .m-slide .img img{
             width: 540px;
@@ -31,10 +38,126 @@
             top:0;
         }
         .m-slide .prev{
-            left: 0;
+            left: 25px;
         }
         .m-slide .next{
-            right:0;
+            right:25px;
+        }
+        .tab li{
+            width: 120px;
+            height: 111px;
+            line-height: 115px;
+            font-size: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background-color: #F0F1F1;
+        }
+        .tab li.on{
+            background-color: #fff;
+        }
+        .housebox{overflow: hidden;padding-bottom: 90px}
+        .housebox .tit{
+            line-height: 45px;
+            margin: 20px 0;
+            font-size: 28px;font-weight: 600;
+        }
+        .housebox .m span{
+            font-size: 18px;
+            color: #323232;
+            line-height: 70px;
+            margin-right: 10px;
+        }
+        .housebox .m span.red{
+            color: red;
+        }
+        .housebox .m em{
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .housebox .h-detail{
+            font-size: 12px;
+            color: #999;
+            margin: 10px 0;
+            text-align: right;
+        }
+        .per-msg{
+            width: 260px;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 30px 20px;
+        }
+        .clear{
+            clear: both;
+        }
+        .housebox .t1{
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 44px
+        }
+        .housebox .t2{
+            font-size: 16px;
+            line-height: 37px;
+            color: #62ab00;
+            margin: 10px 0;
+        }
+        .housebox .h-msg{
+            width: 845px;
+        }
+        .housebox .h-msg td{
+            line-height: 30px;
+            font-size: 13px;
+            color: #000;
+        }
+        .housebox .h-msg td span:first-child{
+            font-size: 15px;
+            color: #999;
+        }
+        .housebox a[name=map] img{
+            height: 360px;
+            width: 100%;
+        }
+        .per-msg .name{
+           line-height: 135px;
+            display: block;
+            font-size: 25px;
+            font-weight: 600;
+            text-indent: 35px;
+        }
+        .msg-top{
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .per-msg .phone{
+            height: 58px;
+            line-height: 58px;
+            font-size: 22px;
+            margin-top: 12px;
+            margin-bottom: 13px;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Tahoma';
+            background-color: #f7f7f7;
+        }
+        .t3{
+            font-size: 14px;
+            line-height: 26px;
+        }
+        .t3 span:first-child{
+            color: goldenrod;
+        }
+        .star{overflow: hidden}
+        .star span{
+           float: left;
+        }
+        .star i{
+            display: block;
+            float: left;
+            background: url(images/star.jpg) no-repeat center;
+            background-size: cover;
+            height: 18px;
+            width: 18px;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -60,25 +183,138 @@
 </div>
 <!-- 导航 end -->
 <div class="warp">
-    <div class="m-slide">
-        <ul class="img">
-            <li><img src="sourse/1519812441144282.jpg" alt=""></li>
-            <li><img src="sourse/1519807280379270.jpg" alt=""></li>
-            <li><img src="sourse/1519798494736425.jpg" alt=""></li>
-        </ul>
-        <ul class="tab">
-            <li>室内图</li>
-            <li>户型图</li>
-            <li>周边地图</li>
-        </ul>
-        <a href="javascript:void(0)" class="btn prev"> 《</a>
-        <a href="javascript:void(0)" class="btn next"> 》</a>
+    <div class="housebox">
+        <h3 class="tit">万科紫韵家园 两居室纯南向 楼层好 诚意出售</h3>
+        <p class="m">
+               <span class="red"><em>400</em>万</span>
+               <span ><em>2</em>室 <em>2</em> 厅</span>
+               <span ><em>86</em>平方米</span>
+           </p>
+        <div class="l" style="width: 845px;">
+          <ul class="tab l">
+               <li class="on">室内图</li>
+               <li>户型图</li>
+               <li>环境图</li>
+               <li><a href="#map">周边地图</a></li>
+           </ul>
+          <div class="m-slide l">
+               <ul class="img">
+                   <li><img src="https://pic1.ajkimg.com/display/anjuke/887212-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/d0e06d42f492427faecf587baa99d121-599x450.jpg?t=1" alt=""></li>
+                   <li><img src="https://pic1.ajkimg.com/display/anjuke/568147-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/8c908fdf10fb0a02296e9e99cd390a80-599x450.jpg?t=1" alt=""></li>
+                   <li><img src="https://pic1.ajkimg.com/display/anjuke/887212-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/d0e06d42f492427faecf587baa99d121-599x450.jpg?t=1" alt=""></li>
+               </ul>
+               <a href="javascript:void(0)" class="btn prev"> 《</a>
+               <a href="javascript:void(0)" class="btn next"> 》</a>
+           </div>
+          <div class="clear"></div>
+          <p class="h-detail">房屋编码：1134585010，发布时间：2018年03月03日</p>
+            <p class="t1">房屋信息</p>
+            <table class="h-msg">
+                <tr>
+                    <td><span>所属小区：</span><span>紫园小区</span></td>
+                    <td><span>房屋户型：</span><span>两室两厅</span></td>
+                    <td><span>交通位置：</span><span>地铁9号线</span></td>
+                </tr>
+                <tr>
+                    <td><span>所属小区：</span><span>紫园小区</span></td>
+                    <td><span>房屋户型：</span><span>两室两厅</span></td>
+                    <td><span>交通位置：</span><span>地铁9号线</span></td>
+                </tr>
+                <tr>
+                    <td><span>所属小区：</span><span>紫园小区</span></td>
+                    <td><span>房屋户型：</span><span>两室两厅</span></td>
+                    <td><span>交通位置：</span><span>地铁9号线</span></td>
+                </tr>
+            </table>
+            <p class="t2">核心卖点</p>
+            <span style="font-size:14px;">小区名称：怡和路10号院房型：两室两厅一卫<br>装修程度：统一精装修位置：<br>年代：2012面积：89平米<br>朝向：南楼层：中高层<br>容积率：2.5绿化率：30%<br>房屋介绍：该房屋为万科统一精装修户型方正使用率高<br>产权性质：商品房房本满二<br>看房情况：钥匙在附近</span>
+            <p class="t2">小区配套</p>
+            <span style="font-size:14px;">交通区位：*京港澳高速5公里 *南五环8公里 *地铁长阳站800米<br>教育情况：小区500米范围内有北京第四幼儿园，北京小学，北京四中初高中部<br>车位情况：车位配比2：1地上临停 5元每天 地下产权车位<br>商业情况：小区外部便民底商 菜市场 500米内有两个大型商场 半岛广场，长阳京投港<br>医疗配套：小区1公里有长阳卫生中心，*良乡医院（三甲）8公里<br>安保设施：小区封闭式管理，门岗安全员全天候*守，专属的管家特有服务 。        </span>
+            <p class="t2">服务介绍</p>
+            <span style="font-size:14px;">万科租售中心作为万科物业旗下房屋经纪机构；为万科各社区业主的提供房屋资产管理，包含一手房销售代理、二手房交易、房屋托管、房屋软、硬装修等房屋资产全周期服务。<br>对于别人，合同签订就是服务的结束；对于我们，合同签订才是服务的开始!<br>我于2010年加入万科物业租售 从事二手房买卖7年有余，经历过房产市场涨跌，对市场政策非常清楚，对房地产市场有自己的见解，于2013年调到长阳万科开店，对长阳板块非常熟悉，非常乐于解答各种问题 欢迎随时骚扰   </span>
+            <p class="t2">周边地图</p>
+            <a name="map">
+                <img src="images/1.png" alt="">
+            </a>
+       </div>
+        <div class="per-msg r">
+            <div class="msg-top">
+                <img src="https://pic1.ajkimg.com/display/anjuke/98471c452b793806c6c107f54fd9dd48/295x391x0x11/100x133.jpg" class="l">
+                <span class="l name"> 周乐</span>
+            </div>
+            <p class="star t3">
+                <span>等级：</span><span><i></i><i></i><i></i><i></i><i></i></span>
+            </p>
+            <p class="t3"><span>房源：</span><span class="red">100</span></p>
+            <p class="t3"><span>服务：</span><span class="red">100</span></p>
+            <p class="t3"><span>评价：</span><span class="red">80</span></p>
+            <p class="phone">18513042868</p>
+            <p class="t3"><span>公司：</span><span>万科集团房地产销售4部</span></p>
+            <p class="t3"><span>门店：</span><span>北京市大兴区北环东路19号</span></p>
+
+        </div>
+    </div>
+
+</div>
+<!-- 底部 start -->
+<div class="footer-box">
+    <div class="main">
+        <div class="footer-nav-box">
+            <div class="foot-logo"><a href="https://bj.5i5j.com/" class="logo-img">我爱我家</a>
+            </div>
+            <ul class="footer-nav">
+                <li><a href="javascript:void(0)" target="_blank" rel="nofollow">关于我们</a></li>
+                <li><a href="javascript:void(0)" target="_blank" rel="nofollow">联系我们</a></li>
+                <li><a href="javascript:void(0)" target="_blank" rel="nofollow">友情链接</a></li>
+            </ul>
+        </div>
+        <div class="footer-info">
+            <dl class="f-iphone">
+                <dt><i class="icon-phone"></i></dt>
+                <dd>客服电话</dd>
+                <dd class="kf-num">4008-515-515</dd>
+            </dl>
+            <dl>
+                <dd>地理位置</dd>
+                <dd>朝阳区朝来科技园二期创远路36号院8号楼</dd>
+                <dd>邮编： 100012</dd>
+            </dl>
+            <div class="footer-code">
+                <div class="code">
+                    <p><img src="sourse/code-app.png" alt="APP下载"></p>
+                    <p class="wz">APP下载</p>
+                </div>
+                <div class="code code2">
+                    <p><img src="sourse/code-wx.png" alt="官方微信"></p>
+                    <p class="wz">官方微信</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-cr">某个同学 版权所有 | 网络经营许可证 京ICP备2828282828号-1 ©2018 all rights reserved.
+        </div>
     </div>
 </div>
+<!-- 底部 end -->
 </body>
 <script src="sourse/jquery-1.10.2.min.js"></script>
 <script src="sourse/SuperSlide.js"></script>
 <script>
     jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
+    var imgdata=[
+        ['https://pic1.ajkimg.com/display/anjuke/887212-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/d0e06d42f492427faecf587baa99d121-599x450.jpg?t=1','https://pic1.ajkimg.com/display/anjuke/568147-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/8c908fdf10fb0a02296e9e99cd390a80-599x450.jpg?t=1','https://pic1.ajkimg.com/display/anjuke/887212-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/d0e06d42f492427faecf587baa99d121-599x450.jpg?t=1'],['https://pic1.ajkimg.com/display/anjuke/aad99e-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/7200621641fbed1d906aca9f984f408e-599x450.jpg?t=1'],['https://pic1.ajkimg.com/display/hj/08275328c1cdd0c25423e9534a217aa0/600x450.jpg?t=1','https://pic1.ajkimg.com/display/hj/0d055d9ab2ded436c5d01adc286a4f6d/600x450.jpg?t=1','https://pic1.ajkimg.com/display/hj/0fb968f32bc3448dde2aa880a9230c92/600x450.jpg?t=1']
+    ];
+    $('.tab li').click(function(){
+        $(this).addClass('on').siblings().removeClass('on')
+        var box=$('.img');
+
+        var data=imgdata[$(this).index()];
+        if($(this).index()<3){
+            box.html('');
+            for(var i=0;i<=data.length-1;i++){
+                box.append('<li><img src="'+data[i]+'" alt=""></li>')
+            }
+            jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
+        }
+    })
 </script>
 </html>

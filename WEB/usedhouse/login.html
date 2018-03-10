@@ -124,8 +124,8 @@
              <div class="loginDiv lg">
                  <span class="myclose ">&times;</span>
                  <p class="login_p"><span class="left">用户登录</span><span class="right"><span>还没有账号？</span><span class="zc_link">马上注册</span></span></p>
-                 <p><input type="text" class="uname" placeholder="用户名"></p>
-                 <p><input type="text" class="upwd" placeholder="密码"></p>
+                 <p><input type="text" class="uname" placeholder="账号" id="uname_l"></p>
+                 <p><input type="text" class="upwd" placeholder="密码" id="upwd_l"></p>
                  <p><a href="javascript:void(0)" class="btn" id="login_button">登录</a></p>
              </div>
          <div class="loginDiv zc">
@@ -149,8 +149,11 @@
      </div>
  </body>
 <script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/BaseValues.js"></script>
 <script src="sourse/gVerify.js"></script>
 <script src="sourse/cookie_util.js"></script>
+<script src="sourse/IDValidator.js"></script>
+<script src="sourse/GB2260.js"></script>
 <script src="sourse/login.js"></script>
 <script>
         $('.myclose').click(function(){
