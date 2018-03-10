@@ -50,9 +50,9 @@ $(function(){
 				"contactWay":$("#contactWay").val(),
             	"sex":$("#sex").val(),
             	"birth":$("#birth").val(),
-            	"addr":$("#addr").val()
+            	"addr":$("#addr").val(),
+                "account":$("#account").val()
 				};
-
 		$.ajax({
 			type:"post",
 			url : basePath + "user/createUser",

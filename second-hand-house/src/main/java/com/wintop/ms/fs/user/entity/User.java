@@ -102,4 +102,11 @@ public class User extends BsData {
      */
     private String account;
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

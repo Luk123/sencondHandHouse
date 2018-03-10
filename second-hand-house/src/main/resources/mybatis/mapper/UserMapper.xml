@@ -192,6 +192,6 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where user_name = #{userName} AND pwd = #{pwd}
+    where account = #{account} AND pwd = #{pwd}
   </select>
 </mapper>

@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 用户Controller。
@@ -28,6 +25,12 @@ public class UserController {
     @Resource
     private UserManager userManager;
 
+    /**
+     * 用户登陆接口
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping(value = "/user/login")
     public ServiceResult<User> login(HttpServletRequest request, HttpServletResponse response){
         ServiceResult<User> result=new ServiceResult<>();
@@ -38,7 +41,7 @@ public class UserController {
                 String dec[] = auths[1].split(":");
                 if(dec.length == 2){
                     Map<String,Object> map=new HashMap<>();
-                    map.put("userName",dec[0]);
+                    map.put("account",dec[0]);
                     map.put("pwd",dec[1]);
                     result=userManager.selectByUserNameAndPw(map);
                 }
@@ -57,13 +60,45 @@ public class UserController {
         return userManager.listByQuery(qo);
     }
 
+    /**
+     * 检查用户名是否重复
+     * @param map
+     * @return
+     */
     @PostMapping(value = "user/checkUserName",produces="application/json; charset=UTF-8")
-    public ServiceResult<User> checkUserName(@RequestParam Map<String,Object> map) throws Exception{
+    public ServiceResult<User> checkUserName(@RequestBody Map<String,Object> map){
         return userManager.checkRepeat(map);
     }
+
+    /**
+     * 注册用户信息
+     * @param user
+     * @return
+     */
     @PostMapping(value = "user/createUser",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> createUser(@RequestBody User user) throws Exception{
+    public ServiceResult<Integer> createUser(@RequestBody User user){
+        user.setCreateTime(new Date());
         return userManager.insertSelective(user);
+    }
+
+    /**
+     * 根据用户Id查询用户信息
+     * @param userId
+     * @return
+     */
+    @PostMapping(value = "user/getUserInfoById",produces="application/json; charset=UTF-8")
+    public ServiceResult<User> getUserInfoById(Integer userId){
+        return userManager.selectByPrimaryKey(userId);
+    }
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @PostMapping(value = "user/updateInfoById",produces="application/json; charset=UTF-8")
+    public ServiceResult<Integer> updateInfoById(@RequestBody User user){
+        return userManager.updateSelective(user);
     }
 }
 
