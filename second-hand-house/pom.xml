@@ -16,6 +16,13 @@
 
 	<dependencies>
 
+        <!-- fastJson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.32</version>
+        </dependency>
+
         <!-- 分页助手 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
