@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2018-03-06 23:01:30
+Date: 2018-03-10 16:20:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3344,6 +3344,7 @@ CREATE TABLE `house_conf` (
 -- ----------------------------
 -- Records of house_conf
 -- ----------------------------
+INSERT INTO `house_conf` VALUES ('1', '测试房屋', '小区有健身区', '有公园', '有地铁');
 
 -- ----------------------------
 -- Table structure for house_photo
@@ -3398,7 +3399,7 @@ CREATE TABLE `house_score` (
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `cust_id` int(10) NOT NULL COMMENT '评价人id',
   `cust_name` varchar(50) NOT NULL COMMENT '评价人名称',
-  `count_score` bit(5) NOT NULL COMMENT '评分',
+  `count_score` int(10) NOT NULL COMMENT '评分',
   `comment` varchar(500) NOT NULL COMMENT '房屋评论',
   PRIMARY KEY (`house_score_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋评论表';
@@ -3423,6 +3424,7 @@ CREATE TABLE `house_star` (
 -- ----------------------------
 -- Records of house_star
 -- ----------------------------
+INSERT INTO `house_star` VALUES ('1', '测试房屋', '简介', '13456456456', '精装修，非常好');
 
 -- ----------------------------
 -- Table structure for house_tag
@@ -3468,7 +3470,7 @@ INSERT INTO `tag` VALUES ('1', '近地铁', '1', '2018-03-05', '启用');
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `user_name` varchar(50) NOT NULL COMMENT '真实姓名',
+  `user_name` varchar(50) NOT NULL COMMENT '用户名',
   `user_photo_addr` varchar(255) DEFAULT NULL COMMENT '用户照片',
   `pwd` varchar(64) NOT NULL COMMENT '密码',
   `contact_way` varchar(15) DEFAULT NULL COMMENT '联系方式',
@@ -3480,11 +3482,12 @@ CREATE TABLE `user` (
   `create_time` date NOT NULL COMMENT '创建时间',
   `account` varchar(50) NOT NULL COMMENT '账号',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', '1', '1', '1', '1', '1', '1', '2018-03-10', '1', '0', '2018-03-10', '1');
 
 -- ----------------------------
 -- Table structure for user_buy
@@ -3547,3 +3550,23 @@ CREATE TABLE `user_sale` (
 -- ----------------------------
 -- Records of user_sale
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for user_score
+-- ----------------------------
+DROP TABLE IF EXISTS `user_score`;
+CREATE TABLE `user_score` (
+  `user_score_id` int(10) NOT NULL COMMENT '房屋积分id',
+  `user_id` int(10) NOT NULL COMMENT '房屋id',
+  `user_name` varchar(50) NOT NULL COMMENT '房屋名称',
+  `cust_id` int(10) NOT NULL COMMENT '评价人id',
+  `cust_name` varchar(50) NOT NULL COMMENT '评价人名称',
+  `count_score` int(10) NOT NULL COMMENT '评分',
+  `comment` varchar(500) NOT NULL COMMENT '房屋评论',
+  PRIMARY KEY (`user_score_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户评论表';
+
+-- ----------------------------
+-- Records of user_score
+-- ----------------------------
+INSERT INTO `user_score` VALUES ('1', '1', '1', '1', '1', '5', '1');

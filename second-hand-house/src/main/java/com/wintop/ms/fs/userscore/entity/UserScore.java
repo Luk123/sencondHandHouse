@@ -2,7 +2,7 @@
  * $Id:$
  * Copyright 2017 ecarpo.com All rights reserved.
  */
-package com.wintop.ms.fs.housescore.entity;
+package com.wintop.ms.fs.userscore.entity;
 
 import com.wintop.ms.common.base.BsData;
 import lombok.Data;
@@ -15,27 +15,27 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class HouseScore extends BsData{
+public class UserScore extends BsData{
     /**
      * 用户积分id
      *
      * @mbg.generated 2018-03-04 14:39:32
      */
-    private Integer houseScoreId;
+    private Integer userScoreId;
 
     /**
-     * 房屋id
+     * 用户id
      *
      * @mbg.generated 2018-03-04 14:39:32
      */
-    private Integer houseId;
+    private Integer userId;
 
     /**
-     * 房屋名称
+     * 用户名称
      *
      * @mbg.generated 2018-03-04 14:39:32
      */
-    private String houseName;
+    private String userName;
 
     /**
      * 评价人id
