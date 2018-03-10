@@ -9,7 +9,6 @@ import java.io.Serializable;
  * author mark
  * Date 2018/3/3
  */
-@Data
 public class PageQO extends BsQO{
 
     // 页码
@@ -18,4 +17,19 @@ public class PageQO extends BsQO{
     // 每页显示数量
     protected int pageSize = 10;
 
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 }

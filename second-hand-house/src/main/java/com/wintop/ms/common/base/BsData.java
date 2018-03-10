@@ -7,7 +7,7 @@ import lombok.Data;
  * Date 2018/3/2
  */
 @Data
-public class BsData {
+public class BsData{
 
     protected Integer defultFlag;
 

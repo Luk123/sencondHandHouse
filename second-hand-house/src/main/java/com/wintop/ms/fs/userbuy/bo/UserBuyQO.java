@@ -2,7 +2,7 @@
  * $Id:$
  * Copyright 2017 ecarpo.com All rights reserved.
  */
-package com.wintop.ms.fs.userbuy.entity;
+package com.wintop.ms.fs.userbuy.bo;
 
 import com.wintop.ms.common.base.BsData;
 import com.wintop.ms.common.base.PageQO;
@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserBuy extends BsData {
+public class UserBuyQO extends PageQO {
     /**
      * 购买记录id
      *
@@ -56,31 +56,10 @@ public class UserBuy extends BsData {
     private Date buyDate;
 
     /**
-     * 房屋所有人id
-     *
-     * @mbg.generated 2018-03-04 15:03:43
-     */
-    private Integer ownerId;
-
-    /**
-     * 房屋所有人名称
-     *
-     * @mbg.generated 2018-03-04 15:03:43
-     */
-    private String ownerName;
-
-    /**
      * 购买者id
      *
      * @mbg.generated 2018-03-04 15:03:43
      */
     private Integer userId;
-
-    /**
-     * 购买者名称
-     *
-     * @mbg.generated 2018-03-04 15:03:43
-     */
-    private String userName;
 
 }

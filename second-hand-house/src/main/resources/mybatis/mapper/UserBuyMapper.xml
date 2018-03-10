@@ -147,4 +147,11 @@
       user_name = #{userName,jdbcType=VARCHAR}
     where user_buy_id = #{userBuyId,jdbcType=INTEGER}
   </update>
+  <select id="listByQuery" resultMap="BaseResultMap">
+    <!-- @zhangzijuan 查询购买列表 -->
+    select
+    <include refid="Base_Column_List" />
+    from user_buy
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -3468,7 +3468,7 @@ INSERT INTO `tag` VALUES ('1', '近地铁', '1', '2018-03-05', '启用');
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户id',
-  `user_name` varchar(50) NOT NULL COMMENT '用户名',
+  `user_name` varchar(50) NOT NULL COMMENT '真实姓名',
   `user_photo_addr` varchar(255) DEFAULT NULL COMMENT '用户照片',
   `pwd` varchar(64) NOT NULL COMMENT '密码',
   `contact_way` varchar(15) DEFAULT NULL COMMENT '联系方式',
