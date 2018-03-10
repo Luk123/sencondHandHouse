@@ -180,6 +180,7 @@
       account = #{account,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
   <select id="checkRepeat" parameterType="java.util.Map" resultMap="BaseResultMap">
     <!-- @zhangzijuan 检查用户名是否重复-->
     select
@@ -187,11 +188,41 @@
     from user
     where user_name = #{userName}
   </select>
+
   <select id="selectByUserNameAndPwd" parameterType="java.util.Map" resultMap="BaseResultMap">
     <!-- @zhangzijuan 登陆检查-->
     select
     <include refid="Base_Column_List" />
     from user
     where account = #{account} AND pwd = #{pwd}
+  </select>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+      <if test="userName != null">
+        user_name like #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null">
+        and contact_way like #{contactWay,jdbcType=VARCHAR}
+      </if>
+      <if test="certNo != null">
+        and cert_no like #{certNo,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+        and sex = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="integralNumBegin != null">
+        <![CDATA[ and integral_num >= #{integralNumBegin,jdbcType=INTEGER} ]]>
+      </if>
+      <if test="integralNumEnd != null">
+        <![CDATA[ and integral_num <= #{integralNumEnd,jdbcType=INTEGER} ]]>
+      </if>
+      <if test="account != null">
+        and account like #{account,jdbcType=VARCHAR}
+      </if>
+    </where>
   </select>
 </mapper>

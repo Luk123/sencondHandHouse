@@ -1,9 +1,11 @@
 package com.wintop.ms.fs.user.controller;
 
 import com.wintop.ms.common.base.BsQO;
+import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.fs.user.bo.UpdateUserScoreDTO;
+import com.wintop.ms.fs.user.bo.UserPageQO;
 import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.service.UserManager;
 import org.apache.commons.lang3.StringUtils;
@@ -55,7 +57,12 @@ public class UserController {
             response.setHeader("Authorization", "Token "+tk);
         return result;
     }
-
+    /**
+     * 用户列表
+     * @param qo
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
     public ServiceResult<List<User>> list(BsQO qo) throws Exception{
         return userManager.listByQuery(qo);
@@ -109,6 +116,17 @@ public class UserController {
     @PostMapping(value = "user/update/score",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> updateUserScore(@RequestBody UpdateUserScoreDTO user) throws  Exception{
         return userManager.updateSelective(DAOUtils.cloneBean(User.class,user));
+    }
+
+    /**
+     * 用户分页
+     * @param qo
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/user/page", method = RequestMethod.GET)
+    public ServiceResult<Pager> page(UserPageQO qo) throws Exception{
+        return userManager.pageByQuery(User.class,qo,null);
     }
 }
 

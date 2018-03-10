@@ -151,7 +151,7 @@
     from district
     <where>
       <if test="districtName != null">
-        district_name = #{districtName,jdbcType=VARCHAR}
+        district_name like #{districtName,jdbcType=VARCHAR}
       </if>
       <if test="districtType != null">
         and district_type = #{districtType,jdbcType=TINYINT}

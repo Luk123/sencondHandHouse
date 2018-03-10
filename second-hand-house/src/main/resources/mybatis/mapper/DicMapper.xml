@@ -116,5 +116,16 @@
     select
     <include refid="Base_Column_List" />
     from dic
+    <where>
+      <if test="dicClsName != null">
+        dic_cls_name like #{dicClsName,jdbcType=VARCHAR}
+      </if>
+      <if test="dicName != null">
+        and dic_name like #{dicName,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        and state = #{state,jdbcType=VARCHAR}
+      </if>
+    </where>
   </select>
 </mapper>
