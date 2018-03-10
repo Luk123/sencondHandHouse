@@ -50,7 +50,7 @@ public class TagController {
      * @param tag
      * @return
      */
-    @PostMapping(value = "tag/insert",produces="application/json; charset=UTF-8")
+    @PostMapping(value = "/tag/insert",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> insert(@RequestBody Tag tag) throws  Exception{
         return tagManager.insert(tag);
     }
@@ -60,7 +60,7 @@ public class TagController {
      * @param tag
      * @return
      */
-    @PostMapping(value = "tag/update",produces="application/json; charset=UTF-8")
+    @PostMapping(value = "/tag/update",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> update(@RequestBody Tag tag) throws  Exception{
         return tagManager.updateSelective(tag);
     }

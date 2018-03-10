@@ -1,6 +1,7 @@
 package com.wintop.ms.fs.userfavorite.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.fs.userfavorite.bo.UserFavoriteQO;
 import com.wintop.ms.fs.userfavorite.entity.UserFavorite;
@@ -27,7 +28,7 @@ public class UserFavoriteController {
      * @Date 2018-03-10
      */
     @PostMapping(value = "/userFavorite/page",produces="application/json; charset=UTF-8")
-    public ServiceResult<PageInfo> pageByQuery(UserFavoriteQO qo){
+    public ServiceResult<Pager> pageByQuery(UserFavoriteQO qo){
         return favoriteManager.pageByQuery(UserFavorite.class, qo,null);
     }
     /**

@@ -144,4 +144,21 @@
       parent_id = #{districtId,jdbcType=BIGINT}
     order by district_code
   </select>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from district
+    <where>
+      <if test="districtName != null">
+        district_name = #{districtName,jdbcType=VARCHAR}
+      </if>
+      <if test="districtType != null">
+        and district_type = #{districtType,jdbcType=TINYINT}
+      </if>
+      <if test="state != null">
+        and state = #{state,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
 </mapper>
