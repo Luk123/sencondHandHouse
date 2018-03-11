@@ -56,11 +56,8 @@ public class FileUploadController {
             result.setMessage("文件不能为空");
             return result;
         }
-
         String path = "C:/picFile" ;
-
         for(MultipartFile file:files){
-
             String fileName = file.getOriginalFilename();
             int size = (int) file.getSize();
             System.out.println(fileName + "-->" + size);
@@ -73,7 +70,9 @@ public class FileUploadController {
                     return result;
 //                throw new RuntimeException("上传" + file.getOriginalFilename() + "的图片不符合限制");
                 }
-                File dest = new File(path + "/" + fileName);
+                String allPath = path + "/" + fileName;
+                System.out.println(fileName + "-->" + allPath);
+                File dest = new File(allPath);
                 if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
                     dest.getParentFile().mkdir();
                 }
@@ -108,13 +107,15 @@ public class FileUploadController {
             int size = (int) file.getSize();
             System.out.println(fileName + "-->" + size);
             String path = "C:/picFile" ;
-            File dest = new File(path + "/" + fileName);
+            String allPath = path + "/" + fileName;
+            System.out.println(fileName + "-->" + allPath);
+            File dest = new File(allPath);
             if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
                 dest.getParentFile().mkdir();
             }
             try {
                 file.transferTo(dest); //保存文件
-                result.setResult(path + "/" + fileName);
+                result.setResult(allPath);
                 result.setSuccess(true);
                 result.setMessage("文件上传成功");
             } catch (Exception e) {

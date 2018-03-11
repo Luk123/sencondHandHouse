@@ -10,4 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HouseTagDAO extends BsDao<HouseTag> {
 
+    /**
+     * delete all house tag by houseId
+     * @param houseId
+     * @return
+     */
+    Integer deleteByHouseId(Integer houseId);
 }

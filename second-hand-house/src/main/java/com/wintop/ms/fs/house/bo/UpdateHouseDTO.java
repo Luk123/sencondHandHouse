@@ -4,12 +4,13 @@
  */
 package com.wintop.ms.fs.house.bo;
 
+import com.wintop.ms.common.base.BsData;
 import com.wintop.ms.fs.houseconf.entity.HouseConf;
 import com.wintop.ms.fs.housestar.entity.HouseStar;
 import com.wintop.ms.fs.housetag.entity.HouseTag;
 import lombok.Data;
 
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,8 @@ import java.util.List;
  * @mbg.generated 2018-03-04 14:18:04
  */
 @Data
-public class HouseInfo implements Serializable{
+public class UpdateHouseDTO extends BsData{
+
     /**
      *
      * @mbg.generated 2018-03-04 14:18:04
@@ -238,7 +240,7 @@ public class HouseInfo implements Serializable{
     private Date createTime;
 
     /**
-     * 房屋创建人id
+     * 房屋所有人id
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
@@ -255,12 +257,14 @@ public class HouseInfo implements Serializable{
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
+    @NotNull
     private HouseStar houseStar;
     /**
      * 房屋周边配套
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
+    @NotNull
     private HouseConf houseConf;
 
     /**

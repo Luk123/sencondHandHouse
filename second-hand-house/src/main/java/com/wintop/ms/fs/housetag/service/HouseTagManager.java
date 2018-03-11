@@ -8,4 +8,12 @@ import org.springframework.stereotype.Service;
 @Service("houseTagManager")
 public class HouseTagManager extends BsManager<HouseTagDAO, HouseTag> {
 
+    /**
+     * delete all house tag by houseId
+     * @param houseId
+     * @return
+     */
+    public Integer deleteByHouseId(Integer houseId){
+        return mapper.deleteByHouseId(houseId);
+    }
 }

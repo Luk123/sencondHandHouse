@@ -158,7 +158,7 @@ public class HousePageQO extends PageQO{
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
-    private String state = "售卖中";
+    private String state;
 
     /**
      * createFlag：排序标识

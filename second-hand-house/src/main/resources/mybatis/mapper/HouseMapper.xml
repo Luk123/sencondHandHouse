@@ -56,7 +56,7 @@
     delete from house
     where house_id = #{houseId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.wintop.ms.fs.house.entity.House">
+  <insert id="insert" parameterType="com.wintop.ms.fs.house.entity.House" useGeneratedKeys="true" keyProperty="houseId">
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
     insert into house (house_id, house_name, house_hall, 
       area, real_area, provice, 
@@ -435,7 +435,9 @@
     <include refid="Base_Column_List" />
     from house
     <where>
-        state =  #{state,jdbcType=VARCHAR}
+        <if test="state != null">
+            state = #{state,jdbcType=VARCHAR}
+        </if>
       <if test="userId != null">
         and owner_id = #{userId,jdbcType=INTEGER}
       </if>

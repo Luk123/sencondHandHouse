@@ -1,12 +1,6 @@
 package com.wintop.ms.fs.housescore.controller;
 
-import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.fs.housephoto.bo.HouseListQO;
-import com.wintop.ms.fs.housephoto.bo.HousePhotoBO;
-import com.wintop.ms.fs.housephoto.bo.HousePhotoQO;
-import com.wintop.ms.fs.housephoto.entity.HousePhoto;
-import com.wintop.ms.fs.housephoto.service.HousePhotoManager;
 import com.wintop.ms.fs.housescore.bo.HouseScoreListQO;
 import com.wintop.ms.fs.housescore.entity.HouseScore;
 import com.wintop.ms.fs.housescore.service.HouseScoreManager;

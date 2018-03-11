@@ -64,14 +64,19 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      */
     public <K> ServiceResult<Integer> deleteByPrimaryKey(K id) {
         ServiceResult<Integer> result=new ServiceResult<>();
-        try {
-            result.setMessage("删除数据成功");
-            result.setSuccess(true);
-            result.setResult(mapper.deleteByPrimaryKey(id));
-        } catch (Exception e) {
-            result.setMessage("删除数据失败");
+        if(id == null){
+            result.setMessage("请选择一条数据");
             result.setSuccess(false);
-            e.printStackTrace();
+        }else{
+            try {
+                result.setMessage("删除数据成功");
+                result.setSuccess(true);
+                result.setResult(mapper.deleteByPrimaryKey(id));
+            } catch (Exception e) {
+                result.setMessage("删除数据失败");
+                result.setSuccess(false);
+                e.printStackTrace();
+            }
         }
         return result;
     }
@@ -122,15 +127,20 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      */
     public <K> ServiceResult<T> selectByPrimaryKey(K id){
         ServiceResult<T> result=new ServiceResult<>();
-        try {
-            T t=mapper.selectByPrimaryKey(id);
-            result.setMessage("查询数据成功");
-            result.setSuccess(true);
-            result.setResult(t);
-        } catch (Exception e) {
-            result.setMessage("查询数据失败");
+        if(id == null){
+            result.setMessage("请选择一条数据");
             result.setSuccess(false);
-            e.printStackTrace();
+        }else {
+            try {
+                T t = mapper.selectByPrimaryKey(id);
+                result.setMessage("查询数据成功");
+                result.setSuccess(true);
+                result.setResult(t);
+            } catch (Exception e) {
+                result.setMessage("查询数据失败");
+                result.setSuccess(false);
+                e.printStackTrace();
+            }
         }
         return result;
     }
@@ -157,27 +167,7 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
         return result;
     }
 
-    /**
-     * 分页查询,未生成sql，需手写
-     *
-     * @param qo 查询参数
-     * @return list集合
-     * author mark
-     * Date 2017年8月18日
-     */
-    public ServiceResult<List<T>>  pageByQuery(BsQO qo) {
-        ServiceResult<List<T>> result=new ServiceResult<>();
-        try {
-            result.setMessage("查询数据成功");
-            result.setSuccess(true);
-            result.setResult(mapper.pageByQuery(qo));
-        } catch (Exception e) {
-            result.setMessage("查询数据失败");
-            result.setSuccess(false);
-            e.printStackTrace();
-        }
-        return result;
-    }
+
 
     /**
      * 获取名字列表,未生成sql，需手写
@@ -187,12 +177,14 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public ServiceResult<List<T>> listNameByQuery(BsQO qo) {
-        ServiceResult<List<T>> result=new ServiceResult<>();
+    public <K> ServiceResult<List<K>> listNameByQuery(Class<K> clz,BsQO qo) {
+        ServiceResult<List<K>> result=new ServiceResult<>();
         try {
             result.setMessage("查询数据成功");
             result.setSuccess(true);
-            result.setResult(mapper.listNameByQuery(qo));
+            List<T> src = mapper.listNameByQuery(qo);
+            List<K> list =  DAOUtils.cloneList(clz,src);
+            result.setResult(list);
         } catch (Exception e) {
             result.setMessage("查询数据失败");
             result.setSuccess(false);
@@ -215,6 +207,30 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
             result.setMessage("查询数据成功");
             result.setSuccess(true);
             result.setResult(mapper.listByQuery(qo));
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 获取列表,未生成sql，需手写
+     *
+     * @param qo 查询参数
+     * @return list集合
+     * author mark
+     * Date 2017年8月18日
+     */
+    public <K> ServiceResult<List<K>> listByQuery(Class<K> clz,BsQO qo){
+        ServiceResult<List<K>> result=new ServiceResult<>();
+        try {
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
+            List<T> src = mapper.listNameByQuery(qo);
+            List<K> list =  DAOUtils.cloneList(clz,src);
+            result.setResult(list);
         } catch (Exception e) {
             result.setMessage("查询数据失败");
             result.setSuccess(false);
@@ -270,6 +286,37 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
             result.setMessage("查询数据成功");
             result.setSuccess(true);
             // result.setResult(pager);
+        } catch (Exception e) {
+            result.setMessage("查询数据失败");
+            result.setSuccess(false);
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * 分页查询,未生成sql，需手写
+     *
+     * @param qo 查询参数
+     * @return list集合
+     * author mark
+     * Date 2017年8月18日
+     */
+    public ServiceResult<Pager>  pageByQuery(PageQO qo) {
+        ServiceResult<Pager> result=new ServiceResult<>();
+        try {
+            //引入PageHelper分页插件
+            //在查询之前只需要调用。传入页码，以及每页大小
+            PageHelper.startPage(qo.getPageIndex(),qo.getPageSize(),true);
+            List<T> srclist = mapper.listByQuery(qo);
+            //pageInfo包装查询后的结果，只需要将pageINfo交给页面
+            //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
+            PageInfo page = new PageInfo(srclist,qo.getPageSize());
+            // 包裝数据
+            Pager pager=new Pager(page.getTotal(), srclist, "查询数据成功", true);
+            result.setPager(pager);
+            result.setMessage("查询数据成功");
+            result.setSuccess(true);
         } catch (Exception e) {
             result.setMessage("查询数据失败");
             result.setSuccess(false);

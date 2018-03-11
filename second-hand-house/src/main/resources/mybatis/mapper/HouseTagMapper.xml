@@ -144,4 +144,9 @@
       </if>
     </where>
   </select>
+
+    <delete id="deleteByHouseId" parameterType="java.lang.Integer">
+        delete from house_tag
+        where house_id = #{houseId,jdbcType=INTEGER}
+    </delete>
 </mapper>

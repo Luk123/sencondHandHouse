@@ -158,4 +158,18 @@
       sale_time = #{saleTime,jdbcType=DATE}
     where house_sale_id = #{houseSaleId,jdbcType=INTEGER}
   </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from house_sale
+    <where>
+      <if test="houseName != null">
+        house_name like #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+          and  owner_id = #{userId,jdbcType=INTEGER}
+       </if>
+    </where>
+  </select>
 </mapper>
