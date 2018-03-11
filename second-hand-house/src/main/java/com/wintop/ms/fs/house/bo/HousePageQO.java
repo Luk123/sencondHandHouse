@@ -19,6 +19,9 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class HousePageQO extends PageQO{
+
+    private Integer userId;
+
     /**
      * 所在省
      *

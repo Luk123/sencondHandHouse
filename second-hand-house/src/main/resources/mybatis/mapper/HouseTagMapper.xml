@@ -133,4 +133,15 @@
       create_name = #{createName,jdbcType=VARCHAR}
     where house_tag_id = #{houseTagId,jdbcType=INTEGER}
   </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from house_tag
+    <where>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>

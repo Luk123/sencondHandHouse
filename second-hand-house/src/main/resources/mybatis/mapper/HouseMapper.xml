@@ -436,6 +436,9 @@
     from house
     <where>
         state =  #{state,jdbcType=VARCHAR}
+      <if test="userId != null">
+        and owner_id = #{userId,jdbcType=INTEGER}
+      </if>
       <if test="provice != null">
         and provice = #{provice,jdbcType=VARCHAR}
       </if>

@@ -138,6 +138,14 @@
     select
     <include refid="Base_Column_List" />
     from house_photo
+    <where>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER}
+      </if>
+      <if test="type != null">
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+    </where>
     group by house_id
   </select>
 </mapper>

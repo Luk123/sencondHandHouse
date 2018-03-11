@@ -236,7 +236,7 @@ public class House extends BsData{
     private Date createTime;
 
     /**
-     * 房屋所有人id
+     * 房屋创建人id
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
