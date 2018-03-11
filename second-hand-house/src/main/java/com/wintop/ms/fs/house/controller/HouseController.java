@@ -10,14 +10,19 @@ import com.wintop.ms.fs.house.entity.House;
 import com.wintop.ms.fs.house.service.HouseManager;
 import com.wintop.ms.fs.houseconf.entity.HouseConf;
 import com.wintop.ms.fs.houseconf.service.HouseConfManager;
+import com.wintop.ms.fs.housescore.service.HouseScoreManager;
 import com.wintop.ms.fs.housestar.entity.HouseStar;
 import com.wintop.ms.fs.housestar.service.HouseStarManager;
+import com.wintop.ms.fs.housetag.bo.HouseTagListQO;
+import com.wintop.ms.fs.housetag.entity.HouseTag;
+import com.wintop.ms.fs.housetag.service.HouseTagManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户微服务Controller。
@@ -35,6 +40,12 @@ public class HouseController {
 
     @Resource
     private HouseStarManager houseStarManager;
+
+    @Resource
+    private HouseScoreManager houseScoreManager;
+
+    @Resource
+    private HouseTagManager houseTagManager;
 
     /**
      * 获取房屋分页
@@ -72,6 +83,9 @@ public class HouseController {
         //
       HouseConf houseConf = houseConfManager.selectByPrimaryKey(houseId).getResult();
         houseinfo.setHouseConf(houseConf);
+        //
+       List<HouseTag> houseTag =  houseTagManager.listByQuery(new HouseTagListQO(houseId)).getResult();
+        houseinfo.setHouseTag(houseTag);
         //
         res.setResult(houseinfo);
         res.setSuccess(true);

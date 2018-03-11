@@ -103,5 +103,13 @@
     select
     <include refid="Base_Column_List" />
     from tag
+    <where>
+      <if test="tagName != null">
+        tag_name like #{tagName,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+        and state = #{state,jdbcType=VARCHAR}
+      </if>
+    </where>
   </select>
 </mapper>
