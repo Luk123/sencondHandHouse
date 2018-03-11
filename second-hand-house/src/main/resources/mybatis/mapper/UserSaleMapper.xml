@@ -147,4 +147,12 @@
       owner_name = #{ownerName,jdbcType=VARCHAR}
     where user_sale_id = #{userSaleId,jdbcType=INTEGER}
   </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    <!-- @zhangzijuan 查询售卖记录列表 -->
+    select
+    <include refid="Base_Column_List" />
+    from user_sale
+    where cust_id = #{custId,jdbcType=INTEGER}
+  </select>
 </mapper>

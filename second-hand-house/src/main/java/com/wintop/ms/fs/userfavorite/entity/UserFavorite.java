@@ -15,7 +15,6 @@ import java.util.Date;
  *
  * @mbg.generated 2018-03-04 15:07:04
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 public class UserFavorite extends BsData {
     /**
@@ -67,4 +66,59 @@ public class UserFavorite extends BsData {
      */
     private Date createTime;
 
+    public Integer getFavoriteId() {
+        return favoriteId;
+    }
+
+    public void setFavoriteId(Integer favoriteId) {
+        this.favoriteId = favoriteId;
+    }
+
+    public Integer getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
+
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public void setHouseName(String houseName) {
+        this.houseName = houseName;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

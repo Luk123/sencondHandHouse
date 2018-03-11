@@ -123,9 +123,10 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
     public <K> ServiceResult<T> selectByPrimaryKey(K id){
         ServiceResult<T> result=new ServiceResult<>();
         try {
+            T t=mapper.selectByPrimaryKey(id);
             result.setMessage("查询数据成功");
             result.setSuccess(true);
-            result.setResult(mapper.selectByPrimaryKey(id));
+            result.setResult(t);
         } catch (Exception e) {
             result.setMessage("查询数据失败");
             result.setSuccess(false);

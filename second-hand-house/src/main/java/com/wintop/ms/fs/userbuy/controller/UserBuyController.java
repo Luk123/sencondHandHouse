@@ -31,7 +31,6 @@ public class UserBuyController {
     }
     /**
      * 根据购买id查看详情
-     * @return list集合
      * @author zhangzijuan
      * @Date 2018-03-10
      */
