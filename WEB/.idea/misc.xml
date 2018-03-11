@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" />
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/function.js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/im.init.js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/image-error.js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/jquery-1.10.2.min(1).js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/jquery-1.10.2.min.js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/jquery.browser.js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/jquery.cookie.js" />
+    <file url="file://$PROJECT_DIR$/usedhouse/改善居所_北京我爱我家官网_files/jquery.qqFace.js" />
+  </component>
 </project>

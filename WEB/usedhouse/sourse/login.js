@@ -1,11 +1,7 @@
 $(function(){
 	//登录注册
 	var verifyCode = new GVerify("v_container");
-	/*统一配置路径*/
-	var basePath='';
-    scrollRestoration
-        :
-        "auto"
+
 	$('#v_container').click(function(){
         imgCode();
 	});
@@ -49,6 +45,7 @@ $(function(){
             "addr":'',
             "account":username
         };
+        jQuery.support.cors = true;
         $.ajax({
             type:"post",
             url : basePath + "user/createUser",

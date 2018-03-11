@@ -159,6 +159,18 @@
             width: 18px;
             margin-right: 5px;
         }
+        .housebox .m span.collect-icon{
+            margin-top: 25px;
+            float: right;
+            width: 50px;
+            cursor: pointer;
+            height: 40px;
+            background: url(sourse/nolike.jpg) no-repeat center 0;
+            background-size: cover;
+        }
+        .housebox .m span.collect-icon.on{
+            background-image:  url(sourse/like.jpg);
+        }
     </style>
 </head>
 <body>
@@ -189,6 +201,7 @@
                <span class="red"><em>400</em>万</span>
                <span ><em>2</em>室 <em>2</em> 厅</span>
                <span ><em>86</em>平方米</span>
+               <span class="collect-icon" style="float: right"></span>
            </p>
         <div class="l" style="width: 845px;">
           <ul class="tab l">
@@ -297,6 +310,7 @@
 <!-- 底部 end -->
 </body>
 <script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/common.js"></script>
 <script src="sourse/SuperSlide.js"></script>
 <script>
     jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
@@ -315,6 +329,9 @@
             }
             jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
         }
+    })
+    $('.collect-icon').click(function(){
+        $(this).toggleClass('on')
     })
 </script>
 </html>
