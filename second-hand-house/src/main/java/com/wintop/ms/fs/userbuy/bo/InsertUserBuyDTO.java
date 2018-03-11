@@ -2,26 +2,37 @@
  * $Id:$
  * Copyright 2017 ecarpo.com All rights reserved.
  */
-package com.wintop.ms.fs.userscore.entity;
+package com.wintop.ms.fs.userbuy.bo;
 
 import com.wintop.ms.common.base.BsData;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
- * This class corresponds to the database table house_score
+ * This class corresponds to the database table user_buy
  *
- * @mbg.generated 2018-03-04 14:39:32
+ * @mbg.generated 2018-03-04 15:03:43
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserScore extends BsData{
+public class InsertUserBuyDTO extends BsData {
+
     /**
-     * 用户积分id
+     * 房屋id
      *
-     * @mbg.generated 2018-03-04 14:39:32
+     * @mbg.generated 2018-03-04 15:03:43
      */
-    private Integer userScoreId;
+    private Integer houseId;
+
+    /**
+     * 房屋名称
+     *
+     * @mbg.generated 2018-03-04 15:03:43
+     */
+    private String houseName;
 
     /**
      * 用户id(卖家)
@@ -56,13 +67,26 @@ public class UserScore extends BsData{
      *
      * @mbg.generated 2018-03-04 14:39:32
      */
-    private Integer countScore;
+    private Integer houseCountScore;
 
     /**
      * 评论
      *
      * @mbg.generated 2018-03-04 14:39:32
      */
-    private String comment;
+    private String houseComment;
 
- }
+    /**
+     * 评分
+     *
+     * @mbg.generated 2018-03-04 14:39:32
+     */
+    private Integer userCountScore;
+
+    /**
+     * 评论
+     *
+     * @mbg.generated 2018-03-04 14:39:32
+     */
+    private String userComment;
+}
