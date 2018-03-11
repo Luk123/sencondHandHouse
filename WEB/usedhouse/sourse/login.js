@@ -11,10 +11,33 @@ $(function(){
         if(res){
             return true
         }else{
-            $('#code_input').val("验证码错误");
+            $('#code_input').val("");
             return false;
         }
     }
+
+    function perId(objname){
+        var Validator = new IDValidator();
+        //号码合法时返回分析信息（地区、出生日期、性别、校验位），不合法返回false
+        var code = $("#"+objname).val();
+        var info = Validator.getInfo(code);
+        if(info){
+            return info;
+        }else {
+           return false;
+        }
+    }
+
+    function isPhone(objname) {
+
+        var callnum=$('#'+objname).val().length;
+        if(callnum!=11){
+            return false
+        }else{
+            return true;
+        }
+    }
+
 /*注册*/
     $("#regist_button").click(function(){
 
@@ -30,6 +53,16 @@ $(function(){
             alert('验证码错误')
             return null;
         }
+        var info=perId('uid')
+        if(!info){
+            alert('身份证输入有误');
+            return null
+        }
+        if(!isPhone('ucall')){
+            alert('手机号输入有误');
+            return null
+        }
+        var mysex=info.sex?'男':'女';
         var username=$("#uname").val();
         var userpwd=$("#upwd").val();
         var uid=$("#uid").val();
@@ -40,9 +73,9 @@ $(function(){
             "pwd":userpwd,
             "certNo":uid,
             "contactWay":ucall,
-            "sex":'',
-            "birth":'',
-            "addr":'',
+            "sex":mysex,
+            "birth":info.birth,
+            "addr":info.addr,
             "account":username
         };
         jQuery.support.cors = true;
@@ -72,7 +105,7 @@ $(function(){
      */
     function registSuccess(result){
         if(result.success && result.result>0){
-            alert("注册成功");
+            alert("注册成功,请登录");
             $('.lg').show()
             $('.zc').hide()
         }else{

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>二手房</title>
-    <link href="sourse/basic.css" rel="stylesheet">
+    <link href="sourse/basic.css" rel="stylesheet"/>
     <style>
         .left{
             float: left;
@@ -124,19 +124,18 @@
              <div class="loginDiv lg">
                  <span class="myclose ">&times;</span>
                  <p class="login_p"><span class="left">用户登录</span><span class="right"><span>还没有账号？</span><span class="zc_link">马上注册</span></span></p>
-                 <p><input type="text" class="uname" placeholder="账号" id="uname_l"></p>
-                 <p><input type="text" class="upwd" placeholder="密码" id="upwd_l"></p>
+                 <p><input type="text" class="uname" placeholder="账号" id="uname_l"/></p>
+                 <p><input type="password" class="upwd" placeholder="密码" id="upwd_l"/></p>
                  <p><a href="javascript:void(0)" class="btn" id="login_button">登录</a></p>
              </div>
          <div class="loginDiv zc">
                  <div class="zhuce">
-                    <!-- <img src="http://static.yuntongauto.com/bx/images/logo.jpg" class="mylogo">-->
                      <span class="myclose ">&times;</span>
-                     <p><input type="text" placeholder="请输入账号" id="uname"></p>
-                     <p><input type="text" placeholder="请输入身份证" id="uid"></p>
-                     <p><input type="text" placeholder="请输入真实姓名" id="ulastname"></p>
-                     <p><input type="text" placeholder="6-16位密码，区分大小写" id="upwd"></p>
-                     <p><input type="text" placeholder="手机号" id="ucall"></p>
+                     <p><input type="text" placeholder="请输入账号" id="uname"/></p>
+                     <p><input type="text" placeholder="请输入身份证" id="uid"/></p>
+                     <p><input type="text" placeholder="请输入真实姓名" id="ulastname"/></p>
+                     <p><input type="text" placeholder="6-16位密码，区分大小写" id="upwd"/></p>
+                     <p><input type="text" placeholder="手机号" maxlength="11" id="ucall"/></p>
                      <p class="box_yzm">
                          <input type="text" id="code_input" value="" placeholder="请输入验证码">
                          <span  id="v_container" style="width: 138px;height: 45px;float: left;overflow: hidden;margin-left: -1px;display: block"><canvas id="verifyCanvas" width="138" height="45" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas></span>
@@ -152,8 +151,8 @@
 <script src="sourse/BaseValues.js"></script>
 <script src="sourse/gVerify.js"></script>
 <script src="sourse/cookie_util.js"></script>
-<script src="sourse/IDValidator.js"></script>
 <script src="sourse/GB2260.js"></script>
+<script src="sourse/IDValidator.js"></script>
 <script src="sourse/login.js"></script>
 <script>
         $('.myclose').click(function(){
