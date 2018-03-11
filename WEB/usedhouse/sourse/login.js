@@ -48,7 +48,7 @@ $(function(){
         jQuery.support.cors = true;
         $.ajax({
             type:"post",
-            url : basePath + "user/createUser",
+            url :"http://localhost:8088/user/createUser",
             data:JSON.stringify(user),
             dataType : "json",
             contentType : "application/json",
@@ -81,6 +81,7 @@ $(function(){
     }
 
     function registError(data){
+		console.log(data)
         alert(data);
     }
 
