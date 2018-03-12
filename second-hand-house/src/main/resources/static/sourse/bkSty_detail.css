@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+.mar{margin-left:auto;margin-right:auto;}
+.lf{float:left;}
+.rf{float:right;}
+
+/* baike */
+.marTop3{margin-top:30px;}
+.marBoT3{margin-bottom:30px;}
+
+.bkBox{width:1178px; }
+/*当前位置*/
+.curHref{line-height:47px;}
+.curHref a,.curHref span{color:#8e99a9;}
+.curHref a:hover{color:#fbb100;}
+.curHref span{padding:0 6px;}
+/*----------- 锦囊妙计右侧相关知识 -----------------------*/
+.bkMenu{width:270px;/*background:#f8f8f8;*/border:1px solid #ececec;border-radius:5px;padding:20px 0;}
+.bkMenu.noPadd{padding:0;}
+.bkMenu.nobor{border:none}
+.zhishi-right{border:1px solid #ececec;border-radius:5px;width:270px;background:#f8f8f8;}
+.zhishi-right li{padding:10px 15px 10px 35px;background:url(./images/dian.gif) no-repeat 19px 21px;}
+.zhishi-right li a{color:#5c7596;font-size:14px;line-height:25px;}
+.zhishi-right li a:hover{color:#fbb100;}
+.zhishi-right .xList_tit{font-size:16px;color:#323942;height:43px;line-height:43px;background:url(./images/li.png) repeat-x;border-bottom:1px solid #ececec;padding:0 20px;}
+#fixedMenu{background:#f8f8f8;z-index:20;margin-bottom:20px;}
+/*----------- 百科内容区 -------------------------*/
+.bkMain{width:880px;}
+
+.zanBox i{background:url(./images/icon_2.png) no-repeat;}
+.bkWord{padding-right:30px;}
+.bkTit{font-size:30px;color:#323942;padding-bottom:12px;}
+.bkTime{font-size:14px;display:block;color:#8e99a9;}
+.bkWord p{font-size:14px;color:#535d6a;text-indent:28px;line-height:25px;letter-spacing:1px;word-wrap:break-word;word-break:break-all;} 
+.bkWord p a{color:#fcc834;text-decoration:underline;}
+.content{padding-top:20px;}
+.content p img{max-width:850px;margin: 0 auto;}
+.tags {padding-top:100px;}
+.tags em{color:#5c7596;font-size:12px;background:#e7eff9;border-radius:3px;margin-right:10px;padding:3px 12px;}
+
+.zanBox{padding-top:100px;padding-bottom:20px; position:relative;}
+.zan{display:block;margin:0 auto;font-size:14px;color:#fff;background: #f6ae29;width:120px;line-height:48px;border-radius:5px;text-align:center;cursor:pointer}
+.zan-qian{background:#b3b3b3;}
+.zan i{background-position:0 -24px;display:inline-block;margin-right:5px;width:15px;height:16px;}
+
+/*右下边分享*/
+/*.shareBottom a{background:url(./images/fenxiang.png) no-repeat;}*/
+.shareBottom{position:absolute;right:0;top:100px}
+.shareBottom li{float:left;margin-left:20px;}
+.shareBottom li a{display:block;width:48px;height:48px;text-indent:-9999px;cursor:pointer}
+.wx a{background-position:0 0;}
+.wb a{background-position:0 -52px;}
+.fx a{background-position:0 -104px;}
+
+.shareBottom .wx{position:relative;}
+.fxcode{position:absolute;top:-7px;left:-110px;}
+
+/*老站News兼容内容较少时的样式*/
+.news{margin-top:20px;min-height: 500px;}
+
+
+
+
+
+
+
+
+
+
+
+
+

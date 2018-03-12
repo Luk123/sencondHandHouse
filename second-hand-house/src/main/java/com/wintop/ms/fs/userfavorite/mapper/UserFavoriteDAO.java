@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserFavoriteDAO extends BsDao<UserFavorite> {
 
+    Integer cancelFavorite(Integer userId,Integer houseId);
+
 }

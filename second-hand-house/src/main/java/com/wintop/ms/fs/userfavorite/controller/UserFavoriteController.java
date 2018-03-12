@@ -64,6 +64,14 @@ public class UserFavoriteController {
     public ServiceResult<Integer> deleteFavoriteById(Integer favoriteId){
         return favoriteManager.deleteByPrimaryKey(favoriteId);
     }
-
+    /**
+     * 取消收藏
+     * @author zhangzijuan
+     * @Date 2018-03-10
+     */
+    @PostMapping(value = "/userFavorite/cancelFavorite",produces="application/json; charset=UTF-8")
+    public ServiceResult<Integer> cancelFavorite(Integer userId,Integer houseId){
+        return favoriteManager.cancelFavorite(userId,houseId);
+    }
 
 }
