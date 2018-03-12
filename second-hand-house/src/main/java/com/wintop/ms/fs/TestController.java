@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
     @RequestMapping("register")
     public String file(){
-        return "/register_login";
+        return "usedhouse/login";
     }
 }
