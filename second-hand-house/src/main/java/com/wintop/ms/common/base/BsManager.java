@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.common.utils.IObjectCallBack;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -292,6 +293,34 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * 分页
+     *
+     * @param qo 查询参数
+     * @return list集合
+     * author mark
+     * Date 2017年8月18日
+     */
+    public <K> Pager page(Class<K> clz,PageQO qo,IObjectCallBack<K> cb){
+        Pager  pager = null;
+        try {
+            //引入PageHelper分页插件
+            //在查询之前只需要调用。传入页码，以及每页大小
+            PageHelper.startPage(qo.getPageIndex(),qo.getPageSize(),true);
+            List<T> srclist = mapper.listByQuery(qo);
+            List<K> list = DAOUtils.cloneList(clz,srclist,cb);
+            //pageInfo包装查询后的结果，只需要将pageINfo交给页面
+            //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
+            PageInfo page = new PageInfo(list,qo.getPageSize());
+            // 包裝数据
+            pager=new Pager(page.getTotal(), list, "查询数据成功", true);
+        } catch (Exception e) {
+            pager=new Pager(0L, null, "查询数据失败", false);
+            e.printStackTrace();
+        }
+        return pager;
     }
 
     /**

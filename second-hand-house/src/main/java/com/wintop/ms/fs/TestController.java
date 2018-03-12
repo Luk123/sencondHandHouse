@@ -14,4 +14,9 @@ public class TestController {
     public String file(){
         return "/register_login";
     }
+
+    @RequestMapping("user")
+    public String user(){
+        return "/testuser";
+    }
 }

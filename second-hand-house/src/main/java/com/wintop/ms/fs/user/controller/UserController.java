@@ -125,8 +125,8 @@ public class UserController {
      * @throws Exception
      */
     @RequestMapping(value = "/user/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> page(UserPageQO qo) throws Exception{
-        return userManager.pageByQuery(User.class,qo,null);
+    public Pager page(UserPageQO qo) throws Exception{
+        return userManager.page(User.class,qo,null);
     }
 }
 
