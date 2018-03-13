@@ -10,19 +10,18 @@ import java.io.Serializable;
  * Date 2018/3/3
  */
 public class PageQO extends BsQO{
-
     // 页码
-    protected int pageIndex  = 0;
+    private int page;
 
     // 每页显示数量
-    protected int pageSize = 10;
+    private int pageSize;
 
-    public int getPageIndex() {
-        return pageIndex;
+    public int getPage() {
+        return page;
     }
 
-    public void setPageIndex(int pageIndex) {
-        this.pageIndex = pageIndex;
+    public void setPage(int page) {
+        this.page = page;
     }
 
     public int getPageSize() {

@@ -103,4 +103,6 @@ public interface BsDao<T> {
      * Date 2017年8月18日
      */
     <K> String selectNameById(K id);
+
+    Integer selectCount(BsQO qo);
 }

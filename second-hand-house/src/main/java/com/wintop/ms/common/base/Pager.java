@@ -13,7 +13,7 @@ public  class  Pager<K> implements Serializable {
 
     private static final long serialVersionUID = -5857027730230528482L;
 
-    protected Long count;
+    protected Integer count;
 
     protected List<K> list;
 
@@ -24,18 +24,18 @@ public  class  Pager<K> implements Serializable {
     public Pager() {
     }
 
-    public Pager(Long count, List<K> list, String msg, Boolean rel) {
+    public Pager(Integer count, List<K> list, String msg, Boolean rel) {
         this.count = count;
         this.list = list;
         this.msg = msg;
         this.rel = rel;
     }
 
-    public Long getCount() {
+    public Integer getCount() {
         return count;
     }
 
-    public void setCount(Long count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
 

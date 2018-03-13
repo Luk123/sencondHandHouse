@@ -125,8 +125,14 @@ public class UserController {
      * @throws Exception
      */
     @RequestMapping(value = "/user/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> page(UserPageQO qo) throws Exception{
-        return userManager.pageByQuery(User.class,qo,null);
+    public Map<String, Object> page(UserPageQO qo) {
+        Pager pager=userManager.pageByQuery(User.class,qo,null).getPager();
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        //总条数
+        resultMap.put("total", pager.getCount());
+        //获取每页数据
+        resultMap.put("rows", pager.getList());
+        return resultMap;
     }
 }
 

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../MS/lib/jquery/1.9.1/jquery.min.js"></script>
+<!-- 以下是方法二所需要引入的js -->
+<link type="text/css" href="../MS/lib/layui-v2.0.2/css/layui.css" rel="stylesheet">
+	<link rel="stylesheet" href="../MS/plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../MS/css/global.css" media="all">
+	<link rel="stylesheet" href="../MS/plugins/font-awesome/css/font-awesome.min.css">
+	<script type="text/javascript" src="../MS/lib/layui-v2.0.2/layui.all.js"></script>
+	<script type="text/javascript" src="../MS/js/BaseValues.js"></script>
+
+</head>
+<body>
+	<fieldset class="layui-elem-field">
+		<legend>字典管理</legend>
+		<div>
+			<form>
+				<input type="text" name="name" />
+				<button type="button" id="search">搜索</button>
+			</form>
+			<table class="site-table table-hover">
+				<thead>
+				<tr>
+					<th>字典类名称</th>
+					<th>字典名称</th>
+					<th>状态</th>
+					<th>备注</th>
+					<th>创建时间</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<!--内容容器-->
+				<tbody id="tbody">
+				</tbody>
+			</table>
+			<!--分页容器-->
+			<div id="page"></div>
+		</div>
+
+	</fieldset>
+
+</body>
+<script type="text/javascript">
+//方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
+layui.use('laypage', function(){
+  var laypage = layui.laypage;
+  var url = basePath+"/dic/page";
+  var config = {page:1,pageSize:3};
+  $.getJSON(url,config,function(res){
+	  laypage.render({
+		    elem: 'page',
+		    count: res.total, //总条数
+		    limit:config.pageSize, //每页条数
+		    //theme: '#FFB800', //自定义颜色
+		    jump: function(obj, first){
+		        if(!first){ //首次则不进入
+		        	config.page = obj.curr;
+		        	getUserListByPage(url,config);
+		        }
+		    }
+	   });
+	  parseUserList(res,config.page);  
+  }); 
+
+});
+//点击页数从后台获取数据
+function getUserListByPage(url,config){
+	$.getJSON(url,config,function(res){
+		parseUserList(res,config.page);
+	});
+}
+
+//解析数据，currPage参数为预留参数，当删除一行刷新列表时，可以记住当前页而不至于显示到首页去
+function parseUserList(res,currPage){
+	var content = "";
+	$.each(res.rows, function (i, o) {
+		content += "<tr>";
+        content += "<td>"+o.dicClsName+"</td>";
+		content += "<td>"+o.dicName+"</td>";
+		content += "<td>"+o.state+"</td>";
+		content += "<td>"+o.remark+"</td>";
+        content += "<td>"+o.createTime+"</td>";
+		content += "<td>" +
+						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>' +
+						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>' +
+						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>' +
+					"</td>";
+		content += "</tr>";
+	});
+	$('#tbody').html(content);
+}
+
+</script>
+</html>

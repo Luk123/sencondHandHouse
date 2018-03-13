@@ -14,4 +14,8 @@ public class TestController {
     public String file(){
         return "usedhouse/login";
     }
+    @RequestMapping("login")
+    public String login(){
+        return "MS/login";
+    }
 }

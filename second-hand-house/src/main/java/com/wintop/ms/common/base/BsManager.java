@@ -274,14 +274,14 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
         try {
             //引入PageHelper分页插件
             //在查询之前只需要调用。传入页码，以及每页大小
-            PageHelper.startPage(qo.getPageIndex(),qo.getPageSize(),true);
+            PageHelper.startPage(qo.getPage(),qo.getPageSize(),true);
             List<T> srclist = mapper.listByQuery(qo);
             List<K> list = DAOUtils.cloneList(clz,srclist,cb);
             //pageInfo包装查询后的结果，只需要将pageINfo交给页面
             //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
             PageInfo page = new PageInfo(list,qo.getPageSize());
             // 包裝数据
-            Pager pager=new Pager(page.getTotal(), list, "查询数据成功", true);
+            Pager pager=new Pager(mapper.selectCount(qo), list, "查询数据成功", true);
             result.setPager(pager);
             result.setMessage("查询数据成功");
             result.setSuccess(true);
@@ -307,13 +307,13 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
         try {
             //引入PageHelper分页插件
             //在查询之前只需要调用。传入页码，以及每页大小
-            PageHelper.startPage(qo.getPageIndex(),qo.getPageSize(),true);
+            PageHelper.startPage(qo.getPage(),qo.getPageSize(),true);
             List<T> srclist = mapper.listByQuery(qo);
             //pageInfo包装查询后的结果，只需要将pageINfo交给页面
             //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
             PageInfo page = new PageInfo(srclist,qo.getPageSize());
             // 包裝数据
-            Pager pager=new Pager(page.getTotal(), srclist, "查询数据成功", true);
+            Pager pager=new Pager(mapper.selectCount(qo), srclist, "查询数据成功", true);
             result.setPager(pager);
             result.setMessage("查询数据成功");
             result.setSuccess(true);

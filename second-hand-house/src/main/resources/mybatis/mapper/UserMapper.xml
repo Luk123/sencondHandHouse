@@ -225,4 +225,34 @@
       </if>
     </where>
   </select>
+
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from user
+    <where>
+      <if test="userName != null">
+        user_name like #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null">
+        and contact_way like #{contactWay,jdbcType=VARCHAR}
+      </if>
+      <if test="certNo != null">
+        and cert_no like #{certNo,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+        and sex = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="integralNumBegin != null">
+        <![CDATA[ and integral_num >= #{integralNumBegin,jdbcType=INTEGER} ]]>
+      </if>
+      <if test="integralNumEnd != null">
+        <![CDATA[ and integral_num <= #{integralNumEnd,jdbcType=INTEGER} ]]>
+      </if>
+      <if test="account != null">
+        and account like #{account,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>

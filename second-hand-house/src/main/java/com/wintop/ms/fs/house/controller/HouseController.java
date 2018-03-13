@@ -19,7 +19,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户微服务Controller。
@@ -53,9 +55,15 @@ public class HouseController {
      * Date 2017年8月18日
      */
     @RequestMapping(value = "/house/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> pageByQuery(HousePageQO qo) throws Exception{
+    public Map<String, Object> pageByQuery(HousePageQO qo) throws Exception{
+        Pager pager=houseManager.pageByQuery(HousePageBO.class,qo,null).getPager();
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        //总条数
+        resultMap.put("total", pager.getCount());
+        //获取每页数据
+        resultMap.put("rows", pager.getList());
         qo.setState("售卖中");
-        return houseManager.pageByQuery(HousePageBO.class, qo,null);
+        return resultMap;
     }
 
     /**

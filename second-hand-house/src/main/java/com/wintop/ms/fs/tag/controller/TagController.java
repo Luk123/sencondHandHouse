@@ -3,6 +3,7 @@ package com.wintop.ms.fs.tag.controller;
 import com.wintop.ms.common.base.BsQO;
 import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
+import com.wintop.ms.fs.house.bo.HousePageBO;
 import com.wintop.ms.fs.tag.bo.TagPageQO;
 import com.wintop.ms.fs.tag.entity.Tag;
 import com.wintop.ms.fs.tag.service.TagManager;
@@ -10,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户微服务Controller。
@@ -41,8 +44,14 @@ public class TagController {
      * @throws Exception
      */
     @RequestMapping(value = "/tag/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> page(TagPageQO qo) throws Exception{
-        return tagManager.pageByQuery(Tag.class,qo,null);
+    public Map<String, Object> page(TagPageQO qo) throws Exception{
+        Pager pager=tagManager.pageByQuery(Tag.class,qo,null).getPager();
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        //总条数
+        resultMap.put("total", pager.getCount());
+        //获取每页数据
+        resultMap.put("rows", pager.getList());
+        return resultMap;
     }
 
     /**
