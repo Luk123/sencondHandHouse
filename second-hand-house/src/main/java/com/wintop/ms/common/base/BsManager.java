@@ -308,16 +308,16 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
         try {
             //引入PageHelper分页插件
             //在查询之前只需要调用。传入页码，以及每页大小
-            PageHelper.startPage(qo.getPageIndex(),qo.getPageSize(),true);
+            PageHelper.startPage(qo.getPage(),qo.getPageSize(),true);
             List<T> srclist = mapper.listByQuery(qo);
             List<K> list = DAOUtils.cloneList(clz,srclist,cb);
             //pageInfo包装查询后的结果，只需要将pageINfo交给页面
             //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
             PageInfo page = new PageInfo(list,qo.getPageSize());
             // 包裝数据
-            pager=new Pager(page.getTotal(), list, "查询数据成功", true);
+            pager=new Pager(mapper.selectCount(qo), list, "查询数据成功", true);
         } catch (Exception e) {
-            pager=new Pager(0L, null, "查询数据失败", false);
+            pager=new Pager(0, null, "查询数据失败", false);
             e.printStackTrace();
         }
         return pager;
