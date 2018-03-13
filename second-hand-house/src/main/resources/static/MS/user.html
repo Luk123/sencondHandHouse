@@ -18,8 +18,57 @@
 		<legend>会员管理</legend>
 		<div>
 			<form>
-				<input type="text" name="name" />
-				<button type="button" id="search">搜索</button>
+				<div class="layui-form-item">
+					<div class="layui-form-item">
+					    <div class="layui-inline">
+							<label class="layui-form-label">用户名</label>
+							<div class="layui-input-block">
+								<input type="text" name="userName" lay-verify="title" autocomplete="off" placeholder="用户名" class="layui-input"/>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">联系方式</label>
+							<div class="layui-input-block">
+								<input type="text" name="contactWay" lay-verify="phone" autocomplete="off" placeholder="联系方式" class="layui-input"/>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">身份证号</label>
+							<div class="layui-input-block">
+								<input type="text" name="certNo" lay-verify="identity" autocomplete="off" placeholder="身份证号" class="layui-input"/>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">性别</label>
+							<div class="layui-input-block">
+								<select name="sex" lay-filter="sex">
+									<option value=""></option>
+									<option value="女">女</option>
+									<option value="男">男</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">积分数量</label>
+							<div class="layui-input-inline" style="width: 100px;">
+								<input type="text" name="integralNumBegin" placeholder="" autocomplete="off" class="layui-input"/>
+							</div>
+							<div class="layui-form-mid">-</div>
+							<div class="layui-input-inline" style="width: 100px;">
+								<input type="text" name="integralNumEnd" placeholder="" autocomplete="off" class="layui-input"/>
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">账号</label>
+							<div class="layui-input-block">
+								<input type="text" name="account" lay-verify="title" autocomplete="off" placeholder="账号" class="layui-input"/>
+							</div>
+						</div>
+						<button class="layui-btn" id="search">搜索</button>
+					</div>
+				</div>
 			</form>
 			<table class="site-table table-hover">
 				<thead>
@@ -37,22 +86,6 @@
 				</thead>
 				<!--内容容器-->
 				<tbody id="tbody">
-				<tr>
-					<td><input type="checkbox"></td>
-					<td>Layui</td>
-					<td>Beginner</td>
-					<td>17600602878</td>
-					<th>5235235</th>
-					<td>女</td>
-					<td>2016-11-16 11:50</td>
-					<td>60</td>
-					<td>2016-11-16 11:50</td>
-					<td>
-						<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>
-						<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>
-						<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>
-					</td>
-				</tr>
 				</tbody>
 			</table>
 			<!--分页容器-->
@@ -63,11 +96,13 @@
 
 </body>
 <script type="text/javascript">
+
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
 layui.use('laypage', function(){
   var laypage = layui.laypage;
   var url = basePath+"user/page";
-  var config = {page:1,pageSize:3};
+  // 封装参数
+  var config = {page:1,pageSize:5};
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page',
@@ -83,7 +118,6 @@ layui.use('laypage', function(){
 	   });
 	  parseUserList(res,config.page);  
   }); 
-
 });
 //点击页数从后台获取数据
 function getUserListByPage(url,config){
@@ -102,18 +136,25 @@ function parseUserList(res,currPage){
 		content += "<td>"+o.contactWay+"</td>";
 		content += "<td>"+o.certNo+"</td>";
 		content += "<td>"+o.sex+"</td>";
-		content += "<td>"+o.birth+"</td>";
+		content += "<td>"+formatDate(o.birth)+"</td>";
         content += "<td>"+o.integralNum+"</td>";
-        content += "<td>"+o.createTime+"</td>";
+        content += "<td>"+formatDate(o.createTime)+"</td>";
 		content += "<td>" +
-						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>' +
-						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>' +
-						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>' +
+						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">查看</a>&nbsp;&nbsp;' +
+						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>&nbsp;&nbsp;' +
+						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">重置密码</a>&nbsp;&nbsp;' +
+						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">调整积分</a>' +
 					"</td>";
 		content += "</tr>";
 	});
 	$('#tbody').html(content);
 }
-
+function formatDate(timestamp) {
+	var date = new Date(timestamp);
+	Y = date.getFullYear() + '-';
+	M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+	D = date.getDate() + ' ';
+	return Y+M+D;
+}
 </script>
 </html>
