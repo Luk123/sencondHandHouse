@@ -18,4 +18,6 @@ public class TestController {
     public String login(){
         return "MS/login";
     }
+
 }
+

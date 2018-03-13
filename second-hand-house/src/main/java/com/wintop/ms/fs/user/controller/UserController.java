@@ -22,7 +22,6 @@ import java.util.*;
  */
 @RestController
 public class UserController {
-
     private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(UserController.class);
 
     @Resource
@@ -50,11 +49,11 @@ public class UserController {
                 }
             }
         }
-            // 设置用户请求token
-            String tk =new Random().nextInt(62)+"";
-            request.getSession().setAttribute("userToken", tk);
-            // 设置返回到客户端的header的token值
-            response.setHeader("Authorization", "Token "+tk);
+        // 设置用户请求token
+        String tk =new Random().nextInt(62)+"";
+        request.getSession().setAttribute("userToken", tk);
+        // 设置返回到客户端的header的token值
+        response.setHeader("Authorization", "Token "+tk);
         return result;
     }
     /**
@@ -135,5 +134,6 @@ public class UserController {
         return resultMap;
     }
 }
+
 
 

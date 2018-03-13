@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="./lib/jquery/1.9.1/jquery.min.js"></script>
 <!-- 以下是方法一所需要引入的js -->
-<!--<link type="text/css" href="./lib/laypage/1.2/skin/laypage.css">
+<link type="text/css" href="./lib/laypage/1.2/skin/laypage.css">
 <script type="text/javascript" src="./lib/laypage/1.2/laypage.js"></script>
-<script type="text/javascript" src="./js/core.js"></script> -->
+<script type="text/javascript" src="./js/core.js"></script> 
 
-<!-- 以下是方法二所需要引入的js -->
+<!-- 以下是方法二所需要引入的js 
 <link type="text/css" href="./lib/layui-v2.0.2/css/layui.css" rel="stylesheet">
 <script type="text/javascript" src="./lib/layui-v2.0.2/layui.all.js"></script>
-
+-->
 </head>
 <body>
 	<table class="layui-table" style="width: 800px">
@@ -38,20 +38,20 @@
 <script type="text/javascript">
 $(function(){
 	//方法一直接使用独立的laypage插件，具体分页实现请看core.js里面，缺点：不好自定义颜色样式
-	//core.getUserListByPage();
+	core.getUserListByPage();
 }); 
 
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
 layui.use('laypage', function(){
   var laypage = layui.laypage;
-  var url = "http://localhost/laypage/user/list";
+  var url = "http://localhost:8080/laypageDemo/user/list";
   var config = {page:1,pageSize:4};
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page1',
 		    count: res.total, //总条数
 		    limit:config.pageSize, //每页条数
-		    theme: '#FFB800', //自定义颜色
+		    //theme: '#FFB800', //自定义颜色
 		    jump: function(obj, first){
 		        if(!first){ //首次则不进入
 		        	config.page = obj.curr;
