@@ -284,7 +284,7 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
             PageInfo page = new PageInfo(list,qo.getPageSize());
             // 包裝数据
             //总条数
-            resultMap.put("total", page.getTotal());
+            resultMap.put("total", mapper.selectCount(qo));
             //获取每页数据
             resultMap.put("rows", page.getList());
             return resultMap;

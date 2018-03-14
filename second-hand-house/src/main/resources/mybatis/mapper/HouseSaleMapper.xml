@@ -172,4 +172,18 @@
        </if>
     </where>
   </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from house_sale
+    <where>
+      <if test="houseName != null">
+        house_name like #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+          and  owner_id = #{userId,jdbcType=INTEGER}
+       </if>
+    </where>
+  </select>
 </mapper>

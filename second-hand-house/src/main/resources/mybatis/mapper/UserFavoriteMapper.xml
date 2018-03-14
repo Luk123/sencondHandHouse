@@ -132,6 +132,13 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from user_favorite
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
   <delete id="cancelFavorite" parameterType="java.lang.Integer">
     <!-- @mbg.generated 2018-03-04 15:07:04 -->
     delete from user_favorite

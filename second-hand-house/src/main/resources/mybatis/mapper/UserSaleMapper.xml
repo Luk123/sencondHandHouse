@@ -155,4 +155,11 @@
     from user_sale
     where cust_id = #{custId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from user_sale
+    where cust_id = #{custId,jdbcType=INTEGER}
+  </select>
 </mapper>

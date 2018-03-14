@@ -48,7 +48,7 @@
 layui.use('laypage', function(){
   var laypage = layui.laypage;
   var url = basePath+"/dic/page";
-  var config = {page:1,pageSize:3};
+  var config = {page:0,pageSize:5};
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page',
@@ -84,8 +84,8 @@ function parseUserList(res,currPage){
 		content += "<td>"+o.remark+"</td>";
         content += "<td>"+o.createTime+"</td>";
 		content += "<td>" +
-						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>' +
-						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>' +
+						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">新增</a>&nbsp;&nbsp;' +
+						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>&nbsp;&nbsp;' +
 						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>' +
 					"</td>";
 		content += "</tr>";

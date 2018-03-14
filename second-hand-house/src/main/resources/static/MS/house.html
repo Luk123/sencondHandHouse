@@ -51,8 +51,8 @@
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
 layui.use('laypage', function(){
   var laypage = layui.laypage;
-  var url = basePath+"/house/page";
-  var config = {page:1,pageSize:3};
+  var url = basePath+"/house/page/all";
+  var config = {page:0,pageSize:5};
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page',
@@ -92,9 +92,8 @@ function parseUserList(res,currPage){
         content += "<td>"+o.fristPay+"</td>";
         content += "<td>"+o.ownerName+"</td>";
 		content += "<td>" +
-						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>' +
+						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>&nbsp;&nbsp;' +
 						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>' +
-						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>' +
 					"</td>";
 		content += "</tr>";
 	});

@@ -102,7 +102,7 @@ layui.use('laypage', function(){
   var laypage = layui.laypage;
   var url = basePath+"user/page";
   // 封装参数
-  var config = {page:1,pageSize:5};
+  var config = {page:0,pageSize:5};
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page',

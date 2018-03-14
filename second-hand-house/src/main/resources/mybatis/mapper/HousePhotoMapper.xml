@@ -156,4 +156,27 @@
     </where>
     group by house_id
   </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from house_photo
+    <where>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER}
+      </if>
+        <if test="houseName != null">
+           and house_name like #{houseName,jdbcType=VARCHAR}
+        </if>
+      <if test="type != null">
+        and type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null">
+        and  house_id in (
+          select house_id from house where owner_id = #{userId}
+          )
+      </if>
+    </where>
+    group by house_id
+  </select>
 </mapper>

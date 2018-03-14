@@ -61,6 +61,19 @@ public class HouseController {
     }
 
     /**
+     * 获取所有房屋分页
+     *
+     * @param qo 查询参数
+     * @return list集合
+     * author mark
+     * Date 2017年8月18日
+     */
+    @RequestMapping(value = "/house/page/all", method = RequestMethod.GET)
+    public Map<String, Object> pageAllByQuery(HousePageQO qo) throws Exception{
+        return houseManager.pageByQuery(HousePageBO.class,qo,null);
+    }
+
+    /**
      * 获取所有房屋列表
      *
      * @param qo 查询参数

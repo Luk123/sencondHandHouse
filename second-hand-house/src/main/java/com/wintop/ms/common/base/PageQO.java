@@ -11,10 +11,10 @@ import java.io.Serializable;
  */
 public class PageQO extends BsQO{
     // 页码
-    private int page;
+    private int page = 0;
 
     // 每页显示数量
-    private int pageSize;
+    private int pageSize = 5;
 
     public int getPage() {
         return page;
