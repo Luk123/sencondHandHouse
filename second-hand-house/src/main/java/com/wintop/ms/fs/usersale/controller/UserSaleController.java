@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author zhangzijuan
@@ -26,7 +27,7 @@ public class UserSaleController {
      * @Date 2018-03-10
      */
     @PostMapping(value = "/userSale/page",produces="application/json; charset=UTF-8")
-    public ServiceResult<Pager> pageByQuery(UserSaleQO qo){
+    public Map<String, Object> pageByQuery(UserSaleQO qo){
         return userSaleManager.pageByQuery(UserSale.class, qo,null);
     }
     /**

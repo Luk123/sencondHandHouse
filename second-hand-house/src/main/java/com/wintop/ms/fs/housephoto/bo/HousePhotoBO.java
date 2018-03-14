@@ -15,6 +15,12 @@ import java.io.Serializable;
  */
 @Data
 public class HousePhotoBO implements Serializable{
+    /**
+     * 房屋id
+     *
+     * @mbg.generated 2018-03-04 14:29:54
+     */
+    private Integer houseId;
 
     /**
      * 房屋名称

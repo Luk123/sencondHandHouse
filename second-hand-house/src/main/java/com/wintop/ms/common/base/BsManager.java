@@ -4,10 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.common.utils.IObjectCallBack;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 增删改查操作类，管理Dao、BsData. 统一基本增、删、改、查操作
@@ -270,8 +271,8 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public <K> ServiceResult<Pager> pageByQuery(Class<K> clz,PageQO qo,IObjectCallBack<K> cb){
-        ServiceResult<Pager>  result = new ServiceResult<Pager>();
+    public <K> Map<String, Object> pageByQuery(Class<K> clz, PageQO qo, IObjectCallBack<K> cb){
+        Map<String, Object> resultMap = new HashMap<String, Object>();
         try {
             //引入PageHelper分页插件
             //在查询之前只需要调用。传入页码，以及每页大小
@@ -282,75 +283,14 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
             //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
             PageInfo page = new PageInfo(list,qo.getPageSize());
             // 包裝数据
-            Pager pager=new Pager(mapper.selectCount(qo), list, "查询数据成功", true);
-            result.setPager(pager);
-            result.setMessage("查询数据成功");
-            result.setSuccess(true);
-            // result.setResult(pager);
+            //总条数
+            resultMap.put("total", page.getTotal());
+            //获取每页数据
+            resultMap.put("rows", page.getList());
+            return resultMap;
         } catch (Exception e) {
-            result.setMessage("查询数据失败");
-            result.setSuccess(false);
             e.printStackTrace();
         }
-        return result;
-    }
-
-    /**
-     * 分页
-     *
-     * @param qo 查询参数
-     * @return list集合
-     * author mark
-     * Date 2017年8月18日
-     */
-    public <K> Pager page(Class<K> clz,PageQO qo,IObjectCallBack<K> cb){
-        Pager  pager = null;
-        try {
-            //引入PageHelper分页插件
-            //在查询之前只需要调用。传入页码，以及每页大小
-            PageHelper.startPage(qo.getPage(),qo.getPageSize(),true);
-            List<T> srclist = mapper.listByQuery(qo);
-            List<K> list = DAOUtils.cloneList(clz,srclist,cb);
-            //pageInfo包装查询后的结果，只需要将pageINfo交给页面
-            //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
-            PageInfo page = new PageInfo(list,qo.getPageSize());
-            // 包裝数据
-            pager=new Pager(mapper.selectCount(qo), list, "查询数据成功", true);
-        } catch (Exception e) {
-            pager=new Pager(0, null, "查询数据失败", false);
-            e.printStackTrace();
-        }
-        return pager;
-    }
-
-    /**
-     * 分页查询,未生成sql，需手写
-     *
-     * @param qo 查询参数
-     * @return list集合
-     * author mark
-     * Date 2017年8月18日
-     */
-    public ServiceResult<Pager>  pageByQuery(PageQO qo) {
-        ServiceResult<Pager> result=new ServiceResult<>();
-        try {
-            //引入PageHelper分页插件
-            //在查询之前只需要调用。传入页码，以及每页大小
-            PageHelper.startPage(qo.getPage(),qo.getPageSize(),true);
-            List<T> srclist = mapper.listByQuery(qo);
-            //pageInfo包装查询后的结果，只需要将pageINfo交给页面
-            //封装了详细的分页信息，包括我们查询出来的数据，传入连续显示的页数
-            PageInfo page = new PageInfo(srclist,qo.getPageSize());
-            // 包裝数据
-            Pager pager=new Pager(mapper.selectCount(qo), srclist, "查询数据成功", true);
-            result.setPager(pager);
-            result.setMessage("查询数据成功");
-            result.setSuccess(true);
-        } catch (Exception e) {
-            result.setMessage("查询数据失败");
-            result.setSuccess(false);
-            e.printStackTrace();
-        }
-        return result;
+        return resultMap;
     }
 }

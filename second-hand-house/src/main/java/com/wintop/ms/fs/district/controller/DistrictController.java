@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户微服务Controller。
@@ -49,7 +50,7 @@ public class DistrictController {
      * @throws Exception
      */
     @RequestMapping(value = "/district/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> page(DistrictPageQO qo) throws Exception{
+    public Map<String, Object> page(DistrictPageQO qo) throws Exception{
         return districtManager.pageByQuery(District.class,qo,null);
     }
 

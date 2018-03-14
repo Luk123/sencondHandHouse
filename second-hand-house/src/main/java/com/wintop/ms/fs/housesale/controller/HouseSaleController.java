@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 房屋图片Controller。
@@ -48,8 +49,8 @@ public class HouseSaleController {
      * @throws Exception
      */
     @RequestMapping(value = "/houseSale/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> page(HouseSalePageQO qo) throws Exception{
-        return houseSaleManager.pageByQuery(qo);
+    public Map<String, Object> page(HouseSalePageQO qo) throws Exception{
+        return houseSaleManager.pageByQuery(HouseSale.class,qo,null);
     }
 
     /**

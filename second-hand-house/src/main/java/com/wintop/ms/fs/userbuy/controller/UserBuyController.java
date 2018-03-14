@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author zhangzijuan
@@ -46,7 +47,7 @@ public class UserBuyController {
      * @Date 2018-03-10
      */
     @PostMapping(value = "/userBuy/page",produces="application/json; charset=UTF-8")
-    public ServiceResult<Pager> pageByQuery(UserBuyQO qo){
+    public Map<String, Object> pageByQuery(UserBuyQO qo){
         return userBuyManager.pageByQuery(UserBuy.class, qo,null);
     }
 
