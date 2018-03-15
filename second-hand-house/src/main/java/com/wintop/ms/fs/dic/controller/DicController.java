@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,8 @@ public class DicController {
      * @return
      */
     @PostMapping(value = "/dic/insert",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> insert(@RequestBody Dic dic) throws  Exception{
+    public ServiceResult<Integer> insert(Dic dic) throws  Exception{
+        dic.setCreateTime(new Date());
         return dicManager.insert(dic);
     }
 
@@ -59,7 +61,7 @@ public class DicController {
      * @return
      */
     @PostMapping(value = "/dic/update",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> update(@RequestBody Dic dic) throws  Exception{
+    public ServiceResult<Integer> update(Dic dic) throws  Exception{
         return dicManager.updateSelective(dic);
     }
 
@@ -69,10 +71,13 @@ public class DicController {
      * @return
      */
     @RequestMapping(value = "/dic/delete", method = RequestMethod.GET)
-    public ServiceResult<Integer> delete(Long dicId) throws  Exception{
+    public ServiceResult<Integer> delete(Integer dicId) throws  Exception{
         return dicManager.deleteByPrimaryKey(dicId);
     }
-
+    @RequestMapping(value = "/dic/selectById", method = RequestMethod.GET)
+    public ServiceResult<Dic> selectById(Integer dicId) throws  Exception{
+        return dicManager.selectByPrimaryKey(dicId);
+    }
 }
 
 
