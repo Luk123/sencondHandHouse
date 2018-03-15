@@ -11,16 +11,77 @@
 	<link rel="stylesheet" href="../MS/plugins/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" src="../MS/lib/layui-v2.0.2/layui.all.js"></script>
 	<script type="text/javascript" src="../MS/js/BaseValues.js"></script>
+	<style>
+		.layui-input, .layui-textarea {
+			display: block;
+			width: 90%;
+		}
+		.layui-form-item {
+			text-align: center;
+		}
+	</style>
 
 </head>
 <body>
+	<div class="layui-layer layui-layer-page" type="page" style="width: 500px;display: none;left: 50%;transform: translatex(-50%)" id="addModel">
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend>添加/修改字典</legend>
+		</fieldset>
+		<form class="layui-form" action=""  id="addDic">
+			<div class="layui-form-item">
+				<label class="layui-form-label">字典类名称:</label>
+				<div class="layui-input-block">
+					<input type="text" name="dicClsName" lay-verify="title" autocomplete="off" placeholder="字典类名称" class="layui-input" id="dicClsName">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">字典名称:</label>
+				<div class="layui-input-block">
+					<input type="text" name="dicName" lay-verify="required" placeholder="字典名称" autocomplete="off" class="layui-input" id="dicName1">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">开启状态:</label>
+				<div class="layui-input-block">
+					<select name="state" lay-filter="aihao" id="state">
+						<option value="开启">开启</option>
+						<option value="关闭">关闭</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">备注</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<button class="layui-btn layui-btn-normal">确认</button>
+				<button class="layui-btn layui-btn-primary">取消</button>
+			</div>
+		</form>
+	</div>
+
 	<fieldset class="layui-elem-field">
 		<legend>字典管理</legend>
 		<div>
-			<form>
-				<input type="text" name="name" />
-				<button type="button" id="search">搜索</button>
-			</form>
+			<blockquote class="layui-elem-quote">
+				<button type="button" class="layui-btn layui-btn-small" id="getAll" onclick="addDic()"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
+				<form class="layui-form" style="float:right;">
+					<div class="layui-form-item" style="margin:0;">
+						<div class="layui-input-inline">
+							<input type="text"  placeholder="请输入字典名称" class="layui-input" id="dicName">
+						</div>
+						<input class="layui-btn" value="查询" style="width:90px;" id="query"/>
+						<!--<div class="layui-form-mid " style="padding:0!important;">-->
+							<!--&lt;!&ndash;<button  class="layui-btn" id="a"><i class="fa fa-search" aria-hidden="true"></i> 查询</button>&ndash;&gt;-->
+							<!---->
+						<!--</div>-->
+					</div>
+				</form>
+			</blockquote>
 			<table class="site-table table-hover">
 				<thead>
 				<tr>
@@ -44,28 +105,37 @@
 
 </body>
 <script type="text/javascript">
+    $(function(){
+        init();
+    })
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
-layui.use('laypage', function(){
-  var laypage = layui.laypage;
-  var url = basePath+"/dic/page";
-  var config = {page:1,pageSize:3};
-  $.getJSON(url,config,function(res){
-	  laypage.render({
-		    elem: 'page',
-		    count: res.total, //总条数
-		    limit:config.pageSize, //每页条数
-		    //theme: '#FFB800', //自定义颜色
-		    jump: function(obj, first){
-		        if(!first){ //首次则不进入
-		        	config.page = obj.curr;
-		        	getUserListByPage(url,config);
-		        }
-		    }
-	   });
-	  parseUserList(res,config.page);  
-  }); 
+$('#query').click(function(){
+    console.log($("#dicName").val());
+    init();
+})
+function init() {
+    layui.use('laypage', function(){
+        var laypage = layui.laypage;
+        var url = basePath+"/dic/page";
+        var config = {page:1,pageSize:3,"dicName":$("#dicName").val()};
+        $.getJSON(url,config,function(res){
+            laypage.render({
+                elem: 'page',
+                count: res.total, //总条数
+                limit:config.pageSize, //每页条数
+                //theme: '#FFB800', //自定义颜色
+                jump: function(obj, first){
+                    if(!first){ //首次则不进入
+                        config.page = obj.curr;
+                        getUserListByPage(url,config);
+                    }
+                }
+            });
+            parseUserList(res,config.page);
+        });
 
-});
+    });
+}
 //点击页数从后台获取数据
 function getUserListByPage(url,config){
 	$.getJSON(url,config,function(res){
@@ -84,14 +154,97 @@ function parseUserList(res,currPage){
 		content += "<td>"+o.remark+"</td>";
         content += "<td>"+o.createTime+"</td>";
 		content += "<td>" +
-						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">预览</a>' +
 						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>' +
-						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>' +
+						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" onclick="deleteDic('+o.dicId+')">删除</a>' +
 					"</td>";
 		content += "</tr>";
 	});
 	$('#tbody').html(content);
 }
+/**
+ * 删除字典
+ */
+function deleteDic(id) {
+    $.ajax({
+        cache: true,
+        type: "GET",
+        url:basePath+"/dic/delete",
+        data:{"dicId":id},
+        async: false,
+        success: function(result) {
+            if(result&&result['success']){
+                //关闭当前窗口
+                // 弹提示
+                alert('删除成功!');
+            }else{
+                alert('删除失败!');
+            }
+        }
+    });
+}
+    /**
+	 * 新增字典
+     */
+    function addDic() {
+        $("#dicClsName").val(null);
+        $("#dicName").val(null);
+        $("#remark").val(null);
+        $('#addDic').attr('action',basePath+"dic/insert");
+    	$("#addModel").show();
+
+    }
+
+
+    /**
+     * 修改字典
+     */
+    function editDic(id){
+        $.ajax({
+            cache: true,
+            type: "GET",
+            url:basePath+"",
+            data:{"id":id},
+            async: false,
+            success: function(result) {
+                if(result&&result['success']){
+                    $("#dicClsName").val(result.result.dicClsName);
+                    $("#dicName").val(result.result.dicName);
+                    $("#remark").val(result.result.remark);
+                    $('#addDic').attr('action',basePath+"dic/update");
+                    //关闭当前窗口
+                    $('#addModel').show();
+                }else{
+                    $('#addModel').hide();
+                    alert('查询失败!');
+                }
+            }
+        });
+	}
+
+
+    /**
+	 * 提交更改
+     */
+    function  submitDic() {
+        $.ajax({
+            cache: true,
+            type: "GET",
+            url:$('#addDic').attr("action"),
+            data:$('#addDic').serialize(),
+            async: false,
+            success: function(result) {
+                if(result&&result['success']){
+                    //关闭当前窗口
+                    $('#addModel').hide();
+                    // 弹提示
+                    alert('保存成功!');
+                }else{
+                    $('#addModel').hide();
+                    alert('保存失败!');
+                }
+            }
+        });
+    }
 
 </script>
 </html>
