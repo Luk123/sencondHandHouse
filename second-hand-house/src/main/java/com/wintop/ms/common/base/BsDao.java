@@ -104,5 +104,10 @@ public interface BsDao<T> {
      */
     <K> String selectNameById(K id);
 
+    /**
+     * 获取总数
+     * @param qo
+     * @return
+     */
     Integer selectCount(BsQO qo);
 }

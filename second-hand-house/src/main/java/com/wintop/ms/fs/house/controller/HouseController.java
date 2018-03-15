@@ -56,14 +56,21 @@ public class HouseController {
      */
     @RequestMapping(value = "/house/page", method = RequestMethod.GET)
     public Map<String, Object> pageByQuery(HousePageQO qo) throws Exception{
-        Pager pager=houseManager.pageByQuery(HousePageBO.class,qo,null).getPager();
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        //总条数
-        resultMap.put("total", pager.getCount());
-        //获取每页数据
-        resultMap.put("rows", pager.getList());
         qo.setState("售卖中");
-        return resultMap;
+        return houseManager.pageByQuery(HousePageBO.class,qo,null);
+    }
+
+    /**
+     * 获取所有房屋分页
+     *
+     * @param qo 查询参数
+     * @return list集合
+     * author mark
+     * Date 2017年8月18日
+     */
+    @RequestMapping(value = "/house/page/all", method = RequestMethod.GET)
+    public Map<String, Object> pageAllByQuery(HousePageQO qo) throws Exception{
+        return houseManager.pageByQuery(HousePageBO.class,qo,null);
     }
 
     /**

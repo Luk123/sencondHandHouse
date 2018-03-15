@@ -133,4 +133,15 @@
       </if>
     </where>
   </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from house_score
+    <where>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>

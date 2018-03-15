@@ -167,4 +167,9 @@ public class HousePageQO extends PageQO{
     private Integer unitPriceFlag;
     private Integer areaFlag;
     private Integer createFlag;
+
+    /**
+     * 户型，朝向，装修
+     */
+    private String desc;
  }

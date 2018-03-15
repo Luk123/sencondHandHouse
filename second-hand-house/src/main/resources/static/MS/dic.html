@@ -108,7 +108,6 @@
     $(function(){
         init();
     })
-//方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
 $('#query').click(function(){
     console.log($("#dicName").val());
     init();
@@ -133,8 +132,6 @@ function init() {
             });
             parseUserList(res,config.page);
         });
-
-    });
 }
 //点击页数从后台获取数据
 function getUserListByPage(url,config){

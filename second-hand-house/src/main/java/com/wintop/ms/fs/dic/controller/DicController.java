@@ -40,13 +40,7 @@ public class DicController {
      */
     @RequestMapping(value = "/dic/page", method = RequestMethod.GET)
     public Map<String, Object> page(DicPageQO qo) throws Exception{
-        Pager pager=dicManager.pageByQuery(Dic.class,qo,null).getPager();
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        //总条数
-        resultMap.put("total", pager.getCount());
-        //获取每页数据
-        resultMap.put("rows", pager.getList());
-        return resultMap;
+        return dicManager.pageByQuery(Dic.class,qo,null);
     }
 
     /**

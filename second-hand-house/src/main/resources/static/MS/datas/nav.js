@@ -16,11 +16,9 @@ var navs = [{
 	"title": "字典管理",
 	"icon": "fa-address-book",
 	"href": "../MS/dic.html",
-},
-// 	{
-// 	"title": "目录5",
-// 	"icon": "fa-stop-circle",
-// 	"href": "https://www.baidu.com",
-// 	"spread": false
-// }
+},{
+ 	"title": "区域管理",
+ 	"icon": "fa-stop-circle",
+ 	"href": "../MS/district.html",
+ }
 ];

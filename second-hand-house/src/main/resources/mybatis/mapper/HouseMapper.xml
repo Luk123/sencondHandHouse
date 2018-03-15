@@ -491,6 +491,9 @@
           select house_id from house_tag where tag_name = #{tagName}
         )
       </if>
+      <if test="desc != null">
+        and (renovation = #{desc} or direction = #{desc} or house_hall like #{desc})
+      </if>
       <if test="priceFlag != null">
         order by sale_price
       </if>
@@ -566,6 +569,9 @@
         and house_id in (
         select house_id from house_tag where tag_name = #{tagName}
         )
+      </if>
+      <if test="desc != null">
+        and (renovation = #{desc} or direction = #{desc} or house_hall like #{desc})
       </if>
       <if test="priceFlag != null">
         order by sale_price

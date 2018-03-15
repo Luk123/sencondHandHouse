@@ -45,13 +45,7 @@ public class TagController {
      */
     @RequestMapping(value = "/tag/page", method = RequestMethod.GET)
     public Map<String, Object> page(TagPageQO qo) throws Exception{
-        Pager pager=tagManager.pageByQuery(Tag.class,qo,null).getPager();
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        //总条数
-        resultMap.put("total", pager.getCount());
-        //获取每页数据
-        resultMap.put("rows", pager.getList());
-        return resultMap;
+        return tagManager.pageByQuery(Tag.class,qo,null);
     }
 
     /**

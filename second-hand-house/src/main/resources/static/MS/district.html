@@ -15,7 +15,7 @@
 </head>
 <body>
 	<fieldset class="layui-elem-field">
-		<legend>标签管理</legend>
+		<legend>区域管理</legend>
 		<div>
 			<form>
 				<input type="text" name="name" />
@@ -24,10 +24,11 @@
 			<table class="site-table table-hover">
 				<thead>
 				<tr>
-					<th>标签名称</th>
+					<th>行政区域名称</th>
+					<th>行政区域编码</th>
+					<th>类型</th>
+					<th>速记码</th>
 					<th>状态</th>
-					<th>备注</th>
-					<th>创建时间</th>
 					<th>操作</th>
 				</tr>
 				</thead>
@@ -46,8 +47,8 @@
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
 layui.use('laypage', function(){
   var laypage = layui.laypage;
-  var url = basePath+"/tag/page";
-  var config = {page:0,pageSize:5};
+  var url = basePath+"/district/page";
+  var config = {page:1,pageSize:5};
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page',
@@ -77,10 +78,11 @@ function parseUserList(res,currPage){
 	var content = "";
 	$.each(res.rows, function (i, o) {
 		content += "<tr>";
-        content += "<td>"+o.tagName+"</td>";
-		content += "<td>"+o.state+"</td>";
-		content += "<td>"+o.remark+"</td>";
-		content += "<td>"+o.createTime+"</td>";
+        content += "<td>"+o.districtName+"</td>";
+		content += "<td>"+o.districtCode+"</td>";
+		content += "<td>"+o.districtTypeName+"</td>";
+		content += "<td>"+o.shortCode+"</td>";
+        content += "<td>"+o.stateName+"</td>";
 		content += "<td>" +
 						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">新增</a>&nbsp;&nbsp;' +
 						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>&nbsp;&nbsp;' +

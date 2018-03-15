@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 房屋图片Controller。
@@ -32,7 +33,7 @@ public class HousePhotoController {
      * @throws Exception
      */
     @RequestMapping(value = "/housePhoto/page", method = RequestMethod.GET)
-    public ServiceResult<Pager> page(HousePhotoPageQO qo) throws Exception{
+    public Map<String, Object> page(HousePhotoPageQO qo) throws Exception{
         qo.setPageSize(4);
         qo.setType("室内图");
         return housePhotoManager.pageByQuery(HousePhotoBO.class,qo,null);
@@ -45,8 +46,8 @@ public class HousePhotoController {
      * @throws Exception
      */
     @RequestMapping(value = "/housePhoto/page/houseId", method = RequestMethod.GET)
-    public ServiceResult<Pager> pageByHouseId(HousePhotoPageQO qo) throws Exception{
-        return housePhotoManager.pageByQuery(qo);
+    public Map<String, Object> pageByHouseId(HousePhotoPageQO qo) throws Exception{
+        return housePhotoManager.pageByQuery(HousePhoto.class,qo,null);
     }
 
     /**

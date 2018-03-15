@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author zhangzijuan
@@ -29,7 +30,7 @@ public class UserFavoriteController {
      * @Date 2018-03-10
      */
     @PostMapping(value = "/userFavorite/page",produces="application/json; charset=UTF-8")
-    public ServiceResult<Pager> pageByQuery(UserFavoriteQO qo){
+    public Map<String, Object> pageByQuery(UserFavoriteQO qo){
         return favoriteManager.pageByQuery(UserFavorite.class, qo,null);
     }
     /**
