@@ -19,7 +19,10 @@
 		.layui-form-item {
 			text-align: center;
 		}
-	</style>
+
+		.layui-form-item .layui-form-checkbox{
+			margin-left: -300px;
+		}	</style>
 
 </head>
 <body>
@@ -27,8 +30,8 @@
 		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 			<legend>添加/修改字典</legend>
 		</fieldset>
-		<input name="dicId" id="dicId" type="hidden"/>
 		<form class="layui-form" action=""  id="addDic">
+			<input name="dicId" id="dicId" type="hidden"/>
 			<div class="layui-form-item">
 				<label class="layui-form-label">字典类名称:</label>
 				<div class="layui-input-block">
@@ -41,34 +44,19 @@
 					<input type="text" name="dicName" lay-verify="required" placeholder="字典名称" autocomplete="off" class="layui-input" id="dicName1">
 				</div>
 			</div>
-
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">开启状态:</label>
-				<div class="layui-input-block">
-					<input type="text" name="state" lay-verify="required" placeholder="开启状态" autocomplete="off" class="layui-input" id="state">
-				</div>
+				<label class="layui-form-label">开启状态</label>
+				<input type="checkbox" id="state" name="state" title="开启" checked style="margin-left: -300px;">
 			</div>
-
-			<!--<div class="layui-form-item">-->
-				<!--<label class="layui-form-label">开启状态:</label>-->
-				<!--<div class="layui-input-block">-->
-					<!--<select name="state" lay-filter="aihao" id="state">-->
-						<!--<option value="开启">开启</option>-->
-						<!--<option value="关闭">关闭</option>-->
-					<!--</select>-->
-				<!--</div>-->
-			<!--</div>-->
-
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label">备注</label>
 				<div class="layui-input-block">
-					<textarea placeholder="请输入内容" class="layui-textarea" id="remark"></textarea>
+					<textarea placeholder="请输入内容" class="layui-textarea" id="remark" name="remark"></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<input class="layui-btn layui-btn-normal" onclick="submitDic()" value="确认"/>
-				<input class="layui-btn layui-btn-primary" value="取消"/>
+				<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()"/>
 			</div>
 		</form>
 	</div>
@@ -122,10 +110,12 @@ $('#query').click(function(){
     init();
 })
 function init() {
-    layui.use('laypage', function(){
+    layui.use(['laypage','form'], function(){
         var laypage = layui.laypage;
+        var form = layui.form;
+        form.render();
         var url = basePath+"/dic/page";
-        var config = {page:1,pageSize:3,"dicName":$("#dicName").val()};
+        var config = {page:1,pageSize:10,"dicName":$("#dicName").val()};
         $.getJSON(url,config,function(res){
             laypage.render({
                 elem: 'page',
@@ -159,7 +149,7 @@ function parseUserList(res,currPage){
 		content += "<td>"+o.dicName+"</td>";
 		content += "<td>"+o.state+"</td>";
 		content += "<td>"+o.remark+"</td>";
-        content += "<td>"+o.createTime+"</td>";
+        content += "<td>"+formatDate(o.createTime)+"</td>";
 		content += "<td>" +
 						'<a  class="layui-btn layui-btn-mini" onclick="editDic('+o.dicId+')">编辑</a>' +
 						'<a  data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" onclick="deleteDic('+o.dicId+')">删除</a>' +
@@ -172,10 +162,6 @@ function parseUserList(res,currPage){
  * 删除字典
  */
 function deleteDic(id) {
-    confirm("")
-	if(confirm("")){
-
-	}
     var con = '<div style="padding:10px;"><p>您确定删除该字典？</p></div>';
     layer.open({
         type: 1,
@@ -193,13 +179,17 @@ function deleteDic(id) {
                 success: function(result) {
                     if(result&&result['success']){
                         //关闭当前窗口
+                        layer.closeAll();
                         // 弹提示
-                        alert('删除成功!');
+                        // alert('删除成功!');
                     }else{
                         alert('删除失败!');
                     }
                 }
             });
+        },
+        end: function () {
+            init();
         },
         shade: false,
         maxmin: true
@@ -232,9 +222,14 @@ function deleteDic(id) {
             async: false,
             success: function(result) {
                 if(result&&result['success']){
-                    $("#dicId").val(result.result.dicId);
+                    $("#dicId").val(id);
                     $("#dicClsName").val(result.result.dicClsName);
                     $("#dicName1").val(result.result.dicName);
+                    if(result.result.state =="开启"){
+                        $("#state").prop("checked", true);
+					}else {
+                        $("#state").prop("checked", false);
+					}
                     $("#remark").val(result.result.remark);
                     $('#addDic').attr('action',basePath+"dic/update");
                     //关闭当前窗口
@@ -262,8 +257,9 @@ function deleteDic(id) {
                 if(result&&result['success']){
                     //关闭当前窗口
                     $('#addModel').hide();
+                    init();
                     // 弹提示
-                    alert('保存成功!');
+                    // alert('保存成功!');
                 }else{
                     $('#addModel').hide();
                     alert('保存失败!');
@@ -271,6 +267,8 @@ function deleteDic(id) {
             }
         });
     }
-
+function cancel() {
+    $('#addModel').hide();
+}
 </script>
 </html>
