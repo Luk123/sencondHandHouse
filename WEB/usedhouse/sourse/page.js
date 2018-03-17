@@ -1,8 +1,9 @@
 
     /*pageCount是总共几页*/
     var pageCount=8;
-    inserHtml(pageCount,1);
-    bindEvent(pageCount);
+      inserHtml(pageCount,1);
+      bindEvent(pageCount);
+
     function inserHtml(page,current){
         var obj = $(".ts-page");
         obj.empty();
@@ -17,6 +18,7 @@
             obj.append('<span class="tspage-ell">...</span>');
         }
         var start = current-2, end= current+2; //中间显示5个
+        // var start = current-2, end= current+2; //中间显示5个
         if(start >1 && current < 4||current == 1){
             end++;
         }
@@ -50,14 +52,14 @@
             inserHtml(currentPage,page);
             inserHtml(page,currentPage);
             //获取后台传来数据的ajax函数+数据适配
-            // getData(currentPage);
+            getData(currentPage);
         });
         obj.on('click','.tspage-before',function(){
             var currentPage = parseInt(obj.children('.on').text());
             if(currentPage>1){
                 inserHtml(page,currentPage-1);
                 //获取后台传来数据的ajax函数+数据适配
-                // getData(currentPage-1);
+               getData(currentPage-1);
             }
 
         });
@@ -66,26 +68,29 @@
             if(currentPage<page){
                 inserHtml(page,currentPage+1);
                 //获取后台传来数据的ajax函数+数据适配
-                // getData(currentPage+1);
+                getData(currentPage+1);
             }
         });
         obj.on('click','.tspage-start',function(){
             inserHtml(page,1);
             //获取后台传来数据的ajax函数+数据适配
-            // getData(1);
+            getData(1);
         });
         obj.on('click','.tspage-end',function(){
             inserHtml(page,page);
+
             //获取后台传来数据的ajax函数+数据适配
-            // getData(page);
+             getData(page);
         });
     }
 
     function getData(num){
-        $.get('url?p='+num,function(data){
+       /* $.get('url?p='+num,function(data){
            console.log(data); //这里是数据适配
-        })
+        })*/
+        queryHouseDate1(num)
     }
+
     window.pageCount=pageCount;
     window.inserHtml=inserHtml;
     window.bindEvent=bindEvent;
