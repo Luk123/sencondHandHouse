@@ -9,3 +9,4 @@ function formatDate(timestamp) {
     D = date.getDate() < 10 ? '0'+(date.getDate()) : date.getDate();
     return Y+M+D;
 }
+

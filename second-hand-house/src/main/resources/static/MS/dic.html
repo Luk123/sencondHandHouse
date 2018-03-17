@@ -211,13 +211,14 @@ function deleteDic(id) {
 	 * 新增字典
      */
     function addDic() {
-        $("#dicId").val();
+        $("#dicId").val(null);
         $("#dicClsName").val();
         $("#dicName1").val();
         $("#remark").val();
         $("#state").val();
         $('#addDic').attr('action',basePath+"dic/insert");
     	$("#addModel").show();
+    	resertForm();
     }
 
 
@@ -275,11 +276,20 @@ function deleteDic(id) {
                     $('#addModel').hide();
                     alert('保存失败!');
                 }
+                resertForm();
             }
         });
     }
 function cancel() {
+    resertForm();
     $('#addModel').hide();
+}
+function  resertForm(){
+    $(':input','#addDic')
+    .not(':button, :submit, :reset, :hidden')
+    .val('')
+    .removeAttr('checked')
+    .removeAttr('selected');
 }
 </script>
 </html>

@@ -30,7 +30,7 @@
 			<legend>添加/修改标签</legend>
 		</fieldset>
 		<form class="layui-form" action=""  id="addTag">
-			<input name="tageId" id="tagId" type="hidden"/>
+			<input name="tagId" id="tagId" type="hidden"/>
 			<div class="layui-form-item">
 				<label class="layui-form-label">标签名称:</label>
 				<div class="layui-input-block">
@@ -192,12 +192,13 @@ function deleteTag(id) {
 	 * 新增字典
      */
     function addTag() {
-        $("#tagId").val();
+        $("#tagId").val(null);
         $("#tagName").val();
         $("#remark").val();
         $("#state").val();
         $('#addTag').attr('action',basePath+"tag/insert");
     	$("#addModel").show();
+    	resertForm();
     }
 
 
@@ -254,11 +255,20 @@ function deleteTag(id) {
                     $('#addModel').hide();
                     alert('保存失败!');
                 }
+                resertForm();
             }
         });
     }
 function cancel() {
+    resertForm();
     $('#addModel').hide();
+}
+function  resertForm(){
+    $(':input','#addTag')
+    .not(':button, :submit, :reset, :hidden')
+    .val('')
+    .removeAttr('checked')
+    .removeAttr('selected');
 }
 </script>
 </html>
