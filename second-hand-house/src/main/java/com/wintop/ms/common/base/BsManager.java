@@ -284,9 +284,17 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
             PageInfo page = new PageInfo(list,qo.getPageSize());
             // 包裝数据
             //总条数
-            resultMap.put("total", mapper.selectCount(qo));
+            int total = mapper.selectCount(qo);
+            resultMap.put("total", total);
             //获取每页数据
             resultMap.put("rows", page.getList());
+            int pages = total / (qo.getPageSize());
+            int a = total % (qo.getPageSize());
+            if(a == 0){
+                resultMap.put("pages", pages);
+            }else{
+                resultMap.put("pages", pages+1);
+            }
             return resultMap;
         } catch (Exception e) {
             e.printStackTrace();

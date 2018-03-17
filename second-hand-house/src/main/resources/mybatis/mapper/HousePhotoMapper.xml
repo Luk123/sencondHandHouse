@@ -159,7 +159,7 @@
 
   <select id="selectCount" resultType="java.lang.Integer">
     select
-    count(1)
+    count(*)
     from house_photo
     <where>
       <if test="houseId != null">
@@ -177,6 +177,5 @@
           )
       </if>
     </where>
---     group by house_id
   </select>
 </mapper>

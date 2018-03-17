@@ -1,6 +1,5 @@
 package com.wintop.ms.fs.house.controller;
 
-import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.fs.house.bo.*;
@@ -8,18 +7,22 @@ import com.wintop.ms.fs.house.entity.House;
 import com.wintop.ms.fs.house.service.HouseManager;
 import com.wintop.ms.fs.houseconf.entity.HouseConf;
 import com.wintop.ms.fs.houseconf.service.HouseConfManager;
+import com.wintop.ms.fs.housescore.bo.HouseScoreListQO;
+import com.wintop.ms.fs.housescore.entity.HouseScore;
 import com.wintop.ms.fs.housescore.service.HouseScoreManager;
 import com.wintop.ms.fs.housestar.entity.HouseStar;
 import com.wintop.ms.fs.housestar.service.HouseStarManager;
 import com.wintop.ms.fs.housetag.bo.HouseTagListQO;
 import com.wintop.ms.fs.housetag.entity.HouseTag;
 import com.wintop.ms.fs.housetag.service.HouseTagManager;
+import com.wintop.ms.fs.user.entity.User;
+import com.wintop.ms.fs.user.service.UserManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +48,9 @@ public class HouseController {
 
     @Resource
     private HouseTagManager houseTagManager;
+
+    @Resource
+    private UserManager userManager;
 
     /**
      * 获取售卖中房屋分页
@@ -111,7 +117,23 @@ public class HouseController {
         houseinfo.setHouseConf(houseConf);
         //
        List<HouseTag> houseTag =  houseTagManager.listByQuery(new HouseTagListQO(houseId)).getResult();
-        houseinfo.setHouseTag(houseTag);
+        if(CollectionUtils.isEmpty(houseTag)){
+            houseinfo.setHouseTag(new ArrayList<>());
+        }else{
+            List<String> list =new ArrayList<>(houseTag.size());
+            for(HouseTag u: houseTag){
+                list.add(u.getTagName());
+            }
+            houseinfo.setHouseTag(list);
+        }
+        //
+        User user = userManager.selectByPrimaryKey(house.getOwnerId()).getResult();
+        houseinfo.setUser(user);
+        //
+        HouseScoreListQO hs = new HouseScoreListQO();
+        hs.setHouseId(houseId);
+        List<HouseScore> score = houseScoreManager.listByQuery(hs).getResult();
+        houseinfo.setHouseScore(score);
         //
         res.setResult(houseinfo);
         res.setSuccess(true);

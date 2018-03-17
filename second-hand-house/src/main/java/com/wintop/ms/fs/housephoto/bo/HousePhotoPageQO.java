@@ -41,7 +41,7 @@ public class HousePhotoPageQO extends PageQO{
      */
     private String type;
 
-    private String houseId;
+    private Integer houseId;
 
 
  }
