@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">开启状态</label>
+				<label class="layui-form-label">状态</label>
 				<input type="checkbox" id="state" name="state" title="开启" checked style="margin-left: -300px;">
 			</div>
 			<div class="layui-form-item layui-form-text">
@@ -68,6 +68,9 @@
 				<button type="button" class="layui-btn layui-btn-small" id="getAll" onclick="addDic()"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
 				<form class="layui-form" style="float:right;">
 					<div class="layui-form-item" style="margin:0;">
+						<div class="layui-input-inline">
+							<input type="text"  placeholder="请输入字典类名称" class="layui-input" id="dicClsName1">
+						</div>
 						<div class="layui-input-inline">
 							<input type="text"  placeholder="请输入字典名称" class="layui-input" id="dicName">
 						</div>
@@ -102,20 +105,27 @@
 
 </body>
 <script type="text/javascript">
-    $(function(){
-        init();
-    })
-$('#query').click(function(){
-    console.log($("#dicName").val());
-    init();
-})
+	$(function(){
+		init();
+	})
+
+	$('#query').click(function(){
+		console.log($("#dicName").val());
+		init();
+	})
+
 function init() {
     layui.use(['laypage','form'], function(){
         var laypage = layui.laypage;
         var form = layui.form;
         form.render();
         var url = basePath+"/dic/page";
-        var config = {page:1,pageSize:10,"dicName":$("#dicName").val()};
+        var config = {
+			page:1,
+			pageSize:5,
+			"dicName":$("#dicName").val(),
+			"dicClsName":$("#dicClsName1").val()
+        };
         $.getJSON(url,config,function(res){
             laypage.render({
                 elem: 'page',
@@ -131,8 +141,9 @@ function init() {
             });
             parseUserList(res,config.page);
         });
-})
+    })
 }
+
 //点击页数从后台获取数据
 function getUserListByPage(url,config){
 	$.getJSON(url,config,function(res){
@@ -151,7 +162,7 @@ function parseUserList(res,currPage){
 		content += "<td>"+o.remark+"</td>";
         content += "<td>"+formatDate(o.createTime)+"</td>";
 		content += "<td>" +
-						'<a  class="layui-btn layui-btn-mini" onclick="editDic('+o.dicId+')">编辑</a>' +
+						'<a  class="layui-btn layui-btn-mini" onclick="editDic('+o.dicId+')">编辑</a>&nbsp;&nbsp;' +
 						'<a  data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" onclick="deleteDic('+o.dicId+')">删除</a>' +
 					"</td>";
 		content += "</tr>";
@@ -200,13 +211,13 @@ function deleteDic(id) {
 	 * 新增字典
      */
     function addDic() {
-        $("#dicId").val(null);
-        $("#dicClsName").val(null);
-        $("#dicName1").val(null);
-        $("#remark").val(null);
+        $("#dicId").val();
+        $("#dicClsName").val();
+        $("#dicName1").val();
+        $("#remark").val();
+        $("#state").val();
         $('#addDic').attr('action',basePath+"dic/insert");
     	$("#addModel").show();
-
     }
 
 
