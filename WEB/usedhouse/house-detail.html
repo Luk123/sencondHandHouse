@@ -171,6 +171,41 @@
         .housebox .m span.collect-icon.on{
             background-image:  url(sourse/like.jpg);
         }
+        .record-list li{
+            line-height: 40px;
+            font-size: 16px;
+        }
+        .record-list li span:first-child{
+            width: 60px;
+            display: inline-block;
+            text-align: left;
+            font-size: 14px;
+        }
+        .answer{
+            color: #000;
+            text-indent: 60px;
+            font-weight: 600;
+        }
+        .pinglun{padding-left: 60px;margin-top: 20px;}
+        textarea{
+            width: 400px;
+            height: 200px;
+            text-indent: 10px;
+        }
+        .pinglun .btn-blog{
+            display: block;
+            width: 100px;height: 35px;text-align: center;
+            color: #fff;
+            background-color: #62ab00;
+            font-size: 14px;
+            line-height: 35px;border-radius: 5px;
+            cursor: pointer;
+            margin-left: 300px;
+            margin-top: 20px;
+        }
+        .pinglun .btn-blog:hover{
+            background-color:darkgreen;
+        }
     </style>
 </head>
 <body>
@@ -249,6 +284,39 @@
             <a name="map">
                 <img src="images/1.png" alt="">
             </a>
+           <div class="pl">
+               <p class="t2">最新评论</p>
+               <ul class="record-list">
+                   <li>
+                       <p class="question">
+                           <span class="username">购房人：</span><span>请问这个房子的厨房，客厅各自是多大呢？物业是那一家公司负责？</span>
+                       </p>
+                       <p class="answer">
+                           厨房20平米，客厅50平米，物业为晟邦物业
+                       </p>
+                   </li>
+                   <li>
+                       <p class="question">
+                           <span class="username">购房人：</span><span>请问这个房子的厨房，客厅各自是多大呢？物业是那一家公司负责？</span>
+                       </p>
+                       <p class="answer">
+                           厨房20平米，客厅50平米，物业为晟邦物业
+                       </p>
+                   </li>
+                   <li>
+                       <p class="question">
+                           <span class="username">购房人：</span><span>请问这个房子的厨房，客厅各自是多大呢？物业是那一家公司负责？</span>
+                       </p>
+                       <p class="answer">
+                           厨房20平米，客厅50平米，物业为晟邦物业
+                       </p>
+                   </li>
+               </ul>
+              <div class="pinglun">
+                  <textarea></textarea>
+                  <span class="btn-blog">发表问题</span>
+              </div>
+           </div>
        </div>
         <div class="per-msg r">
             <div class="msg-top">
@@ -267,51 +335,15 @@
 
         </div>
     </div>
-
 </div>
 <!-- 底部 start -->
-<div class="footer-box">
-    <div class="main">
-        <div class="footer-nav-box">
-            <div class="foot-logo"><a href="https://bj.5i5j.com/" class="logo-img">我爱我家</a>
-            </div>
-            <ul class="footer-nav">
-                <li><a href="javascript:void(0)" target="_blank" rel="nofollow">关于我们</a></li>
-                <li><a href="javascript:void(0)" target="_blank" rel="nofollow">联系我们</a></li>
-                <li><a href="javascript:void(0)" target="_blank" rel="nofollow">友情链接</a></li>
-            </ul>
-        </div>
-        <div class="footer-info">
-            <dl class="f-iphone">
-                <dt><i class="icon-phone"></i></dt>
-                <dd>客服电话</dd>
-                <dd class="kf-num">4008-515-515</dd>
-            </dl>
-            <dl>
-                <dd>地理位置</dd>
-                <dd>朝阳区朝来科技园二期创远路36号院8号楼</dd>
-                <dd>邮编： 100012</dd>
-            </dl>
-            <div class="footer-code">
-                <div class="code">
-                    <p><img src="sourse/code-app.png" alt="APP下载"></p>
-                    <p class="wz">APP下载</p>
-                </div>
-                <div class="code code2">
-                    <p><img src="sourse/code-wx.png" alt="官方微信"></p>
-                    <p class="wz">官方微信</p>
-                </div>
-            </div>
-        </div>
-        <div class="footer-cr">某个同学 版权所有 | 网络经营许可证 京ICP备2828282828号-1 ©2018 all rights reserved.
-        </div>
-    </div>
-</div>
+<footer></footer>
 <!-- 底部 end -->
 </body>
 <script src="sourse/jquery-1.10.2.min.js"></script>
 <script src="sourse/common.js"></script>
 <script src="sourse/SuperSlide.js"></script>
+<script src="sourse/BaseValues.js"></script>
 <script>
     jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
     var imgdata=[
@@ -332,6 +364,104 @@
     })
     $('.collect-icon').click(function(){
         $(this).toggleClass('on')
+    })
+
+    $('.btn-blog').click(function(){
+        $('.record-list').append(' <li> <p class="question"> <span class="username">购房人：</span>' +
+            '<span>'+$('textarea').val()+'</span> </p> ' +
+            '<p class="answer">等待审核中</p> </li>')
+    })
+    function init(myid){
+        $.ajax({
+            type:'get',
+            url:basePath+'/house/info',
+            data:{
+                'houseId':myid
+            },
+            success:function(data){
+                console.log(data)
+                getView(data);
+            }
+        })
+    }
+    function getView(data) {
+        var time=timeFormat(data.createTime);
+
+        $('.housebox').html(' <h3 class="tit">万科紫韵家园 两居室纯南向 楼层好 诚意出售</h3> ' +
+            '<p class="m"> <span class="red"><em>'+data.salePrice+'</em>万</span> <span ><em>2</em>室 <em>2</em> 厅</span> <span ><em>'+data.realArea+'</em>平方米</span> ' +
+            '<span class="collect-icon" style="float: right"></span> </p> ' +
+            '<div class="l" style="width: 845px;"> <ul class="tab l"> ' +
+            '<li class="on">室内图</li> <li>户型图</li> <li>环境图</li> <li><a href="#map">周边地图</a></li> </ul> ' +
+            '<div class="m-slide l"> <ul class="img"> ' +
+            '<li><img src="https://pic1.ajkimg.com/display/anjuke/887212-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/d0e06d42f492427faecf587baa99d121-599x450.jpg?t=1" alt=""></li> ' +
+            '<li><img src="https://pic1.ajkimg.com/display/anjuke/568147-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/8c908fdf10fb0a02296e9e99cd390a80-599x450.jpg?t=1" alt=""></li> ' +
+            '<li><img src="https://pic1.ajkimg.com/display/anjuke/887212-%E4%B8%87%E7%A7%91%E7%A7%9F%E5%94%AE%E4%B8%AD%E5%BF%83/d0e06d42f492427faecf587baa99d121-599x450.jpg?t=1" alt=""></li> ' +
+            '</ul> ' +
+            '<a href="javascript:void(0)" class="btn prev"> 《</a> <a href="javascript:void(0)" class="btn next"> 》</a> </div> <div class="clear"></div> ' +
+            '<p class="h-detail">房屋编码：'+data.houseConf.houseId+'，发布时间：'+time+'</p> ' +
+            '<p class="t1">房屋信息</p> ' +
+            '<table class="h-msg"> ' +
+            '<tr>' +
+            ' <td><span>-房屋地址：</span><span>'+data.addr+'</span></td>' +
+            ' <td><span>建造年份：</span><span>'+data.buildYear+'</span></td> ' +
+            '<td><span>月供：</span><span>'+data.monthPay+'</span></td> </tr> ' +
+            '<tr>' +
+            ' <td><span>房屋状态：</span><span>'+data.state+'</span></td> ' +
+             '<td><span>建筑类型：</span><span>'+data.buildType+'</span></td> ' +
+            '<td><span>首付金额：</span><span>'+data.fristPay+'</span></td> </tr> ' +
+            '<tr> ' +
+            '<td><span>房龄：</span><span>'+data.houseAge+'</span></td> ' +
+            '<td><span>每平方米单价：</span><span>'+data.unitPrice+'</span></td> ' +
+            '<td><span>交通位置：</span><span>'+data.houseConf.traffic+'</span></td> </tr> </table> ' +
+            '<p class="t2">核心卖点</p> ' +
+            '<span style="font-size:14px;">小区名称：'+data.houseStar.buildDesc+'<br>' +
+            '装修程度：'+data.houseStar.buildDesc+'<br>' +
+            '年代：'+data.buildYea+'<br>' +
+            '朝向：'+data.direction+'<br>' +
+            '房屋介绍：'+data.houseStar.abs+'<br>' +
+            '户型介绍：'+data.houseStar.typeDesc+'<br>' +
+            '楼层：'+data.floor+'</span> ' +
+            '<p class="t2">小区配套</p> ' +
+            '<span style="font-size:14px;">' +
+            '交通区位：*'+data.houseConf.traffic+'<br>' +
+            '小区设施：'+data.houseConf.facility+'<br>' +
+            '生活配套：'+data.houseConf.lifeConf+'<br>' +
+            '</span> ' +
+            '<p class="t2">服务介绍</p> ' +
+            '<span style="font-size:14px;">万科租售中心作为万科物业旗下房屋经纪机构；为万科各社区业主的提供房屋资产管理，包含一手房销售代理、二手房交易、房屋托管、房屋软、硬装修等房屋资产全周期服务。<br>对于别人，合同签订就是服务的结束；对于我们，合同签订才是服务的开始!<br>我于2010年加入万科物业租售 从事二手房买卖7年有余，经历过房产市场涨跌，对市场政策非常清楚，对房地产市场有自己的见解，于2013年调到长阳万科开店，对长阳板块非常熟悉，非常乐于解答各种问题 欢迎随时骚扰   </span> ' +
+            '<p class="t2">周边地图</p> ' +
+            '<a name="map"> ' +
+            '<img src="images/1.png" alt=""> </a> </div> ' +
+            '<div class="per-msg r" data-perid="'+data.createId+'"> <div class="msg-top"> ' +
+            '<img src="'+data.majorAddr+'" class="l"> ' +
+            '<span class="l name"> '+data.ownerName+'</span> </div> ' +
+            '<p class="star t3"> ' +
+            '<span>等级：</span><span><i></i><i></i><i></i><i></i><i></i></span> </p> ' +
+            '<p class="t3"><span>房源：</span><span class="red">100</span></p> ' +
+            '<p class="t3"><span>服务：</span><span class="red">100</span></p> ' +
+            '<p class="t3"><span>评价：</span><span class="red">80</span></p> ' +
+            '<p class="phone">'+data.contactWay+'</p> ' +
+            '<p class="t3"><span>公司：</span><span>万科集团房地产销售4部</span></p> ' +
+            '<p class="t3"><span>门店：</span><span>北京市大兴区北环东路19号</span></p> </div>')
+        jQuery(".m-slide").slide({ titCell:".tab li", mainCell:".img",effect:"fold"});
+
+    }
+    function add0(m){return m<10?'0'+m:m }
+    //时间戳转化成时间格式
+    function timeFormat(timestamp){
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
+
+    $(function(){
+        init(1);
     })
 </script>
 </html>
