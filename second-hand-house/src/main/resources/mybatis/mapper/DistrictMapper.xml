@@ -150,13 +150,13 @@
     <include refid="Base_Column_List" />
     from district
     <where>
-      <if test="districtName != null">
+      <if test="districtName != null and districtName !=''">
         district_name like #{districtName,jdbcType=VARCHAR}
       </if>
-      <if test="districtType != null">
+      <if test="districtType != null and districtType !=''">
         and district_type = #{districtType,jdbcType=TINYINT}
       </if>
-      <if test="state != null">
+      <if test="state != null and state !=''">
         and state = #{state,jdbcType=TINYINT}
       </if>
     </where>
@@ -167,13 +167,13 @@
     count(1)
     from district
     <where>
-      <if test="districtName != null">
+      <if test="districtName != null and districtName !=''">
         district_name like #{districtName,jdbcType=VARCHAR}
       </if>
-      <if test="districtType != null">
+      <if test="districtType != null and districtType !=''">
         and district_type = #{districtType,jdbcType=TINYINT}
       </if>
-      <if test="state != null">
+      <if test="state != null and state !=''">
         and state = #{state,jdbcType=TINYINT}
       </if>
     </where>

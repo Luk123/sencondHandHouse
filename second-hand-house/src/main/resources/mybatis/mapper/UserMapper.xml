@@ -202,25 +202,25 @@
     <include refid="Base_Column_List" />
     from user
     <where>
-      <if test="userName != null">
+      <if test="userName != null and userName !=''">
         user_name like #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="contactWay != null">
+      <if test="contactWay != null and contactWay !=''">
         and contact_way like #{contactWay,jdbcType=VARCHAR}
       </if>
-      <if test="certNo != null">
+      <if test="certNo != null and certNo !=''">
         and cert_no like #{certNo,jdbcType=VARCHAR}
       </if>
-      <if test="sex != null">
+      <if test="sex != null and sex !=''">
         and sex = #{sex,jdbcType=VARCHAR}
       </if>
-      <if test="integralNumBegin != null">
+      <if test="integralNumBegin != null and integralNumBegin !=''">
         <![CDATA[ and integral_num >= #{integralNumBegin,jdbcType=INTEGER} ]]>
       </if>
-      <if test="integralNumEnd != null">
+      <if test="integralNumEnd != null and integralNumEnd !=''">
         <![CDATA[ and integral_num <= #{integralNumEnd,jdbcType=INTEGER} ]]>
       </if>
-      <if test="account != null">
+      <if test="account != null and account !=''">
         and account like #{account,jdbcType=VARCHAR}
       </if>
     </where>
@@ -232,25 +232,25 @@
     count(1)
     from user
     <where>
-      <if test="userName != null">
+      <if test="userName != null and userName !=''">
         user_name like #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="contactWay != null">
+      <if test="contactWay != null and contactWay !=''">
         and contact_way like #{contactWay,jdbcType=VARCHAR}
       </if>
-      <if test="certNo != null">
+      <if test="certNo != null and certNo !=''">
         and cert_no like #{certNo,jdbcType=VARCHAR}
       </if>
-      <if test="sex != null">
+      <if test="sex != null and sex !=''">
         and sex = #{sex,jdbcType=VARCHAR}
       </if>
-      <if test="integralNumBegin != null">
+      <if test="integralNumBegin != null and integralNumBegin !=''">
         <![CDATA[ and integral_num >= #{integralNumBegin,jdbcType=INTEGER} ]]>
       </if>
-      <if test="integralNumEnd != null">
+      <if test="integralNumEnd != null and integralNumEnd !=''">
         <![CDATA[ and integral_num <= #{integralNumEnd,jdbcType=INTEGER} ]]>
       </if>
-      <if test="account != null">
+      <if test="account != null and account !=''">
         and account like #{account,jdbcType=VARCHAR}
       </if>
     </where>

@@ -139,7 +139,7 @@
     <include refid="Base_Column_List" />
     from house_tag
     <where>
-      <if test="houseId != null">
+      <if test="houseId != null and houseId !=''">
         house_id = #{houseId,jdbcType=INTEGER}
       </if>
     </where>
@@ -150,7 +150,7 @@
     count(1)
     from house_tag
     <where>
-      <if test="houseId != null">
+      <if test="houseId != null and houseId !=''">
         house_id = #{houseId,jdbcType=INTEGER}
       </if>
     </where>

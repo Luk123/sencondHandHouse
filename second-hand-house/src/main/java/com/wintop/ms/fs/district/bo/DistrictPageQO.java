@@ -32,6 +32,18 @@ public class DistrictPageQO extends PageQO {
      */
     private Integer districtType;
 
+    private String districtTypeName;
+
+    public void setDistrictTypeName(String districtTypeName){
+        this.districtTypeName=districtTypeName;
+        if("省".equals(districtTypeName)){
+            this.districtType = 1;
+        }else if("市".equals(districtTypeName)){
+            this.districtType = 2;
+        }else if("县(区)".contains(districtTypeName)){
+            this.districtType = 3;
+        }
+    }
     /**
      * 状态: 1:正常, 2:撤销
      *
