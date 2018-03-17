@@ -177,6 +177,6 @@
           )
       </if>
     </where>
-    group by house_id
+--     group by house_id
   </select>
 </mapper>
