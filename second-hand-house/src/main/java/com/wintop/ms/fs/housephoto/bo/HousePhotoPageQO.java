@@ -20,6 +20,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class HousePhotoPageQO extends PageQO{
 
+    private Integer houseId;
+
     /**
      * 用户id
      *

@@ -573,18 +573,6 @@
       <if test="desc != null">
         and (renovation = #{desc} or direction = #{desc} or house_hall like #{desc})
       </if>
-      <if test="priceFlag != null">
-        order by sale_price
-      </if>
-      <if test="unitPriceFlag != null">
-        order by unit_price
-      </if>
-      <if test="areaFlag != null">
-        order by area
-      </if>
-      <if test="createFlag != null">
-        order by create_time
-      </if>
     </where>
   </select>
 </mapper>
