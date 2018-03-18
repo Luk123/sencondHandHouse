@@ -203,7 +203,7 @@
     from user
     <where>
       <if test="userName != null and userName !=''">
-        user_name like #{userName,jdbcType=VARCHAR},
+        user_name like #{userName,jdbcType=VARCHAR}
       </if>
       <if test="contactWay != null and contactWay !=''">
         and contact_way like #{contactWay,jdbcType=VARCHAR}
@@ -233,7 +233,7 @@
     from user
     <where>
       <if test="userName != null and userName !=''">
-        user_name like #{userName,jdbcType=VARCHAR},
+        user_name like #{userName,jdbcType=VARCHAR}
       </if>
       <if test="contactWay != null and contactWay !=''">
         and contact_way like #{contactWay,jdbcType=VARCHAR}
