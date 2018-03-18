@@ -36,7 +36,7 @@
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">状态</label>
-				<input type="checkbox" id="state" name="state" title="开启" checked>
+				<input type="checkbox" id="state" name="state" title="开启" checked  style="margin-left: -300px;">
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label">备注</label>
@@ -45,8 +45,8 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<input class="layui-btn layui-btn-normal" onclick="submitTag()" value="确认"/>
-				<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()"/>
+				<input class="layui-btn layui-btn-normal" onclick="submitTag()" value="确认" type="button"/>
+				<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()" type="button"/>
 			</div>
 		</form>
 	</div>
@@ -97,8 +97,10 @@
 
 function init() {
 	//方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
-	layui.use('laypage', function(){
+	layui.use(['laypage','form'], function(){
 	  var laypage = layui.laypage;
+	  var form=layui.form;
+        form.render();
 	  var url = basePath+"/tag/page";
 	  var config = {
 		  page:1,

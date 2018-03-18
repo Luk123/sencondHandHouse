@@ -463,7 +463,7 @@
         <![CDATA[ and area <= #{areaEnd,jdbcType=DOUBLE} ]]>
       </if>
       <if test="houseHall != null and houseHall !=''">
-        and house_hall like #{houseHall,jdbcType=VARCHAR}
+        and (house_hall like CONCAT(CONCAT('%', #{houseHall}),'%')  OR house_name like CONCAT(CONCAT('%', #{houseHall}),'%'))
       </if>
       <if test="houseType != null and houseType !=''">
         and house_type = #{houseType,jdbcType=VARCHAR}
@@ -542,7 +542,7 @@
         <![CDATA[ and area <= #{areaEnd,jdbcType=DOUBLE} ]]>
       </if>
       <if test="houseHall != null and houseHall !=''">
-        and house_hall like #{houseHall,jdbcType=VARCHAR}
+        and (house_hall like CONCAT(CONCAT('%', #{houseHall}),'%')  OR house_name like CONCAT(CONCAT('%', #{houseHall}),'%'))
       </if>
       <if test="houseType != null and houseType !=''">
         and house_type = #{houseType,jdbcType=VARCHAR}

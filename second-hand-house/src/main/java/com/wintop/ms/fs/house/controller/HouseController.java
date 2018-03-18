@@ -202,6 +202,16 @@ public class HouseController {
         return res;
     }
 
+    /**
+     * 房屋刪除
+     * @param houseId
+     * @return
+     */
+    @RequestMapping(value = "/house/delete", method = RequestMethod.GET)
+    public ServiceResult<Integer> delete(Integer houseId) throws  Exception{
+        return houseManager.deleteByPrimaryKey(houseId);
+    }
+
 }
 
 
