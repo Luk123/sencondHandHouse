@@ -10,36 +10,61 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2018-03-10 16:20:39
+Date: 2018-03-18 22:38:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for comment
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `content` varchar(4000) NOT NULL COMMENT '评论内容',
+  `post_id` int(11) NOT NULL COMMENT '帖子id',
+  `create_time` date NOT NULL COMMENT '评论时间',
+  `create_id` int(11) NOT NULL COMMENT '评论人id',
+  `create_name` varchar(50) NOT NULL COMMENT '评论人名字',
+  `create_photo` varchar(500) NOT NULL DEFAULT '' COMMENT '评论人头像地址',
+  PRIMARY KEY (`comment_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for dic
 -- ----------------------------
 DROP TABLE IF EXISTS `dic`;
 CREATE TABLE `dic` (
-  `dic_id` int(10) NOT NULL COMMENT '字典id',
+  `dic_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '字典id',
   `dic_cls_name` varchar(50) NOT NULL COMMENT '字典类名称',
   `dic_name` varchar(50) NOT NULL COMMENT '字典名称',
   `state` varchar(50) NOT NULL COMMENT '状态: 停用;  启用',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_time` date NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`dic_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
 -- Records of dic
 -- ----------------------------
-INSERT INTO `dic` VALUES ('1', '性别', '男', '启用', null, '2018-03-04');
+INSERT INTO `dic` VALUES ('1', '性别', '男', '关闭', '123', '2018-03-04');
+INSERT INTO `dic` VALUES ('2', '性別', '女', '开启', 'beizhu1', '2018-03-10');
+INSERT INTO `dic` VALUES ('6', '装修', '精装修', '关闭', '213', '2018-03-17');
+INSERT INTO `dic` VALUES ('7', '性别', '保密', '开启', '12', '2018-03-17');
+INSERT INTO `dic` VALUES ('8', '装修', '普通装修', '开启', '', '2018-03-17');
+INSERT INTO `dic` VALUES ('9', '装修', '毛坯房', '开启', '1', '2018-03-17');
+INSERT INTO `dic` VALUES ('10', '朝向', '南', '开启', '', '2018-03-17');
 
 -- ----------------------------
 -- Table structure for district
 -- ----------------------------
 DROP TABLE IF EXISTS `district`;
 CREATE TABLE `district` (
-  `district_id` bigint(20) unsigned NOT NULL COMMENT '行政区划id',
+  `district_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '行政区划id',
   `parent_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '上级id',
   `district_code` varchar(6) NOT NULL COMMENT '行政区划编码',
   `district_name` varchar(20) NOT NULL COMMENT '行政区划名称',
@@ -48,7 +73,7 @@ CREATE TABLE `district` (
   `short_code` varchar(20) DEFAULT NULL COMMENT '速记码',
   `state` tinyint(3) unsigned NOT NULL COMMENT '状态: 1:正常, 2:撤销',
   PRIMARY KEY (`district_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='ap_行政区划';
+) ENGINE=InnoDB AUTO_INCREMENT=820001 DEFAULT CHARSET=utf8mb4 COMMENT='ap_行政区划';
 
 -- ----------------------------
 -- Records of district
@@ -3287,7 +3312,7 @@ INSERT INTO `district` VALUES ('820000', '0', '820000', '澳门特别行政区',
 -- ----------------------------
 DROP TABLE IF EXISTS `house`;
 CREATE TABLE `house` (
-  `house_id` int(10) NOT NULL AUTO_INCREMENT,
+  `house_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋标题',
   `house_hall` varchar(20) NOT NULL DEFAULT ' ' COMMENT '房屋户型,例子：3室2厅1厨1卫',
   `area` double(10,2) NOT NULL COMMENT '建筑面积',
@@ -3310,7 +3335,7 @@ CREATE TABLE `house` (
   `owner_name` varchar(50) NOT NULL COMMENT '房主姓名',
   `contact_way` varchar(15) NOT NULL COMMENT '房主电话',
   `descb` varchar(500) NOT NULL DEFAULT '' COMMENT '房屋描述',
-  `state` varchar(10) NOT NULL DEFAULT '未发布' COMMENT '房屋状态 1未发布  2售卖中 3已售',
+  `state` varchar(10) NOT NULL COMMENT '房屋状态 1未发布  2售卖中 3已售',
   `major_addr` varchar(255) NOT NULL COMMENT '房屋主图地址',
   `remark` varchar(500) DEFAULT '' COMMENT '备注',
   `lift_flag` varchar(10) NOT NULL DEFAULT '无' COMMENT '有无电梯：有，无',
@@ -3318,7 +3343,7 @@ CREATE TABLE `house` (
   `house_age` int(10) DEFAULT NULL COMMENT '房龄，不存储，根据建造年份计算',
   `house_no` varchar(50) NOT NULL COMMENT '不动产单元号（产权证号）,28位',
   `create_time` date NOT NULL COMMENT '创建时间',
-  `create_id` int(10) NOT NULL COMMENT '房屋所有人id',
+  `create_id` int(10) NOT NULL COMMENT '房屋创建人id',
   `create_name` varchar(50) NOT NULL COMMENT '创建人名称',
   PRIMARY KEY (`house_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='房子基本信息表';
@@ -3333,13 +3358,13 @@ INSERT INTO `house` VALUES ('1', '测试房屋', ' 3室2厅1厨1卫', '100.00', 
 -- ----------------------------
 DROP TABLE IF EXISTS `house_conf`;
 CREATE TABLE `house_conf` (
-  `house_id` int(10) NOT NULL COMMENT '房屋id',
+  `house_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `facility` varchar(500) NOT NULL DEFAULT '' COMMENT '小区设施',
   `life_conf` varchar(500) NOT NULL DEFAULT '' COMMENT '生活配套',
   `traffic` varchar(500) NOT NULL DEFAULT '' COMMENT '轨道交通',
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋周边配套表（与房屋表共用主键）';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='房屋周边配套表（与房屋表共用主键）';
 
 -- ----------------------------
 -- Records of house_conf
@@ -3356,9 +3381,9 @@ CREATE TABLE `house_photo` (
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `type` varchar(10) NOT NULL DEFAULT '室内图' COMMENT '图片类型（室内图 户型图 环境图 周边地图）',
   `photo_addr` varchar(255) NOT NULL COMMENT '图片地址',
-  `create_time` date NOT NULL COMMENT '创建时间',
-  `create_id` int(10) NOT NULL COMMENT '创建人id',
-  `create_name` varchar(50) NOT NULL COMMENT '创建人名字',
+  `create_time` date DEFAULT NULL COMMENT '创建时间',
+  `create_id` int(10) DEFAULT NULL COMMENT '创建人id',
+  `create_name` varchar(50) DEFAULT NULL COMMENT '创建人名字',
   PRIMARY KEY (`house_photo_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='房子相关图片表';
 
@@ -3373,16 +3398,17 @@ INSERT INTO `house_photo` VALUES ('2', '2', '1', '室内图', 'C:/picFile/1.jpg'
 -- ----------------------------
 DROP TABLE IF EXISTS `house_sale`;
 CREATE TABLE `house_sale` (
-  `house_sale_id` int(10) NOT NULL COMMENT '房屋售卖表id',
+  `house_sale_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '房屋售卖表id',
   `house_id` int(10) NOT NULL COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `cust_id` int(10) NOT NULL COMMENT '购买人id',
   `cust_name` varchar(50) NOT NULL COMMENT '购买人名称',
-  `owner_id` int(10) NOT NULL COMMENT '房屋所有人id',
-  `owner_name` varchar(50) NOT NULL COMMENT '房屋所有人名称',
+  `owner_id` int(10) NOT NULL COMMENT '卖家id',
+  `owner_name` varchar(50) NOT NULL COMMENT '卖家名称',
   `reason` varchar(50) NOT NULL COMMENT '售卖原因',
   `sale_price` decimal(10,2) NOT NULL COMMENT '售卖价格',
-  `sale_time` date NOT NULL COMMENT '售卖时间'
+  `sale_time` date NOT NULL COMMENT '售卖时间',
+  PRIMARY KEY (`house_sale_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋售卖信息表';
 
 -- ----------------------------
@@ -3394,7 +3420,7 @@ CREATE TABLE `house_sale` (
 -- ----------------------------
 DROP TABLE IF EXISTS `house_score`;
 CREATE TABLE `house_score` (
-  `house_score_id` int(10) NOT NULL COMMENT '用户积分id',
+  `house_score_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户积分id',
   `house_id` int(10) NOT NULL COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `cust_id` int(10) NOT NULL COMMENT '评价人id',
@@ -3402,24 +3428,25 @@ CREATE TABLE `house_score` (
   `count_score` int(10) NOT NULL COMMENT '评分',
   `comment` varchar(500) NOT NULL COMMENT '房屋评论',
   PRIMARY KEY (`house_score_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋评论表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='房屋评论表';
 
 -- ----------------------------
 -- Records of house_score
 -- ----------------------------
+INSERT INTO `house_score` VALUES ('1', '1', '测试房屋', '1', '评价人1', '4', '此房真的不错');
 
 -- ----------------------------
 -- Table structure for house_star
 -- ----------------------------
 DROP TABLE IF EXISTS `house_star`;
 CREATE TABLE `house_star` (
-  `house_id` int(10) NOT NULL COMMENT '房屋id',
+  `house_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `abs` varchar(500) NOT NULL DEFAULT '' COMMENT '简介',
   `type_desc` varchar(500) NOT NULL DEFAULT '' COMMENT '户型介绍',
   `build_desc` varchar(500) NOT NULL DEFAULT '' COMMENT '装修描述',
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋核心卖点表（与房屋表共用主键）';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='房屋核心卖点表（与房屋表共用主键）';
 
 -- ----------------------------
 -- Records of house_star
@@ -3431,19 +3458,39 @@ INSERT INTO `house_star` VALUES ('1', '测试房屋', '简介', '13456456456', '
 -- ----------------------------
 DROP TABLE IF EXISTS `house_tag`;
 CREATE TABLE `house_tag` (
-  `house_tag_id` int(10) NOT NULL COMMENT '房屋标签id',
+  `house_tag_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '房屋标签id',
   `house_id` int(10) NOT NULL COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `tag_id` int(10) NOT NULL COMMENT '标签id',
   `tag_name` varchar(50) NOT NULL COMMENT '标签名字',
-  `create_time` date NOT NULL COMMENT '创建时间',
-  `create_id` int(11) NOT NULL COMMENT '创建人id',
-  `create_name` varchar(50) NOT NULL COMMENT '创建人名字',
+  `create_time` date DEFAULT NULL COMMENT '创建时间',
+  `create_id` int(11) DEFAULT NULL COMMENT '创建人id',
+  `create_name` varchar(50) DEFAULT NULL COMMENT '创建人名字',
   PRIMARY KEY (`house_tag_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='房屋标签表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='房屋标签表';
 
 -- ----------------------------
 -- Records of house_tag
+-- ----------------------------
+INSERT INTO `house_tag` VALUES ('1', '1', '测试1', '1', '近地铁', '2018-03-17', '1', '1');
+
+-- ----------------------------
+-- Table structure for post
+-- ----------------------------
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post` (
+  `post_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '帖子id',
+  `post_title` varchar(500) NOT NULL COMMENT '帖子标题',
+  `post_content` varchar(4000) NOT NULL COMMENT '帖子内容',
+  `state` varchar(50) NOT NULL DEFAULT '审核中' COMMENT '审核状态：审核中，审核通过',
+  `create_time` date NOT NULL COMMENT '发帖时间',
+  `create_id` int(11) NOT NULL COMMENT '发帖人id',
+  `create_name` varchar(50) NOT NULL COMMENT '发帖人名字',
+  PRIMARY KEY (`post_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of post
 -- ----------------------------
 
 -- ----------------------------
@@ -3451,18 +3498,22 @@ CREATE TABLE `house_tag` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
-  `tag_id` int(10) NOT NULL COMMENT '标签id',
+  `tag_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '标签id',
   `tag_name` varchar(50) NOT NULL COMMENT '标签名称',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_time` date NOT NULL COMMENT '创建时间',
   `state` varchar(10) NOT NULL DEFAULT '启用' COMMENT '状态：启用，停用',
   PRIMARY KEY (`tag_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='标签字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='标签字典表';
 
 -- ----------------------------
 -- Records of tag
 -- ----------------------------
-INSERT INTO `tag` VALUES ('1', '近地铁', '1', '2018-03-05', '启用');
+INSERT INTO `tag` VALUES ('6', '有公交', '123457', '2018-03-17', '开启');
+INSERT INTO `tag` VALUES ('3', '近医院', '123', '2018-03-17', '开启');
+INSERT INTO `tag` VALUES ('4', '近地铁', '12139', '2018-03-17', '关闭');
+INSERT INTO `tag` VALUES ('7', '有公园', '4568', '2018-03-17', '开启');
+INSERT INTO `tag` VALUES ('8', '透风', '12', '2018-03-17', '开启');
 
 -- ----------------------------
 -- Table structure for user
@@ -3482,41 +3533,50 @@ CREATE TABLE `user` (
   `create_time` date NOT NULL COMMENT '创建时间',
   `account` varchar(50) NOT NULL COMMENT '账号',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '1', '1', '1', '1', '1', '1', '2018-03-10', '1', '0', '2018-03-10', '1');
+INSERT INTO `user` VALUES ('1', '张三', '1', '1', '1', '1', '1', '2018-03-10', '1', '5', '2018-03-10', '1');
+INSERT INTO `user` VALUES ('2', '李四', '2', '2', '2', '2', '2', '2018-03-10', '2', '5', '2018-03-10', '2');
+INSERT INTO `user` VALUES ('3', '王五', '1', '1', '1', '1', '1', '2018-03-10', '1', '5', '2018-03-10', '3');
+INSERT INTO `user` VALUES ('4', '留兰', '2', '2', '2', '2', '2', '2018-03-10', '2', '5', '2018-03-10', '4');
+INSERT INTO `user` VALUES ('5', '奥迪', '1', '1', '1', '1', '1', '2018-03-10', '1', '5', '2018-03-10', '5');
+INSERT INTO `user` VALUES ('6', '火锅', '2', '2', '2', '2', '2', '2018-03-10', '2', '5', '2018-03-10', '6');
 
 -- ----------------------------
 -- Table structure for user_buy
 -- ----------------------------
 DROP TABLE IF EXISTS `user_buy`;
 CREATE TABLE `user_buy` (
-  `user_buy_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '购买记录id',
+  `user_buy_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户购买记录id',
   `house_id` int(10) NOT NULL COMMENT '房屋id',
   `house_name` varchar(50) NOT NULL COMMENT '房屋名称',
   `buy_price` decimal(10,2) NOT NULL COMMENT '支付金额',
   `buy_date` date NOT NULL COMMENT '购买时间',
-  `owner_id` int(10) NOT NULL COMMENT '房屋所有人id',
-  `owner_name` varchar(50) NOT NULL COMMENT '房屋所有人名称',
+  `owner_id` int(10) NOT NULL COMMENT '卖家id',
+  `owner_name` varchar(50) NOT NULL COMMENT '卖家名称',
   `user_id` int(10) NOT NULL COMMENT '购买者id',
   `user_name` varchar(50) NOT NULL COMMENT '购买者名称',
-  `state` varchar(50) NOT NULL DEFAULT '预约看房' COMMENT '状态：预约看房，已购买',
+  `state` varchar(50) NOT NULL DEFAULT '已购买' COMMENT '状态：已购买',
   PRIMARY KEY (`user_buy_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户购买记录表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户购买记录表';
 
 -- ----------------------------
 -- Records of user_buy
 -- ----------------------------
+INSERT INTO `user_buy` VALUES ('1', '1', '测试房屋1', '10.00', '2018-03-18', '1', '房主1', '1', '买家1', '已购买');
+INSERT INTO `user_buy` VALUES ('2', '1', '测试房屋1', '10.00', '2018-03-18', '1', '房主1', '1', '买家1', '已购买');
+INSERT INTO `user_buy` VALUES ('3', '1', '测试房屋1', '10.00', '2018-03-18', '1', '房主1', '1', '买家1', '已购买');
+INSERT INTO `user_buy` VALUES ('4', '1', '测试房屋1', '10.00', '2018-03-18', '1', '房主1', '1', '买家1', '已购买');
 
 -- ----------------------------
 -- Table structure for user_favorite
 -- ----------------------------
 DROP TABLE IF EXISTS `user_favorite`;
 CREATE TABLE `user_favorite` (
-  `favorite_id` int(10) NOT NULL COMMENT '关注ID',
+  `favorite_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '关注ID',
   `house_id` int(10) NOT NULL COMMENT '关注房屋ID',
   `house_name` varchar(50) NOT NULL COMMENT '关注房屋名称',
   `user_id` int(10) NOT NULL COMMENT '关注人',
@@ -3524,11 +3584,17 @@ CREATE TABLE `user_favorite` (
   `state` varchar(10) NOT NULL DEFAULT '关注' COMMENT '状态：关注，取消',
   `create_time` date NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`favorite_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户关注房屋表(个人收藏夹)';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='用户关注房屋表(个人收藏夹)';
 
 -- ----------------------------
 -- Records of user_favorite
 -- ----------------------------
+INSERT INTO `user_favorite` VALUES ('1', '1', '测试房屋1', '1', '关注人1', '关注', '2018-03-18');
+INSERT INTO `user_favorite` VALUES ('2', '1', '测试房屋1', '1', '关注人1', '关注', '2018-03-18');
+INSERT INTO `user_favorite` VALUES ('3', '1', '测试房屋1', '1', '关注人1', '关注', '2018-03-18');
+INSERT INTO `user_favorite` VALUES ('4', '1', '测试房屋1', '1', '关注人1', '关注', '2018-03-18');
+INSERT INTO `user_favorite` VALUES ('5', '1', '测试房屋1', '1', '关注人1', '关注', '2018-03-18');
+INSERT INTO `user_favorite` VALUES ('6', '1', '测试房屋1', '1', '关注人1', '关注', '2018-03-18');
 
 -- ----------------------------
 -- Table structure for user_sale
@@ -3542,29 +3608,31 @@ CREATE TABLE `user_sale` (
   `sale_time` date NOT NULL COMMENT '销售时间',
   `cust_id` int(10) NOT NULL COMMENT '购买人id',
   `cust_name` varchar(50) NOT NULL COMMENT '购买人名称',
-  `owner_id` int(10) NOT NULL COMMENT '房屋所有人id',
-  `owner_name` varchar(50) NOT NULL COMMENT '房屋所有人名称',
+  `owner_id` int(10) NOT NULL COMMENT '卖家id',
+  `owner_name` varchar(50) NOT NULL COMMENT '卖家名称',
   PRIMARY KEY (`user_sale_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户销售记录表';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户销售记录表';
 
 -- ----------------------------
 -- Records of user_sale
 -- ----------------------------
+INSERT INTO `user_sale` VALUES ('1', '1', '测试房屋1', '10.00', '2018-03-18', '1', '买家1', '1', '卖家1');
+INSERT INTO `user_sale` VALUES ('2', '1', '测试房屋1', '10.00', '2018-03-18', '1', '买家1', '1', '卖家1');
 
 -- ----------------------------
 -- Table structure for user_score
 -- ----------------------------
 DROP TABLE IF EXISTS `user_score`;
 CREATE TABLE `user_score` (
-  `user_score_id` int(10) NOT NULL COMMENT '房屋积分id',
-  `user_id` int(10) NOT NULL COMMENT '房屋id',
-  `user_name` varchar(50) NOT NULL COMMENT '房屋名称',
+  `user_score_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '房屋积分id',
+  `user_id` int(10) NOT NULL COMMENT '卖家id',
+  `user_name` varchar(50) NOT NULL COMMENT '卖家名称',
   `cust_id` int(10) NOT NULL COMMENT '评价人id',
   `cust_name` varchar(50) NOT NULL COMMENT '评价人名称',
   `count_score` int(10) NOT NULL COMMENT '评分',
-  `comment` varchar(500) NOT NULL COMMENT '房屋评论',
+  `comment` varchar(500) NOT NULL COMMENT '评论',
   PRIMARY KEY (`user_score_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户评论表';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户评论表';
 
 -- ----------------------------
 -- Records of user_score
