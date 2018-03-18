@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,8 @@ public class HousePhotoController {
      * @return
      */
     @PostMapping(value = "housePhoto/insert",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> insertHousePhoto(@RequestBody HousePhoto dto) throws  Exception{
+    public ServiceResult<Integer> insertHousePhoto(HousePhoto dto) throws  Exception{
+        dto.setCreateTime(new Date());
         return housePhotoManager.insert(dto);
     }
 
@@ -100,7 +102,7 @@ public class HousePhotoController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/housePhoto/delete", method = RequestMethod.GET)
+    @PostMapping(value = "/housePhoto/delete",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> delete(Integer housePhotoId) throws Exception{
         HousePhoto hp = housePhotoManager.selectByPrimaryKey(housePhotoId).getResult();
         try{

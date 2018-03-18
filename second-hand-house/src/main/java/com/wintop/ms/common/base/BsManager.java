@@ -184,7 +184,7 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
         try {
             result.setMessage("查询数据成功");
             result.setSuccess(true);
-            List<T> src = mapper.listNameByQuery(qo);
+            List<T> src = mapper.listByQuery(qo);
             List<K> list =  DAOUtils.cloneList(clz,src);
             result.setResult(list);
         } catch (Exception e) {

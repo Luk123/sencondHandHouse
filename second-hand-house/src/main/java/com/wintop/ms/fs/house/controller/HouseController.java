@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -146,7 +147,10 @@ public class HouseController {
      * @return
      */
     @PostMapping(value = "house/insert",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> insertHouse(@RequestBody InsertHouseDTO dto) throws  Exception{
+    public ServiceResult<Integer> insertHouse(InsertHouseDTO dto) throws  Exception{
+        dto.setCreateTime(new Date());
+        dto.setCreateId(dto.getOwnerId());
+        dto.setCreateName(dto.getOwnerName());
         House house = DAOUtils.cloneBean(House.class,dto);
         ServiceResult<Integer> res= houseManager.insert(house);
         Integer houseId = house.getHouseId();
@@ -165,18 +169,31 @@ public class HouseController {
         for(HouseTag ht : dto.getHouseTag()){
             ht.setHouseId(houseId);
             ht.setHouseName(house.getHouseName());
+            ht.setCreateTime(new Date());
+            ht.setCreateId(dto.getOwnerId());
+            ht.setCreateName(dto.getOwnerName());
             houseTagManager.insert(ht);
         }
         return res;
     }
 
     /**
+     * 更新房屋状态
+     * @param dto
+     * @return
+     */
+    @PostMapping(value = "house/update/state",produces="application/json; charset=UTF-8")
+    public ServiceResult<Integer> updateHouse(House dto) throws  Exception {
+        dto.setState("售卖中");
+        return houseManager.updateSelective(dto);
+    }
+    /**
      * 更新房屋
      * @param dto
      * @return
      */
     @PostMapping(value = "house/update",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> updateHouse(@RequestBody UpdateHouseDTO dto) throws  Exception{
+    public ServiceResult<Integer> updateHouse(UpdateHouseDTO dto) throws  Exception{
         House house = DAOUtils.cloneBean(House.class,dto);
         ServiceResult<Integer> res= houseManager.updateSelective(house);
         Integer houseId = house.getHouseId();
@@ -188,20 +205,35 @@ public class HouseController {
         HouseConf hc = DAOUtils.cloneBean(HouseConf.class,dto.getHouseConf());
         hc.setHouseId(houseId);
         houseConfManager.updateSelective(hc);
+        return res;
+    }
+
+    /**
+     * 更新房屋标签
+     * @param dto
+     * @return
+     */
+    @PostMapping(value = "house/update/tag",produces="application/json; charset=UTF-8")
+    public ServiceResult<Integer> updateHouse(UpdateHouseTagDTO dto) throws  Exception{
+        ServiceResult<Integer> res= new ServiceResult<Integer>();
+        res.setMessage("更新数据成功");
+        res.setSuccess(true);
+        res.setResult(1);
         // delete all house tag
-        houseTagManager.deleteByHouseId(houseId);
+        houseTagManager.deleteByHouseId(dto.getHouseId());
         // insert tag
         if(CollectionUtils.isEmpty(dto.getHouseTag())){
             return res;
         }
         for(HouseTag ht : dto.getHouseTag()){
-            ht.setHouseId(houseId);
-            ht.setHouseName(house.getHouseName());
+            ht.setHouseId(dto.getHouseId());
+            ht.setHouseName(dto.getHouseName());
+            ht.setCreateTime(new Date());
+            ht.setCreateId(1);
             houseTagManager.insert(ht);
         }
         return res;
     }
-
     /**
      * 房屋刪除
      * @param houseId
