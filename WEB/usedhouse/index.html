@@ -10,22 +10,7 @@
 <!-- 顶部导航/搜索 start -->
 <div class="ind-top">
     <!-- 导航 start -->
-    <div class="top-bar-box">
-        <div class="main top-bar">
-            <div class="top-logo">
-                <a href="index.html"> <img src="https://res.5i5j.com/pc/site/images/index-logo.png" height="30" /> </a>
-            </div>
-            <div class="top-login" id="userlogin">
-                <a href="login.html?code=0" target="" class="log" rel="nofollow">登录</a>
-                <a href="login.html?code=1" target="_blank" rel="nofollow">注册</a>
-            </div>
-            <ul class="top-nav">
-                <li><a href="javascript:void(0)">二手房</a></li>
-                <li><a href="person-center.html">个人中心</a></li>
-                <li><a href="commit-service.html">服务承诺</a></li>
-            </ul>
-        </div>
-    </div>
+    <header></header>
     <!-- 导航 end -->
     <!-- 导航 end -->
     <!-- 搜索 start -->
@@ -80,7 +65,7 @@
         <p>好房辣么多，总有一套适合你</p>
     </div>
     <ul class="house-list clear">
-        <li>
+       <!-- <li>
             <div class="pic">
                 <a href="house-detail.html" target="_blank"> <img class="lazy" src="sourse/1505207907663265.jpg!280x158.jpg" title="夜猫子星球" alt="夜猫子星球" style="display: block;" /> </a>
             </div>
@@ -108,7 +93,7 @@
             </div>
             <div class="wz">
                 <h3><a href="javascript:void(0)" target="_blank">LOFT户型</a></h3>
-            </div> </li>
+            </div> </li>-->
     </ul>
 </div>
 <!-- 有好房 end -->
@@ -234,6 +219,7 @@
 <footer></footer>
 <!-- 底部 end -->
 <script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/cookie_util.js"></script>
 <script src="sourse/common.js"></script>
 <script src="sourse/BaseValues.js"></script>
 <script>
@@ -269,9 +255,9 @@
                 return null;
             }
             $('.house-list').append(' <li><div class="pic"> ' +
-                '<a href="house-detail.html'+data[i].houseId+'" target="_blank"> ' +
+                '<a href="house-detail.html?houseId='+data[i].houseId+'" target="_blank"> ' +
                 '<img class="lazy" src="'+data[i].photoAddr+'" title="'+data[i].houseName+'" alt="'+data[i].houseName+'" style="display: block;" /> </a> </div> ' +
-                '<div class="wz"> <h3><a href="house-detail.html'+data[i].houseId+'"  target="_blank">'+data[i].houseName+'</a></h3> </div> </li>')
+                '<div class="wz"> <h3><a href="house-detail.html?houseId='+data[i].houseId+'"  target="_blank">'+data[i].houseName+'</a></h3> </div> </li>')
         }
         $('.house-list li:last-child').addClass('no-margin-r')
     }

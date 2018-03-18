@@ -178,6 +178,9 @@
                 <li><a href="index.html">首页</a></li>
                 <li><a href="house-collect.html">我的收藏</a></li>
                 <li><a href="house-record.html">购房记录</a></li>
+                <li><a href="house-sell.html">售卖记录</a></li>
+                <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-img.html">房屋图片</a></li>
             </ul>
         </div>
         <div class="left per-cont">
@@ -200,7 +203,7 @@ createTime"></span>
                     <span>性别：</span><span><input type="text" readonly="readonly" value="女" id="sex"></span>
                 </p>
                 <p>
-                    <span>归属地：</span><span><input type="text" readonly="readonly" value="山西太原" id="area"></span>
+                    <span>地址：</span><span><input type="text" readonly="readonly" value="山西太原" id="area"></span>
                 </p>
                 <p>
                     <span>出生日期：</span><span><input type="text" readonly="readonly" value="1994-05-11" id="
@@ -249,7 +252,7 @@ integralNum"></span>
                     <span>确认新密码：</span><span><input type="text" id="npwd2"></span>
                 </p>
                 <p>
-                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name">保存修改</a>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name save-pwd-btn">保存修改</a>
                 </p>
             </div>
             <div class="p">
@@ -260,27 +263,28 @@ integralNum"></span>
                     <span>新联系方式：</span><span><input type="text" id="ncall"></span>
                 </p>
                 <p>
-                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name">保存修改</a>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name save-call-btn">保存修改</a>
                 </p>
             </div>
         </div>
     </div>
 </div>
 <script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/BaseValues.js"></script>
+<script src="sourse/cookie_util.js"></script>
 <script src="sourse/common.js"></script>
 <script>
 	/*修改昵称*/
     $('.save-name-btn').click(function(){
        $('.name').html( $('.u-name').val())
+        updateUser($('.u-name').val())
     })
-  /*  $('.nav-list-per li').click(function(){
-        $(this).addClass('on').siblings().removeClass('on');
-    })*/
-    
+
 	var h_pic_src;
     /*上传头像*/
     $('#photo').change(function(e){
         var img1 = e.target.files[0];
+        updateUser(null,e.target.files[0],null,null)
         var url = window.url || window.webkitURL;
          h_pic_src = url.createObjectURL(img1);
         $('#up-pic-big').attr('src',h_pic_src);
@@ -300,14 +304,28 @@ integralNum"></span>
         $('.p').eq($(this).index()).addClass('on')
     })
 
+    $('.save-pwd-btn').click(function(){
+
+        if(getid('npwd').val()==getid('npwd2').val()){
+            updateUser(null,null,getid('npwd2').val(),null)
+        }else{
+            alert('两次输入不一致')
+        }
+    })
+
+    $('.save-call-btn').click(function(){
+        updateUser(null,null,null,getid('ncall').val())
+    })
+
     function init(){
         $.ajax({
-            type:'post',
+            type:'get',
             url:basePath+'user/getUserInfoById',
             data:{
-                'userId':''
+                'userId':window.userid
             },
             success:function(data){
+                console.log(data)
                 getPerMsg(data.result)
             }
             ,error:function (data) {
@@ -316,6 +334,7 @@ integralNum"></span>
         })
     }
     function getPerMsg(data) {
+        $('.name').html(data.userName)
         getid('ucerno').val(data.certNo)
         getid('sex').val(data.sex)
         getid('birth').val(data.birth)
@@ -323,12 +342,32 @@ integralNum"></span>
         getid('ocall').val(data.contactWay)
         getid('integralNum').val(data.integralNum)
         getid('createTime').val(data.createTime)
-        getid('up-pic-big').src(data.userPhotoAddr)
+        getid('head-pic').attr('src',data.userPhotoAddr)
     }
     function getid(myid) {
         return $('#'+myid)
     }
+
+    init();
+
+    function updateUser(uname,uimg,pwd,contact) {
+        $.ajax({
+            type:'post',
+            url:basePath+'user/updateInfoById',
+            data:{
+                'userId':window.userid,
+                'userName':uname,
+                'userPhotoAddr':uimg,
+                'pwd':pwd,
+                'contactWay':contact
+            },
+            success:function(data){
+                window.location.reload()
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
 </script>
-
-
 </body></html>

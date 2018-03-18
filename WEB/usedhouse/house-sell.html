@@ -151,7 +151,7 @@
             color: indianred;
         }
         .mask{
-          position: fixed;  background-color: #fff;
+            position: fixed;  background-color: #fff;
             width: 400px;
             left: 50%;
             margin-left: -200px;
@@ -225,36 +225,23 @@
                     <tr>
                         <td>房屋名称</td>
                         <td>价格</td>
+                        <td>销售时间</td>
+                        <td>买家名称</td>
+                        <td>卖家名称</td>
+                        <td>操作</td>
+                    </tr>
+                    <!--<tr>
+                        <td>房屋名称</td>
+                        <td>价格</td>
                         <td>购买时间</td>
                         <td>卖家名称</td>
                         <td>买家名称</td>
-                        <td>操作</td>
-                    </tr>
-
+                        <td>
+                            <a href="house-detail.html??houseId=">查看</a>
+                        </td>
+                    </tr>-->
                 </table>
                 <div class="ts-page"></div>
-            </div>
-        </div>
-        <div class="mask">
-            <div class="alert">
-                <p>
-                    <span>房屋评分：</span>
-                    <span><input type="text" placeholder="最高分5分" id="hm"></span>
-                <p>
-                    <span>房屋评论：</span>
-                    <span><input type="text" id="hmsg"></span>
-                </p>
-                <p>
-                    <span>卖家评分：</span>
-                    <span><input type="text"  placeholder="最高分5分" id="um"></span>
-                <p>
-                    <span>卖家评论：</span>
-                    <span><input type="text"  id="umsg"></span>
-                </p>
-                <p>
-                    <span class="mask-btn sure">确定</span>
-                    <span class="mask-btn nosure">取消</span>
-                </p>
             </div>
         </div>
     </div>
@@ -272,78 +259,35 @@
     function init() {
         $.ajax({
             type:'get',
-            url:basePath+'userBuy/page',
+            url:basePath+'/userSale/page',
             data:{
-                'userId':window.userId
-            },
-            success:function (data) {
-                console.log(data)
+                'ownerId' :window.userid
+            }
+            ,success:function(data){
                 view(data.rows)
-
                 window.pages=Math.ceil(data.total/5);
                 pageCount=window.pages;
                 inserHtml(pageCount,1);
                 bindEvent(pageCount)
             },
             error:function(){
-                alert('服务器走丢了')
-            }
-        })
-    }
-    var houseName=null,ownerId=null,ownerName=null,houseId=null;
-    function view(data) {
-      $.each(data,function(i,v){
-          $('table').append(' <tr> ' +
-              '<td>'+v.houseName+'</td> ' +
-              '<td>'+v.buyPrice+'</td> ' +
-              '<td>'+timeFormat(v.buyDate)+'</td> ' +
-              '<td>'+v.ownerName+'</td> ' +
-              '<td>'+v.userName+'</td> ' +
-              '<td><a href="house-detail.html??houseId='+v.houseId+'">查看</a> ' +
-              '<a href="javascript:void(0)" class="del-btn" data-houseId="'+v.houseId+'" data-houseName="'+v.houseName+'"  ' +
-              'data-userId="'+v.ownerId+'"  data-userName="'+v.ownerName+'" >评分</a> </td> </tr>')
-      })
-        $('.del-btn').click(function(){
-            $('.mask').show();
-            houseName=$(this).attr('data-houseName');
-            ownerId=$(this).attr('data-userId');
-            ownerName=$(this).attr('ownerName');
-            houseId=$(this).attr('houseId')
-        })
-    }
-    $('.sure').click(function(){
-        $.ajax({
-            type:'get',
-            url:basePath+'/userBuy/desc/sale',
-            data:{
-                'houseId':houseId,
-                'houseName':houseName,
-                'userId':ownerId,
-                'userName' :ownerName,
-                'custId' :window.userid,
-                'custName':window.username,
-                'houseCountScore':$('#hm').val(),
-                'houseComment':$('#hmsg').val(),
-                'userCountScore':$('#um').val(),
-                'userComment':$('#umsg').val()
-            }
-            ,success:function(data){
-               if(data.success){
-                   alert('评论成功')
-               }else{
-                   alert('评论失败')
-               }
-            },
-            error:function(){
                 alert('服务器报错了')
             }
         })
-    })
-    $('.nosure').click(function(){
-        $(this).parents('.mask').hide()
-    })
+    }
+    function view(data) {
+        $.each(data,function(i,v){
+            $('table').append(' <tr> ' +
+                '<td>'+v.houseName+'</td> ' +
+                '<td>'+v.salePrice+'</td> ' +
+                '<td>'+timeFormat(v.salePrice)+'</td> ' +
+                '<td>'+v.custName+'</td> ' +
+                '<td>'+v.ownerName+'</td> ' +
+                '<td><a href="house-detail.html??houseId='+v.houseId+'">查看</a></td> </tr>')
+        })
+    }
+
     $(function(){
         init();
     })
 </script>
-</body></html>
