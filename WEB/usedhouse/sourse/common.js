@@ -3,3 +3,6 @@
  */
 $('footer').load("foot.html");
 $('header').load("head.html");
+
+window.userid=getCookie('key');
+window.username=getCookie('username')
