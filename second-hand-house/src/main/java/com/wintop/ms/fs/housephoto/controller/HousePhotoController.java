@@ -8,10 +8,12 @@ import com.wintop.ms.fs.housephoto.bo.HousePhotoPageQO;
 import com.wintop.ms.fs.housephoto.entity.HousePhoto;
 import com.wintop.ms.fs.housephoto.service.HousePhotoManager;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +49,28 @@ public class HousePhotoController {
      */
     @RequestMapping(value = "/housePhoto/page/houseId", method = RequestMethod.GET)
     public Map<String, Object> pageByHouseId(HousePhotoPageQO qo) throws Exception{
-        return housePhotoManager.pageByQuery(HousePhoto.class,qo,null);
+        Map<String, Object> map =  housePhotoManager.pageByQuery(HousePhoto.class,qo,null);
+        List<HousePhoto> list = (List<HousePhoto>)map.get("rows");
+        if(CollectionUtils.isEmpty(list)){
+            return map;
+        }
+        List<String> ll = new ArrayList<>(list.size());
+        for (HousePhoto u:list){
+            ll.add(u.getPhotoAddr());
+        }
+        map.put("rows",ll);
+        return map;
+    }
+
+    /**
+     * 房屋相关图片分页,所有信息
+     * @param qo
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/housePhoto/pageall/houseId", method = RequestMethod.GET)
+    public Map<String, Object> pageAllByHouseId(HousePhotoPageQO qo) throws Exception{
+        return  housePhotoManager.pageByQuery(HousePhoto.class,qo,null);
     }
 
     /**
