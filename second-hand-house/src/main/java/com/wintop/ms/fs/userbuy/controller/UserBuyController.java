@@ -13,9 +13,7 @@ import com.wintop.ms.fs.userbuy.entity.UserBuy;
 import com.wintop.ms.fs.userbuy.service.UserBuyManager;
 import com.wintop.ms.fs.userscore.entity.UserScore;
 import com.wintop.ms.fs.userscore.service.UserScoreManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -46,7 +44,7 @@ public class UserBuyController {
      * @author zhangzijuan
      * @Date 2018-03-10
      */
-    @PostMapping(value = "/userBuy/page",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "/userBuy/page", method = RequestMethod.GET)
     public Map<String, Object> pageByQuery(UserBuyQO qo){
         return userBuyManager.pageByQuery(UserBuy.class, qo,null);
     }
@@ -56,7 +54,7 @@ public class UserBuyController {
      * @author zhangzijuan
      * @Date 2018-03-10
      */
-    @PostMapping(value = "/userBuy/getBuyInfoById",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "/userBuy/getBuyInfoById", method = RequestMethod.GET)
     public ServiceResult<UserBuy> getBuyInfoById(Integer userBuyId){
         return userBuyManager.selectByPrimaryKey(userBuyId);
     }

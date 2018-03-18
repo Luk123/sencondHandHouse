@@ -7,6 +7,8 @@ import com.wintop.ms.fs.userfavorite.bo.UserFavoriteQO;
 import com.wintop.ms.fs.userfavorite.entity.UserFavorite;
 import com.wintop.ms.fs.userfavorite.service.UserFavoriteManager;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -29,7 +31,7 @@ public class UserFavoriteController {
      * @author zhangzijuan
      * @Date 2018-03-10
      */
-    @PostMapping(value = "/userFavorite/page",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "/userFavorite/page", method = RequestMethod.GET)
     public Map<String, Object> pageByQuery(UserFavoriteQO qo){
         return favoriteManager.pageByQuery(UserFavorite.class, qo,null);
     }
@@ -38,7 +40,7 @@ public class UserFavoriteController {
      * @author zhangzijuan
      * @Date 2018-03-10
      */
-    @PostMapping(value = "/userFavorite/getFavoriteInfoById",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "/userFavorite/getFavoriteInfoById", method = RequestMethod.GET)
     public ServiceResult<UserFavorite> getFavoriteInfoById(Integer favoriteId){
         return favoriteManager.selectByPrimaryKey(favoriteId);
     }

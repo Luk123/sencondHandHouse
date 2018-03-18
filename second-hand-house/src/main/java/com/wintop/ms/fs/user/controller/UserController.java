@@ -93,7 +93,7 @@ public class UserController {
      * @param userId
      * @return
      */
-    @PostMapping(value = "user/getUserInfoById",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "user/getUserInfoById", method = RequestMethod.GET)
     public ServiceResult<User> getUserInfoById(Integer userId){
         return userManager.selectByPrimaryKey(userId);
     }
@@ -104,7 +104,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "user/updateInfoById",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> updateInfoById(@RequestBody User user){
+    public ServiceResult<Integer> updateInfoById(User user){
         return userManager.updateSelective(user);
     }
     /**
@@ -113,7 +113,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "user/update/score",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> updateUserScore(@RequestBody UpdateUserScoreDTO user) throws  Exception{
+    public ServiceResult<Integer> updateUserScore(UpdateUserScoreDTO user) throws  Exception{
         return userManager.updateSelective(DAOUtils.cloneBean(User.class,user));
     }
 
