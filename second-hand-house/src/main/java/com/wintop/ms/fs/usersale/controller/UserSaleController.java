@@ -6,6 +6,8 @@ import com.wintop.ms.fs.usersale.bo.UserSaleQO;
 import com.wintop.ms.fs.usersale.entity.UserSale;
 import com.wintop.ms.fs.usersale.service.UserSaleManager;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -26,7 +28,7 @@ public class UserSaleController {
      * @author zhangzijuan
      * @Date 2018-03-10
      */
-    @PostMapping(value = "/userSale/page",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "/userSale/page", method = RequestMethod.GET)
     public Map<String, Object> pageByQuery(UserSaleQO qo){
         return userSaleManager.pageByQuery(UserSale.class, qo,null);
     }
@@ -35,7 +37,7 @@ public class UserSaleController {
      * @author zhangzijuan
      * @Date 2018-03-10
      */
-    @PostMapping(value = "/userSale/getSaleInfoById",produces="application/json; charset=UTF-8")
+    @RequestMapping(value = "/userSale/getSaleInfoById", method = RequestMethod.GET)
     public ServiceResult<UserSale> getBuyInfoById(Integer userSaleId){
         return userSaleManager.selectByPrimaryKey(userSaleId);
     }
