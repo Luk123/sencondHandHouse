@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.comment.mapper.CommentDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.comment.entity.Comment">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="post_id" jdbcType="INTEGER" property="postId" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+    <result column="create_photo" jdbcType="VARCHAR" property="createPhoto" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    comment_id, content, post_id, create_time, create_id, create_name, create_photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    delete from comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.comment.entity.Comment">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    insert into comment (comment_id, content, post_id, 
+      create_time, create_id, create_name, 
+      create_photo)
+    values (#{commentId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{postId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=DATE}, #{createId,jdbcType=INTEGER}, #{createName,jdbcType=VARCHAR}, 
+      #{createPhoto,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.comment.entity.Comment">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="postId != null">
+        post_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createPhoto != null">
+        create_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createPhoto != null">
+        #{createPhoto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.comment.entity.Comment">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    update comment
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="postId != null">
+        post_id = #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createPhoto != null">
+        create_photo = #{createPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.comment.entity.Comment">
+    <!-- @mbg.generated 2018-03-19 21:27:16 -->
+    update comment
+    set content = #{content,jdbcType=VARCHAR},
+      post_id = #{postId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_name = #{createName,jdbcType=VARCHAR},
+      create_photo = #{createPhoto,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    <where>
+      <if test="content != null and content !=''">
+        content like #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="postId != null and postId !=''">
+        and post_id = #{postId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from comment
+    <where>
+      <if test="content != null and content !=''">
+        content like #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="postId != null and postId !=''">
+        and post_id = #{postId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

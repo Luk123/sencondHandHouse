@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50632
 File Encoding         : 65001
 
-Date: 2018-03-18 22:38:06
+Date: 2018-03-19 23:49:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,11 +28,19 @@ CREATE TABLE `comment` (
   `create_name` varchar(50) NOT NULL COMMENT '评论人名字',
   `create_photo` varchar(500) NOT NULL DEFAULT '' COMMENT '评论人头像地址',
   PRIMARY KEY (`comment_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
+INSERT INTO `comment` VALUES ('1', '发帖回复1', '1', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('2', '发帖回复1', '1', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('3', '发帖回复1', '1', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('4', '发帖回复1', '1', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('5', '发帖回复1', '2', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('6', '发帖回复1', '3', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('7', '发帖回复1', '4', '2018-03-19', '1', '用户1', 'C://1.jpg');
+INSERT INTO `comment` VALUES ('8', '发帖回复1', '5', '2018-03-19', '1', '用户1', 'C://1.jpg');
 
 -- ----------------------------
 -- Table structure for dic
@@ -3482,16 +3490,22 @@ CREATE TABLE `post` (
   `post_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '帖子id',
   `post_title` varchar(500) NOT NULL COMMENT '帖子标题',
   `post_content` varchar(4000) NOT NULL COMMENT '帖子内容',
-  `state` varchar(50) NOT NULL DEFAULT '审核中' COMMENT '审核状态：审核中，审核通过',
+  `state` varchar(50) NOT NULL DEFAULT '审核中' COMMENT '审核状态：审核中，审核通过,驳回',
+  `remark` varchar(100) NOT NULL DEFAULT '' COMMENT '备注',
   `create_time` date NOT NULL COMMENT '发帖时间',
   `create_id` int(11) NOT NULL COMMENT '发帖人id',
   `create_name` varchar(50) NOT NULL COMMENT '发帖人名字',
   PRIMARY KEY (`post_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of post
 -- ----------------------------
+INSERT INTO `post` VALUES ('1', '测试发帖', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核中', '', '2018-03-19', '1', '用户1');
+INSERT INTO `post` VALUES ('2', '测试发帖', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核中', '', '2018-03-19', '1', '用户1');
+INSERT INTO `post` VALUES ('3', '测试发帖', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核通过', '', '2018-03-19', '1', '用户1');
+INSERT INTO `post` VALUES ('4', '测试发帖', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核通过', '', '2018-03-19', '1', '用户1');
+INSERT INTO `post` VALUES ('5', '测试发帖', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '驳回', '反国家', '2018-03-19', '1', '用户1');
 
 -- ----------------------------
 -- Table structure for tag
