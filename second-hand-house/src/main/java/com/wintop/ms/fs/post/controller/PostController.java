@@ -100,6 +100,11 @@ public class PostController {
      */
     @PostMapping(value = "/post/update",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> update(Post post) throws  Exception{
+        if("on".equals(post.getState())){
+            post.setState("审批通过");
+        }else {
+            post.setState("驳回");
+        }
         return postManager.updateSelective(post);
     }
 }
