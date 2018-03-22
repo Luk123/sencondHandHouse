@@ -134,10 +134,10 @@
     count(1)
     from dic
     <where>
-      <if test="dicClsName != null">
+      <if test="dicClsName != null and dicClsName !=''">
         dic_cls_name like #{dicClsName,jdbcType=VARCHAR}
       </if>
-      <if test="dicName != null">
+      <if test="dicName != null and dicName !=''">
         and dic_name like #{dicName,jdbcType=VARCHAR}
       </if>
       <if test="state != null">

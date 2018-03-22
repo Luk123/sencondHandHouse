@@ -104,7 +104,7 @@
     <include refid="Base_Column_List" />
     from tag
     <where>
-      <if test="tagName != null">
+      <if test="tagName != null and tagName!=''">
         tag_name like #{tagName,jdbcType=VARCHAR}
       </if>
       <if test="state != null">
@@ -118,7 +118,7 @@
     count(1)
     from tag
     <where>
-      <if test="tagName != null">
+      <if test="tagName != null and tagName!=''">
         tag_name like #{tagName,jdbcType=VARCHAR}
       </if>
       <if test="state != null">

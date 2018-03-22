@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wintop.ms.fs.post.mapper.PostDAO">
+  <resultMap id="BaseResultMap" type="com.wintop.ms.fs.post.entity.Post">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    <id column="post_id" jdbcType="INTEGER" property="postId" />
+    <result column="post_title" jdbcType="VARCHAR" property="postTitle" />
+    <result column="post_content" jdbcType="VARCHAR" property="postContent" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
+    <result column="create_name" jdbcType="VARCHAR" property="createName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    post_id, post_title, post_content, state, remark, create_time, create_id, create_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    select 
+    <include refid="Base_Column_List" />
+    from post
+    where post_id = #{postId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    delete from post
+    where post_id = #{postId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wintop.ms.fs.post.entity.Post">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    insert into post (post_id, post_title, post_content, 
+      state, remark, create_time, 
+      create_id, create_name)
+    values (#{postId,jdbcType=INTEGER}, #{postTitle,jdbcType=VARCHAR}, #{postContent,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{createId,jdbcType=INTEGER}, #{createName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wintop.ms.fs.post.entity.Post">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    insert into post
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="postId != null">
+        post_id,
+      </if>
+      <if test="postTitle != null">
+        post_title,
+      </if>
+      <if test="postContent != null">
+        post_content,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createId != null">
+        create_id,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="postId != null">
+        #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="postTitle != null">
+        #{postTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="postContent != null">
+        #{postContent,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wintop.ms.fs.post.entity.Post">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    update post
+    <set>
+      <if test="postTitle != null">
+        post_title = #{postTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="postContent != null">
+        post_content = #{postContent,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="createId != null">
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where post_id = #{postId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wintop.ms.fs.post.entity.Post">
+    <!-- @mbg.generated 2018-03-19 21:43:48 -->
+    update post
+    set post_title = #{postTitle,jdbcType=VARCHAR},
+      post_content = #{postContent,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_id = #{createId,jdbcType=INTEGER},
+      create_name = #{createName,jdbcType=VARCHAR}
+    where post_id = #{postId,jdbcType=INTEGER}
+  </update>
+
+  <select id="listByQuery" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from post
+    <where>
+      <if test="postTitle != null and postTitle !=''">
+        post_title like #{postTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null and state !=''">
+        and state = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="createId != null and createId !=''">
+        and create_id = #{createId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Integer">
+    select
+    count(1)
+    from post
+    <where>
+      <if test="postTitle != null and postTitle !=''">
+        post_title like #{postTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null and state !=''">
+        and state = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="createId != null and createId !=''">
+        and create_id = #{createId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

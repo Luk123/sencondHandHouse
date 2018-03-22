@@ -1,9 +1,7 @@
 package com.wintop.ms.fs.tag.controller;
 
 import com.wintop.ms.common.base.BsQO;
-import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.fs.house.bo.HousePageBO;
 import com.wintop.ms.fs.tag.bo.TagPageQO;
 import com.wintop.ms.fs.tag.entity.Tag;
 import com.wintop.ms.fs.tag.service.TagManager;
@@ -11,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,12 +47,29 @@ public class TagController {
     }
 
     /**
+     * 获取详情
+     * @param tagId
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/tag/selectById", method = RequestMethod.GET)
+    public ServiceResult<Tag> selectOne(Integer tagId) throws Exception{
+        return tagManager.selectByPrimaryKey(tagId);
+    }
+
+    /**
      * 标签新增
      * @param tag
      * @return
      */
     @PostMapping(value = "/tag/insert",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> insert(@RequestBody Tag tag) throws  Exception{
+    public ServiceResult<Integer> insert(Tag tag) throws  Exception{
+        if("on".equals(tag.getState())){
+            tag.setState("开启");
+        }else {
+            tag.setState("关闭");
+        }
+        tag.setCreateTime(new Date());
         return tagManager.insert(tag);
     }
 
@@ -64,7 +79,12 @@ public class TagController {
      * @return
      */
     @PostMapping(value = "/tag/update",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> update(@RequestBody Tag tag) throws  Exception{
+    public ServiceResult<Integer> update(Tag tag) throws  Exception{
+        if("on".equals(tag.getState())){
+            tag.setState("开启");
+        }else {
+            tag.setState("关闭");
+        }
         return tagManager.updateSelective(tag);
     }
 

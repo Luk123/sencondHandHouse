@@ -51,6 +51,11 @@ public class DicController {
      */
     @PostMapping(value = "/dic/insert",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> insert(Dic dic) throws  Exception{
+        if("on".equals(dic.getState())){
+            dic.setState("开启");
+        }else {
+            dic.setState("关闭");
+        }
         dic.setCreateTime(new Date());
         return dicManager.insert(dic);
     }
@@ -62,6 +67,11 @@ public class DicController {
      */
     @PostMapping(value = "/dic/update",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> update(Dic dic) throws  Exception{
+        if("on".equals(dic.getState())){
+            dic.setState("开启");
+        }else {
+            dic.setState("关闭");
+        }
         return dicManager.updateSelective(dic);
     }
 

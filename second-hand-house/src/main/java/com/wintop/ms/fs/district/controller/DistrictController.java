@@ -55,12 +55,23 @@ public class DistrictController {
     }
 
     /**
+     * 区域分页
+     * @param districtId
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/district/selectById", method = RequestMethod.GET)
+    public ServiceResult<District> selectOne(Long districtId) throws Exception{
+        return districtManager.selectByPrimaryKey(districtId);
+    }
+
+    /**
      * 新增下級區域
      * @param district
      * @return
      */
     @PostMapping(value = "/district/insert",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> insert(@RequestBody District district) throws  Exception{
+    public ServiceResult<Integer> insert(District district) throws  Exception{
         return districtManager.insert(district);
     }
 
@@ -70,7 +81,7 @@ public class DistrictController {
      * @return
      */
     @PostMapping(value = "/district/update",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> update(@RequestBody District district) throws  Exception{
+    public ServiceResult<Integer> update(District district) throws  Exception{
         return districtManager.updateSelective(district);
     }
 

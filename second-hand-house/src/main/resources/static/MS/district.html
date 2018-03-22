@@ -11,16 +11,85 @@
 	<link rel="stylesheet" href="../MS/plugins/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" src="../MS/lib/layui-v2.0.2/layui.all.js"></script>
 	<script type="text/javascript" src="../MS/js/BaseValues.js"></script>
-
+	<style>
+		.layui-input, .layui-textarea {
+			display: block;
+			width: 90%;
+		}
+		.layui-form-item {
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
+<div class="layui-layer layui-layer-page" type="page" style="width: 500px;display: none;left: 50%;transform: translatex(-50%);margin-bottom: 20px;" id="addModel">
+	<fieldset class="layui-elem-field layui-field-title" >
+		<legend>修改区域</legend>
+	</fieldset>
+	<form class="layui-form" action=""  id="addDic">
+		<input name="districtId" id="districtId" type="hidden"/>
+		<div class="layui-form-item">
+			<label class="layui-form-label">行政区域名称:</label>
+			<div class="layui-input-block">
+				<input type="text" name="districtName" lay-verify="title" autocomplete="off" placeholder="行政区域名称" class="layui-input" id="districtName">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">行政区域编码:</label>
+			<div class="layui-input-block">
+				<input type="text" name="districtCode" disabled="true" lay-verify="required" placeholder="行政区域编码" autocomplete="off" class="layui-input" id="districtCode">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">行政区域类型:</label>
+			<div class="layui-input-block">
+				<input type="text" name="districtTypeName" disabled="true" lay-verify="required" placeholder="行政区域类型" autocomplete="off" class="layui-input" id="districtTypeName">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">拼音码:</label>
+			<div class="layui-input-block">
+				<input type="text" name="pinyinCode"  lay-verify="required" placeholder="拼音码" autocomplete="off" class="layui-input" id="pinyinCode">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">速记码:</label>
+			<div class="layui-input-block">
+				<input type="text" name="shortCode"  lay-verify="required" placeholder="速记码" autocomplete="off" class="layui-input" id="shortCode">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">状态:</label>
+			<div class="layui-input-block">
+				<input type="text" name="stateName" disabled="true"  lay-verify="required" placeholder="状态" autocomplete="off" class="layui-input" id="stateName">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<input class="layui-btn layui-btn-normal" onclick="submitDic()" value="确认"/>
+			<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()"/>
+		</div>
+	</form>
+</div>
 	<fieldset class="layui-elem-field">
 		<legend>区域管理</legend>
 		<div>
-			<form>
-				<input type="text" name="name" />
-				<button type="button" id="search">搜索</button>
-			</form>
+			<blockquote class="layui-elem-quote">
+				<form class="layui-form" style="float:right;">
+					<div class="layui-form-item" >
+						<div class="layui-input-inline">
+							<input type="text"  placeholder="请输入行政区域名称" class="layui-input" id="districtName1">
+						</div>
+						<div class="layui-input-inline">
+							<input type="text"  placeholder="请输入行政区域类型" class="layui-input" id="districtTypeName1">
+						</div>
+						<input class="layui-btn" value="查询" style="width:90px;" id="query"/>
+						<!--<div class="layui-form-mid " style="padding:0!important;">-->
+						<!--&lt;!&ndash;<button  class="layui-btn" id="a"><i class="fa fa-search" aria-hidden="true"></i> 查询</button>&ndash;&gt;-->
+						<!---->
+						<!--</div>-->
+					</div>
+				</form>
+			</blockquote>
 			<table class="site-table table-hover">
 				<thead>
 				<tr>
@@ -44,11 +113,26 @@
 
 </body>
 <script type="text/javascript">
+$(function(){
+		init();
+	})
+
+	$('#query').click(function(){
+		console.log($("#dicName").val());
+		init();
+	})
+
+function init() {
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
 layui.use('laypage', function(){
   var laypage = layui.laypage;
   var url = basePath+"/district/page";
-  var config = {page:1,pageSize:5};
+  var config = {
+			page:1,
+			pageSize:5,
+			"districtName":$("#districtName1").val(),
+			"districtTypeName":$("#districtTypeName1").val()
+        };
   $.getJSON(url,config,function(res){
 	  laypage.render({
 		    elem: 'page',
@@ -64,8 +148,8 @@ layui.use('laypage', function(){
 	   });
 	  parseUserList(res,config.page);  
   }); 
-
-});
+})
+}
 //点击页数从后台获取数据
 function getUserListByPage(url,config){
 	$.getJSON(url,config,function(res){
@@ -84,14 +168,80 @@ function parseUserList(res,currPage){
 		content += "<td>"+o.shortCode+"</td>";
         content += "<td>"+o.stateName+"</td>";
 		content += "<td>" +
-						'<a href="/detail-1" target="_blank" class="layui-btn layui-btn-normal layui-btn-mini">新增</a>&nbsp;&nbsp;' +
-						'<a href="/manage/article_edit_1" class="layui-btn layui-btn-mini">编辑</a>&nbsp;&nbsp;' +
-						'<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini">删除</a>' +
+						'<a  class="layui-btn layui-btn-mini" onclick="editDic('+o.districtId+')">编辑</a>' +
 					"</td>";
 		content += "</tr>";
 	});
 	$('#tbody').html(content);
 }
 
+
+    /**
+     * 修改字典
+     */
+    function editDic(id){
+        $.ajax({
+            cache: true,
+            type: "GET",
+            url:basePath+"/district/selectById",
+            data:{"districtId":id},
+            async: false,
+            success: function(result) {
+                if(result&&result['success']){
+                    $("#districtId").val(id);
+                    $("#districtName").val(result.result.districtName);
+                    $("#districtCode").val(result.result.districtCode);
+                    $("#districtTypeName").val(result.result.districtTypeName);
+                    $("#pinyinCode").val(result.result.pinyinCode);
+                    $("#shortCode").val(result.result.shortCode);
+                    $("#stateName").val(result.result.stateName);
+                    $('#addDic').attr('action',basePath+"district/update");
+                    //关闭当前窗口
+                    $('#addModel').show();
+                }else{
+                    $('#addModel').hide();
+                    alert('查询失败!');
+                }
+            }
+        });
+	}
+
+
+    /**
+	 * 提交更改
+     */
+    function  submitDic() {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url:$('#addDic').attr("action"),
+            data:$('#addDic').serialize(),
+            async: false,
+            success: function(result) {
+                if(result&&result['success']){
+                    //关闭当前窗口
+                    $('#addModel').hide();
+                    init();
+                    // 弹提示
+                    // alert('保存成功!');
+                }else{
+                    $('#addModel').hide();
+                    alert('保存失败!');
+                }
+                resertForm();
+            }
+        });
+    }
+function cancel() {
+    resertForm();
+    $('#addModel').hide();
+}
+function  resertForm(){
+    $(':input','#addDic')
+    .not(':button, :submit, :reset, :hidden')
+    .val('')
+    .removeAttr('checked')
+    .removeAttr('selected');
+}
 </script>
 </html>

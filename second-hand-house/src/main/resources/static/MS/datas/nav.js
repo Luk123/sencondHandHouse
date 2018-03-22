@@ -20,5 +20,9 @@ var navs = [{
  	"title": "区域管理",
  	"icon": "fa-stop-circle",
  	"href": "../MS/district.html",
- }
+ }, {
+  	"title": "发帖管理",
+  	"icon": "fa-cogs",
+      "href": "../MS/post.html"
+  }
 ];

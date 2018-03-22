@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>头部</title>
     <link rel="stylesheet" href="sourse/basic.css">
+    <style>
+        .hider{
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <!-- 导航 start -->
@@ -15,16 +20,27 @@
             </a>
         </div>
         <div class="top-login" id="userlogin">
-            <a href="login.html?code=0" target="" class="log" rel="nofollow">登录</a>
-            <a href="login.html?code=1" target="_blank" rel="nofollow">注册</a>
+            <a href="login.html?code=0" target="" class="log my" rel="nofollow">登录</a>
+            <a href="login.html?code=1" target="_blank"  class="my" rel="nofollow">注册</a>
+            <a href="javascript:void(0)" class="hider"></a>
         </div>
         <ul class="top-nav">
             <li><a href="javascript:void(0)">二手房</a></li>
-            <li><a href="person-center.htm">个人中心</a></li>
+            <li><a href="person-center.html">个人中心</a></li>
             <li><a href="commit-service.html">服务承诺</a></li>
         </ul>
     </div>
 </div>
 <!-- 导航 end -->
 </body>
+<script src="sourse/cookie_util.js"></script>
+<script>
+    $('.hider').html('欢迎您,'+getCookie('username'))
+    if(userid){
+        $('.hider').removeClass('hider')
+        $('.my').addClass('hider')
+    }
+    window.userid=getCookie('key');
+    window.username=getCookie('username')
+</script>
 </html>

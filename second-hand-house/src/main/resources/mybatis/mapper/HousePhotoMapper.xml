@@ -139,19 +139,19 @@
     <include refid="Base_Column_List" />
     from house_photo
     <where>
-      <if test="houseId != null">
+      <if test="houseId != null and houseId !=''">
         house_id = #{houseId,jdbcType=INTEGER}
       </if>
-        <if test="houseName != null">
-           and house_name like #{houseName,jdbcType=VARCHAR}
-        </if>
-      <if test="type != null">
+      <if test="houseName != null and houseName !=''">
+        and house_name like #{houseName,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null and type !=''">
         and type = #{type,jdbcType=VARCHAR}
       </if>
-      <if test="userId != null">
+      <if test="userId != null and userId !=''">
         and  house_id in (
-          select house_id from house where owner_id = #{userId}
-          )
+        select house_id from house where owner_id = #{userId}
+        )
       </if>
     </where>
     group by house_id
@@ -159,24 +159,23 @@
 
   <select id="selectCount" resultType="java.lang.Integer">
     select
-    count(1)
+    count(*)
     from house_photo
     <where>
-      <if test="houseId != null">
+      <if test="houseId != null and houseId !=''">
         house_id = #{houseId,jdbcType=INTEGER}
       </if>
-        <if test="houseName != null">
+        <if test="houseName != null and houseName !=''">
            and house_name like #{houseName,jdbcType=VARCHAR}
         </if>
-      <if test="type != null">
+      <if test="type != null and type !=''">
         and type = #{type,jdbcType=VARCHAR}
       </if>
-      <if test="userId != null">
+      <if test="userId != null and userId !=''">
         and  house_id in (
           select house_id from house where owner_id = #{userId}
           )
       </if>
     </where>
-    group by house_id
   </select>
 </mapper>

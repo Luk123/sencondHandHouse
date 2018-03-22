@@ -39,14 +39,14 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
-    house_id, house_name, house_hall, area, real_area, provice, city, district, addr, 
-    build_type, build_year, house_type, floor, sale_price, direction, renovation, unit_price, 
-    frist_pay, month_pay, owner_id, owner_name, contact_way, descb, state, major_addr, 
+    house_id, house_name, house_hall, area, real_area, provice, city, district, addr,
+    build_type, build_year, house_type, floor, sale_price, direction, renovation, unit_price,
+    frist_pay, month_pay, owner_id, owner_name, contact_way, descb, state, major_addr,
     remark, lift_flag, heat, house_age, house_no, create_time, create_id, create_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
-    select 
+    select
     <include refid="Base_Column_List" />
     from house
     where house_id = #{houseId,jdbcType=INTEGER}
@@ -58,30 +58,30 @@
   </delete>
   <insert id="insert" parameterType="com.wintop.ms.fs.house.entity.House" useGeneratedKeys="true" keyProperty="houseId">
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
-    insert into house (house_id, house_name, house_hall, 
-      area, real_area, provice, 
-      city, district, addr, 
-      build_type, build_year, house_type, 
-      floor, sale_price, direction, 
-      renovation, unit_price, frist_pay, 
-      month_pay, owner_id, owner_name, 
-      contact_way, descb, state, 
-      major_addr, remark, lift_flag, 
-      heat, house_age, house_no, 
-      create_time, create_id, create_name
-      )
-    values (#{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, #{houseHall,jdbcType=VARCHAR}, 
-      #{area,jdbcType=DOUBLE}, #{realArea,jdbcType=DOUBLE}, #{provice,jdbcType=VARCHAR}, 
-      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, 
-      #{buildType,jdbcType=VARCHAR}, #{buildYear,jdbcType=DATE}, #{houseType,jdbcType=VARCHAR}, 
-      #{floor,jdbcType=INTEGER}, #{salePrice,jdbcType=DECIMAL}, #{direction,jdbcType=VARCHAR}, 
-      #{renovation,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DECIMAL}, #{fristPay,jdbcType=DECIMAL}, 
-      #{monthPay,jdbcType=DECIMAL}, #{ownerId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR}, 
-      #{contactWay,jdbcType=VARCHAR}, #{descb,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
-      #{majorAddr,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{liftFlag,jdbcType=VARCHAR}, 
-      #{heat,jdbcType=VARCHAR}, #{houseAge,jdbcType=INTEGER}, #{houseNo,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=DATE}, #{createId,jdbcType=INTEGER}, #{createName,jdbcType=VARCHAR}
-      )
+    insert into house (house_id, house_name, house_hall,
+    area, real_area, provice,
+    city, district, addr,
+    build_type, build_year, house_type,
+    floor, sale_price, direction,
+    renovation, unit_price, frist_pay,
+    month_pay, owner_id, owner_name,
+    contact_way, descb, state,
+    major_addr, remark, lift_flag,
+    heat, house_age, house_no,
+    create_time, create_id, create_name
+    )
+    values (#{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, #{houseHall,jdbcType=VARCHAR},
+    #{area,jdbcType=DOUBLE}, #{realArea,jdbcType=DOUBLE}, #{provice,jdbcType=VARCHAR},
+    #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR},
+    #{buildType,jdbcType=VARCHAR}, #{buildYear,jdbcType=DATE}, #{houseType,jdbcType=VARCHAR},
+    #{floor,jdbcType=INTEGER}, #{salePrice,jdbcType=DECIMAL}, #{direction,jdbcType=VARCHAR},
+    #{renovation,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DECIMAL}, #{fristPay,jdbcType=DECIMAL},
+    #{monthPay,jdbcType=DECIMAL}, #{ownerId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR},
+    #{contactWay,jdbcType=VARCHAR}, #{descb,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+    #{majorAddr,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{liftFlag,jdbcType=VARCHAR},
+    #{heat,jdbcType=VARCHAR}, #{houseAge,jdbcType=INTEGER}, #{houseNo,jdbcType=VARCHAR},
+    #{createTime,jdbcType=DATE}, #{createId,jdbcType=INTEGER}, #{createName,jdbcType=VARCHAR}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.wintop.ms.fs.house.entity.House">
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
@@ -396,37 +396,37 @@
     <!-- @mbg.generated 2018-03-04 14:18:04 -->
     update house
     set house_name = #{houseName,jdbcType=VARCHAR},
-      house_hall = #{houseHall,jdbcType=VARCHAR},
-      area = #{area,jdbcType=DOUBLE},
-      real_area = #{realArea,jdbcType=DOUBLE},
-      provice = #{provice,jdbcType=VARCHAR},
-      city = #{city,jdbcType=VARCHAR},
-      district = #{district,jdbcType=VARCHAR},
-      addr = #{addr,jdbcType=VARCHAR},
-      build_type = #{buildType,jdbcType=VARCHAR},
-      build_year = #{buildYear,jdbcType=DATE},
-      house_type = #{houseType,jdbcType=VARCHAR},
-      floor = #{floor,jdbcType=INTEGER},
-      sale_price = #{salePrice,jdbcType=DECIMAL},
-      direction = #{direction,jdbcType=VARCHAR},
-      renovation = #{renovation,jdbcType=VARCHAR},
-      unit_price = #{unitPrice,jdbcType=DECIMAL},
-      frist_pay = #{fristPay,jdbcType=DECIMAL},
-      month_pay = #{monthPay,jdbcType=DECIMAL},
-      owner_id = #{ownerId,jdbcType=INTEGER},
-      owner_name = #{ownerName,jdbcType=VARCHAR},
-      contact_way = #{contactWay,jdbcType=VARCHAR},
-      descb = #{descb,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      major_addr = #{majorAddr,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      lift_flag = #{liftFlag,jdbcType=VARCHAR},
-      heat = #{heat,jdbcType=VARCHAR},
-      house_age = #{houseAge,jdbcType=INTEGER},
-      house_no = #{houseNo,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      create_id = #{createId,jdbcType=INTEGER},
-      create_name = #{createName,jdbcType=VARCHAR}
+    house_hall = #{houseHall,jdbcType=VARCHAR},
+    area = #{area,jdbcType=DOUBLE},
+    real_area = #{realArea,jdbcType=DOUBLE},
+    provice = #{provice,jdbcType=VARCHAR},
+    city = #{city,jdbcType=VARCHAR},
+    district = #{district,jdbcType=VARCHAR},
+    addr = #{addr,jdbcType=VARCHAR},
+    build_type = #{buildType,jdbcType=VARCHAR},
+    build_year = #{buildYear,jdbcType=DATE},
+    house_type = #{houseType,jdbcType=VARCHAR},
+    floor = #{floor,jdbcType=INTEGER},
+    sale_price = #{salePrice,jdbcType=DECIMAL},
+    direction = #{direction,jdbcType=VARCHAR},
+    renovation = #{renovation,jdbcType=VARCHAR},
+    unit_price = #{unitPrice,jdbcType=DECIMAL},
+    frist_pay = #{fristPay,jdbcType=DECIMAL},
+    month_pay = #{monthPay,jdbcType=DECIMAL},
+    owner_id = #{ownerId,jdbcType=INTEGER},
+    owner_name = #{ownerName,jdbcType=VARCHAR},
+    contact_way = #{contactWay,jdbcType=VARCHAR},
+    descb = #{descb,jdbcType=VARCHAR},
+    state = #{state,jdbcType=VARCHAR},
+    major_addr = #{majorAddr,jdbcType=VARCHAR},
+    remark = #{remark,jdbcType=VARCHAR},
+    lift_flag = #{liftFlag,jdbcType=VARCHAR},
+    heat = #{heat,jdbcType=VARCHAR},
+    house_age = #{houseAge,jdbcType=INTEGER},
+    house_no = #{houseNo,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=DATE},
+    create_id = #{createId,jdbcType=INTEGER},
+    create_name = #{createName,jdbcType=VARCHAR}
     where house_id = #{houseId,jdbcType=INTEGER}
   </update>
 
@@ -435,75 +435,75 @@
     <include refid="Base_Column_List" />
     from house
     <where>
-        <if test="state != null">
-            state = #{state,jdbcType=VARCHAR}
-        </if>
-      <if test="userId != null">
+      <if test="state != null and state !=''">
+        state = #{state,jdbcType=VARCHAR}
+      </if>
+      <if test="userId != null and userId !=''">
         and owner_id = #{userId,jdbcType=INTEGER}
       </if>
-      <if test="provice != null">
+      <if test="provice != null  and provice !=''">
         and provice = #{provice,jdbcType=VARCHAR}
       </if>
-      <if test="city != null">
+      <if test="city != null and city !=''">
         and city = #{city,jdbcType=VARCHAR}
       </if>
-      <if test="district != null">
+      <if test="district != null and district !=''">
         and district = #{district,jdbcType=VARCHAR}
       </if>
-      <if test="salePriceBegin != null">
+      <if test="salePriceBegin != null and salePriceBegin !=''">
         <![CDATA[  and sale_price >= #{salePriceBegin,jdbcType=DECIMAL} ]]>
       </if>
-      <if test="salePriceEnd != null">
+      <if test="salePriceEnd != null and salePriceEnd !=''">
         <![CDATA[  and sale_price <= #{salePriceEnd,jdbcType=DECIMAL} ]]>
       </if>
-      <if test="areaBegin != null">
+      <if test="areaBegin != null  and areaBegin !=''">
         <![CDATA[ and area >= #{areaBegin,jdbcType=DOUBLE} ]]>
       </if>
-      <if test="areaEnd != null">
+      <if test="areaEnd != null and areaEnd !=''">
         <![CDATA[ and area <= #{areaEnd,jdbcType=DOUBLE} ]]>
       </if>
-      <if test="houseHall != null">
-        and house_hall like #{houseHall,jdbcType=VARCHAR}
+      <if test="houseHall != null and houseHall !=''">
+        and (house_hall like CONCAT(CONCAT('%', #{houseHall}),'%')  OR house_name like CONCAT(CONCAT('%', #{houseHall}),'%'))
       </if>
-      <if test="houseType != null">
+      <if test="houseType != null and houseType !=''">
         and house_type = #{houseType,jdbcType=VARCHAR}
       </if>
-      <if test="floorBegin != null">
+      <if test="floorBegin != null and floorBegin !=''">
         <![CDATA[ and floor >= #{floorBegin,jdbcType=INTEGER} ]]>
       </if>
-      <if test="floorEnd != null">
+      <if test="floorEnd != null and floorEnd !=''">
         <![CDATA[ and floor <= #{floorEnd,jdbcType=INTEGER} ]]>
       </if>
-      <if test="direction != null">
+      <if test="direction != null and direction !=''">
         and direction = #{direction,jdbcType=VARCHAR}
       </if>
-      <if test="houseAgeBegin != null">
+      <if test="houseAgeBegin != null and houseAgeBegin !=''">
         <![CDATA[ and create_time <= #{houseBeginTime,jdbcType=DATE} ]]>
       </if>
-      <if test="houseAgeEnd != null">
+      <if test="houseAgeEnd != null and houseAgeEnd !=''">
         <![CDATA[ and create_time >= #{houseEndTime,jdbcType=DATE} ]]>
       </if>
-      <if test="renovation != null">
+      <if test="renovation != null and renovation !=''">
         and renovation = #{renovation,jdbcType=VARCHAR}
       </if>
-      <if test="tagName != null">
+      <if test="tagName != null and tagName !=''">
         and house_id in (
-          select house_id from house_tag where tag_name = #{tagName}
+        select house_id from house_tag where tag_name = #{tagName}
         )
       </if>
-      <if test="desc != null">
+      <if test="desc != null and desc !=''">
         and (renovation = #{desc} or direction = #{desc} or house_hall like #{desc})
       </if>
-      <if test="priceFlag != null">
+      <if test="priceFlag != null and priceFlag !=''">
         order by sale_price
       </if>
-      <if test="unitPriceFlag != null">
+      <if test="unitPriceFlag != null and unitPriceFlag !=''">
         order by unit_price
       </if>
-      <if test="areaFlag != null">
+      <if test="areaFlag != null and areaFlag !=''">
         order by area
       </if>
-      <if test="createFlag != null">
+      <if test="createFlag != null and createFlag !=''">
         order by create_time
       </if>
     </where>
@@ -514,76 +514,64 @@
     count(1)
     from house
     <where>
-      <if test="state != null">
+      <if test="state != null and state !=''">
         state = #{state,jdbcType=VARCHAR}
       </if>
-      <if test="userId != null">
+      <if test="userId != null and userId !=''">
         and owner_id = #{userId,jdbcType=INTEGER}
       </if>
-      <if test="provice != null">
+      <if test="provice != null  and provice !=''">
         and provice = #{provice,jdbcType=VARCHAR}
       </if>
-      <if test="city != null">
+      <if test="city != null and city !=''">
         and city = #{city,jdbcType=VARCHAR}
       </if>
-      <if test="district != null">
+      <if test="district != null and district !=''">
         and district = #{district,jdbcType=VARCHAR}
       </if>
-      <if test="salePriceBegin != null">
+      <if test="salePriceBegin != null and salePriceBegin !=''">
         <![CDATA[  and sale_price >= #{salePriceBegin,jdbcType=DECIMAL} ]]>
       </if>
-      <if test="salePriceEnd != null">
+      <if test="salePriceEnd != null and salePriceEnd !=''">
         <![CDATA[  and sale_price <= #{salePriceEnd,jdbcType=DECIMAL} ]]>
       </if>
-      <if test="areaBegin != null">
+      <if test="areaBegin != null  and areaBegin !=''">
         <![CDATA[ and area >= #{areaBegin,jdbcType=DOUBLE} ]]>
       </if>
-      <if test="areaEnd != null">
+      <if test="areaEnd != null and areaEnd !=''">
         <![CDATA[ and area <= #{areaEnd,jdbcType=DOUBLE} ]]>
       </if>
-      <if test="houseHall != null">
-        and house_hall like #{houseHall,jdbcType=VARCHAR}
+      <if test="houseHall != null and houseHall !=''">
+        and (house_hall like CONCAT(CONCAT('%', #{houseHall}),'%')  OR house_name like CONCAT(CONCAT('%', #{houseHall}),'%'))
       </if>
-      <if test="houseType != null">
+      <if test="houseType != null and houseType !=''">
         and house_type = #{houseType,jdbcType=VARCHAR}
       </if>
-      <if test="floorBegin != null">
+      <if test="floorBegin != null and floorBegin !=''">
         <![CDATA[ and floor >= #{floorBegin,jdbcType=INTEGER} ]]>
       </if>
-      <if test="floorEnd != null">
+      <if test="floorEnd != null and floorEnd !=''">
         <![CDATA[ and floor <= #{floorEnd,jdbcType=INTEGER} ]]>
       </if>
-      <if test="direction != null">
+      <if test="direction != null and direction !=''">
         and direction = #{direction,jdbcType=VARCHAR}
       </if>
-      <if test="houseAgeBegin != null">
+      <if test="houseAgeBegin != null and houseAgeBegin !=''">
         <![CDATA[ and create_time <= #{houseBeginTime,jdbcType=DATE} ]]>
       </if>
-      <if test="houseAgeEnd != null">
+      <if test="houseAgeEnd != null and houseAgeEnd !=''">
         <![CDATA[ and create_time >= #{houseEndTime,jdbcType=DATE} ]]>
       </if>
-      <if test="renovation != null">
+      <if test="renovation != null and renovation !=''">
         and renovation = #{renovation,jdbcType=VARCHAR}
       </if>
-      <if test="tagName != null">
+      <if test="tagName != null and tagName !=''">
         and house_id in (
         select house_id from house_tag where tag_name = #{tagName}
         )
       </if>
-      <if test="desc != null">
+      <if test="desc != null and desc !=''">
         and (renovation = #{desc} or direction = #{desc} or house_hall like #{desc})
-      </if>
-      <if test="priceFlag != null">
-        order by sale_price
-      </if>
-      <if test="unitPriceFlag != null">
-        order by unit_price
-      </if>
-      <if test="areaFlag != null">
-        order by area
-      </if>
-      <if test="createFlag != null">
-        order by create_time
       </if>
     </where>
   </select>

@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,8 @@ public class HouseSaleController {
      * @return
      */
     @PostMapping(value = "house/sale",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> saleHouse(@RequestBody HouseSale dto) throws  Exception{
+    public ServiceResult<Integer> saleHouse(HouseSale dto) throws  Exception{
+        dto.setSaleTime(new Date());
         // insert houseSale
         ServiceResult<Integer> res = houseSaleManager.insert(dto);
         // insert userSale

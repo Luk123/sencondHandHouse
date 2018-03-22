@@ -40,4 +40,8 @@ public class HousePhotoPageQO extends PageQO{
      * @mbg.generated 2018-03-04 14:29:54
      */
     private String type;
+
+    private Integer houseId;
+
+
  }

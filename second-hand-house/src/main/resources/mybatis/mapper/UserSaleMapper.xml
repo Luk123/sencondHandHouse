@@ -153,13 +153,13 @@
     select
     <include refid="Base_Column_List" />
     from user_sale
-    where cust_id = #{custId,jdbcType=INTEGER}
+    where owner_id = #{ownerId,jdbcType=INTEGER}
   </select>
 
   <select id="selectCount" resultType="java.lang.Integer">
     select
     count(1)
     from user_sale
-    where cust_id = #{custId,jdbcType=INTEGER}
+    where owner_id = #{ownerId,jdbcType=INTEGER}
   </select>
 </mapper>

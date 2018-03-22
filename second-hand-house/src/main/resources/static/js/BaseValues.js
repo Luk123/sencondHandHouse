@@ -6,3 +6,5 @@ var UserToken;
 var basePath = "http://localhost:8088/";
 
 var cookie_key = "key";
+
+
