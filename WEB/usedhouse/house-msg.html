@@ -1,6 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>房产问答</title>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>房产问答</title>
 <link rel="stylesheet" rev="stylesheet" href="abc/Qa_Web_Detail.css" type="text/css">
     <link rel="stylesheet" href="sourse/page.css">
     <style>
@@ -56,15 +57,49 @@
             </a>
         </li>
     </ul>
-    <div class="ts-page"></div>
+    <div class="ts-page" id="comment"></div>
 </div>
 
-<footer></footer>
+<!--<footer></footer>-->
 <script src="sourse/jquery-1.10.2.min.js"></script>
 <script src="sourse/cookie_util.js"></script>
 <script src="sourse/BaseValues.js"></script>
 <script src="sourse/common.js"></script>
+<script src="sourse/page.js"></script>
 <script>
+	$(function(){
+		$.ajax({
+            cache: true,
+            type: "GET",
+            url:basePath+"/post/page",
+            data:{"page":1,"pageSize":10},
+            async: false,
+            success:function(data){
+            console.log(data)
+            window.pages=Math.ceil(data.total/10);
+            pageCount=window.pages;
+            inserHtml(pageCount,1);
+            bindEvent(pageCount)
+            getView(data.rows)
+        }
+        });
+	})
+	function getView(data) {
+			alert(data);
+			$('#comment').html('')
+			$.each(data,function(i,item){
+			var str_html='';
+			var time=timeFormat(item.createTime);		   
+			var str_html+='<ul class="msg"><li>'+
+								'<a href="house-msgdetail.html">'+
+									'<h4>'+item.postTitle+'</h4>'+
+									'<span>'+item.createName+'</span>'+
+									'<span class="time">'+time+'</span>'+
+								'</a>'+
+						 '</li></ul>';
+
+			})
+    }
     $('.cell-title').click(function(){
         $('#answerHimContent').show();
     })

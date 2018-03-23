@@ -19,6 +19,14 @@
 		.layui-form-item {
 			text-align: center;
 		}
+		.layui-input, .layui-textarea {
+			display: block;
+			width: 90%;
+		}
+
+		.layui-form-item .layui-form-checkbox{
+			margin-left: -300px;
+		}
 	</style>
 </head>
 <body>
@@ -36,7 +44,7 @@
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">状态</label>
-				<input type="checkbox" id="state" name="state" title="开启" checked  style="margin-left: -300px;">
+				<input type="checkbox" id="state" name="state" title="开启" checked  style="margin-left: -300px;!important;">
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label">备注</label>
