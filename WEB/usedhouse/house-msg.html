@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>房产问答</title>
+<link rel="stylesheet" rev="stylesheet" href="abc/Qa_Web_Detail.css" type="text/css">
+    <link rel="stylesheet" href="sourse/page.css">
+    <style>
+        .msg{
+            width: 1180px;
+            margin: 0 auto;
+        }
+        .msg li{
+            padding: 15px 10px;
+            line-height: 35px;
+            font-size: 20px;
+            color: #666;
+            border-bottom: 1px solid #01070e;
+        }
+        .msg li h4{
+            font-size: 25px;
+            color: #000;
+        }
+        .msg .time{
+            color: #999;
+            font-size: 18px;
+            margin-left: 25px;
+        }
+    </style>
+<body>
+<!-- 导航 start -->
+<header></header>
+<!-- 导航 end -->
+    <div class="qa-header-wrap">
+    <div class="qa-header-mod" id="qaHeaderModule" >
+        <div class="qa-header">
+            <a href="index.html">
+                <img src="https://res.5i5j.com/pc/site/images/index-logo.png" height="30">
+            </a>
+               <a class="light-btn n-ask-btn" href="house-pushmsg.html">
+                    <i class="iconfont que-icon"></i><span>我要提问</span>
+               </a>
+               <a class="light-btn n-ans-btn" href="javascript:void(0)">
+                    <i class="iconfont"></i><span>我来回答</span>
+                </a>
+        </div>
+    </div>
+</div>
+<div class="content clearfix">
+    <ul class="msg">
+        <li>
+           <h4>北京三环买房大约多少钱</h4>
+            <span>郭婷</span>
+            <span class="time">2018-10-06</span>
+        </li>
+    </ul>
+    <div class="ts-page"></div>
+</div>
+
+<footer></footer>
+<script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/cookie_util.js"></script>
+<script src="sourse/BaseValues.js"></script>
+<script src="sourse/common.js"></script>
+<script>
+    $('.cell-title').click(function(){
+        $('#answerHimContent').show();
+    })
+</script>
+</body></html>
