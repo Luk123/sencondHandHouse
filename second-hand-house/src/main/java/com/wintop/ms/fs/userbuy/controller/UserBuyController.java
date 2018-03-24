@@ -65,7 +65,7 @@ public class UserBuyController {
      * @Date 2018-03-10
      */
     @PostMapping(value = "/userBuy/desc/sale",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> descSaleUser(@RequestBody InsertUserBuyDTO dto) throws  Exception{
+    public ServiceResult<Integer> descSaleUser(InsertUserBuyDTO dto) throws  Exception{
        // insert user score
         UserScore us = DAOUtils.cloneBean(UserScore.class,dto);
         us.setCountScore(dto.getUserCountScore());
