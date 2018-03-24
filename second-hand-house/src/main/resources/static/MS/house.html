@@ -272,8 +272,7 @@ function parseUserList(res,currPage){
                     $("#realArea").val(result.result.realArea);
                     $("#area").val(result.result.area);
                     $("#floor").val(result.result.floor)
-                    alert(result.result.renovation)
-                    // $("#renovation option[value='1']").removeAttr("selected");
+                    $("#renovation option[value='1']").removeAttr("selected");
                     $("#renovation option[value='"+result.result.renovation+"']").attr("selected",true);
                     // $("#renovation option:first-child").val(result.result.renovation);
                     $('#addHouse').attr('action',basePath+"house/update");
