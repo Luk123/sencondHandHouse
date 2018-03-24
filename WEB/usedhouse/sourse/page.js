@@ -1,9 +1,5 @@
 
     /*pageCount是总共几页*/
-    var pageCount=8;
-      inserHtml(pageCount,1);
-      bindEvent(pageCount);
-
     function inserHtml(page,current){
         var obj = $(".ts-page");
         obj.empty();
@@ -83,12 +79,14 @@
              getData(page);
         });
     }
+        function fun() {
 
+        }
     function getData(num){
        /* $.get('url?p='+num,function(data){
            console.log(data); //这里是数据适配
         })*/
-        queryHouseDate1(num)
+         queryHouseDate1(num)
     }
 
     window.pageCount=pageCount;
