@@ -143,21 +143,8 @@
             font-weight:bold;
             text-indent:1px
         }
-<<<<<<< HEAD
-        .btn{
-            width: 80px;
-            height: 25px;
-            font-size: 13px;
-            text-align: center;
-=======
-        table{
-            width: 100%;
-        }
-        .del-btn{
-            margin-left: 20px;
-            color: indianred;
->>>>>>> 206fda84fd82c0f1ac10781de42dfddc88ce27f8
-        }
+
+
     </style>
     <link rel="stylesheet" href="sourse/basic.css">
     <link rel="stylesheet" href="sourse/page.css">
@@ -186,7 +173,7 @@
             <h3>我的收藏</h3>
             <div class="p on">
                 <table cellspacing="0">
-<<<<<<< HEAD
+
                     <tbody><tr>
                         <td>关注房屋名称</td>
                         <td>关注ID</td>
@@ -207,7 +194,7 @@
                         <td><span class="btn">取消</span></td>
                     </tr>
                     </tbody></table>
-=======
+
                   <tr>
                         <td>房屋名</td>
                         <td>关注人名</td>
@@ -217,7 +204,6 @@
                     </tr>
                 </table>
                 <div class="ts-page"></div>
->>>>>>> 206fda84fd82c0f1ac10781de42dfddc88ce27f8
             </div>
         </div>
     </div>
@@ -229,13 +215,13 @@
 <script src="sourse/cookie_util.js"></script>
 <script src="sourse/BaseValues.js"></script>
 <script src="sourse/common.js"></script>
-<<<<<<< HEAD
+
 <script>
     function init(myid){
         $.ajax({
             type:'post',
-//            url:basePath+"/userFavorite/page",
-            url:'http://172.16.30.45:8088/userFavorite/page',
+          url:basePath+"/userFavorite/page",
+
             data:{
                 'userId':myid
             },
@@ -245,7 +231,7 @@
             },
             error:function(data){
                 console.log(data)
-=======
+
 <script src="sourse/timeFormat.js"></script>
 <script src="sourse/page.js"></script>
 <script>
@@ -270,12 +256,12 @@
                 bindEvent(pageCount)
             },
             error:function(){
->>>>>>> 206fda84fd82c0f1ac10781de42dfddc88ce27f8
+
                 alert('服务器走丢了')
             }
         })
     }
-<<<<<<< HEAD
+
     function getView(data){
         /*
         * {
@@ -303,15 +289,7 @@
          }
          ]
          }
-        * */
-        /*-----关注房屋名称	houseName	string	@mock=111
-         ------关注ID	favoriteId	number	@mock=1
-         ------关注人名称	userName	string	@mock=11
-         ------关注房屋ID	houseId	number	@mock=1
-         ------关注时间	createTime	number	@mock=1521561600000
-         ------状态：关注，取消	state	string	@mock=关注
-         ------关注人
-         */
+
         $.each(data,function(n,v){
             console.log(n+'  '+v)
             $('table').append('<tr> ' +
@@ -325,8 +303,6 @@
         })
     }
     init(1)
-=======
-
 
     function getView(data){
         $.each(data,function(i,v){
@@ -363,6 +339,5 @@
             }
         })
     }
->>>>>>> 206fda84fd82c0f1ac10781de42dfddc88ce27f8
 </script>
 </body></html>

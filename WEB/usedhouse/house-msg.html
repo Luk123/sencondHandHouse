@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>房产问答</title>
-<link rel="stylesheet" rev="stylesheet" href="abc/Qa_Web_Detail.css" type="text/css">
+<link rel="stylesheet" rev="stylesheet" href="sourse/Qa_Web_Detail.css" type="text/css">
     <link rel="stylesheet" href="sourse/page.css">
     <style>
         .msg{
@@ -48,7 +48,7 @@
     </div>
 </div>
 <div class="content clearfix">
-    <ul class="msg">
+    <ul class="msg" id="comment">
         <li>
             <a href="house-msgdetail.html">
                 <h4>北京三环买房大约多少钱</h4>
@@ -57,7 +57,7 @@
             </a>
         </li>
     </ul>
-    <div class="ts-page" id="comment"></div>
+    <div class="ts-page"></div>
 </div>
 
 <!--<footer></footer>-->
@@ -65,33 +65,37 @@
 <script src="sourse/cookie_util.js"></script>
 <script src="sourse/BaseValues.js"></script>
 <script src="sourse/common.js"></script>
-<script src="sourse/page.js"></script>
+<script src="sourse/timeFormat.js"></script>
 <script>
 	$(function(){
-		$.ajax({
+        getDataq()
+        inserHtml(pageCount,1);
+	})
+
+    function getDataq(num) {
+        $.ajax({
             cache: true,
             type: "GET",
             url:basePath+"/post/page",
-            data:{"page":1,"pageSize":10},
+            data:{"page":num,"pageSize":8},
             async: false,
             success:function(data){
-            console.log(data)
-            window.pages=Math.ceil(data.total/10);
-            pageCount=window.pages;
-            inserHtml(pageCount,1);
-            bindEvent(pageCount)
-            getView(data.rows)
-        }
+                console.log(data)
+                window.pages=Math.ceil(data.total/8);
+                pageCount=window.pages;
+                inserHtml(pageCount,num);
+                bindEvent(pageCount)
+                getView(data.rows)
+            }
         });
-	})
+    }
 	function getView(data) {
-			alert(data);
 			$('#comment').html('')
+        var str_html='';
 			$.each(data,function(i,item){
-			var str_html='';
 			var time=timeFormat(item.createTime);		   
-			var str_html+='<ul class="msg"><li>'+
-								'<a href="house-msgdetail.html">'+
+			str_html+='<ul class="msg"><li>'+
+								'<a href="house-msgdetail.html?postId='+item.postId+'">'+
 									'<h4>'+item.postTitle+'</h4>'+
 									'<span>'+item.createName+'</span>'+
 									'<span class="time">'+time+'</span>'+
@@ -99,9 +103,99 @@
 						 '</li></ul>';
 
 			})
+        $('#comment').html(str_html)
     }
     $('.cell-title').click(function(){
         $('#answerHimContent').show();
     })
+    function inserHtml(page,current){
+        var obj = $(".ts-page");
+        obj.empty();
+        if(current > 1){
+            obj.append('<span class="tspage-start">首页</span>');
+            obj.append('<span class="tspage-before">上一页</span>');
+        }else{
+            obj.remove('.tspage-start');
+            obj.append('<span class="tspage-before disable">上一页</span>');
+        }
+        if(current>3 && current <= page && page>5){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        var start = current-2, end= current+2; //中间显示5个
+        // var start = current-2, end= current+2; //中间显示5个
+        if(start >1 && current < 4||current == 1){
+            end++;
+        }
+        if(current > page-2 && current <= page){
+            start--;
+        }
+        for(;start<=end;start++){
+            if(start<=page && start >=1){
+                if(start != current){
+                    obj.append('<span class="page">'+start+'</span>');
+                }else{
+                    obj.append('<span class="page on">'+start+'</span>');
+                }
+            }
+        }
+        if(current+2<page && current >=1 && page>4){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        if(current<page){
+            obj.append('<span class="tspage-after">下一页</span>');
+            obj.append('<span class="tspage-end">尾页</span>');
+        }else{
+            obj.remove('.tspage-end');
+            obj.append('<span class="tspage-after disable">下一页</span>');
+        }
+    }
+    function bindEvent(page){
+        var obj = $(".ts-page");
+        obj.on('click','.page',function(){
+            var currentPage = parseInt($(this).text());
+            inserHtml(currentPage,page);
+            inserHtml(page,currentPage);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(currentPage);
+        });
+        obj.on('click','.tspage-before',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage>1){
+                inserHtml(page,currentPage-1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage-1);
+            }
+
+        });
+        obj.on('click','.tspage-after',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage<page){
+                inserHtml(page,currentPage+1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage+1);
+            }
+        });
+        obj.on('click','.tspage-start',function(){
+            inserHtml(page,1);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(1);
+        });
+        obj.on('click','.tspage-end',function(){
+            inserHtml(page,page);
+
+            //获取后台传来数据的ajax函数+数据适配
+            getData(page);
+        });
+    }
+    function getData(num){
+        /* $.get('url?p='+num,function(data){
+         console.log(data); //这里是数据适配
+         })*/
+        getDataq(num)
+    }
+    var pageCount;
+    window.pageCount=pageCount;
+    window.inserHtml=inserHtml;
+    window.bindEvent=bindEvent;
 </script>
 </body></html>

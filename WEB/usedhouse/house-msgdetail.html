@@ -97,23 +97,6 @@
  </div>
 
     </div>
-<!--右边导航-->
-    <div class="sub-mod">
-        <div class="sub-mod-item">
-            <div class="comp-TosoveList" id="TosoveList">
-    <div class="title-wrap clearfix">
-        <h3>待解决问题</h3>
-        <a href="house-msg.html" >查看全部</a>    </div>
-         <ul>
-              <li>
-                    <h4 class="li-title">
-                        <a href="house-detail.html"  target="_blank">【天恒世界集】小区出入口门大不大？是单道还是...                                        </a></h4>
-                    <p class="cell-footer">刚刚                </p>
-              </li>
-         </ul>
-            </div>
-        </div>
-    </div>
 </div>
 
 <footer></footer>
@@ -121,6 +104,7 @@
 <script src="sourse/cookie_util.js"></script>
 <script src="sourse/BaseValues.js"></script>
 <script src="sourse/common.js"></script>
+<script src="sourse/timeFormat.js"></script>
 <script>
     $('.cell-title').click(function(){
         $('#answerHimContent').show();
@@ -129,18 +113,54 @@
         var btn=$('#answerHimSubmitBtn');
         btn.removeClass('disabled');
     })
-    function init() {
-        
-    }
-    function queryAn() {
+    var postId=window.location.search.split('=')[1];
+
+    $('#answerHimSubmitBtn').click(function(){
+        var cont=($('.ipt-control').val()).trim();
+        console.log(getCookie('key'))
+        if(cont.length==0){
+            alert('评论不能为空')
+            return null
+        }
         $.ajax({
-            type:'post',
+            cache: true,
+            type: "post",
+            url:basePath+"/comment/insert",
             data:{
-                postId:1
+                content :cont,
+                createId:getCookie('key'),
+                postId:postId
+            },
+            async: false,
+            success:function(data){
+                console.log(data)
+                if(data.success){
+                    alert('插入数据成功')
+                    queryAn(postId)
+                }else{
+                    alert(data.message)
+                }
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    })
+
+
+
+    queryAn(postId);
+
+    function queryAn(postId) {
+
+        $.ajax({
+            type:'get',
+            data:{
+                postId:postId
             },
             url:basePath+'/post/selectById',
             success:function (data) {
-                console.log(data)
+                msgShow(data.result);
              }
             ,error:function (data) {
                 alert('服务器走丢了')
@@ -148,21 +168,46 @@
         })
     }
     function msgShow(data) {
+        console.log(data)
+                $('.comp-title').html('全部'+data.map.total+'个回答')
         $('.qies').html(data.postTitle);
+        $('.comp-list').html('')
         $('.cell-footer').html('<span> <a class="pic-wrap pic-wrap-broker" href="javascript:void(0)">' +
-            'hvbkst7158_EM893 </a> </span> <i class="split"></i> ' +
-            '<span>2017-10-29 15:07:29</span> <i class="split"></i> ' +
-            '<span>来自:北京</span>');
-
-        $('.comp-list').html('').append(' <li class="broker-li"> ' +
-            '<a class="pic-wrap" href="javascript:void(0)"  target="_blank" > ' +
-            '<img src="abc/100x133.jpg" alt="头像"> </a> <div class="title-wrap clearfix"> ' +
-            '<a class="name brokerName" href="javascript:void(0)" >韩力辉</a> ' +
-            '<span class="tel"><i class="iconfont"></i>13911700692</span> </div> ' +
-            '<p class="answer-doc no-select" >结婚后可以，婚前只能写一个人的名字</p> ' +
-            '<div class="cell-footer"> ' +
-            '<span>2017-12-25 17:50:00</span> ' +
-            '</div> <span class="del-btn">删除</span> </li>')
+            ''+data.createName+'</a> </span> <i class="split"></i> ' +
+            '<span>'+timeFormat(data.createTime)+'</span> <i class="split"></i>');
+      $.each(data.map.rows,function(i,v){
+          $('.comp-list').append(' <li class="broker-li"> ' +
+              '<a class="pic-wrap" href="javascript:void(0)"  target="_blank" > ' +
+              '<img src="'+v.createPhoto+'" alt="头像"> </a> <div class="title-wrap clearfix"> ' +
+              '<a class="name brokerName" href="javascript:void(0)" >'+v.createName+'</a> </div>' +
+              '<p class="answer-doc no-select" >'+v.content+'</p> ' +
+              '<div class="cell-footer"> ' +
+              '<span>'+timeFormat(v.createTime)+'</span> ' +
+              '</div> <span class="del-btn" onclick="deleteComment('+v.commentId+','+v.postId+','+v.createId+')">删除</span> </li>')
+      })
+    }
+    function deleteComment(commentId,postId,createId) {
+        $.ajax({
+            cache: true,
+            type: "post",
+            url:basePath+"/comment/delete",
+            data:{
+                createId:createId,
+                commentId :commentId ,
+                postId:postId
+            },
+            async: false,
+            success:function(data){
+                if(data.success){
+                    alert('删除成功')
+                }else{
+                    alert(data.message)
+                }
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
     }
 </script>
 </body></html>
