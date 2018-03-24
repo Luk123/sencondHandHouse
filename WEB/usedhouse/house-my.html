@@ -145,6 +145,7 @@
         }
     </style>
     <link rel="stylesheet" href="sourse/basic.css">
+    <link rel="stylesheet" href="sourse/page.css">
     <script src="sourse/jquery-1.10.2.min.js"></script>
 </head>
 <body>
@@ -173,76 +174,177 @@
             </ul>
             <div class="p on">
                 <table cellspacing="0" class="allmsg">
-                    <tr>
-                        <td>订单号</td>
-                        <td>购买人姓名</td>
-                        <td>手机号</td>
-                        <td>房屋尺寸</td>
-                        <td>房屋地址</td>
-                        <td>房屋中介</td>
-                        <td>订单金额</td>
-                        <td>操作</td>
-                    </tr>
-                    <tr>
-                        <td>20170505152209256</td>
-                        <td>郭婷</td>
-                        <td>18513042868</td>
-                        <td>120平米</td>
-                        <td>北京市大兴区22号</td>
-                        <td>中国平安</td>
-                        <td>234806.00</td>
-                        <td><a href="house-detail.html">查看</a></td>
-                    </tr>
-                    <tr>
-                        <td>20170505152209256</td>
-                        <td>郭婷</td>
-                        <td>18513042868</td>
-                        <td>120平米</td>
-                        <td>北京市大兴区22号</td>
-                        <td>中国平安</td>
-                        <td>234806.00</td>
-                        <td><a href="house-detail.html">查看</a></td>
-                    </tr>
+                   <thead>
+                   <tr>
+                       <td>房屋名称</td>
+                       <td>房屋户型</td>
+                       <td>建筑面积</td>
+                       <td>套内面积</td>
+                       <td>地址</td>
+                       <td>建造年份</td>
+                       <td>房屋类型</td>
+                       <td>房屋售价</td>
+                       <td>装修</td>
+                       <td>操作</td>
+                   </tr>
+                   </thead>
+                   <tbody>
+
+                   </tbody>
                 </table>
             </div>
+            <div class="ts-page"></div>
         </div>
     </div>
 </div>
 
 
 <footer></footer>
+<script src="sourse/jquery-1.10.2.min.js"></script>
+<script src="sourse/cookie_util.js"></script>
 <script src="sourse/common.js"></script>
 <script src="sourse/BaseValues.js"></script>
+<script src="sourse/timeFormat.js"></script>
 <script>
-    function init() {
+    var page;
+    function init(page,pageSize) {
         $.ajax({
-            type:'post',
-            url:basePath+'userBuy/page',
+            type:'get',
+            url:basePath+'/house/page/all',
             data:{
-                'userId':window.userId
+                userId:window.userId,
+                page:page,
+                pageSize:pageSize
             },
             success:function (data) {
                 console.log(data)
-                view(data.list)
+                view(data.rows)
+                page=Math.ceil(data.total/pageSize);
+                inserHtml(page,1);
+                bindEvent(page)
             },
             error:function(){
                 alert('服务器走丢了')
             }
         })
     }
+
+
+
     function view(data) {
-        $('.allmsg').append('<tr> ' +
-            '<td>20170505152209256</td> ' +
-            '<td>'+data.userName+'</td>' +
-            ' <td>18513042868</td>' +
-            ' <td>120平米</td> ' +
-            '<td>北京市大兴区22号</td> ' +
-            '<td>中国平安</td> ' +
-            '<td>'+data.buyPrice+'</td> ' +
-            '<td><a href="javascript:void(0)?userBuyId'+data.userBuyId+'">查看</a></td> </tr>')
+        $('tbody').html('');
+        $.each(data,function(i,v){
+            $('.allmsg tbody').append('<tr> <td>'+ v.houseName+'</td> ' +
+            '<td>'+ v.houseHall+'</td> ' +
+            '<td>'+ v.area+'m^2</td> ' +
+            '<td>'+ v.realArea+'m^2</td> ' +
+            '<td>'+ v.provice+ v.city+ v.district+'</td> ' +
+            '<td>'+timeFormat(v.buildYear)+'</td> ' +
+            '<td>'+ v.houseType+'</td> ' +
+            '<td>'+ v.salePrice+'</td> ' +
+            '<td>'+ v.renovation+'</td> ' +
+            '<td><a href="house-detail.html?houseId='+v.houseId+'">查看</a></td> </tr>')
+        })
     }
     $(function(){
-        init();
+        init(1,3);
     })
+    function inserHtml(page,current){
+        var obj = $(".ts-page");
+        obj.empty();
+        if(current > 1){
+            obj.append('<span class="tspage-start">首页</span>');
+            obj.append('<span class="tspage-before">上一页</span>');
+        }else{
+            obj.remove('.tspage-start');
+            obj.append('<span class="tspage-before disable">上一页</span>');
+        }
+        if(current>3 && current <= page && page>5){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        var start = current-2, end= current+2; //中间显示5个
+        // var start = current-2, end= current+2; //中间显示5个
+        if(start >1 && current < 4||current == 1){
+            end++;
+        }
+        if(current > page-2 && current <= page){
+            start--;
+        }
+        for(;start<=end;start++){
+            if(start<=page && start >=1){
+                if(start != current){
+                    obj.append('<span class="page">'+start+'</span>');
+                }else{
+                    obj.append('<span class="page on">'+start+'</span>');
+                }
+            }
+        }
+        if(current+2<page && current >=1 && page>4){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        if(current<page){
+            obj.append('<span class="tspage-after">下一页</span>');
+            obj.append('<span class="tspage-end">尾页</span>');
+        }else{
+            obj.remove('.tspage-end');
+            obj.append('<span class="tspage-after disable">下一页</span>');
+        }
+    }
+    function bindEvent(page){
+        var obj = $(".ts-page");
+        obj.on('click','.page',function(){
+            var currentPage = parseInt($(this).text());
+            inserHtml(currentPage,page);
+            inserHtml(page,currentPage);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(currentPage);
+        });
+        obj.on('click','.tspage-before',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage>1){
+                inserHtml(page,currentPage-1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage-1);
+            }
+
+        });
+        obj.on('click','.tspage-after',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage<page){
+                inserHtml(page,currentPage+1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage+1);
+            }
+        });
+        obj.on('click','.tspage-start',function(){
+            inserHtml(page,1);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(1);
+        });
+        obj.on('click','.tspage-end',function(){
+            inserHtml(page,page);
+
+            //获取后台传来数据的ajax函数+数据适配
+            getData(page);
+        });
+    }
+    function getData(num){
+        $.ajax({
+            type:'get',
+            url:basePath+'/house/page/all',
+            data:{
+                userId:window.userId,
+                page:num,
+                pageSize:3
+            },
+            success:function (data) {
+                console.log(data)
+                view(data.rows)
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    }
 </script>
 </body></html>

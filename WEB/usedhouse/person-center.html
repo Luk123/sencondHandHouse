@@ -176,8 +176,7 @@
             <h4>欢迎您，<span class="name">Alice</span></h4>
             <ul class="nav-list-per">
                 <li><a href="index.html">首页</a></li>
-                <!--<li><a href="house-collect.html">我的收藏</a></li>-->
-                <li><a href="houseCollect.html">我的收藏</a></li>
+                <li><a href="house-collect.html">我的收藏</a></li>
                 <li><a href="house-record.html">购房记录</a></li>
                 <li><a href="house-sell.html">售卖记录</a></li>
                 <li><a href="house-my.html">我的房屋</a></li>
@@ -216,9 +215,13 @@ integralNum"></span>
                 </p>
             </div>
             <div class="p head-pic">
+                <!--<form id="submit_form" action="http://172.16.30.45:8088//fileUpload" method="post"  enctype="multipart/form-data">-->
                 <p>
-                    <a href="javascript:void(0)" class="save-name">选择图片<input type="file" accept="image/*" id="photo"></a>
+                    <a href="javascript:void(0)" class="save-name">选择图片
+                            <input type="file" accept="image/*" id="photo" name="fileName">
+                    </a>
                 </p>
+                <!--</form>-->
                 <p>
                     <img src="sourse/up-pic.png" alt="" width="340" height="340" id="up-pic-big">
                 </p>
@@ -270,10 +273,12 @@ integralNum"></span>
         </div>
     </div>
 </div>
+<footer></footer>
 <script src="sourse/jquery-1.10.2.min.js"></script>
-<script src="sourse/BaseValues.js"></script>
 <script src="sourse/cookie_util.js"></script>
 <script src="sourse/common.js"></script>
+<script src="sourse/BaseValues.js"></script>
+<script src="sourse/timeFormat.js"></script>
 <script>
 	/*修改昵称*/
     $('.save-name-btn').click(function(){
@@ -285,16 +290,20 @@ integralNum"></span>
     /*上传头像*/
     $('#photo').change(function(e){
         var img1 = e.target.files[0];
-        updateUser(null,e.target.files[0],null,null)
         var url = window.url || window.webkitURL;
-         h_pic_src = url.createObjectURL(img1);
+         h_pic_src = url.createObjectURL(img1)
         $('#up-pic-big').attr('src',h_pic_src);
-        $('.bg-gary img').attr('src',h_pic_src);
+        $('.bg-gary img').attr('src',h_pic_src)
+        var formData = new FormData();;
+        formData.append('fileName',this.files[0])
+        fileUpload(formData)
         url.revokeObjectURL(img1);
     })
     $('.h-pic-btn').click(function(){
+        updateUser(null,$('#up-pic-big').attr('src'),null,null)
        if(h_pic_src != null){
-           $('#head-pic').attr('src',h_pic_src);
+//           updateUser(null,$('#up-pic-big').attr('src'),null,null)
+//           $('#head-pic').attr('src',h_pic_src);
        }else{
            alert('没有选择任何图片')
        }
@@ -351,19 +360,41 @@ integralNum"></span>
 
     init();
 
+
     function updateUser(uname,uimg,pwd,contact) {
         $.ajax({
             type:'post',
             url:basePath+'user/updateInfoById',
             data:{
-                'userId':window.userid,
-                'userName':uname,
-                'userPhotoAddr':uimg,
-                'pwd':pwd,
-                'contactWay':contact
+                userId:window.userid,
+                userName:uname,
+                userPhotoAddr:uimg,
+                pwd:pwd,
+                contactWay:contact
             },
+            processData: false,
+            contentType: false,
             success:function(data){
-                window.location.reload()
+                alert('上传成功')
+                console.log(data)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function fileUpload(data){
+        $.ajax({
+            type:'post',
+            url:basePath+'/fileUpload',
+            data:data,
+            async : false,
+            cache : false,
+            contentType : false,
+            processData : false,
+            success:function(data){
+                console.log(data.result)
+                $('#up-pic-big').attr('src',data.result)
             }
             ,error:function (data) {
                 alert('服务器走丢了')

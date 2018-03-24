@@ -143,8 +143,13 @@
             font-weight:bold;
             text-indent:1px
         }
-
-
+        table{
+            width: 100%;
+        }
+        .del-btn{
+            margin-left: 20px;
+            color: indianred;
+        }
     </style>
     <link rel="stylesheet" href="sourse/basic.css">
     <link rel="stylesheet" href="sourse/page.css">
@@ -173,28 +178,6 @@
             <h3>我的收藏</h3>
             <div class="p on">
                 <table cellspacing="0">
-
-                    <tbody><tr>
-                        <td>关注房屋名称</td>
-                        <td>关注ID</td>
-                        <td>关注人名称</td>
-                        <td>关注房屋ID</td>
-                        <td>关注时间</td>
-                        <td>关注人</td>
-                        <td>状态</td>
-                    </tr>
-                    <tr>
-
-                        <td>20170505152209256</td>
-                        <td>郭婷</td>
-                        <td>18513042868</td>
-                        <td>120平米</td>
-                        <td>北京市大兴区22号</td>
-                        <td>中国平安</td>
-                        <td><span class="btn">取消</span></td>
-                    </tr>
-                    </tbody></table>
-
                   <tr>
                         <td>房屋名</td>
                         <td>关注人名</td>
@@ -215,23 +198,6 @@
 <script src="sourse/cookie_util.js"></script>
 <script src="sourse/BaseValues.js"></script>
 <script src="sourse/common.js"></script>
-
-<script>
-    function init(myid){
-        $.ajax({
-            type:'post',
-          url:basePath+"/userFavorite/page",
-
-            data:{
-                'userId':myid
-            },
-            success:function(data){
-                    console.log(data);
-                    getView(data.rows)
-            },
-            error:function(data){
-                console.log(data)
-
 <script src="sourse/timeFormat.js"></script>
 <script src="sourse/page.js"></script>
 <script>
@@ -256,53 +222,11 @@
                 bindEvent(pageCount)
             },
             error:function(){
-
                 alert('服务器走丢了')
             }
         })
     }
 
-    function getView(data){
-        /*
-        * {
-         "total": 2,
-         "rows": [
-         {
-         "defultFlag": null,
-         "favoriteId": 1,
-         "houseId": 1,
-         "houseName": "111",
-         "userId": 1,
-         "userName": "11",
-         "state": "关注",
-         "createTime": 1521561600000
-         },
-         {
-         "defultFlag": null,
-         "favoriteId": 2,
-         "houseId": 111,
-         "houseName": "aaaa",
-         "userId": 1,
-         "userName": "zhangzijuan",
-         "state": "关注",
-         "createTime": 1520697600000
-         }
-         ]
-         }
-
-        $.each(data,function(n,v){
-            console.log(n+'  '+v)
-            $('table').append('<tr> ' +
-            '<td>'+v.houseName+'</td>' +
-            '<td>'+v.favoriteId+'</td> ' +
-            '<td>'+v.userName+'</td>' +
-            ' <td>'+v.houseId+'</td>' +
-            ' <td>'+v.createTime+'</td> ' +
-            ' <td>'+v.userId+'</td> ' +
-            '<td><span>'+v.state+'</span></td> </tr>')
-        })
-    }
-    init(1)
 
     function getView(data){
         $.each(data,function(i,v){
@@ -311,7 +235,7 @@
                 '<td>'+v.userName+'</td> ' +
                 '<td>'+v.state+'</td> ' +
                 '<td>'+timeFormat(v.createTime)+'</td> ' +
-                '<td><a href="house-detail.html??houseId='+v.houseId+'">查看</a>' +
+                '<td><a href="house-detail.html?houseId='+v.houseId+'">查看</a>' +
                 '<a href="javascript:void(0)" class="del-btn" data-id="'+v.favoriteId+'">删除</a></td> ' +
                 '</tr>')
         })

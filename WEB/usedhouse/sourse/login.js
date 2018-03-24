@@ -149,7 +149,7 @@ $(function(){
                 if(tk[1] != null){
                     token = "Basic "+loginUserName+":"+tk[1];
                 }
-                addCookie(userId+"_token",token,2);
+                addCookie(userId+"_token",token,12);
             },
             success:function(result){
                 //token 存cookie，2小时有效时间
