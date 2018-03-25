@@ -79,9 +79,7 @@
              getData(page);
         });
     }
-        function fun() {
 
-        }
     function getData(num){
        /* $.get('url?p='+num,function(data){
            console.log(data); //这里是数据适配
