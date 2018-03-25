@@ -41,7 +41,7 @@
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">审核：</label>
-				<input type="checkbox" id="state" name="state" title="审核通过" checked style="margin-left: -300px;">
+				<input type="checkbox" id="state" name="state" title="审核通过" checked style="margin-left: -260px;">
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label">审核意见：</label>
@@ -69,8 +69,11 @@
 								<option value="审核通过">审核通过</option>
 								<option value="驳回" >驳回</option>
 							</select>
-							<input type="text"  placeholder="帖子标题" class="layui-input" id="postTitle1">
 						</div>
+                        <div class="layui-input-inline">
+                            <input type="text"  placeholder="帖子标题" class="layui-input" id="postTitle1">
+                        </div>
+
 						<input class="layui-btn" value="查询" style="width:90px;" id="query"/>
 					</div>
 				</form>
@@ -98,6 +101,7 @@
 
 </body>
 <script type="text/javascript">
+	var form;
 	$(function(){
 		init();
 	})
@@ -109,7 +113,7 @@
 function init() {
     layui.use(['laypage','form'], function(){
         var laypage = layui.laypage;
-        var form = layui.form;
+         form = layui.form;
         form.render();
         var url = basePath+"/post/page";
         var config = {
@@ -221,6 +225,7 @@ function deleteDic(id) {
                 if(result&&result['success']){
                     $("#postId").val(result.result.postId);
                     $("#postTitle").val(result.result.postTitle);
+                    form.render();
                     $('#addDic').attr('action',basePath+"/post/update");
                     //关闭当前窗口
                     $('#addModel').show();

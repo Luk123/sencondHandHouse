@@ -106,7 +106,8 @@
 
 </body>
 <script type="text/javascript">
-	$(function(){
+    var form;
+    $(function(){
 		init();
 	})
 
@@ -118,7 +119,7 @@
 function init() {
     layui.use(['laypage','form'], function(){
         var laypage = layui.laypage;
-        var form = layui.form;
+        form = layui.form;
         form.render();
         var url = basePath+"/dic/page";
         var config = {
@@ -244,6 +245,7 @@ function deleteDic(id) {
                         $("#state").prop("checked", false);
 					}
                     $("#remark").val(result.result.remark);
+                    form.render();
                     $('#addDic').attr('action',basePath+"dic/update");
                     //关闭当前窗口
                     $('#addModel').show();

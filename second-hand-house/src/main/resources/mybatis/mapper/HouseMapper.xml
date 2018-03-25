@@ -13,7 +13,7 @@
     <result column="district" jdbcType="VARCHAR" property="district" />
     <result column="addr" jdbcType="VARCHAR" property="addr" />
     <result column="build_type" jdbcType="VARCHAR" property="buildType" />
-    <result column="build_year" jdbcType="DATE" property="buildYear" />
+    <result column="build_year" jdbcType="VARCHAR" property="buildYear" />
     <result column="house_type" jdbcType="VARCHAR" property="houseType" />
     <result column="floor" jdbcType="INTEGER" property="floor" />
     <result column="sale_price" jdbcType="DECIMAL" property="salePrice" />
@@ -73,7 +73,7 @@
     values (#{houseId,jdbcType=INTEGER}, #{houseName,jdbcType=VARCHAR}, #{houseHall,jdbcType=VARCHAR},
     #{area,jdbcType=DOUBLE}, #{realArea,jdbcType=DOUBLE}, #{provice,jdbcType=VARCHAR},
     #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR},
-    #{buildType,jdbcType=VARCHAR}, #{buildYear,jdbcType=DATE}, #{houseType,jdbcType=VARCHAR},
+    #{buildType,jdbcType=VARCHAR}, #{buildYear,jdbcType=VARCHAR}, #{houseType,jdbcType=VARCHAR},
     #{floor,jdbcType=INTEGER}, #{salePrice,jdbcType=DECIMAL}, #{direction,jdbcType=VARCHAR},
     #{renovation,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DECIMAL}, #{fristPay,jdbcType=DECIMAL},
     #{monthPay,jdbcType=DECIMAL}, #{ownerId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR},
@@ -219,7 +219,7 @@
         #{buildType,jdbcType=VARCHAR},
       </if>
       <if test="buildYear != null">
-        #{buildYear,jdbcType=DATE},
+        #{buildYear,jdbcType=VARCHAR},
       </if>
       <if test="houseType != null">
         #{houseType,jdbcType=VARCHAR},
@@ -321,7 +321,7 @@
         build_type = #{buildType,jdbcType=VARCHAR},
       </if>
       <if test="buildYear != null">
-        build_year = #{buildYear,jdbcType=DATE},
+        build_year = #{buildYear,jdbcType=VARCHAR},
       </if>
       <if test="houseType != null">
         house_type = #{houseType,jdbcType=VARCHAR},
@@ -404,7 +404,7 @@
     district = #{district,jdbcType=VARCHAR},
     addr = #{addr,jdbcType=VARCHAR},
     build_type = #{buildType,jdbcType=VARCHAR},
-    build_year = #{buildYear,jdbcType=DATE},
+    build_year = #{buildYear,jdbcType=VARCHAR},
     house_type = #{houseType,jdbcType=VARCHAR},
     floor = #{floor,jdbcType=INTEGER},
     sale_price = #{salePrice,jdbcType=DECIMAL},
@@ -504,7 +504,7 @@
         order by area
       </if>
       <if test="createFlag != null and createFlag !=''">
-        order by create_time
+        order by create_time DESC
       </if>
     </where>
   </select>

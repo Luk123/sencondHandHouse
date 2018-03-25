@@ -108,6 +108,7 @@ public class HouseController {
       if(houseId == null) {
           res.setSuccess(false);
           res.setMessage("房屋id不能为空");
+          return res;
       }
       House house =  houseManager.selectByPrimaryKey(houseId).getResult();
       HouseInfo houseinfo = DAOUtils.cloneBean(HouseInfo.class,house);
