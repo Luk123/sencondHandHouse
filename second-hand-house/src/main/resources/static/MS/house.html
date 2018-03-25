@@ -99,7 +99,7 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<input class="layui-btn layui-btn-normal" onclick="submitDic()" value="确认" type="button"/>
+			<input class="layui-btn layui-btn-normal" onclick="submitHouse()" value="确认" type="button"/>
 			<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()" type="button"/>
 		</div>
 	</form>
@@ -107,8 +107,7 @@
 	<fieldset class="layui-elem-field">
 		<legend>房屋管理</legend>
 		<div>
-			<blockquote class="layui-elem-quote">
-				<button type="button" class="layui-btn layui-btn-small"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
+			<blockquote class="layui-elem-quote" style="height: 29px">
 				<form class="layui-form" style="float:right;">
 					<div class="layui-form-item" style="margin:0;">
 						<div class="layui-input-inline">
@@ -145,7 +144,7 @@
 
 </body>
 <script type="text/javascript">
-
+    var form;
     $(function(){
         init();
     })
@@ -157,7 +156,7 @@
     function init() {
         layui.use(['laypage','form'], function(){
             var laypage = layui.laypage;
-            var form = layui.form;
+             form = layui.form;
             form.render();
             var url = basePath+"/house/page/all";
             var config = {
@@ -272,9 +271,10 @@ function parseUserList(res,currPage){
                     $("#realArea").val(result.result.realArea);
                     $("#area").val(result.result.area);
                     $("#floor").val(result.result.floor)
-                    $("#renovation option[value='1']").removeAttr("selected");
                     $("#renovation option[value='"+result.result.renovation+"']").attr("selected",true);
-                    // $("#renovation option:first-child").val(result.result.renovation);
+                    $("#buildType option[value='"+result.result.buildType+"']").attr("selected",true);
+                    $("#houseType option[value='"+result.result.houseType+"']").attr("selected",true);
+                    form.render();
                     $('#addHouse').attr('action',basePath+"house/update");
                     //关闭当前窗口
                     $('#addModel').show();
@@ -290,12 +290,12 @@ function parseUserList(res,currPage){
     /**
      * 提交更改
      */
-    function  submitDic() {
+    function  submitHouse() {
         $.ajax({
             cache: true,
-            type: "GET",
-            url:$('#addDic').attr("action"),
-            data:$('#addDic').serialize(),
+            type: "POST",
+            url:$('#addHouse').attr("action"),
+            data:$('#addHouse').serialize(),
             async: false,
             success: function(result) {
                 if(result&&result['success']){

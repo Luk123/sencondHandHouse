@@ -31,7 +31,7 @@ public class TagController {
      * @throws Exception
      */
     @RequestMapping(value = "/tag/list", method = RequestMethod.GET)
-    public ServiceResult<List<Tag>> list(BsQO qo) throws Exception{
+    public ServiceResult<List<Tag>> list(TagPageQO qo) throws Exception{
         return tagManager.listByQuery(qo);
     }
 

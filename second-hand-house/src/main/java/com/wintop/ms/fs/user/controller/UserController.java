@@ -63,7 +63,7 @@ public class UserController {
      * @throws Exception
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-    public ServiceResult<List<User>> list(BsQO qo) throws Exception{
+    public ServiceResult<List<User>> list(UserPageQO qo) throws Exception{
         return userManager.listByQuery(qo);
     }
 

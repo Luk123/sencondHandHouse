@@ -194,36 +194,36 @@
             <ul class="nav-top">
                 <li class="on">房屋信息编辑</li>
             </ul>
-            <form action="">
+            <form action="http://localhost:8088/house/insert" id="houseForm">
                 <div class="p on">
                     <p>
-                        <span>房屋名称：</span><span><input type="text" class="u-name" id="houseName"></span>
+                        <span>房屋名称：</span><span><input type="text" class="u-name" id="houseName" name="houseName"></span>
                     </p>
                     <p>
-                        <span>房屋户型：</span><span><input type="text" class="u-name" id="houseHall"></span>
+                        <span>房屋户型：</span><span><input type="text" class="u-name" id="houseHall" name="houseHall"></span>
                     </p>
                     <p>
-                        <span>建筑面积：</span><span><input type="text" class="u-name" id="area"></span>
+                        <span>建筑面积：</span><span><input type="text" class="u-name" id="area" name="area"></span>
                     </p>
                     <p>
-                        <span>套内面积：</span><span><input type="text" class="u-name" id="realArea"></span>
+                        <span>套内面积：</span><span><input type="text" class="u-name" id="realArea" name="realArea"></span>
                     </p>
                     <p>
-                        <span>省：</span><span><input type="text" class="u-name" id="provice"></span>
+                        <span>省：</span><span><input type="text" class="u-name" id="provice" name="provice"></span>
                     </p>
                     <p>
-                        <span>市：</span><span><input type="text" class="u-name" id="city"></span>
+                        <span>市：</span><span><input type="text" class="u-name" id="city" name="city"></span>
                     </p>
                     <p>
-                        <span> 县/区：</span><span><input type="text" class="u-name" id="district"></span>
+                        <span> 县/区：</span><span><input type="text" class="u-name" id="district" name="district"></span>
                     </p>
                     <p>
-                        <span>详细地址：</span><span><input type="text" class="u-name" id="addr"></span>
+                        <span>详细地址：</span><span><input type="text" class="u-name" id="addr" name="addr"></span>
                     </p>
                     <p>
                         <span>建筑类型：</span>
                         <span>
-                       <select name="" id="buildType">
+                       <select name="buildType" id="buildType">
                            <option value="塔楼">塔楼</option>
                            <option value="板楼">板楼</option>
                            <option value="板塔结合">板塔结合</option>
@@ -231,12 +231,12 @@
                     </span>
                     </p>
                     <p>
-                        <span>建造年代：</span><span><input type="text" class="u-name" id="buildYear"></span>
+                        <span>建造年代：</span><span><input type="text" class="u-name" id="buildYear" name="buildYear"></span>
                     </p>
                     <p>
                         <span>房屋类型：</span>
                         <span>
-                       <select name="" id="houseType">
+                       <select name="houseType" id="houseType">
                            <option value="普通住宅">普通住宅</option>
                            <option value="公寓">公寓</option>
                            <option value="别墅">别墅</option>
@@ -247,18 +247,18 @@
                     </p>
 
                     <p>
-                        <span>楼层：</span><span><input type="text" class="u-name" id="floor"></span>
+                        <span>楼层：</span><span><input type="text" class="u-name" id="floor" name="floor"></span>
                     </p>
                     <p>
-                        <span>售价：</span><span><input type="text" class="u-name" id="salePrice"></span>
+                        <span>售价：</span><span><input type="text" class="u-name" id="salePrice" name="salePrice"></span>
                     </p>
                     <p>
-                        <span>朝向：</span><span><input type="text" class="u-name" id="direction"></span>
+                        <span>朝向：</span><span><input type="text" class="u-name" id="direction" name="direction"></span>
                     </p>
                     <p>
                         <span>装修：</span>
                         <span>
-                       <select name="" id="renovation">
+                       <select name="renovation" id="renovation">
                            <option value="精装修">精装修</option>
                            <option value="豪华装修">豪华装修</option>
                            <option value="普通装修">普通装修</option>
@@ -267,27 +267,39 @@
                     </span>
                     </p>
                     <p>
-                        <span>单价：</span><span><input type="text" class="u-name" placeholder="万元" id="unitPrice" ></span>
+                        <span>单价：</span><span><input type="text" class="u-name" placeholder="万元" id="unitPrice" name="unitPrice" ></span>
                     </p>
                     <p>
-                        <span>首付：</span><span><input type="text" class="u-name" id="fristPay"  placeholder="万元"></span>
+                        <span>首付：</span><span><input type="text" class="u-name" id="fristPay"  name="fristPay" placeholder="万元"></span>
                     </p>
                     <p>
-                        <span>月供：</span><span><input type="text" class="u-name" id="monthPay" placeholder="万元"></span>
+                        <span>月供：</span><span><input type="text" class="u-name" id="monthPay" name="monthPay" placeholder="万元"></span>
                     </p>
                     <p>
-                        <span>联系方式：</span><span><input type="text" class="u-name"id="contactWay" ></span>
+                        <span>联系方式：</span><span><input type="text" class="u-name"id="contactWay" name="contactWay" ></span>
                     </p>
                     <p>
-                        <span>房屋描述：</span><span><input type="text" class="u-name" id="descb" ></span>
+                        <span>房屋描述：</span><span><input type="text" class="u-name" id="descb" name="descb"></span>
                     </p>
                     <p>
-                        <span>备注：</span><span><input type="text" class="u-name" id="remark"></span>
+                        <span>房屋主图：</span><span><input type="file" class="u-name" id="photo"  name="photo"></span>
+                    </p>
+                    <p>
+                        <span>售卖状态：</span>
+                        <span>
+                       <select name="state" id="state">
+                           <option value="有">未发布</option>
+                           <option value="无">售卖中</option>
+                       </select>
+                    </span>
+                    </p>
+                    <p>
+                        <span>备注：</span><span><input type="text" class="u-name" id="remark" name="remark"></span>
                     </p>
                     <p>
                         <span>有无电梯：</span>
                         <span>
-                       <select name="" id="liftFlag">
+                       <select name="liftFlag" id="liftFlag">
                            <option value="有">有</option>
                            <option value="无">无</option>
                        </select>
@@ -296,7 +308,7 @@
                     <p>
                         <span>有无供暖：</span>
                         <span>
-                       <select name="" id="heat">
+                       <select name="heat" id="heat">
                            <option value="集体供暖">集体供暖</option>
                            <option value="自供暖">自供暖</option>
                            <option value="无供暖">无供暖</option>
@@ -304,11 +316,45 @@
                     </span>
                     </p>
                     <p>
-                        <span>不动产权证号：</span><span><input type="text" class="u-name" id="houseNo"></span>
+                        <span>不动产权证号：</span><span><input type="text" class="u-name" id="houseNo" name="houseNo"></span>
+                    </p>
+                    <p>核心卖点：</p>
+                    <p>
+                        <span>简介：</span><span><textarea type="text" class="u-name" id="abs" name="abs"></textarea></span>
                     </p>
                     <p>
-                        <span>&nbsp;</span><a href="javascript:void(0)" class="save-name btn">发表</a>
+                        <span>户型介绍：</span><span><textarea type="text" class="u-name" id="typeDesc" name="typeDesc"></textarea></span>
                     </p>
+                    <p>
+                        <span>装修描述：</span><span><textarea type="text" class="u-name" id="buildDesc" name="buildDesc"></textarea></span>
+                    </p>
+                    <p>房屋周边：</p>
+                    <p>
+                        <span>小区设施：</span><span><textarea type="text" class="u-name" id="facility" name="facility"></textarea></span>
+                    </p>
+                    <p>
+                        <span>生活配套：</span><span><textarea type="text" class="u-name" id="lifeConf" name="lifeConf"></textarea></span>
+                    </p>
+                    <p>
+                        <span>轨道交通：</span><span><textarea type="text" class="u-name" id="Traffic" name="Traffic"></textarea></span>
+                    </p>
+                    <p>
+                        <span>&nbsp;</span><a onclick="submitHouse()" class="save-name btn">发表</a>
+                    </p>
+                    <p>
+                        <span>核心标签：</span>
+                        <p id="tag">
+                            <label style="height:15px;line-height: 10px;">
+                               <input type="checkbox" value="asfas" id="q" style="width: 15px;height: 15px;margin-left: 4px">111
+                            </label>
+                        </p>
+                    </p>
+                    <input type="hidden" name="ownerId" id="ownerId">
+                    <input type="hidden" name="ownerName" id="ownerName">
+                    <input type="hidden" name="majorAddr" id="majorAddr">
+                    <input type="hidden" name="tagIds" id="tagIds">
+                    <input type="hidden" name="tagNames" id="tagNames">
+                    <input type="hidden" name="houseId" id="houseId">
                 </div>
             </form>
         </div>
@@ -383,5 +429,138 @@
         return $('#'+myid).val()
     }
 
+   function editHouse(){
+        //TODO 解析id
+        var houseId=1
+       $.ajax({
+           cache: true,
+           type: "GET",
+           url:'http://localhost:8088/house/info',
+           data:{"houseId":houseId},
+           async: false,
+           success: function(result) {
+               if(result&&result['success']){
+                  var data=result.result;
+                  $("#houseId").val(data.houseId);
+                   $("#ownerId").val(data.ownerId);
+                   $("#ownerName").val(data.ownerName);
+                   $("#houseName").val(data.houseName);
+                   $("#houseHall").val(data.houseHall);
+                   $("#area").val(data.area);
+                   $("#realArea").val(data.realArea);
+                   $("#provice").val(data.provice);
+                   $("#city").val(data.city);
+                   $("#district").val(data.district);
+                   $("#addr").val(data.addr);
+                   $("#buildType").val(data.buildType);
+                   $("#buildYear").val(data.buildYear);
+                   $("#houseType").val(data.houseType);
+                   $("#floor").val(data.floor);
+                   $("#direction").val(data.direction);
+                   $("#renovation").val(data.renovation);
+                   $("#unitPrice").val(data.unitPrice);
+                   $("#fristPay").val(data.fristPay);
+                   $("#monthPay").val(data.monthPay);
+                   $("#contactWay").val(data.contactWay);
+                   $("#descb").val(data.descb);
+                   $("#state").val(data.state);
+                   $("#majorAddr").val(data.majorAddr);
+                   $("#remark").val(data.remark);
+                   $("#liftFlag").val(data.liftFlag);
+                   $("#heat").val(data.heat);
+                   $("#abs").val(data.abs);
+                   $("#buildDesc").val(data.buildDesc);
+                   $("#typeDesc").val(data.typeDesc);
+                   $("#facility").val(data.facility);
+                   $("#lifeConf").val(data.lifeConf);
+                   $("#Traffic").val(data.Traffic);
+                   $("#tagIds").val(data.tagIds);
+                   $("#tagNames").val(data.tagNames);
+                   $('#addDic').attr('action',basePath+"house/update");
+               }else{
+                   alert('查询失败!');
+               }
+           }
+       });
+   }
+    /**
+     * 提交更改
+     */
+    function  submitHouse() {
+        $("#ownerId").val(window.userid);
+        $("#ownerName").val(window.username);
+        var tagIds=''; var tagNames='';
+        $("input:checked").each(function(){
+            tagIds+=$(this).val()+","
+            tagNames+=$(this).attr("data-value")+","
+        });
+        $("#tagIds").val(tagIds);
+        $("#tagNames").val(tagNames);
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url:$('#houseForm').attr("action"),
+            data:$('#houseForm').serialize(),
+            async: false,
+            success: function(result) {
+                if(result&&result['success']){
+                    alert('保存成功!');
+                }else{
+                    alert('保存失败!');
+                }
+            }
+        });
+    }
+
+    $('#photo').change(function(e){
+        var formData = new FormData();;
+        formData.append('fileName',this.files[0])
+        fileUpload(formData)
+    })
+    function fileUpload(data){
+        $.ajax({
+            type:'post',
+            url:'http://localhost:8088/fileUpload',
+            data:data,
+            async : false,
+            cache : false,
+            contentType : false,
+            processData : false,
+            success:function(data){
+                myimg=data.result;
+                $("#majorAddr").val(myimg);
+                console.log(myimg)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+
+    $(function(){
+        selectAllTag();
+    })
+    function  selectAllTag() {
+        $.ajax({
+            cache: true,
+            type: "GET",
+            url:'http://localhost:8088/tag/list',
+            async: false,
+            success: function(result) {
+                if(result&&result['success']){
+                    var tag='';
+                    for(var i=0;i<result.result.length;i++){
+                        var row=result.result[i];
+                        tag+= '<label style="height:15px;line-height: 10px;">';
+                        tag+= '<input type="checkbox" value="'+row.tagId+'" data-value="'+row.tagName+'" style="width: 15px;height: 15px;margin-left: 4px">'+row.tagName+'';
+                        tag+= '</label>';
+                    }
+                    $("#tag").html(tag);
+                }else{
+                    alert('查询标签失败!');
+                }
+            }
+        });
+    }
 </script>
 </body></html>

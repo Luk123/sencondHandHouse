@@ -19,6 +19,7 @@ import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.service.UserManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -148,31 +149,39 @@ public class HouseController {
      */
     @PostMapping(value = "house/insert",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> insertHouse(InsertHouseDTO dto) throws  Exception{
+        int houseId=(int)(Math.random()*1000000);
+        dto.setHouseId(houseId);
         dto.setCreateTime(new Date());
         dto.setCreateId(dto.getOwnerId());
         dto.setCreateName(dto.getOwnerName());
         House house = DAOUtils.cloneBean(House.class,dto);
         ServiceResult<Integer> res= houseManager.insert(house);
-        Integer houseId = house.getHouseId();
         // star
-        HouseStar hs = DAOUtils.cloneBean(HouseStar.class,dto.getHouseStar());
+        HouseStar hs = DAOUtils.cloneBean(HouseStar.class,dto);
         hs.setHouseId(houseId);
         houseStarManager.insert(hs);
         // conf
-        HouseConf hc = DAOUtils.cloneBean(HouseConf.class,dto.getHouseConf());
+        HouseConf hc = DAOUtils.cloneBean(HouseConf.class,dto);
         hc.setHouseId(houseId);
         houseConfManager.insert(hc);
         // tag
-        if(CollectionUtils.isEmpty(dto.getHouseTag())){
-            return res;
-        }
-        for(HouseTag ht : dto.getHouseTag()){
-            ht.setHouseId(houseId);
-            ht.setHouseName(house.getHouseName());
-            ht.setCreateTime(new Date());
-            ht.setCreateId(dto.getOwnerId());
-            ht.setCreateName(dto.getOwnerName());
-            houseTagManager.insert(ht);
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(dto.getTagIds())){
+            String [] tagIds=dto.getTagIds().split(",");
+            String [] tagNames=dto.getTagNames().split(",");
+            if (tagIds.length==tagNames.length){
+                for (int i=0;i<tagIds.length;i++){
+                    HouseTag ht =new HouseTag();
+                    ht.setHouseId(houseId);
+                    ht.setHouseName(dto.getHouseName());
+                    ht.setCreateTime(new Date());
+                    ht.setCreateId(dto.getOwnerId());
+                    ht.setCreateName(dto.getOwnerName());
+                    ht.setTagId(Integer.parseInt(tagIds[i]));
+                    ht.setTagName(tagNames[i]);
+                    houseTagManager.insert(ht);
+                }
+            }
+
         }
         return res;
     }
@@ -193,18 +202,43 @@ public class HouseController {
      * @return
      */
     @PostMapping(value = "house/update",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> updateHouse(UpdateHouseDTO dto) throws  Exception{
+    public ServiceResult<Integer> updateHouse(InsertHouseDTO dto) throws  Exception{
         House house = DAOUtils.cloneBean(House.class,dto);
         ServiceResult<Integer> res= houseManager.updateSelective(house);
         Integer houseId = house.getHouseId();
-        // star
-        HouseStar hs = DAOUtils.cloneBean(HouseStar.class,dto.getHouseStar());
-        hs.setHouseId(houseId);
-        houseStarManager.updateSelective(hs);
-        // conf
-        HouseConf hc = DAOUtils.cloneBean(HouseConf.class,dto.getHouseConf());
-        hc.setHouseId(houseId);
-        houseConfManager.updateSelective(hc);
+        if(dto.getHouseStar()!=null){
+            // star
+            HouseStar hs = DAOUtils.cloneBean(HouseStar.class,dto);
+            hs.setHouseId(houseId);
+            houseStarManager.insert(hs);
+        }
+       if(dto.getHouseConf()!=null){
+           // conf
+           HouseConf hc = DAOUtils.cloneBean(HouseConf.class,dto);
+           hc.setHouseId(houseId);
+           houseConfManager.insert(hc);
+       }
+        // tag
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(dto.getTagIds())){
+            // delete all house tag
+            houseTagManager.deleteByHouseId(dto.getHouseId());
+            String [] tagIds=dto.getTagIds().split(",");
+            String [] tagNames=dto.getTagNames().split(",");
+            if (tagIds.length==tagNames.length){
+                for (int i=0;i<tagIds.length;i++){
+                    HouseTag ht =new HouseTag();
+                    ht.setHouseId(houseId);
+                    ht.setHouseName(dto.getHouseName());
+                    ht.setCreateTime(new Date());
+                    ht.setCreateId(dto.getOwnerId());
+                    ht.setCreateName(dto.getOwnerName());
+                    ht.setTagId(Integer.parseInt(tagIds[i]));
+                    ht.setTagName(tagNames[i]);
+                    houseTagManager.insert(ht);
+                }
+            }
+
+        }
         return res;
     }
 
