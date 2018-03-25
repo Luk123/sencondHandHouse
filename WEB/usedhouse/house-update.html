@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <style>
+        .left{
+            float: left;
+        }
+        /*用户中心*/
+        .person-bg{
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .person.content{
+            width: 1190px;
+            margin: 15px auto 25px;
+            overflow: hidden;
+        }
+        .person .nav-per{
+            width: 150px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+        .person .nav-per img{
+            display: block; margin: 30px auto 20px;
+        }
+        .person .nav-per h4{
+            font-size: 14px;
+            text-indent: 20px;
+            margin-bottom: 20px;
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .person .nav-list-per li{
+            text-indent: 35px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        .person .nav-list-per li a{
+            display: block;
+        }
+        .person .nav-list-per li:hover a{
+            color: #fff;
+        }
+        .person .nav-list-per li.on a{
+            color: #fff;
+        }
+        .person .nav-list-per li:hover{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .nav-list-per li.on{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .per-cont{
+            min-width: 930px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            margin-left: 30px;
+            padding: 40px 35px;
+        }
+        .person .per-cont h3{
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .person .nav-top{
+            background-color: #f5f5f5;
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid #e7e5e5;
+            margin-top: 23px;
+        }
+        .person .nav-top li{
+            width: 105px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            font-size: 14px;
+            color: #8f8a8b;
+            cursor: pointer;
+        }
+        .person .nav-top li:hover{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .nav-top li.on{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .p{
+            margin: 115px auto;
+            display: none;
+        }
+        .person .p.on{
+            display: block;
+        }
+        .person .per-cont .p p{
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .person .per-cont .head-pic p{
+            text-align: left;
+        }
+        .person .per-cont .p p span:first-child{
+            width: 100px;
+            text-align: right;
+            display: inline-block;
+        }
+        .person .per-cont input{
+            outline: none;
+            border: 1px solid #e0e0e0;
+            line-height: 40px;
+            width: 245px;
+            text-indent: 8px;
+        }
+        .person .head-pic{
+            margin: 20px 0;position: relative;
+        }
+        .head-pic .yulan .bg-gary{
+            width: 560px;
+            height: 317px;
+            position: relative;
+            background-color: rgb(245,245,245);
+        }
+        .head-pic .yulan{
+            position: absolute;
+            z-index: 1;
+            right: 0;
+            top: 45px;
+        }
+        .head-pic .yulan span{
+            line-height: 33px;
+        }
+        .person .save-name{
+            line-height: 40px;
+            width: 245px;
+            text-align: center;
+            display: inline-block;
+            background-color: #1b1f24;
+            color: #fff;
+            font-size: 14px;
+        }
+        .head-pic .save-name{
+            width: 100px;
+            position: relative;
+        }
+        .head-pic input[type='file']{
+            cursor: pointer;
+            opacity: 0;
+            height: 40px;
+            width: 100px;
+            filter: alpha(opacity=0);
+            position: absolute;
+            z-index: 1;
+            left: 0;
+        }
+        textarea, input, select, button {
+            outline: none;
+            width: 245px;
+            height: 40px;
+            border-color: #e0e0e0;
+        }
+    </style>
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+<body>
+<!-- 导航 start -->
+<header></header>
+<!-- 导航 end -->
+
+<div class="person-bg">
+    <div class="content person">
+        <div class="left nav-per">
+            <img src="images/per.jpg" width="80" height="80" id="head-pic">
+            <h4>欢迎您，<span class="name">Alice</span></h4>
+            <ul class="nav-list-per">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="house-collect.html">我的收藏</a></li>
+                <li><a href="house-record.html">购房记录</a></li>
+                <li><a href="house-sell.html">售卖记录</a></li>
+                <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-img.html">房屋图片</a></li>
+            </ul>
+        </div>
+        <div class="left per-cont">
+            <h3>我的房屋信息</h3>
+            <ul class="nav-top">
+                <li class="on">房屋信息编辑</li>
+            </ul>
+            <div class="p on">
+                <p>
+                    <span>房屋名称：</span><span><input type="text" class="u-name" id="houseName"></span>
+                </p>
+                <p>
+                    <span>房屋户型：</span><span><input type="text" class="u-name" id="houseHall"></span>
+                </p>
+                <p>
+                    <span>建筑面积：</span><span><input type="text" class="u-name" id="area"></span>
+                </p>
+                <p>
+                    <span>套内面积：</span><span><input type="text" class="u-name" id="realArea"></span>
+                </p>
+                <p>
+                    <span>省：</span><span><input type="text" class="u-name" id="provice"></span>
+                </p>
+                <p>
+                    <span>市：</span><span><input type="text" class="u-name" id="city"></span>
+                </p>
+                <p>
+                    <span> 县/区：</span><span><input type="text" class="u-name" id="district"></span>
+                </p>
+                <p>
+                    <span>详细地址：</span><span><input type="text" class="u-name" id="addr"></span>
+                </p>
+                <p>
+                    <span>建筑类型：</span>
+                    <span>
+                       <select name="" id="buildType">
+                           <option value="塔楼">塔楼</option>
+                           <option value="板楼">板楼</option>
+                           <option value="板塔结合">板塔结合</option>
+                       </select>
+                    </span>
+                </p>
+                <p>
+                    <span>建造年代：</span><span><input type="text" class="u-name" id="buildYear"></span>
+                </p>
+                <p>
+                    <span>房屋类型：</span>
+                    <span>
+                       <select name="" id="houseType">
+                           <option value="普通住宅">普通住宅</option>
+                           <option value="公寓">公寓</option>
+                           <option value="别墅">别墅</option>
+                           <option value="平房">平房</option>
+                           <option value="其他">其他</option>
+                       </select>
+                    </span>
+                </p>
+
+                <p>
+                    <span>楼层：</span><span><input type="text" class="u-name" id="floor"></span>
+                </p>
+                <p>
+                    <span>售价：</span><span><input type="text" class="u-name" id="salePrice"></span>
+                </p>
+                <p>
+                    <span>朝向：</span><span><input type="text" class="u-name" id="direction"></span>
+                </p>
+                <p>
+                    <span>装修：</span>
+                    <span>
+                       <select name="" id="renovation">
+                           <option value="精装修">精装修</option>
+                           <option value="豪华装修">豪华装修</option>
+                           <option value="普通装修">普通装修</option>
+                           <option value="毛坯">毛坯</option>
+                       </select>
+                    </span>
+                </p>
+                <p>
+                    <span>单价：</span><span><input type="text" class="u-name" placeholder="万元" id="unitPrice" ></span>
+                </p>
+                <p>
+                    <span>首付：</span><span><input type="text" class="u-name" id="fristPay"  placeholder="万元"></span>
+                </p>
+                <p>
+                    <span>月供：</span><span><input type="text" class="u-name" id="monthPay" placeholder="万元"></span>
+                </p>
+                <p>
+                    <span>联系方式：</span><span><input type="text" class="u-name"id="contactWay" ></span>
+                </p>
+                <p>
+                    <span>房屋描述：</span><span><input type="text" class="u-name" id="descb" ></span>
+                </p>
+                <p>
+                    <span>备注：</span><span><input type="text" class="u-name" id="remark"></span>
+                </p>
+                <p>
+                    <span>有无电梯：</span>
+                    <span>
+                       <select name="" id="liftFlag">
+                           <option value="有">有</option>
+                           <option value="无">无</option>
+                       </select>
+                    </span>
+                </p>
+                <p>
+                    <span>有无供暖：</span>
+                    <span>
+                       <select name="" id="heat">
+                           <option value="集体供暖">集体供暖</option>
+                           <option value="自供暖">自供暖</option>
+                           <option value="无供暖">无供暖</option>
+                       </select>
+                    </span>
+                </p>
+
+                <p>
+                    <span>不动产权证号：</span><span><input type="text" class="u-name" id="houseNo"></span>
+                </p>
+                <p>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name btn">发表</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/common.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/timeFormat.js"></script>
+<script>
+	/*修改昵称*/
+    $('.btn').click(function(){
+        insert()
+    })
+    /*
+    * "houseName": "测试房屋", 房屋名称
+     "houseHall": " 3室2厅1厨1卫",  房屋户型
+     "area": 100.0,  建筑面积
+     "realArea": 95.0,   套内面积
+     "provice": "北京市", 省，手填
+     "city": "北京市", 市，手填
+     "district": "大兴区", 县/区，手填
+     "addr": "北环东路101号",  详细地址，手填
+     "buildType": "塔楼", 建筑类型，下拉框，【 塔楼，板楼，板塔结合】
+     "buildYear": 1262707200000,  建造年代
+     "houseType": "公寓", 房屋类型，下拉框，【普通住宅，公寓、别墅、平房、其他】
+     "floor": 1,  楼层
+     "salePrice": 100.00,   售价（万）
+     "direction": "南",  朝向
+     "renovation": "精装修",  装修，下拉框（精装修、豪华装修、普通装修、毛坯）
+     "unitPrice": 1.00,  单价（万元/m2）
+     "fristPay": 30.00, 首付(万）
+     "monthPay": 1.00, 月供(万）
+     "ownerId": 1, 当前用户id
+     "ownerName": "测试用户", 当前用户
+     "contactWay": "123456789", 联系方式
+     "descb": "房屋极好", 房屋描述
+     "state": "售卖中", 状态下拉框（未发布  售卖中）
+     "majorAddr": "C:\\picFile\\1.jpg", 主图片地址（调下面上传接口获取地址）
+     "remark": "", 备注
+
+
+
+     "liftFlag": "无", 有无电梯，下拉框（有，无）
+     "heat": "无供暖", 有无供暖，下拉框（集体供暖，自供暖，无供暖）
+     "houseNo": "156456456456456546", 不动产权证号
+     “houseStar” {  //房屋核心卖点，为一个对象
+     abs： 简介
+     typeDesc ：户型介绍
+     buildDesc ： 装修描述
+     }
+
+
+     “houseConf” {   //房屋周边配套，为一个对象
+     facility ：小区设施
+     lifeConf ：生活配套
+     Traffic ：轨道交通
+     }
+     “houseTag”[   //房屋标签，为一个数组，数组内部为对象（调标签接口见下面）
+     {
+     tagId  ：标签id
+     tagName ：标签名称
+     }
+     ]
+     }	*/
+
+   /* 2.获取标签接口
+    action地址： /tag/list
+    查询参数：无
+    返回参数：
+    {
+        "result": [{
+        "tagId": 1（标签id）,Number
+        "tagName": "近地铁"（标签名）,String
+    }],
+    "pager": null,
+            "success": true,
+            "message": "查询数据成功",
+            "code": ""
+    }*/
+    function insert(){
+        $.ajax({
+            type:'get',
+            url:basePath+'house/insert',
+            data:{
+                ownerId:window.userid,
+                ownerName:window.username,
+                houseName:getid('houseName'),
+                houseHall:getid('houseHall'),
+                area:getid('area'),
+                realArea:getid('realArea'),
+                provice:getid('provice'),
+                city:getid('city'),
+                district:getid('district'),
+                addr:getid('addr'),
+                buildType:getid('buildType'),
+                buildYear:getid('buildYear'),
+                houseType:getid('houseType'),
+                floor:getid('floor'),
+                salePrice:getid('salePrice'),
+                direction:getid('direction'),
+                renovation:getid('renovation'),
+                unitPrice:getid('unitPrice'),
+                fristPay:getid('fristPay'),
+                monthPay:getid('monthPay'),
+                contactWay:getid('contactWay'),
+                descb:getid('descb'),
+                state:getid('state'),
+                majorAddr:getid('majorAddr'),
+                remark:getid('remark'),
+                liftFlag:getid('liftFlag'),
+                heat:getid('heat'),
+                houseNo:getid('houseNo'),
+                houseStar:{
+                    abs: getid('abs'),
+                    buildDesc: getid('buildDesc'),
+                    typeDesc:getid('typeDesc')
+                },
+
+  /*   “houseConf” {   //房屋周边配套，为一个对象
+            facility ：小区设施
+            lifeConf ：生活配套
+            Traffic ：轨道交通
+        }
+     “houseTag”[   //房屋标签，为一个数组，数组内部为对象（调标签接口见下面）
+            {
+                tagId  ：标签id
+        tagName ：标签名称
+    }
+    ]*/
+                houseConf:getid('houseNo'),
+                houseConf:{
+                    facility: getid('facility'),
+                    lifeConf: getid('lifeConf'),
+                    Traffic:getid('Traffic')
+                },
+
+            },
+            success:function(data){
+                console.log(data)
+                getPerMsg(data.result)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function getid(myid) {
+        return $('#'+myid).val()
+    }
+
+</script>
+</body></html>
