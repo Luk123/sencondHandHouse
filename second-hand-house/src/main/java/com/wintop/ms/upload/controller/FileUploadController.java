@@ -95,7 +95,7 @@ public class FileUploadController {
     @ResponseBody
     public ServiceResult<String> fileUpload(@RequestParam("fileName") MultipartFile file){
         ServiceResult<String> result=new ServiceResult<>();
-        if (!file.isEmpty() && file.getSize() != 0) {
+        if (file!=null&&!file.isEmpty() && file.getSize() != 0) {
             // 检查上传的图片的大小和扩展名
             if (!checkFileForSpringUpload(file)) {
                 result.setSuccess(false);
