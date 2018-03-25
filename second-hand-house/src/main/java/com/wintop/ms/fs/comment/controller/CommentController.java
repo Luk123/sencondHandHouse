@@ -6,6 +6,8 @@ import com.wintop.ms.fs.comment.entity.Comment;
 import com.wintop.ms.fs.comment.service.CommentManager;
 import com.wintop.ms.fs.post.entity.Post;
 import com.wintop.ms.fs.post.service.PostManager;
+import com.wintop.ms.fs.user.entity.User;
+import com.wintop.ms.fs.user.service.UserManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,9 @@ public class CommentController {
     @Resource
     private PostManager postManager;
 
+    @Resource
+    private UserManager userManager;
+
     /**
      * 分页
      * @param qo
@@ -49,6 +54,17 @@ public class CommentController {
     @PostMapping(value = "/comment/insert",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> insert(Comment comment) throws  Exception{
         comment.setCreateTime(new Date());
+        if (comment.getCreateId()!=null){
+            User user=userManager.selectByPrimaryKey(comment.getCreateId()).getResult();
+            if (user!=null){
+                comment.setCreateName(user.getUserName());
+                comment.setCreatePhoto(user.getUserPhotoAddr());
+            }else {
+                return new ServiceResult<>(false,"获取不到用户信息");
+            }
+        }else{
+            return new ServiceResult<>(false,"请先登陆！");
+        }
         return commentManager.insert(comment);
     }
 

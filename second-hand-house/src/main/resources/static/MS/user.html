@@ -23,10 +23,28 @@
 		.layui-form-item .layui-form-checkbox{
 			margin-left: -300px;
 		}
+		.layui-form-item .layui-inline{
+			width: 350px;
+			margin: 0 0 5px;
+		}
+		#man+.layui-form-radio{
+			margin-left: -260px;
+		}
+		#birth{
+			margin-bottom: 15px;
+		}
+		#addModel{
+			width: 500px;
+			top: 0;
+			z-index: 999;
+			left: 50%;
+			transform: translateX(-50%);
+			display: none;
+		}
 	</style>
 </head>
 <body>
-<div class="layui-layer layui-layer-page" type="page" style="width: 500px;display: none;left: 50%;transform: translatex(-50%)" id="addModel">
+<div class="layui-layer layui-layer-page" type="page" id="addModel">
 	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
 		<legend>修改用户</legend>
 	</fieldset>
@@ -53,7 +71,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">性别：</label>
 			<div class="layui-input-block">
-				<input type="radio" name="sex" value="男" title="男" >
+				<input type="radio" name="sex" value="男" title="男"  id="man">
 				<input type="radio" name="sex" value="女" title="女">
 			</div>
 		</div>
@@ -70,9 +88,9 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">积分数量（满分5分）:</label>
+			<label class="layui-form-label">积分数量:</label>
 			<div class="layui-input-block">
-				<input type="text" name="integralNum" lay-verify="required" placeholder="积分数量" autocomplete="off" class="layui-input" id="integralNum">
+				<input type="text" name="integralNum" lay-verify="required" placeholder="满分5分" autocomplete="off" class="layui-input" id="integralNum">
 			</div>
 		</div>
 		<div class="layui-form-item layui-form-text">
@@ -82,8 +100,8 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<input class="layui-btn layui-btn-normal" onclick="submitDic()" value="确认"/>
-			<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()"/>
+			<input class="layui-btn layui-btn-normal" onclick="submitDic()" value="确认"  type="button"/>
+			<input class="layui-btn layui-btn-primary" value="取消" onclick="cancel()"  type="button"/>
 		</div>
 	</form>
 </div>
@@ -91,49 +109,21 @@
 	<fieldset class="layui-elem-field">
 		<legend>会员管理</legend>
 		<div>
+			<blockquote class="layui-elem-quote" style="height: 29px">
 			<form class="layui-form" style="float:right;">
 				<div class="layui-form-item" style="margin:0;">
 					<div class="layui-form-item">
-					    <div class="layui-inline">
-							<label class="layui-form-label">用户名</label>
-							<div class="layui-input-block">
-								<input type="text" name="userName1" id="userName1" lay-verify="title" autocomplete="off" placeholder="用户名" class="layui-input"/>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">联系方式</label>
-							<div class="layui-input-block">
-								<input type="text" name="contactWay1" id="contactWay1" lay-verify="phone" autocomplete="off" placeholder="联系方式" class="layui-input"/>
-							</div>
-						</div>
-						<div class="layui-inline">
-							<label class="layui-form-label">身份证号</label>
-							<div class="layui-input-block">
-								<input type="text" name="certNo1" id="certNo1" lay-verify="identity" autocomplete="off" placeholder="身份证号" class="layui-input"/>
-							</div>
-						</div>
-					</div>
-					<div class="layui-form-item">
-						<div class="layui-inline">
-							<label class="layui-form-label">积分数量</label>
-							<div class="layui-input-inline" style="width: 100px;">
-								<input type="text" name="integralNumBegin1" id="integralNumBegin1" placeholder="" autocomplete="off" class="layui-input"/>
-							</div>
-							<div class="layui-form-mid">-</div>
-							<div class="layui-input-inline" style="width: 100px;">
-								<input type="text" name="integralNumEnd1" id="integralNumEnd1" placeholder="" autocomplete="off" class="layui-input"/>
-							</div>
-						</div>
 						<div class="layui-inline">
 							<label class="layui-form-label">账号</label>
 							<div class="layui-input-block">
 								<input type="text" name="account1" id="account1" lay-verify="title" autocomplete="off" placeholder="账号" class="layui-input"/>
 							</div>
 						</div>
-						<button class="layui-btn" style="width:90px;" id="query">查询</button>
+						<button class="layui-btn" style="width:90px;    margin-right: -80px;" id="query">查询</button>
 					</div>
 				</div>
 			</form>
+			</blockquote>
 			<table class="site-table table-hover">
 				<thead>
 				<tr>
@@ -160,6 +150,7 @@
 
 </body>
 <script type="text/javascript">
+    var form;
 $(function(){
 		init();
 	})
@@ -170,10 +161,15 @@ $(function(){
 
 function init() {
 //方法二则直接使用layui-v2.0.2里面的分页功能，没有用到core.js里面的方法
-layui.use(['laypage', 'laydate'],  function(){
+layui.use(['laypage','form', 'laydate'],  function(){
   var laypage = layui.laypage;
   var laydate = layui.laydate;
+    form = layui.form;
+    form.render();
   var url = basePath+"user/page";
+    laydate.render({
+        elem: '#birth' //指定元素
+    });
   // 封装参数
   var config = {
 	  page:1,
@@ -223,10 +219,10 @@ function parseUserList(res,currPage){
 		content += "<td>"+formatDate(o.birth)+"</td>";
         content += "<td>"+o.integralNum+"</td>";
         content += "<td>"+formatDate(o.createTime)+"</td>";
-		content += "<td>" +
-						'<a  class="layui-btn layui-btn-mini" onclick="editDic('+o.userId+')">编辑</a>&nbsp;&nbsp;' +
-						'<a  data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" onclick="updatePWD('+o.userId+')>重置密码</a>' +
-					"</td>";
+		content += "<td>";
+        content +=	'<a  class="layui-btn layui-btn-mini" onclick="editDic('+o.userId+')">编辑</a>&nbsp;&nbsp;';
+        content +=	'<a  data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini" onclick="updatePWD('+o.userId+')">重置密码</a>';
+        content +='</td>';
 		content += "</tr>";
 	});
 	$('#tbody').html(content);

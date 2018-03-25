@@ -97,7 +97,7 @@ public class InsertHouseDTO extends BsData{
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
-    private Date buildYear;
+    private String buildYear;
 
     /**
      * 房屋类型（1普通住宅，2公寓、3别墅、5平房、5其他）
@@ -273,4 +273,50 @@ public class InsertHouseDTO extends BsData{
      * @mbg.generated 2018-03-04 14:18:04
      */
     private List<HouseTag> houseTag;
+
+    /**
+     * 简介
+     *
+     * @mbg.generated 2018-03-04 14:46:25
+     */
+    private String abs;
+
+    /**
+     * 户型介绍
+     *
+     * @mbg.generated 2018-03-04 14:46:25
+     */
+    private String typeDesc;
+
+    /**
+     * 装修描述
+     *
+     * @mbg.generated 2018-03-04 14:46:25
+     */
+    private String buildDesc;
+
+    /**
+     * 小区设施
+     *
+     * @mbg.generated 2018-03-04 14:24:42
+     */
+    private String facility;
+
+    /**
+     * 生活配套
+     *
+     * @mbg.generated 2018-03-04 14:24:42
+     */
+    private String lifeConf;
+
+    /**
+     * 轨道交通
+     *
+     * @mbg.generated 2018-03-04 14:24:42
+     */
+    private String traffic;
+
+    private String tagIds;
+
+    private String tagNames;
  }

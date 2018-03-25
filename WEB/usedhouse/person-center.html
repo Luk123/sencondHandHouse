@@ -162,7 +162,7 @@
             left: 0;
         }
     </style>
-    <link rel="stylesheet" href="sourse/basic.css">
+    <link rel="stylesheet" href="css/basic.css">
 </head>
 <body>
 <!-- 导航 start -->
@@ -172,7 +172,7 @@
 <div class="person-bg">
     <div class="content person">
         <div class="left nav-per">
-            <img src="sourse/per.jpg" width="80" height="80" id="head-pic">
+            <img src="images/per.jpg" width="80" height="80" id="head-pic">
             <h4>欢迎您，<span class="name">Alice</span></h4>
             <ul class="nav-list-per">
                 <li><a href="index.html">首页</a></li>
@@ -180,7 +180,9 @@
                 <li><a href="house-record.html">购房记录</a></li>
                 <li><a href="house-sell.html">售卖记录</a></li>
                 <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-add.html">新增房屋</a></li>
                 <li><a href="house-img.html">房屋图片</a></li>
+                <li><a href="house-addimg.html">房屋图片新增</a></li>
             </ul>
         </div>
         <div class="left per-cont">
@@ -215,11 +217,15 @@ integralNum"></span>
                 </p>
             </div>
             <div class="p head-pic">
+                <!--<form id="submit_form" action="http://172.16.30.45:8088//fileUpload" method="post"  enctype="multipart/form-data">-->
                 <p>
-                    <a href="javascript:void(0)" class="save-name">选择图片<input type="file" accept="image/*" id="photo"></a>
+                    <a href="javascript:void(0)" class="save-name">选择图片
+                            <input type="file" accept="image/*" id="photo" name="fileName">
+                    </a>
                 </p>
+                <!--</form>-->
                 <p>
-                    <img src="sourse/up-pic.png" alt="" width="340" height="340" id="up-pic-big">
+                    <img src="images/up-pic.png" alt="" width="340" height="340" id="up-pic-big">
                 </p>
                 <p>
                     <a href="javascript:void(0)" class="save-name h-pic-btn">保存修改</a>
@@ -227,9 +233,9 @@ integralNum"></span>
                 <div class="yulan">
                     <span>预览</span>
                     <div class="bg-gary">
-                        <img src="sourse/per.jpg" alt="" width="150" height="150" style="position: absolute;top: 70px;left: 50px">
-                        <img src="sourse/per.jpg" alt="" width="100" height="100" style="position: absolute;top: 100px;left: 250px">
-                        <img src="sourse/per.jpg" alt="" width="50" height="50" style="position: absolute;top: 130px;left: 400px">
+                        <img src="images/per.jpg" alt="" width="150" height="150" style="position: absolute;top: 70px;left: 50px">
+                        <img src="images/per.jpg" alt="" width="100" height="100" style="position: absolute;top: 100px;left: 250px">
+                        <img src="images/per.jpg" alt="" width="50" height="50" style="position: absolute;top: 130px;left: 400px">
                     </div>
                 </div>
             </div>
@@ -269,10 +275,12 @@ integralNum"></span>
         </div>
     </div>
 </div>
-<script src="sourse/jquery-1.10.2.min.js"></script>
-<script src="sourse/BaseValues.js"></script>
-<script src="sourse/cookie_util.js"></script>
-<script src="sourse/common.js"></script>
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/common.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/timeFormat.js"></script>
 <script>
 	/*修改昵称*/
     $('.save-name-btn').click(function(){
@@ -284,16 +292,20 @@ integralNum"></span>
     /*上传头像*/
     $('#photo').change(function(e){
         var img1 = e.target.files[0];
-        updateUser(null,e.target.files[0],null,null)
         var url = window.url || window.webkitURL;
-         h_pic_src = url.createObjectURL(img1);
+         h_pic_src = url.createObjectURL(img1)
         $('#up-pic-big').attr('src',h_pic_src);
-        $('.bg-gary img').attr('src',h_pic_src);
+        $('.bg-gary img').attr('src',h_pic_src)
+        var formData = new FormData();;
+        formData.append('fileName',this.files[0])
+        fileUpload(formData)
         url.revokeObjectURL(img1);
     })
     $('.h-pic-btn').click(function(){
+        updateUser(null,$('#up-pic-big').attr('src'),null,null)
        if(h_pic_src != null){
-           $('#head-pic').attr('src',h_pic_src);
+//           updateUser(null,$('#up-pic-big').attr('src'),null,null)
+//           $('#head-pic').attr('src',h_pic_src);
        }else{
            alert('没有选择任何图片')
        }
@@ -350,19 +362,41 @@ integralNum"></span>
 
     init();
 
+
     function updateUser(uname,uimg,pwd,contact) {
         $.ajax({
             type:'post',
             url:basePath+'user/updateInfoById',
             data:{
-                'userId':window.userid,
-                'userName':uname,
-                'userPhotoAddr':uimg,
-                'pwd':pwd,
-                'contactWay':contact
+                userId:window.userid,
+                userName:uname,
+                userPhotoAddr:uimg,
+                pwd:pwd,
+                contactWay:contact
             },
+            processData: false,
+            contentType: false,
             success:function(data){
-                window.location.reload()
+                alert('上传成功')
+                console.log(data)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function fileUpload(data){
+        $.ajax({
+            type:'post',
+            url:basePath+'/fileUpload',
+            data:data,
+            async : false,
+            cache : false,
+            contentType : false,
+            processData : false,
+            success:function(data){
+                console.log(data.result)
+                $('#up-pic-big').attr('src',data.result)
             }
             ,error:function (data) {
                 alert('服务器走丢了')

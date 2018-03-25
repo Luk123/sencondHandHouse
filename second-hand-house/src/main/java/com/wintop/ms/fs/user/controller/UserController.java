@@ -63,7 +63,7 @@ public class UserController {
      * @throws Exception
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-    public ServiceResult<List<User>> list(BsQO qo) throws Exception{
+    public ServiceResult<List<User>> list(UserPageQO qo) throws Exception{
         return userManager.listByQuery(qo);
     }
 
@@ -105,7 +105,12 @@ public class UserController {
      */
     @PostMapping(value = "user/updateInfoById",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> updateInfoById(User user){
-        return userManager.updateSelective(user);
+        if(user.getUserId()!=null){
+            return userManager.updateSelective(user);
+        }else {
+            return new ServiceResult<>(false," 请先登陆");
+        }
+
     }
     /**
      * 用户积分调整

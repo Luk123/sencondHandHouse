@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋详情</title>
-    <link href="sourse/basic.css" rel="stylesheet">
+    <link href="css/basic.css" rel="stylesheet">
     <style>
         .l{
             float: left;
@@ -165,11 +165,11 @@
             width: 50px;
             cursor: pointer;
             height: 40px;
-            background: url(sourse/nolike.jpg) no-repeat center 0;
+            background: url(images/nolike.jpg) no-repeat center 0;
             background-size: cover;
         }
         .housebox .m span.collect-icon.on{
-            background-image:  url(sourse/like.jpg);
+            background-image:  url(images/like.jpg);
         }
         .record-list li{
             line-height: 40px;
@@ -200,12 +200,12 @@
 <!-- 底部 end -->
 </body>
 
-<script src="sourse/jquery-1.10.2.min.js"></script>
-<script src="sourse/cookie_util.js"></script>
-<script src="sourse/common.js"></script>
-<script src="sourse/SuperSlide.js"></script>
-<script src="sourse/BaseValues.js"></script>
-<script src="sourse/timeFormat.js"></script>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/common.js"></script>
+<script src="js/SuperSlide.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/timeFormat.js"></script>
 <script>
     function init(myid){
         $.ajax({
@@ -266,7 +266,7 @@
             '<table class="h-msg"> ' +
             '<tr>' +
             ' <td><span>房屋位置：</span><span>'+data.provice+data.city+data.district+'</span></td>' +
-            ' <td><span>建造年份：</span><span>'+timeFormat(data.buildYear)+'</span></td> ' +
+            ' <td><span>建造年份：</span><span>'+data.buildYear+'</span></td> ' +
             '<td><span>月供：</span><span>'+data.monthPay+'</span></td> </tr> ' +
             '<tr>' +
             ' <td><span>房屋地址：</span><span>'+data.addr+'</span></td> ' +
@@ -289,7 +289,7 @@
             '<p class="t2">核心卖点</p> ' +
             '<span style="font-size:14px;">小区名称：'+data.houseStar.houseName+'<br>' +
             '装修程度：'+data.houseStar.buildDesc+'<br>' +
-            '年代：'+timeFormat(data.buildYear)+'<br>' +
+            '年代：'+data.buildYear+'<br>' +
             '朝向：'+data.direction+'<br>' +
             '房屋介绍：'+data.houseStar.abs+'<br>' +
             '户型介绍：'+data.houseStar.typeDesc+'<br>' +
