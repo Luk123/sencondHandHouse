@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>个人中心</title>
+    <style>
+        .left{
+            float: left;
+        }
+        /*用户中心*/
+        .person-bg{
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .person.content{
+            width: 1190px;
+            margin: 15px auto 25px;
+            overflow: hidden;
+        }
+        .person .nav-per{
+            width: 150px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+        .person .nav-per img{
+            display: block; margin: 30px auto 20px;
+        }
+        .person .nav-per h4{
+            font-size: 14px;
+            text-indent: 20px;
+            margin-bottom: 20px;
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .person .nav-list-per li{
+            text-indent: 35px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        .person .nav-list-per li a{
+            display: block;
+        }
+        .person .nav-list-per li:hover a{
+            color: #fff;
+        }
+        .person .nav-list-per li.on a{
+            color: #fff;
+        }
+        .person .nav-list-per li:hover{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .nav-list-per li.on{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .per-cont{
+            min-width: 930px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            margin-left: 30px;
+            padding: 40px 35px;
+        }
+        .person .per-cont h3{
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .person .nav-top{
+            background-color: #f5f5f5;
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid #e7e5e5;
+            margin-top: 23px;
+        }
+        .person .nav-top li{
+            width: 105px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            font-size: 14px;
+            color: #8f8a8b;
+            cursor: pointer;
+        }
+        .person .nav-top li:hover{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .nav-top li.on{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .p{
+            margin: 115px auto;
+            display: none;
+        }
+        .person .p.on{
+            display: block;
+        }
+        .person .per-cont .p p{
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .person .per-cont .head-pic p{
+            text-align: left;
+        }
+        .person .per-cont .p p span:first-child{
+            width: 94px;
+            text-align: right;
+            display: inline-block;
+        }
+        .person .per-cont input{
+            outline: none;
+            border: 1px solid #e0e0e0;
+            line-height: 40px;
+            width: 245px;
+            text-indent: 8px;
+        }
+        .person .head-pic{
+            margin: 20px 0;position: relative;
+        }
+        .head-pic .yulan .bg-gary{
+            width: 560px;
+            height: 317px;
+            position: relative;
+            background-color: rgb(245,245,245);
+        }
+        .head-pic .yulan{
+            position: absolute;
+            z-index: 1;
+            right: 0;
+            top: 45px;
+        }
+        .head-pic .yulan span{
+            line-height: 33px;
+        }
+        .person .save-name{
+            line-height: 40px;
+            width: 245px;
+            text-align: center;
+            display: inline-block;
+            background-color: #1b1f24;
+            color: #fff;
+            font-size: 14px;
+        }
+        .head-pic .save-name{
+            width: 100px;
+            position: relative;
+        }
+        .head-pic input[type='file']{
+            cursor: pointer;
+            opacity: 0;
+            height: 40px;
+            width: 100px;
+            filter: alpha(opacity=0);
+            position: absolute;
+            z-index: 1;
+            left: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+<body>
+<!-- 导航 start -->
+<header></header>
+<!-- 导航 end -->
+
+<div class="person-bg">
+    <div class="content person">
+        <div class="left nav-per">
+            <img src="images/per.jpg" width="80" height="80" id="head-pic">
+            <h4>欢迎您，<span class="name">Alice</span></h4>
+            <ul class="nav-list-per">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="house-collect.html">我的收藏</a></li>
+                <li><a href="house-record.html">购房记录</a></li>
+                <li><a href="house-sell.html">售卖记录</a></li>
+                <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-add.html">新增房屋</a></li>
+                <li><a href="house-img.html">房屋图片</a></li>
+                <li><a href="house-addimg.html">房屋图片新增</a></li>
+            </ul>
+        </div>
+        <div class="left per-cont">
+            <h3>我的账户信息</h3>
+            <ul class="nav-top">
+                <li class="on">基本信息</li>
+                <li >上传头像</li>
+                <li class="">修改昵称</li>
+                <li class="">修改密码</li>
+                <li class="">修改联系方式</li>
+            </ul>
+            <div class="p on">
+                <p>
+                    <span>创建时间：</span><span><input type="text" readonly="readonly" value="2018-02-18" id="
+createTime"></span>
+                <p>
+                    <span>身份证号：</span><span><input type="text" readonly="readonly" value="1424199405118888" id="ucerno"></span>
+                </p>
+                <p>
+                    <span>性别：</span><span><input type="text" readonly="readonly" value="女" id="sex"></span>
+                </p>
+                <p>
+                    <span>地址：</span><span><input type="text" readonly="readonly" value="山西太原" id="area"></span>
+                </p>
+                <p>
+                    <span>出生日期：</span><span><input type="text" readonly="readonly" value="1994-05-11" id="
+birth"></span>
+                </p>
+                <p>
+                    <span>积分信息：</span><span><input type="text" readonly="readonly" value="1994" id="
+integralNum"></span>
+                </p>
+            </div>
+            <div class="p head-pic">
+                <!--<form id="submit_form" action="http://172.16.30.45:8088//fileUpload" method="post"  enctype="multipart/form-data">-->
+                <p>
+                    <a href="javascript:void(0)" class="save-name">选择图片
+                            <input type="file" accept="image/*" id="photo" name="fileName">
+                    </a>
+                </p>
+                <!--</form>-->
+                <p>
+                    <img src="images/up-pic.png" alt="" width="340" height="340" id="up-pic-big">
+                </p>
+                <p>
+                    <a href="javascript:void(0)" class="save-name h-pic-btn">保存修改</a>
+                </p>
+                <div class="yulan">
+                    <span>预览</span>
+                    <div class="bg-gary">
+                        <img src="images/per.jpg" alt="" width="150" height="150" style="position: absolute;top: 70px;left: 50px">
+                        <img src="images/per.jpg" alt="" width="100" height="100" style="position: absolute;top: 100px;left: 250px">
+                        <img src="images/per.jpg" alt="" width="50" height="50" style="position: absolute;top: 130px;left: 400px">
+                    </div>
+                </div>
+            </div>
+            <div class="p">
+                <p>
+                    <span>设置昵称：</span><span><input type="text" class="u-name" id="uname"></span>
+                </p>
+                <p>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name save-name-btn">保存修改</a>
+                </p>
+            </div>
+            <div class="p">
+                <p>
+                    <span>输入旧密码：</span><span><input type="text" id="opwd"></span>
+                </p>
+                <p>
+                    <span>设置新密码：</span><span><input type="text" id="npwd"></span>
+                </p>
+                <p>
+                    <span>确认新密码：</span><span><input type="text" id="npwd2"></span>
+                </p>
+                <p>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name save-pwd-btn">保存修改</a>
+                </p>
+            </div>
+            <div class="p">
+                <p>
+                    <span>旧联系方式：</span><span><input type="text" id="ocal"></span>
+                </p>
+                <p>
+                    <span>新联系方式：</span><span><input type="text" id="ncall"></span>
+                </p>
+                <p>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save-name save-call-btn">保存修改</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/common.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/timeFormat.js"></script>
+<script>
+	/*修改昵称*/
+    $('.save-name-btn').click(function(){
+       $('.name').html( $('.u-name').val())
+        updateUser($('.u-name').val())
+    })
+
+	var h_pic_src;
+    /*上传头像*/
+    $('#photo').change(function(e){
+        var img1 = e.target.files[0];
+        var url = window.url || window.webkitURL;
+         h_pic_src = url.createObjectURL(img1)
+        $('#up-pic-big').attr('src',h_pic_src);
+        $('.bg-gary img').attr('src',h_pic_src)
+        var formData = new FormData();;
+        formData.append('fileName',this.files[0])
+        fileUpload(formData)
+        url.revokeObjectURL(img1);
+    })
+    $('.h-pic-btn').click(function(){
+        updateUser(null,$('#up-pic-big').attr('src'),null,null)
+       if(h_pic_src != null){
+//           updateUser(null,$('#up-pic-big').attr('src'),null,null)
+//           $('#head-pic').attr('src',h_pic_src);
+       }else{
+           alert('没有选择任何图片')
+       }
+    })
+    $('.nav-top li').click(function(){
+        $(this).addClass('on').siblings().removeClass('on');
+        $('.p').removeClass('on')
+        $('.p').eq($(this).index()).addClass('on')
+    })
+
+    $('.save-pwd-btn').click(function(){
+
+        if(getid('npwd').val()==getid('npwd2').val()){
+            updateUser(null,null,getid('npwd2').val(),null)
+        }else{
+            alert('两次输入不一致')
+        }
+    })
+
+    $('.save-call-btn').click(function(){
+        updateUser(null,null,null,getid('ncall').val())
+    })
+
+    function init(){
+        $.ajax({
+            type:'get',
+            url:basePath+'user/getUserInfoById',
+            data:{
+                'userId':window.userid
+            },
+            success:function(data){
+                console.log(data)
+                getPerMsg(data.result)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function getPerMsg(data) {
+        $('.name').html(data.userName)
+        getid('ucerno').val(data.certNo)
+        getid('sex').val(data.sex)
+        getid('birth').val(data.birth)
+        getid('area').val(data.addr)
+        getid('ocall').val(data.contactWay)
+        getid('integralNum').val(data.integralNum)
+        getid('createTime').val(data.createTime)
+        getid('head-pic').attr('src',data.userPhotoAddr)
+    }
+    function getid(myid) {
+        return $('#'+myid)
+    }
+
+    init();
+
+
+    function updateUser(uname,uimg,pwd,contact) {
+        $.ajax({
+            type:'post',
+            url:basePath+'user/updateInfoById',
+            data:{
+                userId:window.userid,
+                userName:uname,
+                userPhotoAddr:uimg,
+                pwd:pwd,
+                contactWay:contact
+            },
+            processData: false,
+            contentType: false,
+            success:function(data){
+                alert('上传成功')
+                console.log(data)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function fileUpload(data){
+        $.ajax({
+            type:'post',
+            url:basePath+'/fileUpload',
+            data:data,
+            async : false,
+            cache : false,
+            contentType : false,
+            processData : false,
+            success:function(data){
+                console.log(data.result)
+                $('#up-pic-big').attr('src',data.result)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+</script>
+</body></html>

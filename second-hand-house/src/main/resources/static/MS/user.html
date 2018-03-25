@@ -241,10 +241,10 @@ function updatePWD(id) {
         yes: function (index, layero) {
             $.ajax({
                 cache: true,
-                type: "GET",
+                type: "POST",
                 url:basePath+"/user/updateInfoById",
                 data:{
-                "dicId":id,
+                "userId":id,
                 "pwd":123456
                 },
                 async: false,
@@ -253,7 +253,7 @@ function updatePWD(id) {
                         //关闭当前窗口
                         layer.closeAll();
                         // 弹提示
-                        // alert('重置成功!');
+                        alert('重置成功!');
                     }else{
                         alert('重置失败!');
                     }

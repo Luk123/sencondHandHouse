@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>订单记录</title>
+    <style>
+        .left{
+            float: left;
+        }
+        /*用户中心*/
+        .person-bg{
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .person.content{
+            width: 1190px;
+            margin: 15px auto 25px;
+            overflow: hidden;
+        }
+        .person .nav-per{
+            width: 150px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+        .person .nav-per img{
+            display: block; margin: 30px auto 20px;
+        }
+        .person .nav-per h4{
+            font-size: 14px;
+            text-indent: 20px;
+            margin-bottom: 20px;
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .person .nav-list-per li{
+            text-indent: 35px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        .person .nav-list-per li a{
+            display: block;
+        }
+        .person .nav-list-per li:hover a{
+            color: #fff;
+        }
+        .person .nav-list-per li.on a{
+            color: #fff;
+        }
+        .person .nav-list-per li:hover{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .nav-list-per li.on{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .per-cont{
+            min-width: 930px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            margin-left: 30px;
+            padding: 40px 35px;
+        }
+        .person .per-cont h3{
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .person .nav-top{
+            background-color: #f5f5f5;
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid #e7e5e5;
+            margin-top: 23px;
+        }
+        .person .nav-top li{
+            width: 105px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            font-size: 14px;
+            color: #8f8a8b;
+            cursor: pointer;
+        }
+        .person .nav-top li:hover{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .nav-top li.on{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .p{
+            margin: 115px auto;
+            display: none;
+        }
+        .person .p.on{
+            display: block;
+        }
+        .person .per-cont .p p{
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .person .per-cont .head-pic p{
+            text-align: left;
+        }
+        .person .per-cont .p p span:first-child{
+            width: 94px;
+            text-align: right;
+            display: inline-block;
+        }
+        .person .per-cont input{
+            outline: none;
+            border: 1px solid #e0e0e0;
+            line-height: 40px;
+            width: 245px;
+            text-indent: 8px;
+        }
+        .head-pic .yulan span{
+            line-height: 33px;
+        }
+        .user-info .p{
+            margin:26px;
+        }
+        .user-info table td{
+            font-size: 12px;
+            line-height: 35px;
+            color: #323232;
+            padding:7px 10px 0 14px;
+            border-top: 1px solid #f5f5f5
+        }
+        .user-info table td:last-child{
+            cursor: pointer;
+        }
+        .user-info table tr:first-child td{
+            border-top:none;
+            color: #8f8a8b;
+            line-height:45px;
+            font-weight:bold;
+            text-indent:1px
+        }
+        #photo{
+            position: absolute;
+            top:0;
+           left:0;
+            width: 30px;
+            height: 16px;
+            opacity: 0;
+        }
+        .add-btn{
+            position: relative;
+        }
+        textarea, input, select, button {
+            outline: none;
+            width: 245px;
+            height: 40px;
+            border-color: #e0e0e0;
+        }
+        .mask{
+            width: 245px;
+            padding: 20px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: 100;
+            transform: translate(-50%);
+            background: #fff;
+            box-shadow: 0 0 10px #ccc;
+            display: none;
+        }
+        .sure-imgtyoe{
+            display: block;
+            width: 245px;
+            color: #fff;
+            background: #000;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 111;
+        }
+    </style>
+    <link rel="stylesheet" href="css/basic.css">
+    <link rel="stylesheet" href="css/page.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+
+<!--头部导航-->
+<header></header>
+
+<div class="person-bg">
+    <div class="content person">
+        <div class="left nav-per">
+            <img src="images/per.jpg" width="80" height="80" id="head-pic">
+            <h4>欢迎您，<span class="name">Alice</span></h4>
+            <ul class="nav-list-per">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="house-collect.html">我的收藏</a></li>
+                <li><a href="house-record.html">购房记录</a></li>
+                <li><a href="house-sell.html">售卖记录</a></li>
+                <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-add.html">新增房屋</a></li>
+                <li><a href="house-img.html">房屋图片</a></li>
+                <li><a href="house-addimg.html">房屋图片新增</a></li>
+            </ul>
+        </div>
+        <div class="left per-cont user-info">
+            <h3>我的订单</h3>
+            <ul class="nav-top">
+                <li class="on">全部订单</li>
+            </ul>
+            <div class="p on">
+                <table cellspacing="0" class="allmsg">
+                    <thead>
+                    <tr>
+                        <td>房屋名称</td>
+                        <td>创建人名称</td>
+                        <td>图片地址</td>
+                        <td>图片类型</td>
+                        <td colspan="2">操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mask">
+                <p style="font-size: 20px;margin-bottom: 20px">请选择图片类型：</p>
+                <select name="" id="imgType">
+                    <option value="室内图">室内图</option>
+                    <option value="户型图">户型图</option>
+                    <option value="环境图">环境图</option>
+                    <option value="周边地图">周边地图</option>
+                </select>
+                <a href="javascript:void(0)" class="sure-imgtyoe">确定</a>
+            </div>
+            <div class="ts-page"></div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/common.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/timeFormat.js"></script>
+<script>
+    var page;
+    var houseId,houseName;
+    function init(page,pageSize) {
+        $.ajax({
+            type:'get',
+            url:basePath+'/housePhoto/pageall/houseId',
+            data:{
+                userId:window.userid,
+                page:page,
+                pageSize:pageSize
+            },
+            success:function (data) {
+                console.log(data)
+                view(data.rows);
+                page=Math.ceil(data.total/pageSize);
+                inserHtml(page,1);
+                bindEvent(page)
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    }
+
+
+    function fileUpload(data){
+        $.ajax({
+            type:'post',
+            url:basePath+'/fileUpload',
+            data:data,
+            async : false,
+            cache : false,
+            contentType : false,
+            processData : false,
+            success:function(data){
+                myimg=data.result;
+                $('.img_').html(data.result)
+                console.log(myimg)
+                $('.mask').show();
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function view(data) {
+        $('tbody').html('');
+        $.each(data,function(i,v){
+            $('.allmsg tbody').append(' <tr data-housePhotoId="'+ v.housePhotoId+'"> ' +
+            '<td>'+ v.houseName+'</td> ' +
+            '<td>'+ v.createName+'</td>' +
+            '<td class="img_"></td>' +
+            '<td class="imgtype_"></td>' +
+            '<td><a href="javascript:void(0)" class="add-btn del-btn" data-houseId="'+v.houseId+'" data-createId="'+ v.createId+'"> ' +
+            '<input type="file" accept="image/*" id="photo" name="fileName" data-houseId="'+v.houseId+'"' +
+                    ' data-createId="'+ v.createId+'" data-houseName="'+ v.houseName+'">添加图片</a>' +
+            '</td> ' +
+            '</tr>')
+        })
+        $('#photo').change(function(e){
+           houseId=$(this).attr('data-houseId')
+            houseName=$(this).attr('data-houseName')
+            var formData = new FormData();
+            formData.append('fileName',this.files[0])
+            fileUpload(formData)
+        })
+    }
+
+    $(function(){
+        init(1,5);
+    });
+    $('.sure-imgtyoe').click(function () {
+        $('.imgtype_').html($('#imgType').val());
+        add($('#imgType').val())
+    })
+    function add(type){
+        /*上传接口*/
+        console.log(window.userid+'   '+window.username+'    '+houseId+'   '+myimg+'   '+type+' '+houseName)
+        $.ajax({
+            type:'post',
+            url:basePath+'housePhoto/insert',
+            data:{
+                houseId: houseId,
+                createId:window.userid,
+                createName:window.username,
+                photoAddr:myimg,
+                Type:type,
+                houseName:houseName
+            },
+            success:function (data) {
+                console.log(data)
+                $('.mask').hide();
+                alert('添加图片成功')
+                window.location.href='house-img.html'
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function inserHtml(page,current){
+        var obj = $(".ts-page");
+        obj.empty();
+        if(current > 1){
+            obj.append('<span class="tspage-start">首页</span>');
+            obj.append('<span class="tspage-before">上一页</span>');
+        }else{
+            obj.remove('.tspage-start');
+            obj.append('<span class="tspage-before disable">上一页</span>');
+        }
+        if(current>3 && current <= page && page>5){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        var start = current-2, end= current+2; //中间显示5个
+        // var start = current-2, end= current+2; //中间显示5个
+        if(start >1 && current < 4||current == 1){
+            end++;
+        }
+        if(current > page-2 && current <= page){
+            start--;
+        }
+        for(;start<=end;start++){
+            if(start<=page && start >=1){
+                if(start != current){
+                    obj.append('<span class="page">'+start+'</span>');
+                }else{
+                    obj.append('<span class="page on">'+start+'</span>');
+                }
+            }
+        }
+        if(current+2<page && current >=1 && page>4){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        if(current<page){
+            obj.append('<span class="tspage-after">下一页</span>');
+            obj.append('<span class="tspage-end">尾页</span>');
+        }else{
+            obj.remove('.tspage-end');
+            obj.append('<span class="tspage-after disable">下一页</span>');
+        }
+    }
+    function bindEvent(page){
+        var obj = $(".ts-page");
+        obj.on('click','.page',function(){
+            var currentPage = parseInt($(this).text());
+            inserHtml(currentPage,page);
+            inserHtml(page,currentPage);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(currentPage);
+        });
+        obj.on('click','.tspage-before',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage>1){
+                inserHtml(page,currentPage-1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage-1);
+            }
+
+        });
+        obj.on('click','.tspage-after',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage<page){
+                inserHtml(page,currentPage+1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage+1);
+            }
+        });
+        obj.on('click','.tspage-start',function(){
+            inserHtml(page,1);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(1);
+        });
+        obj.on('click','.tspage-end',function(){
+            inserHtml(page,page);
+
+            //获取后台传来数据的ajax函数+数据适配
+            getData(page);
+        });
+    }
+    function getData(num){
+        $.ajax({
+            type:'get',
+            url:basePath+'/housePhoto/pageall/houseId',
+            data:{
+                userId:window.userid,
+                page:num,
+                pageSize:5
+            },
+            success:function (data) {
+                console.log(data)
+                view(data.rows);
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    }
+</script>
+</body></html>

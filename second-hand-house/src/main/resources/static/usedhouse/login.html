@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>二手房</title>
+    <link href="css/basic.css" rel="stylesheet"/>
+    <style>
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }
+        .myhide{
+            background-color: rgba(0,0,0,.5);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top:0;
+            bottom:0;
+            left: 0;
+            right:0;
+        }
+        .loginDiv{
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translatex(-50%);
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px 40px;
+            width: 425px;
+            height: 320px;
+            box-sizing: border-box;
+            z-index: 10;
+            display: none;
+        }
+        .myclose{
+            position: absolute;
+            font-size: 30px;
+            right: 15px;
+            top: 3px;
+            cursor: pointer;
+            color: #e0e0e0;
+            font-style: normal;
+        }
+        .mylogo{
+            display: block;
+            margin: 20px auto;
+        }
+        .loginDiv p{
+            font-size: 18px;
+            color: #323232;
+            line-height: 45px;
+
+            width: 320px;
+            height: 45px;
+            margin: 18px auto 0;
+        }
+        .loginDiv p input{
+            display: block;
+            float: left;
+            width: 320px;
+            height: 45px;
+            outline: none;
+            border: 1px solid #e0e0e0;
+            line-height: 45px;
+            font-size: 19px;
+            color: #222;
+            text-indent: 10px;
+        }
+        .loginDiv p .btn{
+            display: block;
+            color: #fff;
+            background-color: #fdc915;
+            border-radius: 5px;
+            text-align: center;
+            height: 45px;
+            line-height: 45px;
+            font-size: 19px;
+        }
+        .login_p{
+            margin: 50px auto 0;
+            height: 25px;
+            line-height: 25px;
+        }
+        .login_p span{
+            text-align: left;
+        }
+        .login_p span.right{
+            color: #999;
+            cursor: pointer;width: auto;
+        }
+        .login_p span.zc_link{
+            color: red;
+        }
+        .zc{
+            top: 200px;
+            /*height: 426px;*/
+            height: 550px;
+        }
+        .zhuce .fuwu {
+            color: #999;
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        #code_input {
+            float: left;
+            width: 180px;
+        }
+        .login_link{
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            color: #999;
+        }
+        #v_container canvas{
+            width: 140px;
+            height: 45px;
+        }
+    </style>
+</head>
+ <body>
+     <div class="myhide">
+             <div class="loginDiv lg">
+                 <span class="myclose ">&times;</span>
+                 <p class="login_p"><span class="left">用户登录</span><span class="right"><span>还没有账号？</span><span class="zc_link">马上注册</span></span></p>
+                 <p><input type="text" class="uname" placeholder="账号" id="uname_l"/></p>
+                 <p><input type="password" class="upwd" placeholder="密码" id="upwd_l"/></p>
+                 <p><a href="javascript:void(0)" class="btn" id="login_button">登录</a></p>
+             </div>
+         <div class="loginDiv zc">
+                 <div class="zhuce">
+                     <span class="myclose ">&times;</span>
+                     <p><input type="text" placeholder="请输入账号" id="uname"/></p>
+                     <p><input type="text" placeholder="请输入身份证" id="uid"/></p>
+                     <p><input type="text" placeholder="请输入真实姓名" id="ulastname"/></p>
+                     <p><input type="text" placeholder="6-16位密码，区分大小写" id="upwd"/></p>
+                     <p><input type="text" placeholder="手机号" maxlength="11" id="ucall"/></p>
+                     <p class="box_yzm">
+                         <input type="text" id="code_input" value="" placeholder="请输入验证码">
+                         <span  id="v_container" style="width: 138px;height: 45px;float: left;overflow: hidden;margin-left: -1px;display: block"><canvas id="verifyCanvas" width="138" height="45" style="cursor: pointer;">您的浏览器版本不支持canvas</canvas></span>
+                     </p>
+                     <p><a href="javascript:void(0)" class="btn" id="regist_button">立即注册</a></p>
+                     <p class="fuwu"> 我同意《服务条款》和《个人信息利用政策》</p>
+                     <a href="javascript:void(0)" class="login_link zc_link">去登录 	&gt;	&gt;</a>
+                 </div>
+         </div>
+     </div>
+ </body>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/gVerify.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/GB2260.js"></script>
+<script src="js/IDValidator.js"></script>
+<script src="js/login.js"></script>
+<script>
+        $('.myclose').click(function(){
+            $(this).parents('.myhide').hide();
+            window.history.go(-1);
+        });
+
+        $('.zc_link').click(function(){
+            $(this).parents('.loginDiv').hide().siblings().show()
+        })
+       function  init() {
+           var code=window.location.search.slice(1).split('=')[1];
+           if(!Number(code)){
+               $('.lg').show()
+           }else{
+               $('.zc').show()
+           }
+       }
+init()
+</script>
+</html>

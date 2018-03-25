@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>房产问答</title>
+<link rel="stylesheet" rev="stylesheet" href="css/Qa_Web_Detail.css" type="text/css">
+<style>
+    .del-btn{
+        position: absolute;
+        right: 0;
+        top: 20px;
+        display: block;
+        color: #fff;
+        background-color: #2b3036;
+        text-align: center;
+        width: 60px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<!-- 导航 start -->
+<header></header>
+<!-- 导航 end -->
+    <div class="qa-header-wrap">
+    <div class="qa-header-mod" id="qaHeaderModule" >
+        <div class="qa-header">
+               <a class="light-btn n-ask-btn" href="house-pushmsg.html">
+                    <i class="iconfont que-icon"></i><span>我要提问</span>
+               </a>
+
+        </div>
+    </div>
+</div>
+<div class="content clearfix">
+    <div class="main-mod"><div class="main-mod-item"><div class="comp-BestAnswer" id="BestAnswer">
+    <div class="question no-content-question">
+        <h1 class="qies">【清缘里】男朋友是本地人，我是外地人，买房子的时候可以写在两个人名下吗？</h1>
+        <div class="cell-footer">
+            <span>
+                <a class="pic-wrap pic-wrap-broker" href="javascript:void(0)">
+                 hvbkst7158_EM893 </a>
+            </span>
+            <i class="split"></i>
+            <span>2017-10-29 15:07:29</span>
+            <i class="split"></i>
+            <span>来自:北京</span>
+        </div>
+    </div>
+
+            <div class="inputer-wrap">
+            <div class="ipt-mod ipt-mod-textarea" id="answerHimWrap">
+                <h2 class="cell-title" id="answerHim">我来帮他回答<i class="triangle"></i><span class="err-tip errTipNode">内容不能为空</span></h2>
+                <div id="answerHimContent" style="display: none;">
+                    <div class="ipt-wrap">
+                        <textarea class="ipt-control iptControl" placeholder="请输入您要回答的内容" maxlength="1000"></textarea>
+                        <div class="num-wrap">
+                            <span class="num-cur numCur">0</span>/<span class="numAll">1000</span>
+                        </div>
+                    </div>
+                    <div class="submit-wrap">
+                        <a class="disabled" id="answerHimSubmitBtn" href="javascript:void(0);">提交答案</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+        </div>
+
+ <div class="main-mod-item">
+    <div class="comp-otherAnswerList" id="OtherAnswerList">
+    <h3 class="comp-title">全部8个回答</h3>
+    <ul class="comp-list">
+        <li class="broker-li">
+                <a class="pic-wrap" href="javascript:void(0)"  target="_blank" >
+                    <img src="images/100x133.jpg" alt="头像">
+                 </a>
+                <div class="title-wrap clearfix">
+                     <a class="name brokerName" href="javascript:void(0)" >韩力辉</a>
+	                 <span class="tel"><i class="iconfont"></i>13911700692</span>
+                </div>
+                <p class="answer-doc no-select" >结婚后可以，婚前只能写一个人的名字</p>
+                <div class="cell-footer">
+                    <span>2017-12-25 17:50:00</span>
+                </div>
+           <span class="del-btn">删除</span>
+         </li>
+    </ul>
+</div>
+ </div>
+
+    </div>
+</div>
+
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/common.js"></script>
+<script src="js/timeFormat.js"></script>
+<script>
+    $('.cell-title').click(function(){
+        $('#answerHimContent').show();
+    })
+    $('.ipt-control').keydown(function(){
+        var btn=$('#answerHimSubmitBtn');
+        btn.removeClass('disabled');
+    })
+    var postId=window.location.search.split('=')[1];
+
+    $('#answerHimSubmitBtn').click(function(){
+        var cont=($('.ipt-control').val()).trim();
+        console.log(getCookie('key'))
+        if(cont.length==0){
+            alert('评论不能为空')
+            return null
+        }
+        $.ajax({
+            cache: true,
+            type: "post",
+            url:basePath+"/comment/insert",
+            data:{
+                content :cont,
+                createId:getCookie('key'),
+                postId:postId
+            },
+            async: false,
+            success:function(data){
+                console.log(data)
+                if(data.success){
+                    alert('评论成功')
+                    queryAn(postId)
+                }else{
+                    alert(data.message)
+                }
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    })
+
+
+
+    queryAn(postId);
+
+    function queryAn(postId) {
+
+        $.ajax({
+            type:'get',
+            data:{
+                postId:postId
+            },
+            url:basePath+'/post/selectById',
+            success:function (data) {
+                msgShow(data.result);
+             }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function msgShow(data) {
+        console.log(data)
+                $('.comp-title').html('全部'+data.map.total+'个回答')
+        $('.qies').html(data.postTitle);
+        $('.comp-list').html('')
+        $('.cell-footer').html('<span> <a class="pic-wrap pic-wrap-broker" href="javascript:void(0)">' +
+            ''+data.createName+'</a> </span> <i class="split"></i> ' +
+            '<span>'+timeFormat(data.createTime)+'</span> <i class="split"></i>');
+      $.each(data.map.rows,function(i,v){
+          $('.comp-list').append(' <li class="broker-li"> ' +
+              '<a class="pic-wrap" href="javascript:void(0)"  target="_blank" > ' +
+              '<img src="'+v.createPhoto+'" alt="头像"> </a> <div class="title-wrap clearfix"> ' +
+              '<a class="name brokerName" href="javascript:void(0)" >'+v.createName+'</a> </div>' +
+              '<p class="answer-doc no-select" >'+v.content+'</p> ' +
+              '<div class="cell-footer"> ' +
+              '<span>'+timeFormat(v.createTime)+'</span> ' +
+              '</div> <span class="del-btn" onclick="deleteComment('+v.commentId+','+v.postId+','+v.createId+')">删除</span> </li>')
+      })
+    }
+    function deleteComment(commentId,postId,createId) {
+        $.ajax({
+            cache: true,
+            type: "post",
+            url:basePath+"/comment/delete",
+            data:{
+                createId:createId,
+                commentId :commentId ,
+                postId:postId
+            },
+            async: false,
+            success:function(data){
+                if(data.success){
+                    alert('删除成功')
+                }else{
+                    alert(data.message)
+                }
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    }
+</script>
+</body></html>

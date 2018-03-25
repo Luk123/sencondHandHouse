@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>留言</title>
+    <link rel="stylesheet" rev="stylesheet" href="css/Qa_Web_Detail.css" type="text/css">
+    <style>
+        .btn{
+            display: block;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            background-color: #007DDB;
+            margin: 20px 0;
+        }
+    </style>
+    </head>
+<!-- Pc_Common_HeaderComponent -->
+<body>
+<header></header>
+
+<div class="content clearfix">
+        <div class="query-wrap inputer-wrap" id="publishWrap">
+        <div class="ipt-mod" id="titleInputer">
+            <h2 class="cell-title">请描述您的问题<span class="err-tip errTipNode">标题不能为空</span></h2>
+            <div class="ipt-wrap">
+                <input class="ipt-control iptControl iptControlTitle" id="titleInputNode" type="text" placeholder="尽可能简短地描述您的问题，以便得到更专业的回答！" maxlength="35" value="">
+                <div class="num-wrap">
+                    <span class="num-cur numCur">0</span>/<span class="numAll">35</span>
+                </div>
+            </div>
+        </div>
+        <div class="ipt-mod ipt-mod-textarea ipt-bottom" id="contentInputer">
+            <h2 class="cell-title">问题补充<i class="down-icon downIcon"></i><i class="up-icon upIcon"></i><span class="err-tip errTipNode">内容不能为空</span></h2>
+            <div class="ipt-wrap content-hide" id="contentInputNode">
+                <textarea class="ipt-control iptControl iptControlContent" placeholder="请对您的问题进行补充说明" maxlength="100" id="txtcont"></textarea>
+                <div class="num-wrap">
+                    <span class="num-cur numCur">0</span>/<span class="numAll">100</span>
+                </div>
+            </div>
+        </div>
+                <div class="submit-wrap">
+            <a class="btn" id="submitInquiryBtn" href="javascript:void(0);">提交问题</a>
+        </div>
+    </div> <!-- 提问 end -->
+
+</div>
+
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/common.js"></script>
+<script>
+    $('.btn').click(function(){
+        console.log(window.userid)
+        if($('#titleInputNode').val()=='' || $('#txtcont').val()==''){
+            alert('发帖内容和标题不能为空');
+        }else{
+            $.ajax({
+                type:'post',
+                url:basePath+'/post/insert',
+                data:{
+                    postTitle:$('#titleInputNode').val(),
+                    postContent:$('#txtcont').val(),
+                    createId:window.userid,
+                    createName:window.username
+                },
+                success:function(data){
+                    if(data.success){
+                        alert('发帖成功');
+                        window.location.href='house-msg.html'
+                    }else{
+                        alert(data.message)
+                    }
+                },
+                error:function(data){
+                    alert(data)
+                }
+            })
+        }
+    })
+
+</script>
+</body></html>

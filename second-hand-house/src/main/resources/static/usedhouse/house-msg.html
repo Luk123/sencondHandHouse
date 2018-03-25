@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>房产问答</title>
+<link rel="stylesheet" rev="stylesheet" href="js/Qa_WebDetail.css" type="text/css">
+    <link rel="stylesheet" href="css/page.css">
+    <style>
+        .msg{
+            width: 1180px;
+            margin: 0 auto;
+        }
+        .msg li{
+            padding: 15px 10px;
+            line-height: 30px;
+            font-size: 18px;
+            color: #666;
+            border-bottom: 1px dotted #01070e;
+        }
+        .msg li h4{
+            font-size: 20px;
+            color: #000;
+            font-weight: 600;
+            line-height: 40px;
+        }
+        .msg .time{
+            color: #999;
+            font-size: 16px;
+            margin-left: 25px;
+        }
+    </style>
+<body>
+<!-- 导航 start -->
+<header></header>
+<!-- 导航 end -->
+    <div class="qa-header-wrap">
+    <div class="qa-header-mod" id="qaHeaderModule" >
+        <div class="qa-header">
+            <a href="index.html">
+                <img src="https://res.5i5j.com/pc/site/images/index-logo.png" height="30">
+            </a>
+               <a class="light-btn n-ask-btn" href="house-pushmsg.html">
+                    <i class="iconfont que-icon"></i><span>我要提问</span>
+               </a>
+        </div>
+    </div>
+</div>
+<div class="content clearfix">
+    <ul class="msg" id="comment">
+        <li>
+            <a href="house-msgdetail.html">
+                <h4>北京三环买房大约多少钱</h4>
+                <span>郭婷</span>
+                <span class="time">2018-10-06</span>
+            </a>
+        </li>
+    </ul>
+    <div class="ts-page"></div>
+</div>
+
+<!--<footer></footer>-->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/common.js"></script>
+<script src="js/timeFormat.js"></script>
+<script>
+	$(function(){
+        getDataq()
+        inserHtml(pageCount,1);
+	})
+
+    function getDataq(num) {
+        $.ajax({
+            cache: true,
+            type: "GET",
+            url:basePath+"/post/page",
+            data:{"page":num,"pageSize":8},
+            async: false,
+            success:function(data){
+                console.log(data)
+                window.pages=Math.ceil(data.total/8);
+                pageCount=window.pages;
+                inserHtml(pageCount,num);
+                bindEvent(pageCount)
+                getView(data.rows)
+            }
+        });
+    }
+	function getView(data) {
+			$('#comment').html('')
+        var str_html='';
+			$.each(data,function(i,item){
+			var time=timeFormat(item.createTime);		   
+			str_html+='<ul class="msg"><li>'+
+								'<a href="house-msgdetail.html?postId='+item.postId+'">'+
+									'<h4>'+item.postTitle+'</h4>'+
+									'<span>'+item.createName+'</span>'+
+									'<span class="time">'+time+'</span>'+
+								'</a>'+
+						 '</li></ul>';
+
+			})
+        $('#comment').html(str_html)
+    }
+    $('.cell-title').click(function(){
+        $('#answerHimContent').show();
+    })
+    function inserHtml(page,current){
+        var obj = $(".ts-page");
+        obj.empty();
+        if(current > 1){
+            obj.append('<span class="tspage-start">首页</span>');
+            obj.append('<span class="tspage-before">上一页</span>');
+        }else{
+            obj.remove('.tspage-start');
+            obj.append('<span class="tspage-before disable">上一页</span>');
+        }
+        if(current>3 && current <= page && page>5){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        var start = current-2, end= current+2; //中间显示5个
+        // var start = current-2, end= current+2; //中间显示5个
+        if(start >1 && current < 4||current == 1){
+            end++;
+        }
+        if(current > page-2 && current <= page){
+            start--;
+        }
+        for(;start<=end;start++){
+            if(start<=page && start >=1){
+                if(start != current){
+                    obj.append('<span class="page">'+start+'</span>');
+                }else{
+                    obj.append('<span class="page on">'+start+'</span>');
+                }
+            }
+        }
+        if(current+2<page && current >=1 && page>4){
+            obj.append('<span class="tspage-ell">...</span>');
+        }
+        if(current<page){
+            obj.append('<span class="tspage-after">下一页</span>');
+            obj.append('<span class="tspage-end">尾页</span>');
+        }else{
+            obj.remove('.tspage-end');
+            obj.append('<span class="tspage-after disable">下一页</span>');
+        }
+    }
+    function bindEvent(page){
+        var obj = $(".ts-page");
+        obj.on('click','.page',function(){
+            var currentPage = parseInt($(this).text());
+            inserHtml(currentPage,page);
+            inserHtml(page,currentPage);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(currentPage);
+        });
+        obj.on('click','.tspage-before',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage>1){
+                inserHtml(page,currentPage-1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage-1);
+            }
+
+        });
+        obj.on('click','.tspage-after',function(){
+            var currentPage = parseInt(obj.children('.on').text());
+            if(currentPage<page){
+                inserHtml(page,currentPage+1);
+                //获取后台传来数据的ajax函数+数据适配
+                getData(currentPage+1);
+            }
+        });
+        obj.on('click','.tspage-start',function(){
+            inserHtml(page,1);
+            //获取后台传来数据的ajax函数+数据适配
+            getData(1);
+        });
+        obj.on('click','.tspage-end',function(){
+            inserHtml(page,page);
+
+            //获取后台传来数据的ajax函数+数据适配
+            getData(page);
+        });
+    }
+    function getData(num){
+        /* $.get('url?p='+num,function(data){
+         console.log(data); //这里是数据适配
+         })*/
+        getDataq(num)
+    }
+    var pageCount;
+    window.pageCount=pageCount;
+    window.inserHtml=inserHtml;
+    window.bindEvent=bindEvent;
+</script>
+</body></html>
