@@ -167,6 +167,12 @@
             height: 40px;
             border-color: #e0e0e0;
         }
+        .person .per-cont .p p.mytit{
+            width: 350px;
+            color: #fbc700;
+            font-size: 20px;
+            margin: 0 auto 20px;
+        }
     </style>
     <link rel="stylesheet" href="css/basic.css">
 </head>
@@ -186,7 +192,9 @@
                 <li><a href="house-record.html">购房记录</a></li>
                 <li><a href="house-sell.html">售卖记录</a></li>
                 <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-add.html">新增房屋</a></li>
                 <li><a href="house-img.html">房屋图片</a></li>
+                <li><a href="house-addimg.html">房屋图片新增</a></li>
             </ul>
         </div>
         <div class="left per-cont">
@@ -194,8 +202,9 @@
             <ul class="nav-top">
                 <li class="on">房屋信息编辑</li>
             </ul>
-            <form action="http://localhost:8088/house/insert" id="houseForm">
+            <form action="" id="houseForm">
                 <div class="p on">
+                    <p class="mytit">基本信息</p>
                     <p>
                         <span>房屋名称：</span><span><input type="text" class="u-name" id="houseName" name="houseName"></span>
                     </p>
@@ -318,7 +327,7 @@
                     <p>
                         <span>不动产权证号：</span><span><input type="text" class="u-name" id="houseNo" name="houseNo"></span>
                     </p>
-                    <p>核心卖点：</p>
+                    <p class="mytit">核心卖点</p>
                     <p>
                         <span>简介：</span><span><textarea type="text" class="u-name" id="abs" name="abs"></textarea></span>
                     </p>
@@ -328,7 +337,7 @@
                     <p>
                         <span>装修描述：</span><span><textarea type="text" class="u-name" id="buildDesc" name="buildDesc"></textarea></span>
                     </p>
-                    <p>房屋周边：</p>
+                    <p class="mytit">房屋周边</p>
                     <p>
                         <span>小区设施：</span><span><textarea type="text" class="u-name" id="facility" name="facility"></textarea></span>
                     </p>
@@ -339,15 +348,15 @@
                         <span>轨道交通：</span><span><textarea type="text" class="u-name" id="Traffic" name="Traffic"></textarea></span>
                     </p>
                     <p>
-                        <span>&nbsp;</span><a onclick="submitHouse()" class="save-name btn">发表</a>
-                    </p>
-                    <p>
-                        <span>核心标签：</span>
-                        <p id="tag">
+                        <span style="margin-left: 45px;">核心标签：</span>
+                        <span id="tag">
                             <label style="height:15px;line-height: 10px;">
                                <input type="checkbox" value="asfas" id="q" style="width: 15px;height: 15px;margin-left: 4px">111
                             </label>
-                        </p>
+                        <span/>
+                    </p>
+                    <p>
+                        <span>&nbsp;</span><a onclick="submitHouse()" class="save-name btn">发表</a>
                     </p>
                     <input type="hidden" name="ownerId" id="ownerId">
                     <input type="hidden" name="ownerName" id="ownerName">
@@ -367,75 +376,12 @@
 <script src="js/BaseValues.js"></script>
 <script src="js/timeFormat.js"></script>
 <script>
-	/*修改昵称*/
-    $('.btn').click(function(){
-        insert()
-    })
-    function insert(){
-        $.ajax({
-            type:'get',
-            url:basePath+'house/insert',
-            data:{
-                ownerId:window.userid,
-                ownerName:window.username,
-                houseName:getid('houseName'),
-                houseHall:getid('houseHall'),
-                area:getid('area'),
-                realArea:getid('realArea'),
-                provice:getid('provice'),
-                city:getid('city'),
-                district:getid('district'),
-                addr:getid('addr'),
-                buildType:getid('buildType'),
-                buildYear:getid('buildYear'),
-                houseType:getid('houseType'),
-                floor:getid('floor'),
-                salePrice:getid('salePrice'),
-                direction:getid('direction'),
-                renovation:getid('renovation'),
-                unitPrice:getid('unitPrice'),
-                fristPay:getid('fristPay'),
-                monthPay:getid('monthPay'),
-                contactWay:getid('contactWay'),
-                descb:getid('descb'),
-                state:getid('state'),
-                majorAddr:getid('majorAddr'),
-                remark:getid('remark'),
-                liftFlag:getid('liftFlag'),
-                heat:getid('heat'),
-                houseNo:getid('houseNo'),
-                houseStar:{
-                    abs: getid('abs'),
-                    buildDesc: getid('buildDesc'),
-                    typeDesc:getid('typeDesc')
-                },
-                houseConf:{
-                    facility: getid('facility'),
-                    lifeConf: getid('lifeConf'),
-                    Traffic:getid('Traffic')
-                },
-                houseTag:[]
-            },
-            success:function(data){
-                console.log(data)
-                getPerMsg(data.result)
-            }
-            ,error:function (data) {
-                alert('服务器走丢了')
-            }
-        })
-    }
-    function getid(myid) {
-        return $('#'+myid).val()
-    }
-
    function editHouse(){
-        //TODO 解析id
-        var houseId=1
+
        $.ajax({
            cache: true,
            type: "GET",
-           url:'http://localhost:8088/house/info',
+           url:basePath+'/house/info',
            data:{"houseId":houseId},
            async: false,
            success: function(result) {
@@ -468,15 +414,26 @@
                    $("#remark").val(data.remark);
                    $("#liftFlag").val(data.liftFlag);
                    $("#heat").val(data.heat);
-                   $("#abs").val(data.abs);
-                   $("#buildDesc").val(data.buildDesc);
-                   $("#typeDesc").val(data.typeDesc);
-                   $("#facility").val(data.facility);
-                   $("#lifeConf").val(data.lifeConf);
-                   $("#Traffic").val(data.Traffic);
-                   $("#tagIds").val(data.tagIds);
-                   $("#tagNames").val(data.tagNames);
-                   $('#addDic').attr('action',basePath+"house/update");
+                   $("#abs").val(data.houseStar.abs);
+                   $("#buildDesc").val(data.houseStar.buildDesc);
+                   $("#typeDesc").val(data.houseStar.typeDesc);
+                   $("#facility").val(data.houseConf.facility);
+                   $("#lifeConf").val(data.houseConf.lifeConf);
+                   $("#Traffic").val(data.houseConf.traffic);
+                   $("#houseNo").val(data.houseNo);
+                   $("#salePrice").val(data.salePrice);
+                   $('#houseForm').attr('action',basePath+"house/update");
+
+                   $.each($('#tag input'),function(i,v){
+                       console.log(v)
+                       for(var j=0;j<data.houseTag.length;j++){
+                           if(data.houseTag[j]== $(this).attr('data-value')){
+                               $(this).attr('checked','checked')
+                           }
+                       }
+                   })
+
+                   console.log(data)
                }else{
                    alert('查询失败!');
                }
@@ -520,7 +477,7 @@
     function fileUpload(data){
         $.ajax({
             type:'post',
-            url:'http://localhost:8088/fileUpload',
+            url:basePath+'/fileUpload',
             data:data,
             async : false,
             cache : false,
@@ -536,15 +493,32 @@
             }
         })
     }
-
+   var houseId;
     $(function(){
         selectAllTag();
+        var arr=[];
+        var obj={};
+        var str=window.location.search.slice(1).split('&')
+        $.each(str,function(i,v){
+            arr.push(v.split('='))
+        })
+        $.each(arr,function(i,v){
+            obj[v[0]]=v[1]
+        })
+        houseId=obj.houseId;
+        if(houseId !=null){
+            editHouse();
+        }else{
+            $('#houseForm').attr('action',basePath+'/house/insert')
+        }
+
     })
     function  selectAllTag() {
+
         $.ajax({
             cache: true,
             type: "GET",
-            url:'http://localhost:8088/tag/list',
+            url:basePath+'/tag/list',
             async: false,
             success: function(result) {
                 if(result&&result['success']){
