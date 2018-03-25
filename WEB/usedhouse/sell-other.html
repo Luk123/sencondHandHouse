@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>个人中心</title>
+    <style>
+        .left{
+            float: left;
+        }
+        /*用户中心*/
+        .person-bg{
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+        .person.content{
+            width: 1190px;
+            margin: 15px auto 25px;
+            overflow: hidden;
+        }
+        .person .nav-per{
+            width: 150px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            font-size: 14px;
+            padding-bottom: 10px;
+        }
+        .person .nav-per img{
+            display: block; margin: 30px auto 20px;
+        }
+        .person .nav-per h4{
+            font-size: 14px;
+            text-indent: 20px;
+            margin-bottom: 20px;
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .person .nav-list-per li{
+            text-indent: 35px;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        .person .nav-list-per li a{
+            display: block;
+        }
+        .person .nav-list-per li:hover a{
+            color: #fff;
+        }
+        .person .nav-list-per li.on a{
+            color: #fff;
+        }
+        .person .nav-list-per li:hover{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .nav-list-per li.on{
+            background-color: #1b1f24;
+            color: #fff;
+        }
+        .person .per-cont{
+            min-width: 930px;
+            background-color: #fff;
+            border: 1px solid #e7e7e7;
+            color: #323232;
+            margin-left: 30px;
+            padding: 40px 35px;
+        }
+        .person .per-cont h3{
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .person .nav-top{
+            background-color: #f5f5f5;
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid #e7e5e5;
+            margin-top: 23px;
+        }
+        .person .nav-top li{
+            width: 105px;
+            text-align: center;
+            line-height: 40px;
+            float: left;
+            font-size: 14px;
+            color: #8f8a8b;
+            cursor: pointer;
+        }
+        .person .nav-top li:hover{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .nav-top li.on{
+            background-color: #e7e5e5;
+            color: #323232;
+        }
+        .person .p{
+            margin: 115px auto;
+            display: none;
+        }
+        .person .p.on{
+            display: block;
+        }
+        .person .per-cont .p p{
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .person .per-cont .head-pic p{
+            text-align: left;
+        }
+        .person .per-cont .p p span:first-child{
+            width: 94px;
+            text-align: right;
+            display: inline-block;
+        }
+        .person .per-cont input{
+            outline: none;
+            border: 1px solid #e0e0e0;
+            line-height: 40px;
+            width: 245px;
+            text-indent: 8px;
+        }
+        .person .head-pic{
+            margin: 20px 0;position: relative;
+        }
+        .head-pic .yulan .bg-gary{
+            width: 560px;
+            height: 317px;
+            position: relative;
+            background-color: rgb(245,245,245);
+        }
+        .head-pic .yulan{
+            position: absolute;
+            z-index: 1;
+            right: 0;
+            top: 45px;
+        }
+        .head-pic .yulan span{
+            line-height: 33px;
+        }
+        .person .save-name{
+            line-height: 40px;
+            width: 245px;
+            text-align: center;
+            display: inline-block;
+            background-color: #1b1f24;
+            color: #fff;
+            font-size: 14px;
+        }
+        .head-pic .save-name{
+            width: 100px;
+            position: relative;
+        }
+        .head-pic input[type='file']{
+            cursor: pointer;
+            opacity: 0;
+            height: 40px;
+            width: 100px;
+            filter: alpha(opacity=0);
+            position: absolute;
+            z-index: 1;
+            left: 0;
+        }
+        textarea, input, select, button {
+            outline: none;
+            width: 245px;
+            height: 40px;
+            border-color: #e0e0e0;
+        }
+    </style>
+    <link rel="stylesheet" href="css/basic.css">
+</head>
+<body>
+<!-- 导航 start -->
+<header></header>
+<!-- 导航 end -->
+
+<div class="person-bg">
+    <div class="content person">
+        <div class="left nav-per">
+            <img src="images/per.jpg" width="80" height="80" id="head-pic">
+            <h4>欢迎您，<span class="name">Alice</span></h4>
+            <ul class="nav-list-per">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="house-collect.html">我的收藏</a></li>
+                <li><a href="house-record.html">购房记录</a></li>
+                <li><a href="house-sell.html">售卖记录</a></li>
+                <li><a href="house-my.html">我的房屋</a></li>
+                <li><a href="house-img.html">房屋图片</a></li>
+            </ul>
+        </div>
+        <div class="left per-cont">
+            <h3>线上交易</h3>
+            <ul class="nav-top">
+                <li class="on">线上交易拍案</li>
+            </ul>
+            <div class="p on">
+                <p>
+                    <span>买方：</span><span>
+                      <select name="" id="custName">
+                          <option value="0" data-id="111">111</option>
+                          <option value="eee"  data-id="222">222</option>
+                      </select>
+                </span>
+                </p>
+                <p>
+                    <span>售卖原因：</span><span><input type="text" id="reason" placeholder="例：价格合理"></span>
+                </p>
+                <p>
+                    <span>售卖价格：</span><span><input type="text" id="salePrice" placeholder="单位：万元"></span>
+                </p>
+                <p>
+                    <span>&nbsp;</span><a href="javascript:void(0)" class="save save-name">确定售卖</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/common.js"></script>
+<script src="js/BaseValues.js"></script>
+<script src="js/timeFormat.js"></script>
+<script>
+    var arr=[];
+    var obj={};
+    var str=window.location.search.slice(1).split('&');
+    $.each(str,function(i,v){
+        arr.push(v.split('='))
+    });
+    $.each(arr,function(i,v){
+        obj[v[0]]=v[1]
+    })
+
+    $('.save').click(function(){
+        console.log($('#custName option:selected').attr('data-id')+$('#custName').val())
+        console.log(window.userid +obj.houseId+$('#reason').val()+$('#salePrice').val())
+        $.ajax({
+            type:'post',
+            url:basePath+'house/sale',
+            data:{
+                houseId: obj.houseId,
+                houseName:obj.houseName,
+                custId: $('#custName').val(),
+                custName:$('#custName option:selected').attr('data-id') ,
+                ownerId: window.userid,
+                ownerName: window.username,
+                reason: $('#reason').val(),
+                salePrice: $('#salePrice').val()
+            },
+            success:function (data) {
+                console.log(data)
+                if(data.success){
+                    alert('售卖成功！');
+                    window.location.herf='house-sell.html';
+                }else{
+                    alert('请核对售卖信息')
+                }
+            },
+            error:function(){
+                alert('服务器走丢了')
+            }
+        })
+    });
+
+
+    function init(){
+        $.ajax({
+            type:'get',
+            url:basePath+'/user/list',
+            success:function(data){
+                 UserShow(data.result);
+                console.log(data)
+            }
+            ,error:function (data) {
+                alert('用户获取失败，联系管理员解决')
+            }
+        })
+    }
+    function UserShow(data) {
+        $('#custName').html('')
+        $.each(data,function(i,v){
+            $('#custName').append('<option data-id="'+v.userName+'" value="'+v.userId+'">'+v.userName+'</option>')
+        })
+    }
+
+    init();
+
+</script>
+</body></html>

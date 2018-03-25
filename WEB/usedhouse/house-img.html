@@ -186,15 +186,14 @@
             <div class="p on">
                 <table cellspacing="0" class="allmsg">
                     <thead>
-
-                    <tr>
-                        <td>房屋名称</td>
-                        <td>图片类型</td>
-                        <td>图片地址</td>
-                        <td>创建时间</td>
-                        <td>创建人名称</td>
-                        <td colspan="2">操作</td>
-                    </tr>
+                        <tr>
+                            <td>房屋名称</td>
+                            <td>图片类型</td>
+                            <td>图片地址</td>
+                            <td>创建时间</td>
+                            <td>创建人名称</td>
+                            <td colspan="2">操作</td>
+                        </tr>
                     </thead>
                     <tbody>
 
@@ -206,8 +205,6 @@
         </div>
     </div>
 </div>
-
-
 <footer></footer>
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/cookie_util.js"></script>
@@ -253,11 +250,7 @@
             '<td>'+ v.photoAddr+'</td> ' +
             '<td>'+timeFormat(v.createTime)+'</td> ' +
             '<td>'+ v.createName+'</td> ' +
-            '<td><a href="javascript:void(0)" onclick="del(this)" class="del-btn" data-housePhotoId="'+v.housePhotoId+'">删除</a></td>' +
-            '<td>' +
-            '<a href="javascript:void(0)" class="add-btn del-btn" data-houseId="'+v.houseId+'" data-createId="'+ v.createId+'"> ' +
-            ' <input type="file" accept="image/*" id="photo" name="fileName" data-houseId="'+v.houseId+'" data-createId="'+ v.createId+' data-name="'+ v.houseName+'">增加</a>' +
-            '</td> ' +
+            '<td><a href="javascript:void(0)" onclick="del(this)" class="del-btn" data-housePhotoId="'+v.housePhotoId+'">删除</a></td>'+
             '</tr>')
         })
     }
@@ -384,14 +377,13 @@
     function getData(num){
         $.ajax({
             type:'get',
-            url:basePath+'/house/page/all',
+            url:basePath+'/housePhoto/pageall/houseId',
             data:{
-                userId:window.userId,
+                userId:window.userid,
                 page:num,
                 pageSize:3
             },
             success:function (data) {
-                console.log(data)
                 view(data.rows)
             },
             error:function(){

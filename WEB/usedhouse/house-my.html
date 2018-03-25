@@ -124,7 +124,7 @@
             line-height: 33px;
         }
         .user-info .p{
-            margin:26px;
+            margin:26px 0;
         }
         .user-info table td{
             font-size: 12px;
@@ -142,6 +142,10 @@
             line-height:45px;
             font-weight:bold;
             text-indent:1px
+        }
+        .user-info table tr  td:nth-child(5){
+            width: 80px;
+            line-height: 20px;
         }
     </style>
     <link rel="stylesheet" href="css/basic.css">
@@ -185,7 +189,7 @@
                        <td>房屋类型</td>
                        <td>房屋售价</td>
                        <td>装修</td>
-                       <td>操作</td>
+                       <td colspan="3">操作</td>
                    </tr>
                    </thead>
                    <tbody>
@@ -243,6 +247,8 @@
             '<td>'+ v.houseType+'</td> ' +
             '<td>'+ v.salePrice+'</td> ' +
             '<td>'+ v.renovation+'</td> ' +
+             '<td><a href="house-add.html?houseId='+v.houseId+'">编辑</a></td> ' +
+             '<td><a href="sell-other.html?houseId='+v.houseId+'&houseName='+v.houseName+'">售卖</a></td> ' +
             '<td><a href="house-detail.html?houseId='+v.houseId+'">查看</a></td> </tr>')
         })
     }
