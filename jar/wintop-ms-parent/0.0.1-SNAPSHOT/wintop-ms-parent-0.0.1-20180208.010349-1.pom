@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.wintop.ms</groupId>
+  <artifactId>wintop-ms-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>wintop-ms-parent</name>
+  <url>http://maven.apache.org</url>
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>1.5.9.RELEASE</version>
+  </parent>
+
+  <!-- 项目属性及jar包版本控制 -->
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<version-junit>4.11</version-junit>
+  	<version-slf4j>1.7.14</version-slf4j>
+  	<version-logback>1.1.7</version-logback>
+  	<version-mysql-connector>5.1.35</version-mysql-connector>
+    <version-tomcat-jdbc>7.0.39</version-tomcat-jdbc>
+  	<version-mybatis>3.3.0</version-mybatis>
+  	<version-mybatis-spring>1.2.3</version-mybatis-spring>
+  	<version-dubbo>2.5.3</version-dubbo>
+  	<version-zookeeper>3.4.6</version-zookeeper>
+  	<version-zkclient>0.1</version-zkclient>
+    <version-netty>3.2.7.Final</version-netty>
+    <version-standard>1.1.2</version-standard>
+    <version-jstl>1.2</version-jstl>
+    <version-jackson>2.5.4</version-jackson>
+    <version-javax-servlet>3.1.0</version-javax-servlet>
+  	<version-spring>4.2.4.RELEASE</version-spring>
+  	<version-wintop>0.0.1-SNAPSHOT</version-wintop>
+    <version-patchca>0.5.0</version-patchca>
+    <version-quartz-scheduler>2.1.6</version-quartz-scheduler>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <spring-cloud.version>Edgware.SR1</spring-cloud.version>
+  </properties>
+  <!-- 项目所依赖的jar包进行管理 -->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Edgware.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+   <!-- <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Camden.SR2</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>-->
+        <!-- 项目部署配置 -->
+<distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Releases Repository</name>
+            <url>http://172.16.108.17:50001/nexus/content/repositories/releases/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nexus Snapshots Repository</name>
+            <url>http://172.16.108.17:50001/nexus/content/repositories/snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>UTF-8</encoding>  <!-- “编码 GBK 的不可映射字符”问题的解决 -->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

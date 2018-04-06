@@ -22,7 +22,8 @@ public class TestController {
 
     @RequestMapping("index")
     public String index(){
-        return "usedhouse/index";
+        return "MS/init";
     }
+
 }
 

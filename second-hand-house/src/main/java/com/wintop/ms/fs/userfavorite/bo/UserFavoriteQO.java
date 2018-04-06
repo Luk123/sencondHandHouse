@@ -4,18 +4,19 @@
  */
 package com.wintop.ms.fs.userfavorite.bo;
 
-import com.wintop.ms.common.base.BsData;
+import java.util.Date;
+
 import com.wintop.ms.common.base.PageQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.Date;
 
 /**
  * This class corresponds to the database table user_favorite
  *
  * @mbg.generated 2018-03-04 15:07:04
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserFavoriteQO extends PageQO {

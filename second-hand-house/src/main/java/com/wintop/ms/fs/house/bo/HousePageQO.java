@@ -4,18 +4,20 @@
  */
 package com.wintop.ms.fs.house.bo;
 
-import com.wintop.ms.common.base.PageQO;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.wintop.ms.common.base.PageQO;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * This class corresponds to the database table house
  *
  * @mbg.generated 2018-03-04 14:18:04
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class HousePageQO extends PageQO{

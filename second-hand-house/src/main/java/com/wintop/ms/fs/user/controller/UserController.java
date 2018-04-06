@@ -1,28 +1,34 @@
 package com.wintop.ms.fs.user.controller;
 
-import com.wintop.ms.common.base.BsQO;
-import com.wintop.ms.common.base.Pager;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.fs.user.bo.UpdateUserScoreDTO;
 import com.wintop.ms.fs.user.bo.UserPageQO;
 import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.service.UserManager;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.*;
 
 /**
  * 用户Controller。
  */
 @RestController
 public class UserController {
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(UserController.class);
 
     @Resource
     private UserManager userManager;

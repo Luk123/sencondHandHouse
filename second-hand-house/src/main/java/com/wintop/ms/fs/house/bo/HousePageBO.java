@@ -4,18 +4,19 @@
  */
 package com.wintop.ms.fs.house.bo;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * This class corresponds to the database table house
  *
  * @mbg.generated 2018-03-04 14:18:04
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class HousePageBO implements Serializable{

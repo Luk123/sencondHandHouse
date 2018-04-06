@@ -1,28 +1,26 @@
 package com.wintop.ms.fs.district.controller;
 
-import com.wintop.ms.common.base.BsQO;
-import com.wintop.ms.common.base.Pager;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.fs.dic.entity.Dic;
-import com.wintop.ms.fs.dic.service.DicManager;
 import com.wintop.ms.fs.district.bo.DistrictNameBO;
 import com.wintop.ms.fs.district.bo.DistrictPageQO;
 import com.wintop.ms.fs.district.entity.District;
 import com.wintop.ms.fs.district.service.DistrictManager;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户微服务Controller。
  */
 @RestController
 public class DistrictController {
-
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(DistrictController.class);
 
     @Resource
     private DistrictManager districtManager;

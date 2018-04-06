@@ -4,14 +4,13 @@
 //
 
 package com.wintop.ms.common.base;
-import com.wintop.ms.common.base.Pager;
-
 import java.io.Serializable;
 
 public class ServiceResult<T> implements Serializable {
     private static final long serialVersionUID = 3765720967319047788L;
     private T result;
-    private Pager pager;
+	@SuppressWarnings("rawtypes")
+	private Pager pager;
     private boolean success = true;
     private String message = "";
     private String code = "";
@@ -80,11 +79,13 @@ public class ServiceResult<T> implements Serializable {
         this.message = value;
     }
 
-    public Pager getPager() {
+    @SuppressWarnings("rawtypes")
+	public Pager getPager() {
         return this.pager;
     }
 
-    public void setPager(Pager pager) {
+    @SuppressWarnings("rawtypes")
+	public void setPager(Pager pager) {
         this.pager = pager;
     }
 }

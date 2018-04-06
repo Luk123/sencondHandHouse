@@ -5,16 +5,16 @@
 package com.wintop.ms.fs.housesale.bo;
 
 import com.wintop.ms.common.base.PageQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.Date;
 
 /**
  * This class corresponds to the database table house_sale
  *
  * @mbg.generated 2018-03-04 14:33:56
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class HouseSalePageQO extends PageQO{

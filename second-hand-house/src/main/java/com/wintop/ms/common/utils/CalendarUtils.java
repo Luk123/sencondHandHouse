@@ -17,10 +17,10 @@ import org.slf4j.LoggerFactory;
  */
 public class CalendarUtils extends DateUtils {
     private static final Logger logger = LoggerFactory.getLogger(CalendarUtils.class);
-    private static final int SECOND = 1000;
-    private static final int MINUTE = 60000;
-    private static final int HOUR = 3600000;
-    private static final int DAY = 86400000;
+//    private static final int SECOND = 1000;
+//    private static final int MINUTE = 60000;
+//    private static final int HOUR = 3600000;
+//    private static final int DAY = 86400000;
 
     public static int getBetweenDays(Date beginDate, Date endDate) {
         if ((beginDate == null) || (endDate == null)) {

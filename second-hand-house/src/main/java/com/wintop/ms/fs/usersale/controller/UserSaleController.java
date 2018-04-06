@@ -1,17 +1,17 @@
 package com.wintop.ms.fs.usersale.controller;
 
-import com.wintop.ms.common.base.Pager;
-import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.fs.usersale.bo.UserSaleQO;
-import com.wintop.ms.fs.usersale.entity.UserSale;
-import com.wintop.ms.fs.usersale.service.UserSaleManager;
-import org.springframework.web.bind.annotation.PostMapping;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import java.util.Map;
+import com.wintop.ms.common.base.ServiceResult;
+import com.wintop.ms.fs.usersale.bo.UserSaleQO;
+import com.wintop.ms.fs.usersale.entity.UserSale;
+import com.wintop.ms.fs.usersale.service.UserSaleManager;
 
 /**
  * @author zhangzijuan

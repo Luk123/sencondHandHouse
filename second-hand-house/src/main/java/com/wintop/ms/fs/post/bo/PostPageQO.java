@@ -5,6 +5,7 @@
 package com.wintop.ms.fs.post.bo;
 
 import com.wintop.ms.common.base.PageQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  *
  * @mbg.generated 2018-03-19 21:16:50
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class PostPageQO extends PageQO{

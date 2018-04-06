@@ -6,7 +6,6 @@
 package com.wintop.ms.common.base;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 public  class  Pager<K> implements Serializable {

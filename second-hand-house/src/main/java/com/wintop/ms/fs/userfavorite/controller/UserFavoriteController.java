@@ -1,19 +1,19 @@
 package com.wintop.ms.fs.userfavorite.controller;
 
-import com.github.pagehelper.PageInfo;
-import com.wintop.ms.common.base.Pager;
-import com.wintop.ms.common.base.ServiceResult;
-import com.wintop.ms.fs.userfavorite.bo.UserFavoriteQO;
-import com.wintop.ms.fs.userfavorite.entity.UserFavorite;
-import com.wintop.ms.fs.userfavorite.service.UserFavoriteManager;
+import java.util.Date;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import java.util.Date;
-import java.util.Map;
+import com.wintop.ms.common.base.ServiceResult;
+import com.wintop.ms.fs.userfavorite.bo.UserFavoriteQO;
+import com.wintop.ms.fs.userfavorite.entity.UserFavorite;
+import com.wintop.ms.fs.userfavorite.service.UserFavoriteManager;
 
 /**
  * @author zhangzijuan

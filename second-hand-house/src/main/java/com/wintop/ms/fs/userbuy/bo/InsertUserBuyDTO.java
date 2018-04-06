@@ -5,11 +5,9 @@
 package com.wintop.ms.fs.userbuy.bo;
 
 import com.wintop.ms.common.base.BsData;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * This class corresponds to the database table user_buy

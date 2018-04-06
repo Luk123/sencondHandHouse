@@ -1,25 +1,26 @@
 package com.wintop.ms.fs.tag.controller;
 
-import com.wintop.ms.common.base.BsQO;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.fs.tag.bo.TagPageQO;
 import com.wintop.ms.fs.tag.entity.Tag;
 import com.wintop.ms.fs.tag.service.TagManager;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户微服务Controller。
  */
 @RestController
 public class TagController {
-
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(TagController.class);
 
     @Resource
     private TagManager tagManager;

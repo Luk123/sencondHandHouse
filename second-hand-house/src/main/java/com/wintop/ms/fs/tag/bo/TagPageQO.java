@@ -5,6 +5,7 @@
 package com.wintop.ms.fs.tag.bo;
 
 import com.wintop.ms.common.base.PageQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  *
  * @mbg.generated 2018-03-04 14:57:07
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class TagPageQO extends PageQO {

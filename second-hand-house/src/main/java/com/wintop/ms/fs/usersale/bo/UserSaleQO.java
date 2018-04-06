@@ -4,19 +4,20 @@
  */
 package com.wintop.ms.fs.usersale.bo;
 
-import com.wintop.ms.common.base.BsData;
-import com.wintop.ms.common.base.PageQO;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.wintop.ms.common.base.PageQO;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * This class corresponds to the database table user_sale
  *
  * @mbg.generated 2018-03-04 15:10:31
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserSaleQO extends PageQO {

@@ -107,6 +107,7 @@ public class FileUploadController {
             int size = (int) file.getSize();
             System.out.println(fileName + "-->" + size);
             String path = "C:/picFile" ;
+            //String path = "/home/mgz/下载" ;
             String allPath = path + "/" + fileName;
             System.out.println(fileName + "-->" + allPath);
             File dest = new File(allPath);

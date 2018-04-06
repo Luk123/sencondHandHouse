@@ -208,9 +208,6 @@
         $.ajax({
             type:'get',
             url:basePath+'/housePhoto/page',
-            data:{
-                'houseId':1
-            },
             success:function(data){
                     indexImgView(data.rows);
             },
@@ -220,6 +217,7 @@
         })
     }
     function indexImgView(data) {
+        console.log(data)
         for(var i=0;i<=data.length-1;i++){
             if(i>3){
                 return null;
@@ -231,10 +229,7 @@
         }
         $('.house-list li:last-child').addClass('no-margin-r')
     }
-
-    $(function(){
-       init()
-    })
+    init();
 </script>
 </body>
 </html>

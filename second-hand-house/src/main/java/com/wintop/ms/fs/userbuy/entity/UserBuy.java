@@ -4,13 +4,13 @@
  */
 package com.wintop.ms.fs.userbuy.entity;
 
-import com.wintop.ms.common.base.BsData;
-import com.wintop.ms.common.base.PageQO;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.wintop.ms.common.base.BsData;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * This class corresponds to the database table user_buy

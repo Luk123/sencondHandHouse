@@ -4,6 +4,8 @@ var UserName = "username";
 var UserToken;
 /**basePath **/
 // var basePath = "http://localhost:8088";
-var basePath = "http://192.168.43.109:8088/";
+var basePath = "http://localhost:8088/";
 
 var cookie_key = "key";
+
+

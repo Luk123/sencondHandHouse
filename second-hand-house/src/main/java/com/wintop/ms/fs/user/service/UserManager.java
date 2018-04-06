@@ -1,14 +1,14 @@
 package com.wintop.ms.fs.user.service;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.wintop.ms.common.base.BsManager;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.mapper.UserDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service("userManager")
 public class UserManager extends BsManager<UserDAO, User> {

@@ -1,6 +1,14 @@
 package com.wintop.ms.fs.userbuy.controller;
 
-import com.wintop.ms.common.base.Pager;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.fs.housescore.entity.HouseScore;
@@ -13,10 +21,6 @@ import com.wintop.ms.fs.userbuy.entity.UserBuy;
 import com.wintop.ms.fs.userbuy.service.UserBuyManager;
 import com.wintop.ms.fs.userscore.entity.UserScore;
 import com.wintop.ms.fs.userscore.service.UserScoreManager;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.Map;
 
 /**
  * @author zhangzijuan

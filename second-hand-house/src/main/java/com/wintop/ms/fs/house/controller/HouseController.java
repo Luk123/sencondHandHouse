@@ -1,8 +1,26 @@
 package com.wintop.ms.fs.house.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.common.utils.DAOUtils;
-import com.wintop.ms.fs.house.bo.*;
+import com.wintop.ms.fs.house.bo.HouseInfo;
+import com.wintop.ms.fs.house.bo.HouseNameBO;
+import com.wintop.ms.fs.house.bo.HousePageBO;
+import com.wintop.ms.fs.house.bo.HousePageQO;
+import com.wintop.ms.fs.house.bo.InsertHouseDTO;
+import com.wintop.ms.fs.house.bo.UpdateHouseTagDTO;
 import com.wintop.ms.fs.house.entity.House;
 import com.wintop.ms.fs.house.service.HouseManager;
 import com.wintop.ms.fs.houseconf.entity.HouseConf;
@@ -17,24 +35,12 @@ import com.wintop.ms.fs.housetag.entity.HouseTag;
 import com.wintop.ms.fs.housetag.service.HouseTagManager;
 import com.wintop.ms.fs.user.entity.User;
 import com.wintop.ms.fs.user.service.UserManager;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户微服务Controller。
  */
 @RestController
 public class HouseController {
-
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(HouseController.class);
 
     @Resource
     private HouseManager houseManager;

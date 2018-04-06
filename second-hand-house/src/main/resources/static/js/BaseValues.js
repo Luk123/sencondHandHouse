@@ -8,3 +8,6 @@ var basePath = "http://localhost:8088/";
 var cookie_key = "key";
 
 
+function init1(){
+    window.location.href='../usedhouse/index.html';
+}

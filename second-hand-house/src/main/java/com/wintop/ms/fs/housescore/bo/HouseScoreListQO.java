@@ -4,8 +4,8 @@
  */
 package com.wintop.ms.fs.housescore.bo;
 
-import com.wintop.ms.common.base.BsData;
 import com.wintop.ms.common.base.BsQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,15 +14,16 @@ import lombok.EqualsAndHashCode;
  *
  * @mbg.generated 2018-03-04 14:39:32
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class HouseScoreListQO extends BsQO{
+public class HouseScoreListQO extends BsQO {
 
-    /**
-     * 房屋id
-     *
-     * @mbg.generated 2018-03-04 14:39:32
-     */
-    private Integer houseId;
+	/**
+	 * 房屋id
+	 *
+	 * @mbg.generated 2018-03-04 14:39:32
+	 */
+	private Integer houseId;
 
- }
+}

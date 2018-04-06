@@ -5,6 +5,7 @@
 package com.wintop.ms.fs.user.bo;
 
 import com.wintop.ms.common.base.BsQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  *
  * @mbg.generated 2018-03-04 15:00:20
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserLoginQO extends BsQO {

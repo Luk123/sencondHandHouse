@@ -1,28 +1,27 @@
 package com.wintop.ms.fs.dic.controller;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.wintop.ms.common.base.BsQO;
-import com.wintop.ms.common.base.Pager;
 import com.wintop.ms.common.base.ServiceResult;
 import com.wintop.ms.fs.dic.bo.DicPageQO;
 import com.wintop.ms.fs.dic.entity.Dic;
 import com.wintop.ms.fs.dic.service.DicManager;
-import com.wintop.ms.fs.house.bo.HousePageBO;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 用户微服务Controller。
  */
 @RestController
 public class DicController {
-
-    private static final org.slf4j.Logger Logger = LoggerFactory.getLogger(DicController.class);
 
     @Resource
     private DicManager dicManager;

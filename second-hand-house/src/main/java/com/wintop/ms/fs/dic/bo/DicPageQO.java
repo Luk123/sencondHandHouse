@@ -4,18 +4,17 @@
  */
 package com.wintop.ms.fs.dic.bo;
 
-import com.wintop.ms.common.base.BsData;
 import com.wintop.ms.common.base.PageQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.util.Date;
 
 /**
  * This class corresponds to the database table dic
  *
  * @mbg.generated 2018-03-03 23:12:50
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class DicPageQO extends PageQO {

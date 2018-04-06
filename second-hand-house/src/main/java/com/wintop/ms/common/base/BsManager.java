@@ -1,14 +1,15 @@
 package com.wintop.ms.common.base;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wintop.ms.common.utils.DAOUtils;
 import com.wintop.ms.common.utils.IObjectCallBack;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 增删改查操作类，管理Dao、BsData. 统一基本增、删、改、查操作
@@ -271,7 +272,8 @@ public class BsManager<M extends BsDao<T>, T extends BsData> {
      * author mark
      * Date 2017年8月18日
      */
-    public <K> Map<String, Object> pageByQuery(Class<K> clz, PageQO qo, IObjectCallBack<K> cb){
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public <K> Map<String, Object> pageByQuery(Class<K> clz, PageQO qo, IObjectCallBack<K> cb){
         Map<String, Object> resultMap = new HashMap<String, Object>();
         try {
             //引入PageHelper分页插件

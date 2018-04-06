@@ -4,8 +4,8 @@
  */
 package com.wintop.ms.fs.district.bo;
 
-import com.wintop.ms.common.base.BsData;
 import com.wintop.ms.common.base.PageQO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +14,7 @@ import lombok.EqualsAndHashCode;
  *
  * @mbg.generated 2018-03-04 14:05:21
  */
+@SuppressWarnings("serial")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class DistrictPageQO extends PageQO {

@@ -1,11 +1,9 @@
 package com.wintop.ms.common.test;
 
+import java.util.Date;
+
 import com.alibaba.fastjson.JSON;
 import com.wintop.ms.fs.dic.entity.Dic;
-import com.wintop.ms.fs.district.entity.District;
-import com.wintop.ms.fs.tag.entity.Tag;
-
-import java.util.Date;
 
 /**
  * @author mark

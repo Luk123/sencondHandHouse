@@ -4,23 +4,24 @@
  */
 package com.wintop.ms.fs.house.bo;
 
-import com.wintop.ms.fs.houseconf.entity.HouseConf;
-import com.wintop.ms.fs.housescore.entity.HouseScore;
-import com.wintop.ms.fs.housestar.entity.HouseStar;
-import com.wintop.ms.fs.housetag.entity.HouseTag;
-import com.wintop.ms.fs.user.entity.User;
-import lombok.Data;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+
+import com.wintop.ms.fs.houseconf.entity.HouseConf;
+import com.wintop.ms.fs.housescore.entity.HouseScore;
+import com.wintop.ms.fs.housestar.entity.HouseStar;
+import com.wintop.ms.fs.user.entity.User;
+
+import lombok.Data;
 
 /**
  * This class corresponds to the database table house
  *
  * @mbg.generated 2018-03-04 14:18:04
  */
+@SuppressWarnings("serial")
 @Data
 public class HouseInfo implements Serializable{
     /**
