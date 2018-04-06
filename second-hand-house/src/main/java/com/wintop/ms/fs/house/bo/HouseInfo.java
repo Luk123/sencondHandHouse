@@ -98,7 +98,7 @@ public class HouseInfo implements Serializable{
      *
      * @mbg.generated 2018-03-04 14:18:04
      */
-    private Date buildYear;
+    private String buildYear;
 
     /**
      * 房屋类型（1普通住宅，2公寓、3别墅、5平房、5其他）

@@ -62,11 +62,11 @@ public class HouseSaleController {
           return new ServiceResult<>(false,"禁止售卖给自己");
         }
         System.out.println(dto.toString());
-        House h = houseManager.selectByPrimaryKey(dto.getHouseId()).getResult();
-        if(h == null){
+        House h1 = houseManager.selectByPrimaryKey(dto.getHouseId()).getResult();
+        if(h1 == null){
             return null;
         }
-        dto.setHouseName(h.getHouseName());
+        dto.setHouseName(h1.getHouseName());
         dto.setSaleTime(new Date());
         // insert houseSale
         ServiceResult<Integer> res = houseSaleManager.insert(dto);
