@@ -18,4 +18,6 @@ public interface UserDAO extends BsDao<User> {
 
     User selectByUserNameAndPwd(Map<String,Object> map);
 
+    Integer checkAccount(String account);
+
 }

@@ -89,7 +89,11 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "user/createUser",produces="application/json; charset=UTF-8")
-    public ServiceResult<Integer> createUser(@RequestBody User user){
+    public ServiceResult<Integer> createUser(@RequestBody User user) throws  Exception{
+        Boolean st = userManager.checkAccount(user.getAccount());
+        if (st) {
+           return new ServiceResult<>(false,"该帐号已存在") ;
+        }
         user.setCreateTime(new Date());
         return userManager.insertSelective(user);
     }

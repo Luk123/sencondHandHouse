@@ -151,7 +151,7 @@
     from district
     <where>
       <if test="districtName != null and districtName !=''">
-        district_name like #{districtName,jdbcType=VARCHAR}
+        district_name like concat('%',#{districtName,jdbcType=VARCHAR},'%')
       </if>
       <if test="districtType != null and districtType !=''">
         and district_type = #{districtType,jdbcType=TINYINT}
@@ -168,7 +168,7 @@
     from district
     <where>
       <if test="districtName != null and districtName !=''">
-        district_name like #{districtName,jdbcType=VARCHAR}
+        district_name like concat('%',#{districtName,jdbcType=VARCHAR},'%')
       </if>
       <if test="districtType != null and districtType !=''">
         and district_type = #{districtType,jdbcType=TINYINT}

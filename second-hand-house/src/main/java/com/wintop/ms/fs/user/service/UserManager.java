@@ -53,4 +53,15 @@ public class UserManager extends BsManager<UserDAO, User> {
         return result;
     }
 
+    /**校验帐号重复，重复返回true
+     *
+     * @param account
+     * @return
+     * @throws Exception
+     */
+    public Boolean checkAccount(String account) throws  Exception{
+        Integer st = userDAO.checkAccount(account);
+        return  st == null ? false:true;
+    }
+
 }

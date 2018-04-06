@@ -140,7 +140,7 @@
     from post
     <where>
       <if test="postTitle != null and postTitle !=''">
-        post_title like #{postTitle,jdbcType=VARCHAR}
+        post_title like concat('%',#{postTitle,jdbcType=VARCHAR},'%')
       </if>
       <if test="state != null and state !=''">
         and state = #{state,jdbcType=VARCHAR}
@@ -157,7 +157,7 @@
     from post
     <where>
       <if test="postTitle != null and postTitle !=''">
-        post_title like #{postTitle,jdbcType=VARCHAR}
+        post_title like concat('%',#{postTitle,jdbcType=VARCHAR},'%')
       </if>
       <if test="state != null and state !=''">
         and state = #{state,jdbcType=VARCHAR}

@@ -118,10 +118,10 @@
     from dic
     <where>
       <if test="dicClsName != null and dicClsName !=''">
-        dic_cls_name like #{dicClsName,jdbcType=VARCHAR}
+        dic_cls_name like concat('%',#{dicClsName,jdbcType=VARCHAR},'%')
       </if>
       <if test="dicName != null and dicName !=''">
-        and dic_name like #{dicName,jdbcType=VARCHAR}
+        and dic_name like concat('%',#{dicName,jdbcType=VARCHAR},'%')
       </if>
       <if test="state != null">
         and state = #{state,jdbcType=VARCHAR}
@@ -135,10 +135,10 @@
     from dic
     <where>
       <if test="dicClsName != null and dicClsName !=''">
-        dic_cls_name like #{dicClsName,jdbcType=VARCHAR}
+        dic_cls_name like concat('%',#{dicClsName,jdbcType=VARCHAR},'%')
       </if>
       <if test="dicName != null and dicName !=''">
-        and dic_name like #{dicName,jdbcType=VARCHAR}
+        and dic_name like concat('%',#{dicName,jdbcType=VARCHAR},'%')
       </if>
       <if test="state != null">
         and state = #{state,jdbcType=VARCHAR}
