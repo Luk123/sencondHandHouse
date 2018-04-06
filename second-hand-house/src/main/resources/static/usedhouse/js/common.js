@@ -6,3 +6,4 @@ $('header').load("head.html");
 
 window.userid=getCookie('key');
 window.username=getCookie('username');
+console.log(window.userid)

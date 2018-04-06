@@ -237,7 +237,7 @@
 
     $('.save').click(function(){
         console.log($('#custName option:selected').attr('data-id')+$('#custName').val())
-        console.log(window.userid +obj.houseId+$('#reason').val()+$('#salePrice').val())
+        console.log(window.userid +obj.houseId+obj.houseName+$('#reason').val()+$('#salePrice').val())
         $.ajax({
             type:'post',
             url:basePath+'house/sale',

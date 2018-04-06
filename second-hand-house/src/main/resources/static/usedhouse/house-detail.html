@@ -311,13 +311,13 @@
             ' </div>' +
             '</div>'+
             '<div class="per-msg r" data-perid="'+data.createId+'"> <div class="msg-top"> ' +
-            '<img src="'+data.majorAddr+'" class="l" width="100" height="133"> ' +
-            '<span class="l name"> '+data.ownerName+'</span> </div> ' +
+            '<img src="'+data.user.userPhotoAddr+'" class="l" width="100" height="133"> ' +
+            '<span class="l name"> '+data.user.userName+'</span> </div> ' +
             '<p class="star t3"> ' +
             '<span>等级：</span><span><i></i><i></i><i></i><i></i><i></i></span> </p> ' +
             '<p class="t3 sex"><span>性别：</span><span class="red">'+sex+'</span></p> ' +
             '<p class="t3 count"><span>积分：</span><span class="red">'+data.user.integralNum+'</span></p> ' +
-            '<p class="phone">'+data.contactWay+'</p> ' +
+            '<p class="phone">'+data.user.contactWay+'</p> ' +
             '<p class="t3 createtime"><span>创建时间：</span><span class="red">'+timeFormat(data.user.createTime)+'</span></p> ' +
             '<p class="t3 addr"><span>卖家地址：</span><span class="red">'+data.user.addr+'</span></p> </div>');
 

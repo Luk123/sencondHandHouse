@@ -13,7 +13,7 @@
     <result column="birth" jdbcType="DATE" property="birth" />
     <result column="addr" jdbcType="VARCHAR" property="addr" />
     <result column="integral_num" jdbcType="INTEGER" property="integralNum" />
-    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="account" jdbcType="VARCHAR" property="account" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -41,7 +41,7 @@
       create_time, account)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhotoAddr,jdbcType=VARCHAR}, 
       #{pwd,jdbcType=VARCHAR}, #{contactWay,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{addr,jdbcType=VARCHAR}, #{integralNum,jdbcType=INTEGER}, 
+      #{sex,jdbcType=VARCHAR}, #{birth,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR}, #{integralNum,jdbcType=INTEGER},
       #{createTime,jdbcType=DATE}, #{account,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.wintop.ms.fs.user.entity.User">
@@ -108,7 +108,7 @@
         #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birth != null">
-        #{birth,jdbcType=DATE},
+        #{birth,jdbcType=VARCHAR},
       </if>
       <if test="addr != null">
         #{addr,jdbcType=VARCHAR},
@@ -128,16 +128,16 @@
     <!-- @mbg.generated 2018-03-04 16:30:11 -->
     update user
     <set>
-      <if test="userName != null">
+      <if test="userName != null and userName !=''">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="userPhotoAddr != null">
+      <if test="userPhotoAddr != null  and userPhotoAddr !=''">
         user_photo_addr = #{userPhotoAddr,jdbcType=VARCHAR},
       </if>
-      <if test="pwd != null">
+      <if test="pwd != null and pwd !=''">
         pwd = #{pwd,jdbcType=VARCHAR},
       </if>
-      <if test="contactWay != null">
+      <if test="contactWay != null and contactWay !=''">
         contact_way = #{contactWay,jdbcType=VARCHAR},
       </if>
       <if test="certNo != null">
@@ -147,7 +147,7 @@
         sex = #{sex,jdbcType=VARCHAR},
       </if>
       <if test="birth != null">
-        birth = #{birth,jdbcType=DATE},
+        birth = #{birth,jdbcType=VARCHAR},
       </if>
       <if test="addr != null">
         addr = #{addr,jdbcType=VARCHAR},
@@ -173,7 +173,7 @@
       contact_way = #{contactWay,jdbcType=VARCHAR},
       cert_no = #{certNo,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
-      birth = #{birth,jdbcType=DATE},
+      birth = #{birth,jdbcType=VARCHAR},
       addr = #{addr,jdbcType=VARCHAR},
       integral_num = #{integralNum,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=DATE},

@@ -72,7 +72,7 @@ public class User extends BsData {
      *
      * @mbg.generated 2018-03-04 15:00:20
      */
-    private Date birth;
+    private String birth;
 
     /**
      * 用户住址

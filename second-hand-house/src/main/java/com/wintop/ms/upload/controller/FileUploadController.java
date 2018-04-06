@@ -106,17 +106,19 @@ public class FileUploadController {
             String fileName = file.getOriginalFilename();
             int size = (int) file.getSize();
             System.out.println(fileName + "-->" + size);
-            String path = "C:/picFile" ;
-            //String path = "/home/mgz/下载" ;
-            String allPath = path + "/" + fileName;
+            //String path = "C:/picFile" ;
+            String path = "F:/二手房/sencondHandHouse/second-hand-house/target/classes/static/usedhouse/images" ;
+            //String allPath = path + "/" + fileName;
+            String allPath = path +"/" + fileName;
+            String realPath = "images/" + fileName;
             System.out.println(fileName + "-->" + allPath);
             File dest = new File(allPath);
-            if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
-                dest.getParentFile().mkdir();
-            }
+//            if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
+//                dest.getParentFile().mkdir();
+//            }
             try {
                 file.transferTo(dest); //保存文件
-                result.setResult(allPath);
+                result.setResult(realPath);
                 result.setSuccess(true);
                 result.setMessage("文件上传成功");
             } catch (Exception e) {

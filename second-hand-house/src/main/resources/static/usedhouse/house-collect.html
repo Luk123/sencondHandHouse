@@ -327,6 +327,7 @@
 
 
     function getView(data){
+        $('table').html('');
         $.each(data,function(i,v){
             $('table').append('  <tr> ' +
                 '<td>'+v.houseName+'</td> ' +

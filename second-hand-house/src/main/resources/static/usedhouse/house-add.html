@@ -209,13 +209,13 @@
                         <span>房屋名称：</span><span><input type="text" class="u-name" id="houseName" name="houseName"></span>
                     </p>
                     <p>
-                        <span>房屋户型：</span><span><input type="text" class="u-name" id="houseHall" name="houseHall"></span>
+                        <span>房屋户型：</span><span><input type="text" class="u-name" id="houseHall" name="houseHall" placeholder="如：3室2厅1厨1卫"></span>
                     </p>
                     <p>
-                        <span>建筑面积：</span><span><input type="text" class="u-name" id="area" name="area"></span>
+                        <span>建筑面积：</span><span><input type="text" class="u-name" id="area" name="area" placeholder="请输入数字"></span>
                     </p>
                     <p>
-                        <span>套内面积：</span><span><input type="text" class="u-name" id="realArea" name="realArea"></span>
+                        <span>套内面积：</span><span><input type="text" class="u-name" id="realArea" name="realArea" placeholder="请输入数字"></span>
                     </p>
                     <p>
                         <span>省：</span><span><input type="text" class="u-name" id="provice" name="provice"></span>
@@ -240,7 +240,7 @@
                     </span>
                     </p>
                     <p>
-                        <span>建造年代：</span><span><input type="text" class="u-name" id="buildYear" name="buildYear"></span>
+                        <span>建造年代：</span><span><input type="text" class="u-name" id="buildYear" name="buildYear" placeholder="如：2010-01-06"></span>
                     </p>
                     <p>
                         <span>房屋类型：</span>
@@ -256,10 +256,10 @@
                     </p>
 
                     <p>
-                        <span>楼层：</span><span><input type="text" class="u-name" id="floor" name="floor"></span>
+                        <span>楼层：</span><span><input type="text" class="u-name" id="floor" name="floor" placeholder="请输入数字"></span>
                     </p>
                     <p>
-                        <span>售价：</span><span><input type="text" class="u-name" id="salePrice" name="salePrice"></span>
+                        <span>售价：</span><span><input type="text" class="u-name" id="salePrice" name="salePrice" placeholder="万元"></span>
                     </p>
                     <p>
                         <span>朝向：</span><span><input type="text" class="u-name" id="direction" name="direction"></span>
@@ -276,7 +276,7 @@
                     </span>
                     </p>
                     <p>
-                        <span>单价：</span><span><input type="text" class="u-name" placeholder="万元" id="unitPrice" name="unitPrice" ></span>
+                        <span>单价：</span><span><input type="text" class="u-name" placeholder="万元/㎡" id="unitPrice" name="unitPrice" ></span>
                     </p>
                     <p>
                         <span>首付：</span><span><input type="text" class="u-name" id="fristPay"  name="fristPay" placeholder="万元"></span>
@@ -285,7 +285,7 @@
                         <span>月供：</span><span><input type="text" class="u-name" id="monthPay" name="monthPay" placeholder="万元"></span>
                     </p>
                     <p>
-                        <span>联系方式：</span><span><input type="text" class="u-name"id="contactWay" name="contactWay" ></span>
+                        <span>联系方式：</span><span><input type="text" class="u-name"id="contactWay" name="contactWay" placeholder="手机或固话"></span>
                     </p>
                     <p>
                         <span>房屋描述：</span><span><input type="text" class="u-name" id="descb" name="descb"></span>
@@ -297,8 +297,8 @@
                         <span>售卖状态：</span>
                         <span>
                        <select name="state" id="state">
-                           <option value="有">未发布</option>
-                           <option value="无">售卖中</option>
+                           <option value="未发布">未发布</option>
+                           <option value="售卖中">售卖中</option>
                        </select>
                     </span>
                     </p>
@@ -353,7 +353,7 @@
                             <label style="height:15px;line-height: 10px;">
                                <input type="checkbox" value="asfas" id="q" style="width: 15px;height: 15px;margin-left: 4px">111
                             </label>
-                        <span/>
+                        </span>
                     </p>
                     <p>
                         <span>&nbsp;</span><a onclick="submitHouse()" class="save-name btn">发表</a>
@@ -399,7 +399,7 @@
                    $("#district").val(data.district);
                    $("#addr").val(data.addr);
                    $("#buildType").val(data.buildType);
-                   $("#buildYear").val(data.buildYear);
+                   $("#buildYear").val(formatDate(data.buildYear));
                    $("#houseType").val(data.houseType);
                    $("#floor").val(data.floor);
                    $("#direction").val(data.direction);

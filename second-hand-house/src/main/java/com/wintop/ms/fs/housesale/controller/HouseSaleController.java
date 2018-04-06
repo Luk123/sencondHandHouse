@@ -58,6 +58,7 @@ public class HouseSaleController {
      */
     @PostMapping(value = "house/sale",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> saleHouse(HouseSale dto) throws  Exception{
+        System.out.println(dto.toString());
         dto.setSaleTime(new Date());
         // insert houseSale
         ServiceResult<Integer> res = houseSaleManager.insert(dto);
@@ -76,7 +77,7 @@ public class HouseSaleController {
         h.setHouseId(dto.getHouseId());
         h.setOwnerId(dto.getCustId());
         h.setOwnerName(dto.getCustName());
-        h.setContactWay("");
+        h.setContactWay(" ");
         houseManager.updateSelective(h);
         return res;
     }

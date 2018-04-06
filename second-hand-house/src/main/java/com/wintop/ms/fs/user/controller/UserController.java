@@ -111,6 +111,7 @@ public class UserController {
      */
     @PostMapping(value = "user/updateInfoById",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> updateInfoById(User user){
+        System.out.println(user.toString());
         if(user.getUserId()!=null){
             return userManager.updateSelective(user);
         }else {

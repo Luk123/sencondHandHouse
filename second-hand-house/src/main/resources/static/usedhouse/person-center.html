@@ -354,7 +354,7 @@ integralNum"></span>
         getid('ocall').val(data.contactWay)
         getid('integralNum').val(data.integralNum)
         getid('createTime').val(data.createTime)
-        getid('head-pic').attr('src',data.userPhotoAddr)
+        getid('head-pic').attr('src',data.userPhotoAddr);
     }
     function getid(myid) {
         return $('#'+myid)
@@ -364,6 +364,7 @@ integralNum"></span>
 
 
     function updateUser(uname,uimg,pwd,contact) {
+        console.log(uimg+window.userid+' ' +pwd+contact+uname)
         $.ajax({
             type:'post',
             url:basePath+'user/updateInfoById',
@@ -374,10 +375,8 @@ integralNum"></span>
                 pwd:pwd,
                 contactWay:contact
             },
-            processData: false,
-            contentType: false,
             success:function(data){
-                alert('上传成功')
+                alert('修改成功')
                 console.log(data)
             }
             ,error:function (data) {
