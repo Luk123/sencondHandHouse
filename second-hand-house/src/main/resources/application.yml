@@ -49,9 +49,10 @@ logging:
     com.springms: DEBUG
     org.springframework.cloud: debug
 #####################################################################################################
+#图片处理
 
-
-
+cbs:
+imagesPath : file:/C:/picFile/
 
 
 
