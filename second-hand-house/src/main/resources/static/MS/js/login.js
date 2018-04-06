@@ -1,6 +1,10 @@
 function  login() {
     var loginUserName = $("#count").val();
     var loginPassword = $("#password").val();
+    if (loginUserName!="admin"){
+        alert("您没有权限登陆！")
+        return;
+    }
     var token = "";
     var userId="";
     //请求

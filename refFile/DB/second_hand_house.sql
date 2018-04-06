@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 47.93.217.222
-Source Server Version : 50721
-Source Host           : 47.93.217.222:3306
+Source Server         : localhost
+Source Server Version : 100211
+Source Host           : localhost:3306
 Source Database       : second_hand_house
 
 Target Server Type    : MYSQL
-Target Server Version : 50721
+Target Server Version : 100211
 File Encoding         : 65001
 
-Date: 2018-04-06 19:41:07
+Date: 2018-04-06 21:34:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,7 +62,7 @@ CREATE TABLE `dic` (
 -- ----------------------------
 -- Records of dic
 -- ----------------------------
-INSERT INTO `dic` VALUES ('1', '性别', '男', '关闭', '123', '2018-03-04');
+INSERT INTO `dic` VALUES ('1', '性别', '男', '开启', '123二万人', '2018-03-04');
 INSERT INTO `dic` VALUES ('2', '性別', '女', '开启', 'beizhu1', '2018-03-10');
 INSERT INTO `dic` VALUES ('6', '装修', '精装修', '关闭', '213', '2018-03-17');
 INSERT INTO `dic` VALUES ('7', '性别', '保密', '开启', '12', '2018-03-17');
@@ -76,7 +76,7 @@ INSERT INTO `dic` VALUES ('10', '朝向', '南', '开启', '', '2018-03-17');
 DROP TABLE IF EXISTS `district`;
 CREATE TABLE `district` (
   `district_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '行政区划id',
-  `parent_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '上级id',
+  `parent_id` bigint(20) unsigned NOT NULL DEFAULT 0 COMMENT '上级id',
   `district_code` varchar(6) NOT NULL COMMENT '行政区划编码',
   `district_name` varchar(20) NOT NULL COMMENT '行政区划名称',
   `district_type` tinyint(3) unsigned NOT NULL COMMENT '类型: 1:省, 2:市, 3: 县(区)',
@@ -3335,11 +3335,11 @@ CREATE TABLE `house` (
   `build_type` varchar(20) DEFAULT NULL COMMENT '建筑类型：塔楼，板楼，板塔结合',
   `build_year` varchar(50) DEFAULT NULL COMMENT '建造年份',
   `house_type` varchar(20) NOT NULL COMMENT '房屋类型（1普通住宅，2公寓、3别墅、5平房、5其他）',
-  `floor` int(10) NOT NULL DEFAULT '1' COMMENT '楼层',
-  `sale_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '房屋售价（万）',
+  `floor` int(10) NOT NULL DEFAULT 1 COMMENT '楼层',
+  `sale_price` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT '房屋售价（万）',
   `direction` varchar(10) DEFAULT NULL COMMENT '房屋朝向',
   `renovation` varchar(20) DEFAULT NULL COMMENT '装修（精装修、豪华装修、普通装修、毛坯）',
-  `unit_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '单价，例：10万元/m2',
+  `unit_price` decimal(10,2) NOT NULL DEFAULT 0.00 COMMENT '单价，例：10万元/m2',
   `frist_pay` decimal(10,2) DEFAULT NULL COMMENT '参考首付（万）',
   `month_pay` decimal(10,2) DEFAULT NULL COMMENT '参考月供(万）',
   `owner_id` int(10) DEFAULT NULL COMMENT '房主id',
@@ -3357,13 +3357,13 @@ CREATE TABLE `house` (
   `create_id` int(10) DEFAULT NULL COMMENT '房屋创建人id',
   `create_name` varchar(50) DEFAULT NULL COMMENT '创建人名称',
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=869582 DEFAULT CHARSET=utf8 COMMENT='房子基本信息表';
+) ENGINE=MyISAM AUTO_INCREMENT=871458 DEFAULT CHARSET=utf8 COMMENT='房子基本信息表';
 
 -- ----------------------------
 -- Records of house
 -- ----------------------------
-INSERT INTO `house` VALUES ('1', '别墅', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '板塔结合', '2010-01-06', '别墅', '1', '200.00', '南', '普通装修', '10.00', '80.00', '8.00', '1', '张三', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (1).jpg', '无', '无', '无供暖', '8', '156456456456456546', '2018-03-06', '1', '张三');
-INSERT INTO `house` VALUES ('2', '海景房', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '公寓', '1', '200.00', '南', '豪华装修', '10.00', '80.00', '8.00', '1', '张三', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (2).jpg', '无', '无', '无供暖', '8', '156456456456456546', '2018-03-06', '1', '张三');
+INSERT INTO `house` VALUES ('1', '别墅', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '板塔结合', '2010-01-06', '平房', '1', '200.00', '南', '普通装修', '10.00', '80.00', '8.00', '2', '李四', ' ', '房屋极好，值得购买', '售卖中', '/Path/house (1).jpg', '无', '无', '无供暖', '8', '156456456456456546', '2018-03-06', '1', '张三');
+INSERT INTO `house` VALUES ('2', '海景房', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '普通住宅', '1', '200.00', '南', '豪华装修', '10.00', '80.00', '8.00', '1', '张三', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (2).jpg', '无', '无', '无供暖', '8', '156456456456456546', '2018-03-06', '1', '张三');
 INSERT INTO `house` VALUES ('3', '单身公寓', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '公寓', '1', '200.00', '南', '精装修', '10.00', '80.00', '8.00', '1', '张三', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (3).jpg', '无', '无', '无供暖', '8', '156456456456456546', '2018-03-06', '1', '张三');
 INSERT INTO `house` VALUES ('4', '小洋房', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '公寓', '1', '200.00', '南', '精装修', '10.00', '80.00', '8.00', '1', '张三', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (4).jpg', '无', '无', '无供暖', '8', '156456456456456546', '2018-03-06', '1', '张三');
 INSERT INTO `house` VALUES ('5', '独家园', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '普通住宅', '1', '200.00', '南', '精装修', '10.00', '80.00', '8.00', '1', '张三', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (5).jpg', '无', '有', '集体供暖', '8', '156456456456456546', '2018-03-25', '1', '张三');
@@ -3375,6 +3375,10 @@ INSERT INTO `house` VALUES ('10', '豪华独家园', '3室2厅1厨1卫', '200.00
 INSERT INTO `house` VALUES ('11', '单元房', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '普通住宅', '1', '200.00', '南', '精装修', '10.00', '80.00', '8.00', '5', '奥迪', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (1).jpg', '无', '有', '集体供暖', '8', '156456456456456546', '2018-03-25', '1', '张三');
 INSERT INTO `house` VALUES ('12', '四合院', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '塔楼', '2010-01-06', '普通住宅', '1', '200.00', '南', '精装修', '10.00', '80.00', '8.00', '6', '火锅', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (1).jpg', '无', '有', '集体供暖', '8', '156456456456456546', '2018-03-25', '1', '张三');
 INSERT INTO `house` VALUES ('13', '公寓', '3室2厅1厨1卫', '200.00', '150.00', '北京市', '北京市', '大兴区', '东路101号', '板楼', '2010-01-06', '别墅', '1', '200.00', '南', '普通装修', '10.00', '80.00', '8.00', '7', '飞流', '13581842530', '房屋极好，值得购买', '售卖中', '/Path/house (1).jpg', '无', '无', '自供暖', '8', '156456456456456546', '2018-03-25', '1', '张三');
+INSERT INTO `house` VALUES ('457172', '别墅', '111', '111.00', '11.00', '131', '1321', '3123', '1312', '塔楼', '2018-04-06', '普通住宅', '22', '2222.00', '22', '精装修', '222.00', '222.00', '22.00', '1', '张三', '222', '222', '售卖中', '/Path/别墅3.jpg', '222', '有', '集体供暖', null, '22', '2018-04-06', '1', '张三');
+INSERT INTO `house` VALUES ('871457', '别墅', '111', '111.00', '11.00', '131', '1321', '3123', '1312', '塔楼', '2018-04-06', '普通住宅', '22', '2222.00', '22', '精装修', '222.00', '222.00', '22.00', '1', '张三', '222', '222', '售卖中', '/Path/别墅3.jpg', '222', '有', '集体供暖', null, '22', '2018-04-06', '1', '张三');
+INSERT INTO `house` VALUES ('191184', '别墅', '111', '111.00', '11.00', '131', '1321', '3123', '1312', '塔楼', '2018-04-06', '普通住宅', '22', '2222.00', '22', '精装修', '222.00', '222.00', '22.00', '1', '张三', '222', '222', '售卖中', '/Path/别墅3.jpg', '222', '有', '集体供暖', null, '22', '2018-04-06', '1', '张三');
+INSERT INTO `house` VALUES ('94673', '别墅', '111', '111.00', '11.00', '131', '1321', '3123', '1312', '塔楼', '2018-04-06', '普通住宅', '22', '2222.00', '22', '精装修', '222.00', '222.00', '22.00', '1', '张三', '222', '222', '售卖中', '/Path/别墅3.jpg', '222', '有', '集体供暖', null, '22', '2018-04-06', '1', '张三');
 
 -- ----------------------------
 -- Table structure for house_conf
@@ -3387,7 +3391,7 @@ CREATE TABLE `house_conf` (
   `life_conf` varchar(500) NOT NULL DEFAULT '' COMMENT '生活配套',
   `traffic` varchar(500) NOT NULL DEFAULT '' COMMENT '轨道交通',
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=869582 DEFAULT CHARSET=utf8 COMMENT='房屋周边配套表（与房屋表共用主键）';
+) ENGINE=MyISAM AUTO_INCREMENT=871458 DEFAULT CHARSET=utf8 COMMENT='房屋周边配套表（与房屋表共用主键）';
 
 -- ----------------------------
 -- Records of house_conf
@@ -3405,6 +3409,10 @@ INSERT INTO `house_conf` VALUES ('10', '豪华独家园', '小区有健身区', 
 INSERT INTO `house_conf` VALUES ('11', '单元房', '小区有健身区', '有公园', '有地铁');
 INSERT INTO `house_conf` VALUES ('12', '四合院', '小区有健身区', '有公园', '有地铁');
 INSERT INTO `house_conf` VALUES ('13', '公寓', '小区有健身区', '有公园', '有地铁');
+INSERT INTO `house_conf` VALUES ('457172', '别墅', '222', '22', '22');
+INSERT INTO `house_conf` VALUES ('871457', '别墅', '222', '22', '22');
+INSERT INTO `house_conf` VALUES ('191184', '别墅', '222', '22', '22');
+INSERT INTO `house_conf` VALUES ('94673', '别墅', '222', '22', '22');
 
 -- ----------------------------
 -- Table structure for house_photo
@@ -3420,7 +3428,7 @@ CREATE TABLE `house_photo` (
   `create_id` int(10) DEFAULT NULL COMMENT '创建人id',
   `create_name` varchar(50) DEFAULT NULL COMMENT '创建人名字',
   PRIMARY KEY (`house_photo_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='房子相关图片表';
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='房子相关图片表';
 
 -- ----------------------------
 -- Records of house_photo
@@ -3430,7 +3438,7 @@ INSERT INTO `house_photo` VALUES ('2', '1', '别墅', '室内图', '/Path/house 
 INSERT INTO `house_photo` VALUES ('3', '1', '别墅', '环境图', '/Path/house (3).jpg', '2018-03-25', '1', '张三');
 INSERT INTO `house_photo` VALUES ('5', '2', '海景房', '户型图', '/Path/house (1).jpg', '2018-03-25', '1', '张三');
 INSERT INTO `house_photo` VALUES ('4', '1', '别墅', '周边地图', '/Path/ditu1.jpg', '2018-03-25', '1', '张三');
-INSERT INTO `house_photo` VALUES ('6', '2', '海景房', '室内图', '/Path/house (2).jpg', '2018-03-04', '1', '张三');
+INSERT INTO `house_photo` VALUES ('17', '2', '海景房', '环境图', '/Path/别墅2.jpg', '2018-04-06', '1', '张三');
 INSERT INTO `house_photo` VALUES ('7', '2', '海景房', '环境图', '/Path/house (3).jpg', '2018-03-25', '1', '张三');
 INSERT INTO `house_photo` VALUES ('8', '2', '海景房', '周边地图', '/Path/ditu1.jpg', '2018-03-25', '1', '张三');
 INSERT INTO `house_photo` VALUES ('9', '3', '单身公寓', '户型图', '/Path/house (1).jpg', '2018-03-25', '1', '张三');
@@ -3458,11 +3466,13 @@ CREATE TABLE `house_sale` (
   `sale_price` decimal(10,2) NOT NULL COMMENT '售卖价格',
   `sale_time` date NOT NULL COMMENT '售卖时间',
   PRIMARY KEY (`house_sale_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='房屋售卖信息表';
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='房屋售卖信息表';
 
 -- ----------------------------
 -- Records of house_sale
 -- ----------------------------
+INSERT INTO `house_sale` VALUES ('3', '1', '别墅', '1', '张三', '7', 'gt', '价格合理', '1.00', '2018-04-06');
+INSERT INTO `house_sale` VALUES ('4', '1', '别墅', '2', '李四', '1', '张三', '123', '123.00', '2018-04-06');
 
 -- ----------------------------
 -- Table structure for house_score
@@ -3494,7 +3504,7 @@ CREATE TABLE `house_star` (
   `type_desc` varchar(500) NOT NULL DEFAULT '' COMMENT '户型介绍',
   `build_desc` varchar(500) NOT NULL DEFAULT '' COMMENT '装修描述',
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=869582 DEFAULT CHARSET=utf8 COMMENT='房屋核心卖点表（与房屋表共用主键）';
+) ENGINE=MyISAM AUTO_INCREMENT=871458 DEFAULT CHARSET=utf8 COMMENT='房屋核心卖点表（与房屋表共用主键）';
 
 -- ----------------------------
 -- Records of house_star
@@ -3512,6 +3522,10 @@ INSERT INTO `house_star` VALUES ('10', '豪华独家园', '此房子极好，值
 INSERT INTO `house_star` VALUES ('11', '单元房', '此房子极好，值得购买', '装修非常漂亮', '精装修，非常好');
 INSERT INTO `house_star` VALUES ('12', '四合院', '此房子极好，值得购买', '装修非常漂亮', '精装修，非常好');
 INSERT INTO `house_star` VALUES ('13', '公寓', '此房子极好，值得购买', '装修非常漂亮', '精装修，非常好');
+INSERT INTO `house_star` VALUES ('457172', '别墅', '22', '22', '22');
+INSERT INTO `house_star` VALUES ('871457', '别墅', '22', '22', '22');
+INSERT INTO `house_star` VALUES ('191184', '别墅', '22', '22', '22');
+INSERT INTO `house_star` VALUES ('94673', '别墅', '22', '22', '22');
 
 -- ----------------------------
 -- Table structure for house_tag
@@ -3527,12 +3541,12 @@ CREATE TABLE `house_tag` (
   `create_id` int(11) DEFAULT NULL COMMENT '创建人id',
   `create_name` varchar(50) DEFAULT NULL COMMENT '创建人名字',
   PRIMARY KEY (`house_tag_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='房屋标签表';
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='房屋标签表';
 
 -- ----------------------------
 -- Records of house_tag
 -- ----------------------------
-INSERT INTO `house_tag` VALUES ('1', '1', '别墅', '1', '近地铁', '2018-03-17', '1', '张三');
+INSERT INTO `house_tag` VALUES ('14', '1', '别墅', '4', '近地铁', '2018-04-06', '1', '张三');
 INSERT INTO `house_tag` VALUES ('2', '2', '海景房', '4', '近地铁', '2018-03-25', '1', '张三');
 INSERT INTO `house_tag` VALUES ('3', '3', '单身公寓', '7', '有公园', '2018-03-25', '1', '张三');
 INSERT INTO `house_tag` VALUES ('4', '4', '小洋房', '6', '有公交', '2018-03-25', '1', '张三');
@@ -3565,10 +3579,10 @@ CREATE TABLE `post` (
 -- ----------------------------
 -- Records of post
 -- ----------------------------
-INSERT INTO `post` VALUES ('1', '测试发帖1', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核中', '', '2018-03-19', '1', '张三');
+INSERT INTO `post` VALUES ('1', '测试发帖1', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审批通过', '123', '2018-03-19', '1', '张三');
 INSERT INTO `post` VALUES ('2', '测试发帖2', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核中', '', '2018-03-19', '1', '张三');
 INSERT INTO `post` VALUES ('3', '测试发帖3', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核通过', '', '2018-03-19', '1', '张三');
-INSERT INTO `post` VALUES ('5', '测试发帖4', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '驳回', '反国家', '2018-03-19', '1', '张三');
+INSERT INTO `post` VALUES ('5', '测试发帖4', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审批通过', '', '2018-03-19', '1', '张三');
 INSERT INTO `post` VALUES ('6', '测试发帖5', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核中', '', '2018-03-19', '2', '李四');
 INSERT INTO `post` VALUES ('7', '测试发帖6', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核中', '', '2018-03-19', '2', '李四');
 INSERT INTO `post` VALUES ('8', '测试发帖7', '测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖测试发帖', '审核通过', '', '2018-03-19', '2', '李四');
@@ -3587,19 +3601,33 @@ CREATE TABLE `tag` (
   `create_time` date NOT NULL COMMENT '创建时间',
   `state` varchar(10) NOT NULL DEFAULT '启用' COMMENT '状态：启用，停用',
   PRIMARY KEY (`tag_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='标签字典表';
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='标签字典表';
 
 -- ----------------------------
 -- Records of tag
 -- ----------------------------
-INSERT INTO `tag` VALUES ('6', '有公交', '123457', '2018-03-17', '开启');
+INSERT INTO `tag` VALUES ('6', '有公交', '12345723', '2018-03-17', '开启');
 INSERT INTO `tag` VALUES ('3', '近医院', '123', '2018-03-17', '开启');
-INSERT INTO `tag` VALUES ('4', '近地铁', '12139', '2018-03-17', '关闭');
+INSERT INTO `tag` VALUES ('4', '近地铁', '12139', '2018-03-17', '开启');
 INSERT INTO `tag` VALUES ('7', '有公园', '4568', '2018-03-17', '开启');
 INSERT INTO `tag` VALUES ('8', '透风', '12', '2018-03-17', '开启');
 INSERT INTO `tag` VALUES ('1', '有公交，有医院', '123457', '2018-03-17', '开启');
 INSERT INTO `tag` VALUES ('2', '近医院，有地铁', '123', '2018-03-17', '开启');
 INSERT INTO `tag` VALUES ('5', '近地铁，有公园', '12139', '2018-03-17', '关闭');
+INSERT INTO `tag` VALUES ('10', '测试', '23', '2018-04-06', '开启');
+
+-- ----------------------------
+-- Table structure for test
+-- ----------------------------
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE `test` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(50) DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of test
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -3615,22 +3643,23 @@ CREATE TABLE `user` (
   `sex` varchar(10) DEFAULT NULL COMMENT '性别：女 男 保密',
   `birth` date DEFAULT NULL COMMENT '生日',
   `addr` varchar(255) DEFAULT NULL COMMENT '用户住址',
-  `integral_num` int(10) NOT NULL DEFAULT '0' COMMENT '积分数量',
+  `integral_num` int(10) NOT NULL DEFAULT 0 COMMENT '积分数量',
   `create_time` date NOT NULL COMMENT '创建时间',
   `account` varchar(50) NOT NULL COMMENT '账号',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '张三', '/Path/user1.jpg', 'admin', '13949635647', '411381199501241234', '1', '2018-03-10', '河北省石家庄', '30', '2018-03-10', 'admin');
-INSERT INTO `user` VALUES ('2', '李四', '/Path/user2.jpg', '123456', '13949635647', '411381199501241234', '2', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'lisi');
-INSERT INTO `user` VALUES ('3', '王五', '/Path/user3.jpg', '123456', '13949635647', '411381199501241234', '1', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'wangwu');
-INSERT INTO `user` VALUES ('4', '留兰', '/Path/user4.jpg', '123456', '13949635647', '411381199501241234', '2', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'liulan');
-INSERT INTO `user` VALUES ('5', '奥迪', '/Path/user1.jpg', '123456', '13949635647', '411381199501241234', '1', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'aodi');
-INSERT INTO `user` VALUES ('6', '火锅', '/Path/user2.jpg', '123456', '13949635647', '411381199501241234', '2', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'huoguo');
-INSERT INTO `user` VALUES ('7', '飞流', '/Path/user3.jpg', '123456', '13949635647', '411381199501241234', '1', '2018-03-10', '河北省石家庄', '0', '2018-03-23', 'feiliu');
+INSERT INTO `user` VALUES ('1', '张三', '/Path/user1.jpg', 'admin', '13949635647', '411381199501241234', '男', '2018-03-01', '河北省石家庄123', '30', '2018-03-10', 'admin');
+INSERT INTO `user` VALUES ('2', '李四', '/Path/user2.jpg', '123456', '13949635647', '411381199501241234', '女', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'lisi');
+INSERT INTO `user` VALUES ('3', '王五', '/Path/user3.jpg', '123456', '13949635647', '411381199501241234', '女', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'wangwu');
+INSERT INTO `user` VALUES ('4', '留兰', '/Path/user4.jpg', '123456', '13949635647', '411381199501241234', '女', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'liulan');
+INSERT INTO `user` VALUES ('5', '奥迪', '/Path/user1.jpg', '123456', '13949635647', '411381199501241234', '女', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'aodi');
+INSERT INTO `user` VALUES ('6', '火锅', '/Path/user2.jpg', '123456', '13949635647', '411381199501241234', '女', '2018-03-10', '河北省石家庄', '5', '2018-03-10', 'huoguo');
+INSERT INTO `user` VALUES ('7', '飞流', '/Path/timg.jpg', '123456', '13949635647', '411381199501241234', '女', '2018-03-10', '河北省石家庄', '0', '2018-03-23', 'feiliu');
+INSERT INTO `user` VALUES ('8', '111', null, '111', '17600602878', '371501196803089682', '女', '1968-03-08', '山东省聊城市市辖区', '0', '2018-04-06', 'zhangzijuan');
 
 -- ----------------------------
 -- Table structure for user_buy
@@ -3648,11 +3677,13 @@ CREATE TABLE `user_buy` (
   `user_name` varchar(50) NOT NULL COMMENT '购买者名称',
   `state` varchar(50) NOT NULL DEFAULT '已购买' COMMENT '状态：已购买',
   PRIMARY KEY (`user_buy_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户购买记录表';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户购买记录表';
 
 -- ----------------------------
 -- Records of user_buy
 -- ----------------------------
+INSERT INTO `user_buy` VALUES ('6', '1', '别墅', '1.00', '2018-04-06', '7', 'gt', '1', '张三', '已购买');
+INSERT INTO `user_buy` VALUES ('7', '1', '别墅', '123.00', '2018-04-06', '1', '张三', '2', '李四', '已购买');
 
 -- ----------------------------
 -- Table structure for user_favorite
@@ -3667,11 +3698,12 @@ CREATE TABLE `user_favorite` (
   `state` varchar(10) NOT NULL DEFAULT '关注' COMMENT '状态：关注，取消',
   `create_time` date NOT NULL COMMENT '关注时间',
   PRIMARY KEY (`favorite_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='用户关注房屋表(个人收藏夹)';
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户关注房屋表(个人收藏夹)';
 
 -- ----------------------------
 -- Records of user_favorite
 -- ----------------------------
+INSERT INTO `user_favorite` VALUES ('8', '5', '独家园', '7', 'gt', '关注', '2018-04-06');
 
 -- ----------------------------
 -- Table structure for user_sale
@@ -3688,11 +3720,13 @@ CREATE TABLE `user_sale` (
   `owner_id` int(10) NOT NULL COMMENT '卖家id',
   `owner_name` varchar(50) NOT NULL COMMENT '卖家名称',
   PRIMARY KEY (`user_sale_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户销售记录表';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户销售记录表';
 
 -- ----------------------------
 -- Records of user_sale
 -- ----------------------------
+INSERT INTO `user_sale` VALUES ('4', '1', '别墅', '1.00', '2018-04-06', '1', '张三', '7', 'gt');
+INSERT INTO `user_sale` VALUES ('5', '1', '别墅', '123.00', '2018-04-06', '2', '李四', '1', '张三');
 
 -- ----------------------------
 -- Table structure for user_score

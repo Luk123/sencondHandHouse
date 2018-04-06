@@ -221,7 +221,7 @@
         <![CDATA[ and integral_num <= #{integralNumEnd,jdbcType=INTEGER} ]]>
       </if>
       <if test="account != null and account !=''">
-        and account like #{account,jdbcType=VARCHAR}
+        and account like concat('%',#{account,jdbcType=VARCHAR},'%')
       </if>
     </where>
   </select>
@@ -251,7 +251,7 @@
         <![CDATA[ and integral_num <= #{integralNumEnd,jdbcType=INTEGER} ]]>
       </if>
       <if test="account != null and account !=''">
-        and account like #{account,jdbcType=VARCHAR}
+        and account like concat('%',#{account,jdbcType=VARCHAR},'%')
       </if>
     </where>
   </select>

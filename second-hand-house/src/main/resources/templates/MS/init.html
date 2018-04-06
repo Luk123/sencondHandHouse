@@ -192,6 +192,7 @@
 <script src="../usedhouse/js/cookie_util.js"></script>
 <script src="../usedhouse/js/common.js"></script>
 <script src="../usedhouse/js/BaseValues.js"></script>
+<script src="../usedhouse/js/index.js"></script>
 <script>
     $('.btn-search').click(function(){
         sessionStorage.setItem('desc',$('#search').val())
@@ -203,34 +204,6 @@
 
     function init(){
         hasGoodHouse();
-    };
-    function hasGoodHouse() {
-        $.ajax({
-            type:'get',
-            url:basePath+'/housePhoto/page',
-            data:{
-                'houseId':1
-            },
-            success:function(data){
-                indexImgView(data.rows);
-            },
-            error:function(data){
-                alert('服务器走丢了')
-            }
-        })
-    };
-    function indexImgView(data) {
-        alert(data);
-        for (var i=0;i<data.length;i++){
-            if(i>3){
-                return null;
-            }
-            $('.house-list').append(' <li><div class="pic"> ' +
-                '<a href="usedhouse/house-detail.html?houseId='+data[i].houseId+'" target="_blank"> ' +
-                '<img class="lazy" src="'+data[i].photoAddr+'" title="'+data[i].houseName+'" alt="'+data[i].houseName+'" style="display: block;" /> </a> </div> ' +
-                '<div class="wz"> <h3><a href="usedhouse/house-detail.html?houseId='+data[i].houseId+'"  target="_blank">'+data[i].houseName+'</a></h3> </div> </li>')
-        }
-        $('.house-list li:last-child').addClass('no-margin-r')
     };
 
     $(function(){

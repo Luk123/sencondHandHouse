@@ -387,6 +387,7 @@
            success: function(result) {
                if(result&&result['success']){
                   var data=result.result;
+                  console.log(data)
                   $("#houseId").val(data.houseId);
                    $("#ownerId").val(data.ownerId);
                    $("#ownerName").val(data.ownerName);
@@ -399,7 +400,7 @@
                    $("#district").val(data.district);
                    $("#addr").val(data.addr);
                    $("#buildType").val(data.buildType);
-                   $("#buildYear").val(formatDate(data.buildYear));
+                   $("#buildYear").val(data.buildYear);
                    $("#houseType").val(data.houseType);
                    $("#floor").val(data.floor);
                    $("#direction").val(data.direction);

@@ -218,16 +218,15 @@
             type:'get',
             url:basePath+'/house/page/all',
             data:{
-                userId:window.userId,
+                userId:getCookie("key"),
                 page:page,
                 pageSize:pageSize
             },
             success:function (data) {
                 console.log(data)
                 view(data.rows)
-                page=Math.ceil(data.total/pageSize);
-                inserHtml(page,1);
-                bindEvent(page)
+                inserHtml(data.pages,1);
+                bindEvent(data.pages)
             },
             error:function(){
                 alert('服务器走丢了')
@@ -242,10 +241,10 @@
         $.each(data,function(i,v){
             $('.allmsg tbody').append('<tr> <td>'+ v.houseName+'</td> ' +
             '<td>'+ v.houseHall+'</td> ' +
-            '<td>'+ v.area+'m^2</td> ' +
-            '<td>'+ v.realArea+'m^2</td> ' +
+            '<td>'+ v.area+'㎡</td> ' +
+            '<td>'+ v.realArea+'㎡</td> ' +
             '<td>'+ v.provice+ v.city+ v.district+'</td> ' +
-            '<td>'+timeFormat(v.buildYear)+'</td> ' +
+            '<td>'+v.buildYear+'</td> ' +
             '<td>'+ v.houseType+'</td> ' +
             '<td>'+ v.salePrice+'</td> ' +
             '<td>'+ v.renovation+'</td> ' +
@@ -337,11 +336,15 @@
         });
     }
     function getData(num){
+        var useId=getCookie('key');
+        if (useId==null){
+            return;
+        }
         $.ajax({
             type:'get',
             url:basePath+'/house/page/all',
             data:{
-                userId:window.userId,
+                userId:useId,
                 page:num,
                 pageSize:3
             },
