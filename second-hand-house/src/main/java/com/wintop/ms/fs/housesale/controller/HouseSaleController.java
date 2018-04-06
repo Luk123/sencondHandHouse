@@ -58,6 +58,9 @@ public class HouseSaleController {
      */
     @PostMapping(value = "house/sale",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> saleHouse(HouseSale dto) throws  Exception{
+        if(dto.getCustId().equals(dto.getOwnerId())){
+          return new ServiceResult<>(false,"禁止售卖给自己");
+        }
         System.out.println(dto.toString());
         dto.setSaleTime(new Date());
         // insert houseSale

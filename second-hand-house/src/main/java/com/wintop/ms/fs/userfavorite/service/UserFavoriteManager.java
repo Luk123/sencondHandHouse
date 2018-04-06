@@ -26,4 +26,15 @@ public class UserFavoriteManager extends BsManager<UserFavoriteDAO, UserFavorite
         return result;
     }
 
+    /**
+     * 查询用户是否已经关注此房屋，是返回true
+     * @param userId
+     * @param houseId
+     * @return
+     */
+    public Boolean selectByUserIdHouseId(Integer userId,Integer houseId) {
+        Integer exist = favoriteDAO.selectByUserIdHouseId(userId,houseId);
+        return exist == null ? false:true;
+    }
+
 }

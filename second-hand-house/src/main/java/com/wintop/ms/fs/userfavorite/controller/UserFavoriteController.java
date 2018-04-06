@@ -53,6 +53,8 @@ public class UserFavoriteController {
      */
     @PostMapping(value = "/userFavorite/saveFavorite",produces="application/json; charset=UTF-8")
     public ServiceResult<Integer> saveFavorite(UserFavorite favorite){
+        Boolean st = favoriteManager.selectByUserIdHouseId(favorite.getUserId(),favorite.getHouseId());
+        if (st) return new ServiceResult<>(true,1);
         favorite.setCreateTime(new Date());
         favorite.setState("关注");
         return favoriteManager.insertSelective(favorite);
