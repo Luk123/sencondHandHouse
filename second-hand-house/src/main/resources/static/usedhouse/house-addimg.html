@@ -143,7 +143,7 @@
             font-weight:bold;
             text-indent:1px
         }
-        .photo{
+        #photo{
             position: absolute;
             top:0;
            left:0;
@@ -304,25 +304,21 @@
             '<td>'+ v.createName+'</td>' +
             '<td class="img_"></td>' +
             '<td class="imgtype_"></td>' +
-            '<td><a  class="add-btn del-btn" data-houseId="'+v.houseId+'" data-createId="'+ v.createId+'"> ' +
-            '<input class="photo" onchange="changePhoto(this)" type="file" accept="image/*"  name="fileName" data-houseId="'+v.houseId+'"' +
+            '<td><a href="javascript:void(0)" class="add-btn del-btn" data-houseId="'+v.houseId+'" data-createId="'+ v.createId+'"> ' +
+            '<input type="file" accept="image/*" id="photo" name="fileName" data-houseId="'+v.houseId+'"' +
                     ' data-createId="'+ v.createId+'" data-houseName="'+ v.houseName+'">添加图片</a>' +
             '</td> ' +
             '</tr>')
         })
-        // $('#photo').change(function(e){
-        //
-        // })
+        $('#photo').change(function(e){
+           houseId=$(this).attr('data-houseId')
+            houseName=$(this).attr('data-houseName')
+            var formData = new FormData();
+            formData.append('fileName',this.files[0])
+            fileUpload(formData)
+        })
     }
 
-    function changePhoto(obj) {
-        alert(11)
-        houseId=$(obj).attr('data-houseId')
-        houseName=$(obj).attr('data-houseName')
-        var formData = new FormData();
-        formData.append('fileName',$(obj).files[0])
-        fileUpload(formData)
-    }
     $(function(){
         init(1,5);
     });
