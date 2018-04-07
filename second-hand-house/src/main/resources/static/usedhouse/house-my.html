@@ -255,7 +255,28 @@
     }
     $(function(){
         init(1,3);
+        init1()
     })
+    function init1(){
+        $.ajax({
+            type:'get',
+            url:basePath+'user/getUserInfoById',
+            data:{
+                'userId':window.userid
+            },
+            success:function(data){
+                console.log(data)
+                getPerMsg(data.result)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function getPerMsg(data) {
+        $('.name').html(data.userName)
+        $('#head-pic').attr('src',data.userPhotoAddr);
+    }
     function inserHtml(page,current){
         var obj = $(".ts-page");
         obj.empty();

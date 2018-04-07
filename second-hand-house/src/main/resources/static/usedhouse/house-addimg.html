@@ -143,7 +143,7 @@
             font-weight:bold;
             text-indent:1px
         }
-        #photo{
+        .photo{
             position: absolute;
             top:0;
            left:0;
@@ -251,7 +251,7 @@
 <script src="js/BaseValues.js"></script>
 <script src="js/timeFormat.js"></script>
 <script>
-    var page;
+    var page,myimg;
     var houseId,houseName;
     function init(page,pageSize) {
         $.ajax({
@@ -276,7 +276,7 @@
     }
 
 
-    function fileUpload(data){
+    function fileUpload(data,obj){
         $.ajax({
             type:'post',
             url:basePath+'/fileUpload',
@@ -287,7 +287,7 @@
             processData : false,
             success:function(data){
                 myimg=data.result;
-                $('.img_').html(data.result)
+                $(obj).parents('tr').addClass('on').find('.img_').html(data.result)
                 console.log(myimg)
                 $('.mask').show();
             }
@@ -305,25 +305,46 @@
             '<td class="img_"></td>' +
             '<td class="imgtype_"></td>' +
             '<td><a href="javascript:void(0)" class="add-btn del-btn" data-houseId="'+v.houseId+'" data-createId="'+ v.createId+'"> ' +
-            '<input type="file" accept="image/*" id="photo" name="fileName" data-houseId="'+v.houseId+'"' +
+            '<input type="file" accept="image/*" class="photo" name="fileName" data-houseId="'+v.houseId+'"' +
                     ' data-createId="'+ v.createId+'" data-houseName="'+ v.houseName+'">添加图片</a>' +
             '</td> ' +
             '</tr>')
         })
-        $('#photo').change(function(e){
+        $('.photo').change(function(e){
            houseId=$(this).attr('data-houseId')
             houseName=$(this).attr('data-houseName')
             var formData = new FormData();
             formData.append('fileName',this.files[0])
-            fileUpload(formData)
+            fileUpload(formData,this)
         })
     }
 
     $(function(){
         init(1,5);
-    });
+        init1()
+    })
+    function init1(){
+        $.ajax({
+            type:'get',
+            url:basePath+'user/getUserInfoById',
+            data:{
+                'userId':window.userid
+            },
+            success:function(data){
+                console.log(data)
+                getPerMsg(data.result)
+            }
+            ,error:function (data) {
+                alert('服务器走丢了')
+            }
+        })
+    }
+    function getPerMsg(data) {
+        $('.name').html(data.userName)
+        $('#head-pic').attr('src',data.userPhotoAddr);
+    }
     $('.sure-imgtyoe').click(function () {
-        $('.imgtype_').html($('#imgType').val());
+        $('.allmsg tbody tr.on .imgtype_').html($('#imgType').val())
         add($('#imgType').val())
     })
     function add(type){
