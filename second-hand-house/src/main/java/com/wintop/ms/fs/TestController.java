@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class TestController {
-    @RequestMapping("register")
-    public String file(){
-        return "usedhouse/login";
-    }
 
     @RequestMapping("login")
     public String login(){
@@ -22,7 +18,7 @@ public class TestController {
 
     @RequestMapping("index")
     public String index(){
-        return "MS/init";
+        return "/file";
     }
 
 }

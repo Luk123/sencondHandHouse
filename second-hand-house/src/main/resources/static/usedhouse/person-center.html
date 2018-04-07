@@ -330,6 +330,11 @@ integralNum"></span>
     })
 
     function init(){
+        var useId = getCookie('key');
+        if(useId == null){
+            alert('请登录！');
+            window.location.href = "login.html";
+        }
         $.ajax({
             type:'get',
             url:basePath+'user/getUserInfoById',

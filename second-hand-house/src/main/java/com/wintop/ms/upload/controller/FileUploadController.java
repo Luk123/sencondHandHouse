@@ -29,20 +29,20 @@ public class FileUploadController {
     private static final String            IMAGE   = "image";
     /** 定义允许上传的文件扩展名 */
     private static HashMap<String, String> extMap  = new HashMap<String, String>();
-    /*
-     * 获取file.html页面
-     */
-    @RequestMapping("file")
-    public String file(){
-        return "/file";
-    }
-    /*
-     * 获取multifile.html页面
-     */
-    @RequestMapping("multifile")
-    public String multifile(){
-        return "/multifile";
-    }
+//    /*
+//     * 获取file.html页面
+//     */
+//    @RequestMapping("file")
+//    public String file(){
+//        return "/file";
+//    }
+//    /*
+//     * 获取multifile.html页面
+//     */
+//    @RequestMapping("multifile")
+//    public String multifile(){
+//        return "/multifile";
+//    }
     /**
      * 实现多文件上传
      * */
