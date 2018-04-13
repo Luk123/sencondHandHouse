@@ -23,6 +23,12 @@ import java.util.List;
  */
 @Controller
 public class FileUploadController {
+
+    // upload and download path config
+    private static String path = "C:/picFile/";
+    //private static String path = "file:///home/mgz/picFile/";
+
+    public static String filePath = "file:/" + FileUploadController.path;
     /** 最大文件大小 */
     private static long                    maxSize = 10 * 1024 * 1024;
     private static Logger logger  = LoggerFactory.getLogger(FileUploadController.class);
@@ -56,7 +62,7 @@ public class FileUploadController {
             result.setMessage("文件不能为空");
             return result;
         }
-        String path = "C:/picFile" ;
+        String path = FileUploadController.path ;
         for(MultipartFile file:files){
             String fileName = file.getOriginalFilename();
             int size = (int) file.getSize();
@@ -70,7 +76,7 @@ public class FileUploadController {
                     return result;
 //                throw new RuntimeException("上传" + file.getOriginalFilename() + "的图片不符合限制");
                 }
-                String allPath = path + "/" + fileName;
+                String allPath = path + fileName;
                 System.out.println(fileName + "-->" + allPath);
                 File dest = new File(allPath);
                 if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
@@ -106,8 +112,8 @@ public class FileUploadController {
             String fileName = file.getOriginalFilename();
             int size = (int) file.getSize();
             System.out.println(fileName + "-->" + size);
-            String savePath = "C:/picFile" ;
-            String allPath = savePath +"/" + fileName;
+            String savePath = FileUploadController.path ;
+            String allPath = savePath + fileName;
             String returnPath = "/Path/" + fileName;
             System.out.println(fileName + "-->" + allPath);
             File dest = new File(allPath);
